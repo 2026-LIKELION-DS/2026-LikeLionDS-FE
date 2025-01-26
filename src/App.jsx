@@ -12,7 +12,7 @@ import AdminLogin from "@routes/AdminLogin";
 import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
 import ProtectedRoute from "@/ProtectedRoute";
-import Header from "@components/Header";
+import Header from "@components/Header/Header";
 import Footer from "@components/Footer";
 
 function App() {
