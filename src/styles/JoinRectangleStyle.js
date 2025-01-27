@@ -1,0 +1,20 @@
+import styled from "styled-components";
+
+export const RectangleDiv = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+
+  border-radius: ${(props) => props.borderRadius};
+  background: ${(props) => props.bgr};
+  color: ${(props) => props.color};
+
+  font-family: "Pretendard", sans-serif;
+  font-weight: ${(props) => props.fontWeight};
+  line-height: 130%;
+  font-size: ${(props) => props.fontSize};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;

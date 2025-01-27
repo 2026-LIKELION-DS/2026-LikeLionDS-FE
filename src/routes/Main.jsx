@@ -1,12 +1,15 @@
 import React from "react";
 import * as M from "@styles/MainStyle";
 import PartInfo from "@components/MainPage/PartInfo";
+import MainJoin from "@components/MainPage/MainJoin/MainJoin";
 
 function Main() {
   return (
     <>
-      <M.Main>메인 페이지</M.Main>
-      <PartInfo />
+      <M.Main>
+        <PartInfo />
+        <MainJoin />
+      </M.Main>
     </>
   );
 }

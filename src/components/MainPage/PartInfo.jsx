@@ -1,6 +1,6 @@
 import * as M from "@styles/PartInfoStyle";
 
-import icon_underline from "@assets/icons/icon_underline.svg";
+import icon_underline_orange from "@assets/icons/icon_underline_orange.svg";
 import icon_plan_front from "@assets/icons/icon_plan_front.svg";
 import icon_plan_back from "@assets/icons/icon_plan_back.svg";
 import icon_FE_front from "@assets/icons/icon_FE_front.svg";
@@ -41,7 +41,7 @@ const PartInfo = () => {
               파트별 소개
             </M.TextWrapper>
             <M.ImgWrapper>
-              <img src={icon_underline} />
+              <img src={icon_underline_orange} />
             </M.ImgWrapper>
           </div>
         </M.TextContainer>
