@@ -47,7 +47,7 @@ function Footer() {
             <a href="https://www.instagram.com/likelion_ds">
               <F.Icon src={Instagram} alt="인스타그램" />
             </a>
-            <a href="#">
+            <a href="https://open.kakao.com/me/LikelionDS">
               <F.Icon src={Kakao} alt="카카오톡" />
             </a>
           </F.Sns>
