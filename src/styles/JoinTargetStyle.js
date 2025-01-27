@@ -1,0 +1,38 @@
+import styled from "styled-components";
+import palette from "@lib/colorPalette";
+
+export const TitleText = styled.p`
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.54px;
+
+  color: ${palette.duksungBurgundy.ex4};
+
+  margin-top: 44px;
+`;
+
+export const ItemWrapper = styled.div`
+  width: 342px;
+  padding: 10px 0px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  border-radius: 16px;
+  background: ${palette.boldBlack.ex9};
+`;
+
+export const ItemText = styled.p`
+  padding: 12px 20px;
+
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.48px;
+`;
