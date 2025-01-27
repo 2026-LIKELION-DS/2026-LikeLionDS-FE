@@ -1,12 +1,28 @@
 import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
-export const TextWrapper = styled.p`
-  font-size: 18px;
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
 `;
 
-export const TitleWrapper = styled.p`
-  font-size: 28px;
+export const ComponentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+`;
+
+export const TextContainer = styled.div`
+  width: fit-content;
+`;
+
+export const TextWrapper = styled.p`
+  font-size: ${(props) => props.$fontSize};
+  font-family: "Pretendard", sans-serif;
+  font-weight: ${(props) => props.$fontWeight};
 `;
 
 export const ImgWrapper = styled.div`

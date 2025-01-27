@@ -29,30 +29,39 @@ const PartInfo = () => {
   };
 
   return (
-    <>
-      <M.TextWrapper>저희 동아리의 커리큘럼은 이렇게 진행돼요.</M.TextWrapper>
+    <M.PageContainer>
+      <M.ComponentContainer>
+        {/* 텍스트 */}
+        <M.TextContainer>
+          <M.TextWrapper $fontSize={"18px"} $fontWeight={300}>
+            저희 동아리의 커리큘럼은 이렇게 진행돼요.
+          </M.TextWrapper>
+          <div>
+            <M.TextWrapper $fontSize={"28px"} $fontWeight={600}>
+              파트별 소개
+            </M.TextWrapper>
+            <M.ImgWrapper>
+              <img src={icon_underline} />
+            </M.ImgWrapper>
+          </div>
+        </M.TextContainer>
 
-      <div>
-        <M.TitleWrapper>파트별 소개</M.TitleWrapper>
-        <M.ImgWrapper>
-          <img src={icon_underline} />
-        </M.ImgWrapper>
-      </div>
+        {/* 이미지 */}
+        <M.PartContainer>
+          <M.PartImgContainer>
+            <M.PartImgWrapper src={getImageSrc("plan")} onClick={() => handleImgClicked("plan")} />
+          </M.PartImgContainer>
 
-      <M.PartContainer>
-        <M.PartImgContainer>
-          <M.PartImgWrapper src={getImageSrc("plan")} onClick={() => handleImgClicked("plan")} />
-        </M.PartImgContainer>
+          <M.PartImgContainer>
+            <M.PartImgWrapper src={getImageSrc("FE")} $marginTop={"17px"} onClick={() => handleImgClicked("FE")} />
+          </M.PartImgContainer>
 
-        <M.PartImgContainer>
-          <M.PartImgWrapper src={getImageSrc("FE")} $marginTop={"17px"} onClick={() => handleImgClicked("FE")} />
-        </M.PartImgContainer>
-
-        <M.PartImgContainer>
-          <M.PartImgWrapper src={getImageSrc("BE")} $marginTop={"-70px"} onClick={() => handleImgClicked("BE")} />
-        </M.PartImgContainer>
-      </M.PartContainer>
-    </>
+          <M.PartImgContainer>
+            <M.PartImgWrapper src={getImageSrc("BE")} $marginTop={"-70px"} onClick={() => handleImgClicked("BE")} />
+          </M.PartImgContainer>
+        </M.PartContainer>
+      </M.ComponentContainer>
+    </M.PageContainer>
   );
 };
 
