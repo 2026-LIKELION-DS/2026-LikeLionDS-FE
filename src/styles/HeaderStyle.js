@@ -7,6 +7,7 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${palette.boldBlack.ex10Primary};
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
 `;
 
 export const Logo = styled.div`

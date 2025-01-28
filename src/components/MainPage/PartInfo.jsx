@@ -40,7 +40,7 @@ const PartInfo = () => {
             <M.TextWrapper $fontSize={"28px"} $fontWeight={600}>
               파트별 소개
             </M.TextWrapper>
-            <M.ImgWrapper>
+            <M.ImgWrapper width={"121px"}>
               <img src={icon_underline_orange} />
             </M.ImgWrapper>
           </div>

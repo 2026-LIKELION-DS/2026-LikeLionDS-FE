@@ -26,7 +26,7 @@ export const TextWrapper = styled.p`
 `;
 
 export const ImgWrapper = styled.div`
-  width: 121px;
+  width: ${(props) => props.width};
   margin-top: -10px;
 `;
 

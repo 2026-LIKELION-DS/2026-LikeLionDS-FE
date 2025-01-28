@@ -46,7 +46,7 @@ const MainJoin = () => {
         <M_.TextWrapper $fontSize={"28px"} $fontWeight={600}>
           아기사자 모집 안내
         </M_.TextWrapper>
-        <M_.ImgWrapper>
+        <M_.ImgWrapper width={"144px"}>
           <img src={icon_underline_red} />
         </M_.ImgWrapper>
       </div>

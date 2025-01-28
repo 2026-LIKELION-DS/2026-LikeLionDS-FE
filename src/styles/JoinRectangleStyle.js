@@ -14,7 +14,8 @@ export const RectangleDiv = styled.div`
   font-size: ${(props) => props.fontSize};
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: ${(props) => props.textAlign || "center"};
 `;
