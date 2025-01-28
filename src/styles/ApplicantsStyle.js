@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const Applicants = styled.div`
-  height: 20px;
+  height: 25px;
 `;
 
 export const form = styled.form`

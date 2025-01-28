@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const AdminLogin = styled.div`
-  height: 20px;
+  height: 25px;
 `;
 
 export const Form = styled.form`
