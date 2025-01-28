@@ -3,6 +3,7 @@ import palette from "@lib/colorPalette";
 
 export const ArrowMotion = styled.div`
   position: absolute;
+  left: 0;
   bottom: 0;
   width: 100%;
   padding: 21px 0 20px;
@@ -14,10 +15,6 @@ export const ArrowMotion = styled.div`
 
   opacity: ${(props) => (props.$isAnimating ? 0 : 1)};
   transition: 1s ease-in-out;
-
-  @media (hover: hover) and (pointer: fine) {
-    width: 390px;
-  }
 `;
 
 export const LottieContainer = styled.div`
