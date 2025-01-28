@@ -10,9 +10,10 @@ export const ArrowMotion = styled.div`
   justify-content: center;
   align-items: center;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  cursor: pointer;
 
   opacity: ${(props) => (props.$isAnimating ? 0 : 1)};
-  transition: 0.4s ease-in-out forwards;
+  transition: 1s ease-in-out;
 
   @media (hover: hover) and (pointer: fine) {
     width: 390px;

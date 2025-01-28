@@ -7,29 +7,36 @@ const slideUp = keyframes`
     opacity: 1;
   }
   to {
-    transform: translateY(-200px); /* 위로 200px 이동 */
-    opacity: 0;
+    transform: translateY(-100%);
+    opacity: 1;
   }
 `;
 
 export const Splash = styled.div`
-  height: 100vh;
+  height: calc(100dvh - 101px - 87px);
+  padding-top: 87px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  overflow: hidden;
-  position: relative;
-`;
-
-export const LogoSpace = styled.div`
-  display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 export const Logo = styled.img`
   width: 348px;
-  position: absolute;
-  bottom: 101px;
-  animation: ${(props) => (props.$isAnimating ? slideUp : "none")};
-  transition: 0.4s ease-in-out forwards;
+  z-index: 100;
+  animation: ${(props) => (props.$isAnimating ? slideUp : "none")} 1s ease-in-out;
+`;
+
+export const Background = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: ${palette.boldBlack.ex10Primary};
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: ${(props) => (props.$isAnimating ? 0 : 1)};
+  transition: 1s ease-in-out;
 `;

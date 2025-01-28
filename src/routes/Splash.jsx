@@ -24,8 +24,10 @@ function Splash() {
     if (touchStart && touchStart - e.changedTouches[0].clientY > 50) {
       // 위로 스와이프 - main 페이지로 이동
       startTransition();
+      console.log("Upward swipe detected");
     } else if (touchStart && e.changedTouches[0].clientY - touchStart > 50) {
-      // 아래로 스와이프 - 페이지 이동 없음
+      // 아래로 스와이프 - main 페이지로 이동
+      startTransition();
       console.log("Downward swipe detected");
     }
   };
@@ -42,17 +44,19 @@ function Splash() {
     setIsAnimating(true);
 
     setTimeout(() => {
+      setIsAnimating(false);
       navigate("/main");
-    }, 4000); // 400ms 후에 페이지 이동
+    }, 1000); // 1000ms 후에 페이지 이동
   };
 
   return (
-    <S.Splash onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onWheel={handleWheel}>
-      <S.LogoSpace>
+    <>
+      <S.Background />
+      <S.Splash onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onWheel={handleWheel}>
         <S.Logo src={SplashLogo} alt="덕성 멋사 13기" $isAnimating={isAnimating} />
-      </S.LogoSpace>
-      <ArrowMotion $isAnimating={isAnimating} />
-    </S.Splash>
+        <ArrowMotion isAnimating={isAnimating} onClick={() => startTransition()} />
+      </S.Splash>
+    </>
   );
 }
 
