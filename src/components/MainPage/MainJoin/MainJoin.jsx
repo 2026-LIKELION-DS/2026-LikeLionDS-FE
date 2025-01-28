@@ -11,6 +11,7 @@ import loadingLottie from "@assets/motions/카드 모션/card.json";
 
 import icon_arrow_red from "@assets/icons/icon_arrow_red.svg";
 import icon_underline_red from "@assets/icons/icon_underline_red.svg";
+import JoinPeriod from "./JoinPeriod";
 
 const MainJoin = () => {
   return (
@@ -54,6 +55,9 @@ const MainJoin = () => {
       <M.JoinContainer>
         <JoinTarget />
       </M.JoinContainer>
+
+      {/* 활동 기간 */}
+      <JoinPeriod />
     </>
   );
 };
