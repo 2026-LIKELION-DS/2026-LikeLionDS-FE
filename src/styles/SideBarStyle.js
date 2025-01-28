@@ -98,3 +98,28 @@ export const SubDate = styled.div`
   font-size: 14px;
   letter-spacing: -0.42px;
 `;
+
+export const MainGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const SubGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-left: 1px solid ${palette.boldBlack.ex4};
+`;
+
+export const SubIndex = styled.div`
+  color: ${palette.style.white};
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.48px;
+  padding: 0 16px;
+  border-left: 1px solid ${palette.boldBlack.ex4};
+  margin-left: -1px;
+  cursor: pointer;
+`;

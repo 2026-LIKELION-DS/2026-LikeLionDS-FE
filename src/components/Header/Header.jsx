@@ -25,7 +25,7 @@ function Header() {
     setSidebarVisible(false);
     setTimeout(() => {
       setSidebarOpen(false);
-    }, 400); // 400ms 후에 사이드바 상태를 false로 설정
+    }, 300); // 300ms 후에 사이드바 상태를 false로 설정
   };
 
   return (
