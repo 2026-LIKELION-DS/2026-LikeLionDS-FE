@@ -4,9 +4,12 @@ import * as A from "@styles/ApplicantsResultStyle";
 import discord from "../assets/icons/icon_discord.svg";
 import notion from "../assets/icons/icon_notion.svg";
 
+import Header from "@components/Header/HeaderApp";
+
 function ApplicantsResult() {
   return (
     <>
+      <Header />
       <A.ApplicantsResult></A.ApplicantsResult>
       <A.Page>
         {/* <A.Box>

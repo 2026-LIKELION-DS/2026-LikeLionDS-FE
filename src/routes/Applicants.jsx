@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as A from "@styles/ApplicantsStyle";
 
+import Header from "@components/Header/HeaderApp";
+
 function Applicants() {
   const [formValue, setFormValue] = useState({
     name: "",
@@ -20,6 +22,7 @@ function Applicants() {
 
   return (
     <>
+      <Header />
       <A.Applicants></A.Applicants>
       <A.form>
         <A.InputBox>

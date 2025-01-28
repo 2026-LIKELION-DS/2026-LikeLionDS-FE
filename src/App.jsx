@@ -12,7 +12,6 @@ import AdminLogin from "@routes/AdminLogin";
 import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
 import ProtectedRoute from "@/ProtectedRoute";
-import Header from "@components/Header";
 import Footer from "@components/Footer";
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
 
   return (
     <>
-      {!isSplash && <Header />}
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Splash />} />
