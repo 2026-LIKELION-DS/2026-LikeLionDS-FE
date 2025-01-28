@@ -18,13 +18,20 @@ export const Splash = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: ${(props) => (props.$appDate ? "space-between" : "flex-end")};
 `;
 
 export const Logo = styled.img`
   width: 348px;
   z-index: 100;
   animation: ${(props) => (props.$isAnimating ? slideUp : "none")} 1s ease-in-out;
+`;
+
+export const LogoApp = styled.img`
+  width: 348px;
+  z-index: 100;
+  opacity: ${(props) => (props.$isAnimating ? 0 : 1)};
+  transition: 1s ease-in-out;
 `;
 
 export const Background = styled.div`
