@@ -12,6 +12,7 @@ import loadingLottie from "@assets/motions/카드 모션/card.json";
 import icon_arrow_red from "@assets/icons/icon_arrow_red.svg";
 import icon_underline_red from "@assets/icons/icon_underline_red.svg";
 import JoinPeriod from "./JoinPeriod";
+import JoinSchedule from "./JoinSchedule";
 
 const MainJoin = () => {
   return (
@@ -21,7 +22,6 @@ const MainJoin = () => {
           width={"330px"}
           height={"86px"}
           borderRadius={"51px"}
-          text={"덕성여대 멋쟁이사자처럼 13기를 모집합니다!"}
           bgr={palette.boldBlack.ex9}
           color={palette.style.white}
           fontWeight={600}
@@ -58,6 +58,9 @@ const MainJoin = () => {
 
       {/* 활동 기간 */}
       <JoinPeriod />
+
+      {/* 모집 일정 */}
+      <JoinSchedule />
     </>
   );
 };
