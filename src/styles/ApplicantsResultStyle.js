@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
-export const ApplicantsResult = styled.div``;
+export const ApplicantsResult = styled.div`
+  height: 50px;
+`;
 
 export const Page = styled.div`
   display: flex;
@@ -65,17 +67,4 @@ export const Button = styled.button`
 
   border: none;
   background-color: white;
-`;
-
-export const GoBack = styled.button`
-  margin-top: 30px;
-  height: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  gap: 5px;
-
-  border: none;
-  background-color: #1c1b1a;
 `;

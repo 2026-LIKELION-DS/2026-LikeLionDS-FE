@@ -19,7 +19,7 @@ function AdminLogin() {
   };
   return (
     <>
-      <A.AdminLogin>어드민 로그인 페이지</A.AdminLogin>
+      <A.AdminLogin></A.AdminLogin>
 
       {/* 테스트를 위해 임시로 만든 어드민 로그인 (수정바람)*/}
 

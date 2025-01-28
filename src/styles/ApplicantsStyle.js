@@ -2,10 +2,7 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const Applicants = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 20px;
 `;
 
 export const form = styled.form`

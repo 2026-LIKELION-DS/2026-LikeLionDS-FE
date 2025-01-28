@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
-export const AdminLogin = styled.div``;
+export const AdminLogin = styled.div`
+  height: 20px;
+`;
 
 export const Form = styled.form`
   display: flex;

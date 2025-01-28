@@ -20,7 +20,7 @@ function Applicants() {
 
   return (
     <>
-      <A.Applicants>합격자 조회 input 페이지</A.Applicants>
+      <A.Applicants></A.Applicants>
       <A.form>
         <A.InputBox>
           <A.InputName>이름</A.InputName>

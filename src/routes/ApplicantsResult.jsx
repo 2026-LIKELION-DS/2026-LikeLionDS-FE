@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import * as A from "@styles/ApplicantsResultStyle";
 import discord from "../assets/icons/icon_discord.svg";
 import notion from "../assets/icons/icon_notion.svg";
-import goback from "../assets/icons/icon-park_return.png";
 
 function ApplicantsResult() {
   return (
     <>
-      <A.ApplicantsResult>합격자 조회 결과 페이지</A.ApplicantsResult>
+      <A.ApplicantsResult></A.ApplicantsResult>
       <A.Page>
         {/* <A.Box>
           <A.H1>김멋사 님</A.H1>
@@ -67,10 +66,6 @@ function ApplicantsResult() {
           <br />
           <A.Info>감사합니다.</A.Info>
         </A.Box>
-
-        <A.GoBack>
-          <A.Img src={goback} /> <A.StyledLink to="#">메인페이지로 돌아가기</A.StyledLink>
-        </A.GoBack>
       </A.Page>
     </>
   );
