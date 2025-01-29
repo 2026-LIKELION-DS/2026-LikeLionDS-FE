@@ -25,42 +25,47 @@ const MainJoin = () => {
           bgr={palette.boldBlack.ex9}
           color={palette.style.white}
           fontWeight={600}
-          fontSize={"20px"}>
+          fontSize={"20px"}
+          letterSpacing={"-0.6px"}>
           <div>
             <p>덕성여대 멋쟁이사자처럼 13기를</p>
             <p>모집합니다!</p>
           </div>
         </JoinRectangle>
 
+        {/* lottie */}
         <M.AnimationWrapper>
           <Lottie animationData={loadingLottie} loop autoPlay />
         </M.AnimationWrapper>
 
+        {/* 화살표 */}
         <M.ImgWrapper>
           <img src={icon_arrow_red} />
         </M.ImgWrapper>
       </M.JoinContainer>
 
       {/* 아기사자 모집 안내 */}
-      <div>
-        <M_.TextWrapper $fontSize={"28px"} $fontWeight={600}>
-          아기사자 모집 안내
-        </M_.TextWrapper>
-        <M_.ImgWrapper width={"144px"}>
-          <img src={icon_underline_red} />
-        </M_.ImgWrapper>
-      </div>
+      <M_.PageContainer>
+        <M_.ComponentContainer>
+          <M.TitleContainer>
+            <M_.TextWrapper $fontSize={"28px"} $fontWeight={600} $letterSpacing={"-0.84px"}>
+              아기사자 모집 안내
+            </M_.TextWrapper>
+            <M_.ImgWrapper width={"144px"}>
+              <img src={icon_underline_red} />
+            </M_.ImgWrapper>
+          </M.TitleContainer>
 
-      {/* 모집 대상 */}
-      <M.JoinContainer>
-        <JoinTarget />
-      </M.JoinContainer>
+          {/* 모집 대상 */}
+          <JoinTarget />
 
-      {/* 활동 기간 */}
-      <JoinPeriod />
+          {/* 활동 기간 */}
+          <JoinPeriod />
 
-      {/* 모집 일정 */}
-      <JoinSchedule />
+          {/* 모집 일정 */}
+          <JoinSchedule />
+        </M_.ComponentContainer>
+      </M_.PageContainer>
     </>
   );
 };

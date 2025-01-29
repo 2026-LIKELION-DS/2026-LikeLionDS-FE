@@ -1,6 +1,17 @@
 import * as M from "@styles/JoinRectangleStyle";
 
-const JoinRectangle = ({ width, height, borderRadius, children, bgr, color, fontWeight, fontSize, textAlign }) => {
+const JoinRectangle = ({
+  width,
+  height,
+  borderRadius,
+  children,
+  bgr,
+  color,
+  fontWeight,
+  fontSize,
+  textAlign,
+  letterSpacing,
+}) => {
   return (
     <M.RectangleDiv
       width={width}
@@ -10,7 +21,8 @@ const JoinRectangle = ({ width, height, borderRadius, children, bgr, color, font
       color={color}
       fontWeight={fontWeight}
       fontSize={fontSize}
-      textAlign={textAlign}>
+      textAlign={textAlign}
+      letterSpacing={letterSpacing}>
       <p> {children}</p>
     </M.RectangleDiv>
   );

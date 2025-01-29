@@ -11,7 +11,7 @@ export const TitleText = styled.p`
 
   color: ${palette.duksungBurgundy.ex4};
 
-  margin-top: 44px;
+  margin-top: 44.7px;
 `;
 
 export const ItemWrapper = styled.div`
@@ -24,6 +24,8 @@ export const ItemWrapper = styled.div`
 
   border-radius: 16px;
   background: ${palette.boldBlack.ex9};
+
+  margin-top: 20px;
 `;
 
 export const ItemText = styled.p`
@@ -35,4 +37,15 @@ export const ItemText = styled.p`
   font-weight: 400;
   line-height: 130%;
   letter-spacing: -0.48px;
+
+  color: ${palette.boldBlack.ex2};
+`;
+
+export const ItemLine = styled.div`
+  width: 302px;
+  height: 0.5px;
+
+  background: ${palette.boldBlack.ex8};
+
+  align-self: center;
 `;

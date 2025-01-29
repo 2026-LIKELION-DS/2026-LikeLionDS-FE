@@ -13,6 +13,8 @@ export const ComponentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: self-start;
+
+  width: 350px;
 `;
 
 export const TextContainer = styled.div`

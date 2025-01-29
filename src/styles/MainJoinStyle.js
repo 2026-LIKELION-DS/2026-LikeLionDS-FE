@@ -18,3 +18,8 @@ export const ImgWrapper = styled.div`
   width: 40px;
   height: 91px;
 `;
+
+export const TitleContainer = styled.div`
+  margin-top: 91.24px;
+  width: fit-content;
+`;
