@@ -33,11 +33,11 @@ const PartInfo = () => {
       <M.ComponentContainer>
         {/* 텍스트 */}
         <M.TextContainer>
-          <M.TextWrapper $fontSize={"18px"} $fontWeight={300}>
+          <M.TextWrapper $fontSize={"18px"} $fontWeight={300} $letterSpacing={"-0.54px"}>
             저희 동아리의 커리큘럼은 이렇게 진행돼요.
           </M.TextWrapper>
           <div>
-            <M.TextWrapper $fontSize={"28px"} $fontWeight={600}>
+            <M.TextWrapper $fontSize={"28px"} $fontWeight={600} $letterSpacing={"-0.84px"}>
               파트별 소개
             </M.TextWrapper>
             <M.ImgWrapper width={"121px"}>

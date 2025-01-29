@@ -23,11 +23,16 @@ export const TextWrapper = styled.p`
   font-size: ${(props) => props.$fontSize};
   font-family: "Pretendard", sans-serif;
   font-weight: ${(props) => props.$fontWeight};
+
+  line-height: 130%;
+  letter-spacing: ${(props) => props.$letterSpacing || "-0.54px"};
+
+  margin-bottom: 5px;
 `;
 
 export const ImgWrapper = styled.div`
   width: ${(props) => props.width};
-  margin-top: -10px;
+  margin-top: -15px;
 `;
 
 export const PartContainer = styled.div`
@@ -35,6 +40,8 @@ export const PartContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  margin-top: 40px;
 `;
 
 export const PartImgContainer = styled.div`
