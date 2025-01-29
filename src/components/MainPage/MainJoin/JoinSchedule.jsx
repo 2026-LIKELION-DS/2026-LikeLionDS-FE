@@ -1,11 +1,15 @@
 import * as M_ from "@styles/JoinTargetStyle";
+import * as M__ from "@styles/JoinPeriodStyle";
 import * as M from "@styles/JoinScheduleStyle";
 import Schedule from "./Schedule";
 
 const JoinSchedule = () => {
   return (
     <>
-      <M_.TitleText>모집 일정</M_.TitleText>
+      <M__.TextContainer>
+        <M_.TitleText>모집 일정</M_.TitleText>
+      </M__.TextContainer>
+
       <M.LineContainer>
         <div>
           <Schedule date={"02.06 - 02.20"} text={"13기 모집"}></Schedule>

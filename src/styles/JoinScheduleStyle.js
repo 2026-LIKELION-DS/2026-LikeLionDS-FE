@@ -6,6 +6,7 @@ export const LineContainer = styled.div`
   flex-direction: row;
 
   margin-top: 30px;
+  z-index: 1000;
 `;
 
 export const Line = styled.div`

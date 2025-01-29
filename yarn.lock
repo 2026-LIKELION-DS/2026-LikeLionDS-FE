@@ -3147,7 +3147,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lottie-web@npm:^5.10.2":
+"lottie-web@npm:^5.10.2, lottie-web@npm:^5.12.2":
   version: 5.12.2
   resolution: "lottie-web@npm:5.12.2"
   checksum: 10c0/0aeaf631b10a76afd025df70c2a1486543530708e07a316946c08e55891dac483ffbaf2bf3648ae0b9c54c733118a0a086fd150aa76f7848606214c67ad72c30
@@ -3759,6 +3759,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.18"
     globals: "npm:^15.14.0"
     lottie-react: "npm:^2.4.1"
+    lottie-web: "npm:^5.12.2"
     postcss: "npm:^8.5.1"
     postcss-syntax: "npm:^0.36.2"
     prettier: "npm:^3.4.2"

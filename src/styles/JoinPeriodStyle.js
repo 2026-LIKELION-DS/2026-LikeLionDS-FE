@@ -22,3 +22,18 @@ export const Text = styled.p`
   line-height: 130%;
   letter-spacing: -0.48px;
 `;
+
+export const TextContainer = styled.div`
+  z-index: 1000;
+`;
+
+export const AnimationWrapper = styled.div`
+  width: 486px;
+  height: 486px;
+  align-self: center;
+
+  z-index: 999;
+
+  margin-top: -170px;
+  margin-bottom: -120px;
+`;
