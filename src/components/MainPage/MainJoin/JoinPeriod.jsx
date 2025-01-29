@@ -7,7 +7,7 @@ import loadingLottie from "@assets/motions/활동기간 모션/period.json";
 const JoinPeriod = () => {
   return (
     <>
-      <M_.TitleText>활동 기간</M_.TitleText>
+      <M.StyledTitleText>활동 기간</M.StyledTitleText>
       <M.TextWrapper>
         <M.Text>중도 탈퇴 없이 끝까지 성실히 활동에 참여할 수 있는 아기사자를 찾고 있어요.</M.Text>
       </M.TextWrapper>

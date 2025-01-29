@@ -1,5 +1,10 @@
 import styled from "styled-components";
 import palette from "@lib/colorPalette";
+import * as M_ from "@styles/JoinTargetStyle";
+
+export const StyledTitleText = styled(M_.TitleText)`
+  margin-top: 212px;
+`;
 
 export const TextWrapper = styled.div`
   width: 342px;
