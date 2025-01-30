@@ -4,6 +4,9 @@ import palette from "@lib/colorPalette";
 export const ComponentContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+
+  margin-top: 25px;
+  width: 100%;
 `;
 
 export const AnimationContainer = styled.div`

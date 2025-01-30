@@ -7,8 +7,8 @@ import robot_face from "@assets/icons/🤖 로봇 얼굴.svg";
 const FAQRobotChat = () => {
   return (
     <>
-      <M.ComponentContainer marginTop={"69.35px"}>
-        <M.ChatWrapper>
+      <M.ComponentContainer marginTop={"69.35px"} width={"100%"}>
+        <M.ChatWrapper style={{ justifyContent: "space-between" }}>
           <M.IconImg src={robot_face} width={"40px"} />
           <JoinRectangle
             width={"289px"}

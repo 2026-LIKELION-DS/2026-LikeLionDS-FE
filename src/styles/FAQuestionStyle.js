@@ -7,6 +7,8 @@ export const MsgContainer = styled.div`
   align-items: center;
 
   width: 342px;
+
+  margin-top: 32px;
 `;
 
 export const MsgInput = styled.input`

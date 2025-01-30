@@ -14,46 +14,52 @@ const FAQActivityAnswer4 = () => {
         </M.ChatWrapper>
 
         {/* 활동 관련 4번 답변 */}
-        <JoinRectangle
-          width={"246px"}
-          height={"60px"}
-          borderRadius={"24px"}
-          bgr={palette.boldBlack.ex2}
-          color={palette.boldBlack.ex10Primary}
-          fontWeight={400}
-          fontSize={"14px"}
-          textAlign={"start"}>
-          작년 12기 기준 1번의 아이디어톤과 3번
-          <br />의 해커톤에 참여할 수 있었어요.
-        </JoinRectangle>
+        <M.ComponentContainer marginTop={"8px"}>
+          <JoinRectangle
+            width={"246px"}
+            height={"60px"}
+            borderRadius={"24px"}
+            bgr={palette.boldBlack.ex2}
+            color={palette.boldBlack.ex10Primary}
+            fontWeight={400}
+            fontSize={"14px"}
+            textAlign={"start"}>
+            작년 12기 기준 1번의 아이디어톤과 3번
+            <br />의 해커톤에 참여할 수 있었어요.
+          </JoinRectangle>
+        </M.ComponentContainer>
 
-        <JoinRectangle
-          width={"246px"}
-          height={"60px"}
-          borderRadius={"24px"}
-          bgr={palette.boldBlack.ex2}
-          color={palette.boldBlack.ex10Primary}
-          fontWeight={400}
-          fontSize={"14px"}
-          textAlign={"start"}>
-          <b style={{ fontWeight: "700" }}>
-            중앙 아이디어톤과 중앙 해커톤만 필수 참<br />여
-          </b>
-          이고, 나머지는 자유였어요.
-        </JoinRectangle>
+        <M.ComponentContainer marginTop={"8px"}>
+          <JoinRectangle
+            width={"246px"}
+            height={"60px"}
+            borderRadius={"24px"}
+            bgr={palette.boldBlack.ex2}
+            color={palette.boldBlack.ex10Primary}
+            fontWeight={400}
+            fontSize={"14px"}
+            textAlign={"start"}>
+            <b style={{ fontWeight: "700" }}>
+              중앙 아이디어톤과 중앙 해커톤만 필수 참<br />여
+            </b>
+            이고, 나머지는 자유였어요.
+          </JoinRectangle>
+        </M.ComponentContainer>
 
-        <JoinRectangle
-          width={"246px"}
-          height={"60px"}
-          borderRadius={"24px"}
-          bgr={palette.boldBlack.ex2}
-          color={palette.boldBlack.ex10Primary}
-          fontWeight={400}
-          fontSize={"14px"}
-          textAlign={"start"}>
-          이외의 내용은 각 기수마다 달라질 수 있<br />
-          으니 참고 부탁드려요!
-        </JoinRectangle>
+        <M.ComponentContainer marginTop={"8px"}>
+          <JoinRectangle
+            width={"246px"}
+            height={"60px"}
+            borderRadius={"24px"}
+            bgr={palette.boldBlack.ex2}
+            color={palette.boldBlack.ex10Primary}
+            fontWeight={400}
+            fontSize={"14px"}
+            textAlign={"start"}>
+            이외의 내용은 각 기수마다 달라질 수 있<br />
+            으니 참고 부탁드려요!
+          </JoinRectangle>
+        </M.ComponentContainer>
       </M_.AnswerContainer>
     </>
   );

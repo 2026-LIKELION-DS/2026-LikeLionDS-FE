@@ -13,20 +13,20 @@ import { useState } from "react";
 const FAQActivityChat = ({ isClicked, handleChatClick }) => {
   return (
     <>
-      <M.ComponentContainer marginTop={"38px"}>
+      <M.ComponentContainer marginTop={"38px"} width={"100%"}>
         <M.ChatWrapper>
           <M.IconImg src={baby_face} width={"40px"} />
           <p>활동 관련</p>
         </M.ChatWrapper>
 
         {/* 활동 관련 질문 1 */}
-        <M.ComponentContainer marginTop={"16px"} onClick={() => handleChatClick(4)}>
+        <M.ComponentContainer marginTop={"16px"} onClick={() => handleChatClick(4)} width={"100%"} cursor={"pointer"}>
           <JoinRectangle
             width={"190px"}
             height={"60px"}
             borderRadius={"24px"}
-            bgr={palette.realOrange.ex2nd}
-            color={"#000000"}
+            bgr={isClicked === 4 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
+            color={isClicked === 4 ? "#fff" : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             textAlign={"start"}>
@@ -39,13 +39,13 @@ const FAQActivityChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 4 && <FAQActivityAnswer1 />}
 
         {/* 활동 관련 질문 2 */}
-        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(5)}>
+        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(5)} width={"100%"} cursor={"pointer"}>
           <JoinRectangle
             width={"231px"}
             height={"42px"}
             borderRadius={"24px"}
-            bgr={palette.realOrange.ex2nd}
-            color={"#000000"}
+            bgr={isClicked === 5 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
+            color={isClicked === 5 ? "#fff" : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             textAlign={"start"}>
@@ -57,13 +57,13 @@ const FAQActivityChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 5 && <FAQActivityAnswer2 />}
 
         {/* 활동 관련 질문 3 */}
-        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(6)}>
+        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(6)} width={"100%"} cursor={"pointer"}>
           <JoinRectangle
             width={"178px"}
             height={"42px"}
             borderRadius={"24px"}
-            bgr={palette.realOrange.ex2nd}
-            color={"#000000"}
+            bgr={isClicked === 6 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
+            color={isClicked === 6 ? "#fff" : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             textAlign={"start"}>
@@ -75,13 +75,13 @@ const FAQActivityChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 6 && <FAQActivityAnswer3 />}
 
         {/* 활동 관련 질문 4 */}
-        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(7)}>
+        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(7)} width={"100%"} cursor={"pointer"}>
           <JoinRectangle
             width={"231px"}
             height={"78px"}
             borderRadius={"24px"}
-            bgr={palette.realOrange.ex2nd}
-            color={"#000000"}
+            bgr={isClicked === 7 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
+            color={isClicked === 7 ? "#fff" : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             textAlign={"start"}>

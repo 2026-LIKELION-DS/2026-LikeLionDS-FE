@@ -11,19 +11,19 @@ import { useState } from "react";
 const FAQRecruitChat = ({ isClicked, handleChatClick }) => {
   return (
     <>
-      <M.ComponentContainer marginTop={"66px"}>
+      <M.ComponentContainer marginTop={"66px"} width={"100%"}>
         <M.ChatWrapper>
           <M.IconImg src={baby_face} width={"40px"} />
           <p>모집 관련</p>
         </M.ChatWrapper>
-        <M.ComponentContainer marginTop={"16px"} onClick={() => handleChatClick(1)}>
+        <M.ComponentContainer marginTop={"16px"} onClick={() => handleChatClick(1)} width={"100%"} cursor={"pointer"}>
           {/* 모집 관련 질문 1 */}
           <JoinRectangle
             width={"207px"}
             height={"60px"}
             borderRadius={"24px"}
-            bgr={palette.realOrange.ex2nd}
-            color={"#000000"}
+            bgr={isClicked === 1 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
+            color={isClicked === 1 ? "#fff" : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             textAlign={"start"}>
@@ -37,13 +37,13 @@ const FAQRecruitChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 1 && <FAQRecruitAnswer1 />}
 
         {/* 모집 관련 질문 2 */}
-        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(2)}>
+        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(2)} width={"100%"} cursor={"pointer"}>
           <JoinRectangle
             width={"169px"}
             height={"42px"}
             borderRadius={"24px"}
-            bgr={palette.realOrange.ex2nd}
-            color={"#000000"}
+            bgr={isClicked === 2 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
+            color={isClicked === 2 ? "#fff" : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             textAlign={"start"}>
@@ -55,13 +55,13 @@ const FAQRecruitChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 2 && <FAQRecruitAnswer2 />}
 
         {/* 모집 관련 질문 3 */}
-        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(3)}>
+        <M.ComponentContainer marginTop={"12px"} onClick={() => handleChatClick(3)} width={"100%"} cursor={"pointer"}>
           <JoinRectangle
             width={"193px"}
             height={"42px"}
             borderRadius={"24px"}
-            bgr={palette.realOrange.ex2nd}
-            color={"#000000"}
+            bgr={isClicked === 3 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
+            color={isClicked === 3 ? "#fff" : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             textAlign={"start"}>
