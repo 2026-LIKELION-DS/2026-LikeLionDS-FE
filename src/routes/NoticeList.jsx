@@ -21,6 +21,12 @@ function NoticeList() {
         console.error("공지사항 목록을 불러오는 중 오류 발생:", error);
       });
   }, []);
+
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split("/");
+    return `${year.slice(2)}.${month}.${day}`;
+  };
+  
   
   const handleNoticeClick = (id) => {
     navigate(`/notice/${id}`);
@@ -31,6 +37,7 @@ function NoticeList() {
       navigate("/admin/notice/new");
     }
   };
+  
   return (
     <>
       <Header title="공지사항" />
@@ -44,7 +51,7 @@ function NoticeList() {
             <NoticeContent
               key={notice.id}
               title={notice.title}
-              created={notice.created_at}
+              created={formatDate(notice.created_at)}
               preview={notice.content_preview}
               onClick={() => handleNoticeClick(notice.id)}
             />
