@@ -10,7 +10,7 @@ import icon_BE_back from "@assets/icons/icon_BE_back.svg";
 
 import { useState } from "react";
 
-const PartInfo = () => {
+const MainPartInfo = () => {
   // 클릭된 이미지 키 저장 (plan, FE, BE)
   const [activeKey, setActiveKey] = useState(null);
 
@@ -65,4 +65,4 @@ const PartInfo = () => {
   );
 };
 
-export default PartInfo;
+export default MainPartInfo;
