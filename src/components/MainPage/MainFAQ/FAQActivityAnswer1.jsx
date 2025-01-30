@@ -23,7 +23,7 @@ const FAQActivityAnswer1 = () => {
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            $$textAlign={"start"}>
+            $textAlign={"start"}>
             <b style={{ fontWeight: "700" }}>세션</b>은 매주 월요일 19시~21시30분에
             <br />
             진행 예정으로, 파트 별로 학습에 필요한
@@ -41,7 +41,7 @@ const FAQActivityAnswer1 = () => {
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            $$textAlign={"start"}>
+            $textAlign={"start"}>
             <b style={{ fontWeight: "700" }}>스터디</b>는 매주 목요일, 아기사자들의 일
             <br />
             정을 고려해<b style={{ fontWeight: "700" }}>소규모로 팀을 꾸려서 진행</b>돼
@@ -59,7 +59,7 @@ const FAQActivityAnswer1 = () => {
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            $$textAlign={"start"}>
+            $textAlign={"start"}>
             세션에서 다루지 못한 실습이나 사이드
             <br />
             프로젝트를 진행하는 등의 활동을 해요.

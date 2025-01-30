@@ -18,5 +18,9 @@ export const RectangleDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: ${(props) => props.textAlign || "center"};
+  text-align: ${(props) => props.$textAlign || "center"};
+`;
+
+export const TextDiv = styled.div`
+  text-align: ${(props) => props.$textAlign || "center"};
 `;
