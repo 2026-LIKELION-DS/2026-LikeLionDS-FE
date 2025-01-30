@@ -9,6 +9,7 @@ export const NoticeContent = styled.div`
   height: 67px;
   padding: 12px 20px;
   border-bottom: 1px solid ${palette.boldBlack.ex7};
+  cursor: pointer;
 `;
 
 export const Top = styled.div`
