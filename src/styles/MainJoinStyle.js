@@ -4,6 +4,8 @@ export const JoinContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-top: ${(props) => props.$marginTop || "0px"};
 `;
 
 export const AnimationWrapper = styled.div`

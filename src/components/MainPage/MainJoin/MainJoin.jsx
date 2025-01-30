@@ -17,7 +17,7 @@ import JoinSchedule from "./JoinSchedule";
 const MainJoin = () => {
   return (
     <>
-      <M.JoinContainer>
+      <M.JoinContainer $marginTop={"63px"}>
         <JoinRectangle
           width={"330px"}
           height={"86px"}

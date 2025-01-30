@@ -23,7 +23,7 @@ const JoinRectangle = ({
       fontSize={fontSize}
       $textAlign={$textAlign}
       letterSpacing={letterSpacing}>
-      <p> {children}</p>
+      <div> {children}</div>
     </M.RectangleDiv>
   );
 };

@@ -7,6 +7,8 @@ export const PageContainer = styled.div`
   align-items: center;
 
   box-sizing: border-box;
+
+  margin-top: ${(props) => props.$marginTop || "0px"};
 `;
 
 export const ComponentContainer = styled.div`
