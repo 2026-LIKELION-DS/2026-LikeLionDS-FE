@@ -2,7 +2,7 @@ import palette from "@lib/colorPalette";
 import styled from "styled-components";
 
 export const ComponentContainer = styled.div`
-  margin-top: ${(props) => props.marginTop};
+  margin-top: ${(props) => props.$marginTop};
 
   width: ${(props) => (props.width ? props.width : "max-content")};
 

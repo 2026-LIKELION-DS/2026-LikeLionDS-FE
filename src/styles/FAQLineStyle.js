@@ -7,7 +7,7 @@ export const LineWrapper = styled.div`
   flex-direction: row;
   align-items: center;
 
-  margin-top: ${(props) => props.marginTop};
+  margin-top: ${(props) => props.$marginTop};
 `;
 
 export const Line = styled.div`

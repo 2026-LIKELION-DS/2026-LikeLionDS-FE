@@ -19,7 +19,7 @@ const MainFAQ = () => {
     <M_.PageContainer>
       <M_.ComponentContainer width={"342px"}>
         {/* 자주 묻는 질문 */}
-        <M.ComponentContainer marginTop={"215px"}>
+        <M.ComponentContainer $marginTop={"215px"}>
           <M_.TextWrapper $fontSize={"28px"} $fontWeight={600}>
             자주 묻는 질문
           </M_.TextWrapper>
@@ -32,7 +32,7 @@ const MainFAQ = () => {
         <FAQRobotChat />
 
         {/* 입장 */}
-        <FAQLine text={"아기사자님과 운영진님이 입장하셨습니다."} marginTop={"38px"} />
+        <FAQLine text={"아기사자님과 운영진님이 입장하셨습니다."} $marginTop={"38px"} />
 
         {/* 모집 관련 */}
         <FAQRecruitChat isClicked={isClicked} handleChatClick={handleChatClick} />
@@ -44,7 +44,7 @@ const MainFAQ = () => {
         <FAQWriting />
 
         {/* 퇴장 */}
-        <FAQLine text={"아기사자님과 운영진님이 퇴장하셨습니다."} marginTop={"72px"} />
+        <FAQLine text={"아기사자님과 운영진님이 퇴장하셨습니다."} $marginTop={"72px"} />
 
         {/* 질문 */}
         <FAQuestion text={"더 궁금한 내용을 질문해주세요!"} />

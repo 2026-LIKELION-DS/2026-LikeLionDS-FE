@@ -15,7 +15,7 @@ export const Circle = styled.div`
   height: 10px;
 
   border-radius: 50%;
-  background-color: ${(props) => (props.isVisible ? palette.duksungBurgundy.ex5Primary : palette.boldBlack.ex8)};
+  background-color: ${(props) => (props.$isVisible ? palette.duksungBurgundy.ex5Primary : palette.boldBlack.ex8)};
   transition:
     background-color 0.3s ease,
     opacity 0.3s ease;

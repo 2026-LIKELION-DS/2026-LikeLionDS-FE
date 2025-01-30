@@ -3,27 +3,27 @@ import * as M from "@styles/JoinRectangleStyle";
 const JoinRectangle = ({
   width,
   height,
-  borderRadius,
+  $borderRadius,
   children,
-  bgr,
+  $bgr,
   color,
   fontWeight,
   fontSize,
-  textAlign,
+  $textAlign,
   letterSpacing,
 }) => {
   return (
     <M.RectangleDiv
       width={width}
       height={height}
-      borderRadius={borderRadius}
-      bgr={bgr}
+      $borderRadius={$borderRadius}
+      $bgr={$bgr}
       color={color}
       fontWeight={fontWeight}
       fontSize={fontSize}
-      textAlign={textAlign}
+      $textAlign={$textAlign}
       letterSpacing={letterSpacing}>
-      <p> {children}</p>
+      <div> {children}</div>
     </M.RectangleDiv>
   );
 };

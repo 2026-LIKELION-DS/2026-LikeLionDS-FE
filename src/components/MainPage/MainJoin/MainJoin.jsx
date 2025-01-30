@@ -21,8 +21,8 @@ const MainJoin = () => {
         <JoinRectangle
           width={"330px"}
           height={"86px"}
-          borderRadius={"51px"}
-          bgr={palette.boldBlack.ex9}
+          $borderRadius={"51px"}
+          $bgr={palette.boldBlack.ex9}
           color={palette.style.white}
           fontWeight={600}
           fontSize={"20px"}

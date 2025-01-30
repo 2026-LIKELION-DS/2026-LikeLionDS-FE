@@ -14,32 +14,32 @@ const FAQRecruitAnswer2 = () => {
         </M.ChatWrapper>
 
         {/* 모집집 관련 2번 답변 */}
-        <M.ComponentContainer marginTop={"8px"}>
+        <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"224px"}
             height={"60px"}
-            borderRadius={"24px"}
-            bgr={palette.boldBlack.ex2}
+            $borderRadius={"24px"}
+            $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            textAlign={"start"}>
+            $textAlign={"start"}>
             작년 12기 아기사자 기준 2-3학년이
             <br />
             가장 많았어요.
           </JoinRectangle>
         </M.ComponentContainer>
 
-        <M.ComponentContainer marginTop={"8px"}>
+        <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"246px"}
             height={"78px"}
-            borderRadius={"24px"}
-            bgr={palette.boldBlack.ex2}
+            $borderRadius={"24px"}
+            $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            textAlign={"start"}>
+            $textAlign={"start"}>
             하지만 본인의 <b style={{ fontWeight: "700" }}>열정과 끈기만 있다면</b>
             <br />
             학년과 상관없이 충분히 참여하실 수 <br />

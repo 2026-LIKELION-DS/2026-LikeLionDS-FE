@@ -4,8 +4,8 @@ export const RectangleDiv = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 
-  border-radius: ${(props) => props.borderRadius};
-  background: ${(props) => props.bgr};
+  border-radius: ${(props) => props.$borderRadius};
+  background: ${(props) => props.$bgr};
   color: ${(props) => props.color};
 
   font-family: "Pretendard", sans-serif;

@@ -9,8 +9,8 @@ const JoinScheduleRectangle = ({ children }) => {
     <JoinRectangle
       width={"146px"}
       height={"43px"}
-      borderRadius={"62px"}
-      bgr={palette.boldBlack.ex7}
+      $borderRadius={"62px"}
+      $bgr={palette.boldBlack.ex7}
       color={palette.style.white}
       fontWeight={500}
       fontSize={"16px"}
@@ -45,7 +45,7 @@ const Schedule = ({ date, text, children, className }) => {
   return (
     <>
       <M.ScheduleWrapper className={className} ref={ref}>
-        <M.Circle isVisible={isVisible} />
+        <M.Circle $isVisible={isVisible} />
         <M.DateText>{date}</M.DateText>
         <JoinScheduleRectangle>{text}</JoinScheduleRectangle>
       </M.ScheduleWrapper>

@@ -14,31 +14,31 @@ const FAQActivityAnswer4 = () => {
         </M.ChatWrapper>
 
         {/* 활동 관련 4번 답변 */}
-        <M.ComponentContainer marginTop={"8px"}>
+        <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"246px"}
             height={"60px"}
-            borderRadius={"24px"}
-            bgr={palette.boldBlack.ex2}
+            $borderRadius={"24px"}
+            $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            textAlign={"start"}>
+            $textAlign={"start"}>
             작년 12기 기준 1번의 아이디어톤과 3번
             <br />의 해커톤에 참여할 수 있었어요.
           </JoinRectangle>
         </M.ComponentContainer>
 
-        <M.ComponentContainer marginTop={"8px"}>
+        <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"246px"}
             height={"60px"}
-            borderRadius={"24px"}
-            bgr={palette.boldBlack.ex2}
+            $borderRadius={"24px"}
+            $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            textAlign={"start"}>
+            $textAlign={"start"}>
             <b style={{ fontWeight: "700" }}>
               중앙 아이디어톤과 중앙 해커톤만 필수 참<br />여
             </b>
@@ -46,16 +46,16 @@ const FAQActivityAnswer4 = () => {
           </JoinRectangle>
         </M.ComponentContainer>
 
-        <M.ComponentContainer marginTop={"8px"}>
+        <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"246px"}
             height={"60px"}
-            borderRadius={"24px"}
-            bgr={palette.boldBlack.ex2}
+            $borderRadius={"24px"}
+            $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            textAlign={"start"}>
+            $textAlign={"start"}>
             이외의 내용은 각 기수마다 달라질 수 있<br />
             으니 참고 부탁드려요!
           </JoinRectangle>

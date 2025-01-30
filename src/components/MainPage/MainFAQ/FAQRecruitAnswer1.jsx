@@ -14,30 +14,30 @@ const FAQRecruitAnswer1 = () => {
         </M.ChatWrapper>
 
         {/* 모집 관련 1번 답변 */}
-        <M.ComponentContainer marginTop={"8px"}>
+        <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"99px"}
             height={"42px"}
-            borderRadius={"24px"}
-            bgr={palette.boldBlack.ex2}
+            $borderRadius={"24px"}
+            $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={700}
             fontSize={"14px"}
-            textAlign={"start"}>
+            $textAlign={"start"}>
             가능합니다.
           </JoinRectangle>
         </M.ComponentContainer>
 
-        <M.ComponentContainer marginTop={"8px"}>
+        <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"246px"}
             height={"96px"}
-            borderRadius={"24px"}
-            bgr={palette.boldBlack.ex2}
+            $borderRadius={"24px"}
+            $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            textAlign={"start"}>
+            $textAlign={"start"}>
             멋쟁이사자처럼은 비전공자들도 코딩을
             <br /> 배우며 자신만의 아이디어를 실현하는
             <br />
@@ -48,16 +48,16 @@ const FAQRecruitAnswer1 = () => {
           </JoinRectangle>
         </M.ComponentContainer>
 
-        <M.ComponentContainer marginTop={"8px"}>
+        <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"163px"}
             height={"60px"}
-            borderRadius={"24px"}
-            bgr={palette.boldBlack.ex2}
+            $borderRadius={"24px"}
+            $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
-            textAlign={"start"}>
+            $textAlign={"start"}>
             기획•디자인 파트는
             <br /> 개발이 필요하지 않아요!
           </JoinRectangle>
