@@ -11,6 +11,7 @@ import ApplicantsResult from "@routes/ApplicantsResult";
 import AdminLogin from "@routes/AdminLogin";
 import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
+import Error from "@routes/Error";
 import ProtectedRoute from "@/ProtectedRoute";
 import Footer from "@components/Footer";
 
@@ -55,6 +56,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/*" element={<Error />} />
       </Routes>
       {!isSplash && <Footer />}
     </>
