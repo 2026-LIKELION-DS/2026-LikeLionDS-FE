@@ -7,7 +7,7 @@ import robot_face from "@assets/icons/🤖 로봇 얼굴.svg";
 const FAQRobotChat = () => {
   return (
     <>
-      <div>
+      <M.ComponentContainer marginTop={"69.35px"}>
         <M.ChatWrapper>
           <M.IconImg src={robot_face} width={"40px"} />
           <JoinRectangle
@@ -22,7 +22,7 @@ const FAQRobotChat = () => {
             궁금하신 질문을 선택해 답변을 확인해보세요!
           </JoinRectangle>
         </M.ChatWrapper>
-      </div>
+      </M.ComponentContainer>
     </>
   );
 };

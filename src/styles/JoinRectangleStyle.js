@@ -12,7 +12,7 @@ export const RectangleDiv = styled.div`
   font-weight: ${(props) => props.fontWeight};
   line-height: 130%;
   font-size: ${(props) => props.fontSize};
-  letter-spacing: ${(props) => props.letterSpacing};
+  letter-spacing: ${(props) => props.letterSpacing || "-0.42px"};
 
   display: flex;
   flex-direction: column;

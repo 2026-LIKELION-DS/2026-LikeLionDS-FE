@@ -6,6 +6,8 @@ export const LineWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  margin-top: ${(props) => props.marginTop};
 `;
 
 export const Line = styled.div`

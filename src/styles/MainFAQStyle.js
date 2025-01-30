@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const ComponentContainer = styled.div`
+  margin-top: ${(props) => props.marginTop};
+`;
+
 export const ChatWrapper = styled.div`
   display: flex;
   flex-direction: row;

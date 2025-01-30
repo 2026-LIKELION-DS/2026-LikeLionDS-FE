@@ -7,30 +7,40 @@ import FAQLine from "./FAQLine";
 import FAQRecruitChat from "./FAQRecruitChat";
 import FAQActivityChat from "./FAQActivityChat";
 import FAQuestion from "./FAQuestion";
+import FAQWriting from "./FAQWriting";
+import { useState } from "react";
 
 const MainFAQ = () => {
+  const [isClicked, setIsClicked] = useState(null);
+  const handleChatClick = (key) => {
+    setIsClicked((prevKey) => (prevKey === key ? null : key));
+  };
   return (
     <>
       {/* 자주 묻는 질문 */}
-      <M_.TextWrapper $fontSize={"28px"} $fontWeight={600}>
-        자주 묻는 질문
-      </M_.TextWrapper>
-      <M_.ImgWrapper width={"153px"}>
-        <img src={icon_underline_orange} />
-      </M_.ImgWrapper>
+      <M.ComponentContainer marginTop={"215px"}>
+        <M_.TextWrapper $fontSize={"28px"} $fontWeight={600}>
+          자주 묻는 질문
+        </M_.TextWrapper>
+        <M_.ImgWrapper width={"153px"}>
+          <img src={icon_underline_orange} />
+        </M_.ImgWrapper>
+      </M.ComponentContainer>
+
       {/* 채팅 - 로봇 */}
       <FAQRobotChat />
 
       {/* 입장 */}
-      <FAQLine text={"아기사자님과 운영진님이 입장하셨습니다."} />
+      <FAQLine text={"아기사자님과 운영진님이 입장하셨습니다."} marginTop={"38px"} />
 
       {/* 모집 관련 */}
-      <FAQRecruitChat />
+      <FAQRecruitChat isClicked={isClicked} handleChatClick={handleChatClick} />
 
       {/* 활동 관련 */}
-      <FAQActivityChat />
+      <FAQActivityChat isClicked={isClicked} handleChatClick={handleChatClick} />
 
       {/* 입력중 */}
+      <FAQWriting />
 
       {/* 퇴장 */}
       <FAQLine text={"아기사자님과 운영진님이 퇴장하셨습니다."} />

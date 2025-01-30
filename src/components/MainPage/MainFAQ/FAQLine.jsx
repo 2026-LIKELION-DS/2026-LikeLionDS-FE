@@ -1,8 +1,8 @@
 import * as M from "@styles/FAQLineStyle";
 
-const FAQLine = ({ text }) => {
+const FAQLine = ({ text, marginTop }) => {
   return (
-    <M.LineWrapper>
+    <M.LineWrapper marginTop={marginTop}>
       <M.Line></M.Line>
       <M.Text>{text}</M.Text>
       <M.Line></M.Line>
