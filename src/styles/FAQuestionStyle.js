@@ -10,6 +10,7 @@ export const MsgContainer = styled.div`
   width: 342px;
 
   margin-top: 32px;
+  margin-bottom: 233px;
 `;
 
 export const MsgInput = styled.input`
