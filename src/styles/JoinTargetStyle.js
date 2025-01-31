@@ -2,9 +2,7 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const TitleText = styled.p`
-  font-family: Pretendard;
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.54px;
@@ -31,9 +29,7 @@ export const ItemWrapper = styled.div`
 export const ItemText = styled.p`
   padding: 12px 20px;
 
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
   line-height: 130%;
   letter-spacing: -0.48px;

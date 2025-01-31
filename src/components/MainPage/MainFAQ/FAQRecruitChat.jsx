@@ -23,7 +23,7 @@ const FAQRecruitChat = ({ isClicked, handleChatClick }) => {
             height={"60px"}
             $borderRadius={"24px"}
             $bgr={isClicked === 1 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
-            color={isClicked === 1 ? "#fff" : "#000000"}
+            color={isClicked === 1 ? palette.style.white : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             $textAlign={"start"}>
@@ -43,7 +43,7 @@ const FAQRecruitChat = ({ isClicked, handleChatClick }) => {
             height={"42px"}
             $borderRadius={"24px"}
             $bgr={isClicked === 2 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
-            color={isClicked === 2 ? "#fff" : "#000000"}
+            color={isClicked === 2 ? palette.style.white : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             $textAlign={"start"}>
@@ -61,7 +61,7 @@ const FAQRecruitChat = ({ isClicked, handleChatClick }) => {
             height={"42px"}
             $borderRadius={"24px"}
             $bgr={isClicked === 3 ? palette.realOrange.ex4 : palette.realOrange.ex2nd}
-            color={isClicked === 3 ? "#fff" : "#000000"}
+            color={isClicked === 3 ? palette.style.white : "#000000"}
             fontWeight={400}
             fontSize={"14px"}
             $textAlign={"start"}>

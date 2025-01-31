@@ -18,9 +18,7 @@ export const Line = styled.div`
 `;
 
 export const Text = styled.p`
-  font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
   line-height: 130%; /* 18.2px */
   letter-spacing: -0.42px;

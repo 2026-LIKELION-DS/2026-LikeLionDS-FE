@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import palette from "@lib/colorPalette";
 
 export const MsgContainer = styled.div`
   display: flex;
@@ -27,9 +28,7 @@ export const MsgInput = styled.input`
   &::placeholder {
     color: #888888;
 
-    font-family: Pretendard;
     font-size: 14px;
-    font-style: normal;
     font-weight: 400;
     line-height: 130%; /* 18.2px */
     letter-spacing: -0.42px;
@@ -43,7 +42,7 @@ export const SendBtn = styled.button`
   padding: 8px;
 
   border-radius: 50%;
-  background: #fff;
+  background: ${palette.style.white};
 
   display: flex;
   align-items: center;

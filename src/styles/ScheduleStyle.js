@@ -22,9 +22,7 @@ export const Circle = styled.div`
 `;
 
 export const DateText = styled.p`
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.48px;

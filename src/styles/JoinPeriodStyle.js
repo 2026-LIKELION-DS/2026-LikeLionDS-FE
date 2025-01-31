@@ -15,9 +15,7 @@ export const TextWrapper = styled.div`
 export const Text = styled.p`
   color: ${palette.boldBlack.ex2};
 
-  font-family: Pretendard;
   font-size: 16px;
-  font-style: normal;
   font-weight: 300;
   line-height: 130%;
   letter-spacing: -0.48px;
