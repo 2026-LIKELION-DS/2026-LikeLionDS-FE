@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const JoinContainer = styled.div`
   display: flex;
@@ -24,4 +24,27 @@ export const ImgWrapper = styled.div`
 export const TitleContainer = styled.div`
   margin-top: 91.24px;
   width: fit-content;
+`;
+
+// 애니메이션
+const TextAnimation = keyframes`
+from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+`;
+
+export const TextAniContainer = styled.div`
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+`;
+
+export const TextAniWrapper = styled.div`
+  display: flex;
+  animation: ${TextAnimation} 5s linear infinite;
+
+  margin-bottom: 63px;
 `;

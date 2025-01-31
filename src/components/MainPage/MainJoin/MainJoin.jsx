@@ -11,13 +11,22 @@ import loadingLottie from "@assets/motions/카드 모션/card.json";
 
 import icon_arrow_red from "@assets/icons/icon_arrow_red.svg";
 import icon_underline_red from "@assets/icons/icon_underline_red.svg";
+import text_animation from "@assets/icons/icon_textAnimation1.svg";
 import JoinPeriod from "./JoinPeriod";
 import JoinSchedule from "./JoinSchedule";
 
 const MainJoin = () => {
   return (
     <>
-      <M.JoinContainer $marginTop={"63px"}>
+      <M.JoinContainer $marginTop={"244px"}>
+        {/* 텍스트 애니메이션 */}
+        <M.TextAniContainer>
+          <M.TextAniWrapper>
+            <img src={text_animation} />
+            <img src={text_animation} />
+          </M.TextAniWrapper>
+        </M.TextAniContainer>
+
         <JoinRectangle
           width={"330px"}
           height={"86px"}
