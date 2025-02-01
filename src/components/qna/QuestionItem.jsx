@@ -69,7 +69,7 @@ const CloseButton = styled.button`
 `;
 
 const AnswerBubble = styled.div`
-  background-color: #fff;
+  background-color: ${palette.style.white};
   border: 1px solid #ccc;
   border-radius: 40px;
   padding: 20px 25px 15px 25px;
