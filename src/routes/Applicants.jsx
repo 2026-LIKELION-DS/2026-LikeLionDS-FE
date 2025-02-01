@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as A from "@styles/ApplicantsStyle";
-
 import Header from "@components/Header/HeaderApp";
 
 function Applicants() {
@@ -32,7 +31,9 @@ function Applicants() {
     }
 
     try {
-      const response = await axios.post("https://pink-pudding.shop/check/babylions/", {
+      const API_URL = import.meta.env.VITE_API_URL;
+
+      const response = await axios.post(`${API_URL}/check/babylions/`, {
         name,
         phone_number: tel,
         email,
@@ -50,8 +51,6 @@ function Applicants() {
       }
     } catch (error) {
       alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
-      console.error("API Error:", error); // 에러 로그 추가
-      console.log("Error Response:", error.response); // 응답이 있는지 확인
     }
   };
   return (
