@@ -85,7 +85,7 @@ const AnswerBubble = styled.div`
 `;
 
 const AnswerInput = styled.textarea`
-  background-color: #fff;
+  background-color: ${palette.style.white};
   border: 1px solid #ccc;
   border-radius: 40px;
   padding: 20px 25px 3px 25px;
