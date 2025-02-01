@@ -141,7 +141,7 @@ const ModalOverlay = styled.div`
 const ModalContent = styled.div`
   width: 281px;
   height: 126px;
-  background: white;
+  background: ${palette.style.white};
   border-radius: 25px;
   border: 1px solid #dcdcdc;
   text-align: center;
