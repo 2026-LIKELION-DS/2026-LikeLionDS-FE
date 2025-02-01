@@ -22,7 +22,7 @@ const QuestionBubbleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #ffe0c7;
+  background: ${palette.realOrange.ex2};
   color: #000000;
   word-wrap: break-word;
   white-space: pre-wrap;
