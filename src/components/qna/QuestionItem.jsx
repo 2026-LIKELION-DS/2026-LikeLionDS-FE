@@ -198,7 +198,7 @@ const ConfirmButton = styled.button`
   width: 50%;
   height: 50px;
   background: none;
-  color: #ff7710;
+  color: ${palette.realOrange.ex5Primary};
   font-size: 16px;
   font-weight: 500;
   border: none;
