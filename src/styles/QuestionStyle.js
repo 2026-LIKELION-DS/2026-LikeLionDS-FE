@@ -4,12 +4,12 @@ import palette from "@lib/colorPalette";
 // Named exports만 사용
 export const Container = styled.div`
   padding: 20px;
-  background-color: ${palette.background || "#f9f9f9"};
+  background-color: ${palette.style.white};
 `;
 
 export const Question = styled.h1`
   font-size: 24px;
-  color: ${palette.primary || "#333"};
+  color: ${palette.boldBlack.ex10Primary};
 `;
 
 export const InputContainer = styled.div`
@@ -44,7 +44,7 @@ export const InputBox = styled.textarea`
 `;
 
 export const SendButton = styled.button`
-  background-color: ${palette.buttonBackground || "#FFFFFF"};
+  background-color: ${palette.style.white};
   border: none;
   border-radius: 50%;
   padding: 7px;
