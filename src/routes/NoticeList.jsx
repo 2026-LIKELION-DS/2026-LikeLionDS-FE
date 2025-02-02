@@ -13,7 +13,7 @@ function NoticeList() {
   const navigate = useNavigate();
   
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API}/notice`)
+    axios.get(`${import.meta.env.VITE_API_URL}/board`)
       .then((response) => {
         setNotices(response.data);
       })
@@ -23,10 +23,13 @@ function NoticeList() {
   }, []);
 
   const formatDate = (dateString) => {
-    const [year, month, day] = dateString.split("/");
-    return `${year.slice(2)}.${month}.${day}`;
-  };
+    const date = new Date(dateString);
+    const year = String(date.getFullYear()).slice(2);
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
   
+    return `${year}.${month}.${day}`;
+  };
   
   const handleNoticeClick = (id) => {
     navigate(`/notice/${id}`);
