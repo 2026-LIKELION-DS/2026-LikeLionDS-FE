@@ -53,6 +53,10 @@ function NoticeDetail() {
     }
   };
 
+  const handleImageClick = (clickedIndex) => {
+    navigate("/image-detail", { state: { initialIndex: clickedIndex, images: notice.images } });
+  };
+
   return (
     <>
       <Header title="공지사항" />
@@ -62,13 +66,14 @@ function NoticeDetail() {
             <N.Created>{formatDate(notice.created_at)}</N.Created>
             <N.Title>{notice.title}</N.Title>
             <N.Content>{notice.content}</N.Content>
-            {notice.images?.length > 0 && (
-              <N.ImageContainer>
-                {notice.images.map((img) => (
-                  <N.Image key={img.id} src={`${import.meta.env.VITE_API_URL}${img.image_url}`} alt="공지 이미지"/>
-                ))}
-              </N.ImageContainer>
-            )}
+            {notice.images.map((img, index) => (
+              <N.Image
+                key={img.id}
+                src={`${import.meta.env.VITE_API_URL}${img.image_url}`}
+                alt="공지 이미지"
+                onClick={() => handleImageClick(index)}
+              />
+            ))}
             {isAdminLoggedIn() && (
               <N.Admin>
                 <N.Button onClick={handleEdit}>수정</N.Button>
