@@ -4,6 +4,7 @@ import arrowIcon from "@assets/icons/icon_send.svg";
 import { isAdminLoggedIn } from "@utils/Admin";
 import QuestionList from "@/components/qna/QuestionList";
 import Header from "@components/Header/HeaderSub";
+import Footer from "@components/Footer";
 
 function Question() {
   const [questions, setQuestions] = useState([]);
@@ -118,6 +119,7 @@ function Question() {
       </Q.InputContainer>
       <Q.Divider />
       <QuestionList questions={questions} setQuestions={setQuestions} handleDeleteAnswer={handleDeleteAnswer} />
+      <Footer />
     </>
   );
 }

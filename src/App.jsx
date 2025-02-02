@@ -13,11 +13,9 @@ import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
 import Error from "@routes/Error";
 import ProtectedRoute from "@/ProtectedRoute";
-import Footer from "@components/Footer";
 
 function App() {
   const location = useLocation();
-  const isSplash = location.pathname === "/";
 
   return (
     <>
@@ -58,7 +56,6 @@ function App() {
         />
         <Route path="/*" element={<Error />} />
       </Routes>
-      {!isSplash && <Footer />}
     </>
   );
 }

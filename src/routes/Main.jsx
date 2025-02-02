@@ -8,6 +8,7 @@ import MainFAQ from "../components/MainPage/MainFAQ/MainFAQ";
 import MainStartPage from "@components/Main/MainStartPage";
 import Main12thProjects from "@components/Main/Main12thProjects";
 import MainLastPage from "@components/Main/MainLastPage";
+import Footer from "@components/Footer";
 
 function Main() {
   return (
@@ -20,6 +21,7 @@ function Main() {
         <MainJoin /> {/* 아기사자 모집 안내 */}
         <MainFAQ /> {/* 자주 묻는 질문 */}
         <MainLastPage />
+        <Footer isMain={true} />
       </M.Main>
     </>
   );
