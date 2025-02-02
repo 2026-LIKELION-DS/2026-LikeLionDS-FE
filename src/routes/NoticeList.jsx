@@ -7,6 +7,7 @@ import { isAdminLoggedIn } from "@utils/Admin";
 
 import Header from "@components/Header/HeaderSub";
 import NoticeContent from "@components/Notice/NoticeContent";
+import Footer from "@components/Footer";
 
 function NoticeList() {
   const [notices, setNotices] = useState([]);
@@ -60,6 +61,7 @@ function NoticeList() {
             />
           ))}
       </N.NoticeList>
+      <Footer />
     </>
   );
 }

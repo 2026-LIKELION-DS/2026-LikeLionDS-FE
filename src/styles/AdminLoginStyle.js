@@ -35,6 +35,7 @@ export const InputName = styled.div`
 export const Input = styled.input`
   outline: none;
   border: none;
+  font-family: Pretendard;
 `;
 
 export const Bar = styled.div`

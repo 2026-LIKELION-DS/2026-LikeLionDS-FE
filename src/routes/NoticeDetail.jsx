@@ -5,6 +5,7 @@ import * as N from "@styles/NoticeDetailStyle";
 import { isAdminLoggedIn } from "@utils/Admin";
 
 import Header from "@components/Header/HeaderSub";
+import Footer from "@components/Footer";
 
 function NoticeDetail() {
   const { id } = useParams();
