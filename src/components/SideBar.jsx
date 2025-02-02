@@ -46,6 +46,10 @@ function SideBar({
     return today >= startDate;
   };
 
+  const handleOpenApplicationForm = () => {
+    window.open("https://forms.gle/QDrszV6xmGcnxr6g6", "_blank");
+  };
+
   return (
     <>
       <S.Background onClick={onClose} />
@@ -82,7 +86,7 @@ function SideBar({
           <S.Title onClick={() => handleNavLinkClick("/qna")} $isActive={currentPath === "/qna"}>
             질문하러가기
           </S.Title>
-          <S.Title>지원하러가기</S.Title>
+          <S.Title onClick={handleOpenApplicationForm}>지원하러가기</S.Title>
           {isWithinDateRange() ? (
             <S.Title onClick={() => handleNavLinkClick("/input")} $isActive={currentPath === "/input"}>
               1차 합격자 조회하기
