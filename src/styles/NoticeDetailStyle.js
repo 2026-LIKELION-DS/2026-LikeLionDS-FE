@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
+export const Space = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 100dvh;
+`;
+
 export const NoticeDetail = styled.div`
   width: 100vw;
   @media (hover: hover) and (pointer: fine) {
@@ -62,7 +70,7 @@ export const Button = styled.div`
   flex-shrink: 0;
   border-radius: 88px;
   background: ${palette.style.white};
-  box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.20);
+  box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.2);
   color: ${palette.realOrange.ex5Primary};
   font-size: 20px;
   font-style: normal;
@@ -83,7 +91,7 @@ export const ImageContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
   scrollbar-width: none;
 `;
 
