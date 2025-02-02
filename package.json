@@ -42,6 +42,5 @@
     "stylelint-config-standard": "^37.0.0",
     "stylelint-order": "^6.0.4",
     "vite": "^6.0.5"
-  },
-  "packageManager": "yarn@4.6.0"
+  }
 }

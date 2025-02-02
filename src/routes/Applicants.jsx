@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import * as A from "@styles/ApplicantsStyle";
-
 import Header from "@components/Header/HeaderApp";
 
 function Applicants() {
+  const navigate = useNavigate();
+
   const [formValue, setFormValue] = useState({
     name: "",
     tel: "",
@@ -19,12 +22,42 @@ function Applicants() {
       };
     });
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, tel, email } = formValue;
+    if (!name || !tel || !email) {
+      alert("이름, 전화번호, 이메일을 모두 입력해주세요.");
+      return;
+    }
 
+    try {
+      const API_URL = import.meta.env.VITE_API_URL;
+
+      const response = await axios.post(`${API_URL}/check/babylions/`, {
+        name,
+        phone_number: tel,
+        email,
+      });
+
+      const data = response.data;
+
+      if (data.status === "fail") {
+        alert(data.message);
+      } else if (data.status === "success") {
+        // 성공하면 특정 페이지로 이동
+        navigate("/result", {
+          state: { name: data.data.name, is_passed: data.data.is_passed },
+        });
+      }
+    } catch (error) {
+      alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+    }
+  };
   return (
     <>
       <Header />
       <A.Applicants></A.Applicants>
-      <A.form>
+      <A.Form onSubmit={handleSubmit}>
         <A.InputBox>
           <A.InputName>이름</A.InputName>
           <A.bar></A.bar>
@@ -53,7 +86,7 @@ function Applicants() {
           }}>
           합격자 조회하기
         </A.Button>
-      </A.form>
+      </A.Form>
     </>
   );
 }
