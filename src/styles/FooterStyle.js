@@ -6,9 +6,10 @@ export const Footer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 15px;
+  gap: ${({ isMain }) => (isMain ? "29px" : "11px")};
   background-color: ${palette.boldBlack.ex9};
   color: ${palette.boldBlack.ex4};
+  margin-top: 108px;
 `;
 
 export const LikelionDS = styled.div`
@@ -32,6 +33,12 @@ export const Inform = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+`;
+
+export const InformGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;
 
 export const Lions = styled.div`
@@ -92,5 +99,4 @@ export const Rights = styled.div`
   font-weight: 300;
   line-height: 104%;
   letter-spacing: -0.7px;
-  padding-top: 14px;
 `;
