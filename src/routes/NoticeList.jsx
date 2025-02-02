@@ -1,28 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import * as N from "@styles/NoticeListStyle";
+import * as A from "@styles/AdminLoginStyle";
 import { isAdminLoggedIn } from "@utils/Admin";
 
 import Header from "@components/Header/HeaderSub";
+import NoticeContent from "@components/Notice/NoticeContent";
 import Footer from "@components/Footer";
 
 function NoticeList() {
-  // utils/Admin 파일 내의 isAdminLoggedIn 함수를 가져와서 로그인된 상태인지 확인
-  // 어드민 로그인 상태이면 true를 반환하니까 그에 맞게 조건문을 사용해서 어드민 전용 공지 작성 버튼 표시하기
-  // 어드민 로그인 상태에 따라 헤더 문구도 수정
+  const [notices, setNotices] = useState([]);
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_URL}/board`)
+      .then((response) => {
+        setNotices(response.data);
+      })
+      .catch((error) => {
+        console.error("공지사항 목록을 불러오는 중 오류 발생:", error);
+      });
+  }, []);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = String(date.getFullYear()).slice(2);
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+  
+    return `${year}.${month}.${day}`;
+  };
+  
+  const handleNoticeClick = (id) => {
+    navigate(`/notice/${id}`);
+  };
 
   const handleNewNotice = () => {
     if (isAdminLoggedIn()) {
       navigate("/admin/notice/new");
     }
   };
+  
   return (
     <>
       <Header title="공지사항" />
-      <N.NoticeList>공지사항 목록 페이지</N.NoticeList>
-      {/* 테스트를 위해 임시로 만든 어드민 전용 버튼(수정바람)*/}
-      {isAdminLoggedIn() && <button onClick={handleNewNotice}>새 공지 작성</button>}
+      <N.NoticeList>
+        {isAdminLoggedIn() && 
+          <A.Button type="submit" onClick={handleNewNotice}>
+            작성하기
+          </A.Button>
+        }
+        {notices.map((notice) => (
+            <NoticeContent
+              key={notice.id}
+              title={notice.title}
+              created={formatDate(notice.created_at)}
+              preview={notice.content_preview}
+              onClick={() => handleNoticeClick(notice.id)}
+            />
+          ))}
+      </N.NoticeList>
       <Footer />
     </>
   );
