@@ -30,14 +30,14 @@ export const Background = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 3000;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const SideBar = styled.div`
-  z-index: 200;
+  z-index: 3500;
   width: 224px;
   height: 100dvh;
   display: flex;
@@ -46,7 +46,7 @@ export const SideBar = styled.div`
   background-color: #262625;
   box-shadow: -4px 0 20px 0 rgba(0, 0, 0, 0.2);
 
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   animation: ${(props) => (props.$isSidebarOpen ? slideLeft : slideRight)} 0.4s ease-in-out;
@@ -113,13 +113,13 @@ export const SubGroup = styled.div`
 `;
 
 export const SubIndex = styled.div`
-  color: ${palette.style.white};
+  color: ${(props) => (props.$isActive ? palette.realOrange.ex4 : palette.style.white)};
   font-size: 16px;
   font-weight: 400;
   line-height: 130%;
   letter-spacing: -0.48px;
   padding: 0 16px;
-  border-left: 1px solid ${palette.boldBlack.ex4};
+  border-left: 1px solid ${(props) => (props.$isActive ? palette.realOrange.ex4 : palette.boldBlack.ex4)};
   margin-left: -1px;
   cursor: pointer;
 `;

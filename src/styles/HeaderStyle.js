@@ -2,12 +2,20 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const Header = styled.div`
+  position: fixed;
+  width: calc(100% - 40px);
+  top: 0;
+  z-index: 2000;
   padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: ${palette.boldBlack.ex10Primary};
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+
+  @media (hover: hover) and (pointer: fine) {
+    width: calc(390px - 40px);
+  }
 `;
 
 export const Logo = styled.div`
