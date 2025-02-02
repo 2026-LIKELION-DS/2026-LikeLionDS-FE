@@ -28,6 +28,10 @@ function HeaderSub({ title }) {
     }, 400); // 400ms 후에 사이드바 상태를 false로 설정
   };
 
+  const navigateToMainSection = (section) => {
+    navigate("/main", { state: { scrollTo: section } });
+  };
+
   return (
     <>
       <H.Header>
@@ -38,7 +42,12 @@ function HeaderSub({ title }) {
 
       {isSidebarOpen && (
         <>
-          <SideBar onClose={closeSideBarClick} isSidebarOpen={isSidebarVisible} currentPath={location.pathname} />
+          <SideBar
+            onClose={closeSideBarClick}
+            isSidebarOpen={isSidebarVisible}
+            currentPath={location.pathname}
+            navigateToMainSection={navigateToMainSection}
+          />
         </>
       )}
     </>

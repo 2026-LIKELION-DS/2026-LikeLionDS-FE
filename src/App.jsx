@@ -1,6 +1,6 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "@/App.css";
-import ScrollToTop from "@components/ScrollToTop";
+import ScrollToTop from "@/hooks/ScrollToTop";
 import Splash from "@routes/Splash";
 import Main from "@routes/Main";
 import NoticeList from "@routes/NoticeList";
@@ -16,8 +16,6 @@ import Error from "@routes/Error";
 import ProtectedRoute from "@/ProtectedRoute";
 
 function App() {
-  const location = useLocation();
-
   return (
     <>
       <ScrollToTop />
