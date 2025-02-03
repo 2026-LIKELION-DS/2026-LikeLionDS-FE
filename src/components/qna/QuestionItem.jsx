@@ -102,53 +102,120 @@ const QuestionItem = ({ question, setQuestions }) => {
   const handleSaveAnswer = () => {
     if (!isAdmin || editingIndex === null) return;
 
-    // 🔹 answerId가 null이면 임시 ID 부여
-    let answerId = normalizedAnswers[editingIndex]?.id || Date.now();
-
-    if (!normalizedAnswers[editingIndex]?.id) {
-      console.warn("⚠️ 서버에서 ID를 반환하지 않음. 임시 ID 할당:", answerId);
-
-      // 🔹 바로 setQuestions을 통해 새로운 ID 적용
-      setQuestions((prev) =>
-        prev.map((q) =>
-          q.id === question.id
-            ? {
-                ...q,
-                answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, id: answerId } : a)),
-              }
-            : q,
-        ),
-      );
+    let answerId = normalizedAnswers[editingIndex]?.id;
+    if (!answerId) {
+      console.warn("⚠️ 서버에서 ID를 반환하지 않음. answerId가 null이므로 요청을 보낼 수 없음.");
+      return;
     }
 
-    // ✅ question_id 포함하여 요청 데이터 수정
-    const requestData = {
-      question_id: question.id, // 🔹 질문 ID 추가
-      answer: editValue,
-    };
+    // ✅ 프론트에서 먼저 UI 업데이트 (ID 변경 X)
+    setQuestions((prev) =>
+      prev.map((q) =>
+        q.id === question.id
+          ? {
+              ...q,
+              answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
+            }
+          : q,
+      ),
+    );
 
+    console.log("📌 [디버깅] PATCH 요청 URL:", `${API_URL}/qna/answer/manage/${answerId}/`);
+    console.log("📌 [디버깅] 수정할 answerId:", answerId);
+    console.log("📌 [디버깅] 수정할 값:", editValue);
+
+    // ✅ PATCH 요청 (ID는 유지하고, answer 값만 변경)
     axios
-      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, requestData)
-      .then(() => {
-        setQuestions((prev) =>
-          prev.map((q) =>
-            q.id === question.id
-              ? {
-                  ...q,
-                  answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
-                }
-              : q,
-          ),
-        );
-        setEditingIndex(null);
+      .patch(`${API_URL}/qna/answer/manage/${answerId}/`)
+      .then((response) => {
+        console.log("✅ [디버깅] PATCH 응답:", response.data);
       })
       .catch((error) => {
         console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
-        console.log("📌 요청 데이터:", requestData); // ✅ 수정된 요청 데이터 로그 출력
         console.error("❌ 답변 수정 실패:", error);
         console.log("🔍 서버 응답 전체:", error.response);
       });
+
+    // ✅ 수정 모드 종료
+    setEditingIndex(null);
   };
+  // const handleSaveAnswer = () => {
+  //   if (!isAdmin || editingIndex === null) return;
+
+  //   // 🔹 answerId가 null이면 임시 ID 부여
+  //   let answerId = normalizedAnswers[editingIndex]?.id || Date.now();
+
+  //   if (!normalizedAnswers[editingIndex]?.id) {
+  //     console.warn("⚠️ 서버에서 ID를 반환하지 않음. 임시 ID 할당:", answerId);
+
+  //     // 🔹 바로 setQuestions을 통해 새로운 ID 적용
+  //     setQuestions((prev) =>
+  //       prev.map((q) =>
+  //         q.id === question.id
+  //           ? {
+  //               ...q,
+  //               answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, id: answerId } : a)),
+  //             }
+  //           : q,
+  //       ),
+  //     );
+  //   }
+
+  //   // ✅ 요청 URL 및 ID 확인
+  //   console.log("📌 [디버깅] PATCH 요청 URL:", `${API_URL}/qna/answer/manage/${answerId}/`);
+  //   console.log("📌 [디버깅] 수정할 answerId:", answerId);
+  //   console.log("📌 [디버깅] 수정할 값:", editValue);
+
+  //   axios
+  //     .patch(`${API_URL}/qna/answer/manage/${answerId}/`) // ✅ request body 제거
+  //     .then((response) => {
+  //       console.log("✅ [디버깅] PATCH 응답:", response.data);
+  //       setQuestions((prev) =>
+  //         prev.map((q) =>
+  //           q.id === question.id
+  //             ? {
+  //                 ...q,
+  //                 answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
+  //               }
+  //             : q,
+  //         ),
+  //       );
+  //       setEditingIndex(null);
+  //     })
+  //     .catch((error) => {
+  //       console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
+  //       console.error("❌ 답변 수정 실패:", error);
+  //       console.log("🔍 서버 응답 전체:", error.response);
+  //     });
+
+  // ✅ question_id 포함하여 요청 데이터 수정
+  // const requestData = {
+  //   question_id: question.id, // 🔹 질문 ID 추가
+  //   answer: editValue,
+  // };
+
+  //   axios
+  //     .patch(`${API_URL}/qna/answer/manage/${answerId}/`, requestData)
+  //     .then(() => {
+  //       setQuestions((prev) =>
+  //         prev.map((q) =>
+  //           q.id === question.id
+  //             ? {
+  //                 ...q,
+  //                 answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
+  //               }
+  //             : q,
+  //         ),
+  //       );
+  //       setEditingIndex(null);
+  //     })
+  //     .catch((error) => {
+  //       console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
+  //       console.log("📌 요청 데이터:", requestData); // ✅ 수정된 요청 데이터 로그 출력
+  //       console.error("❌ 답변 수정 실패:", error);
+  //       console.log("🔍 서버 응답 전체:", error.response);
+  //     });
+  // };
 
   // ✅ 답변 삭제 (DELETE 요청)
   const handleDeleteAnswer = () => {
