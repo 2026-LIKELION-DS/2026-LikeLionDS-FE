@@ -13,44 +13,60 @@ function Question() {
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/qna/answer/`)
-      .then((response) => {
-        console.log("✅ 답변 조회 응답:", response.data);
-        const fetchedData = response.data.result || [];
+    const fetchQuestionsAndAnswers = async () => {
+      try {
+        // ✅ 1️⃣ 질문 리스트 가져오기
+        const questionResponse = await axios.get(`${API_URL}/qna/question/`);
+        console.log("✅ 질문 조회 응답:", questionResponse.data);
+        const questionsData = questionResponse.data.result || [];
 
-        // 🔹 질문을 기준으로 그룹화 (question.id를 key로 사용)
+        // ✅ 2️⃣ 답변 리스트 가져오기
+        const answerResponse = await axios.get(`${API_URL}/qna/answer/`);
+        console.log("✅ 답변 조회 응답:", answerResponse.data);
+        const answersData = answerResponse.data.result || [];
+
+        // ✅ 3️⃣ 질문을 기준으로 매핑
         const questionMap = new Map();
+        questionsData.forEach((q) => {
+          questionMap.set(q.question, {
+            id: q.id, // ✅ 질문 ID 저장
+            question: q.question, // ✅ 질문 내용
+            answers: [],
+          });
+        });
 
-        fetchedData.forEach((item) => {
-          const { id, question, answer } = item; // ✅ id는 answer의 id
-          if (!questionMap.has(question)) {
-            questionMap.set(question, {
-              id: id || null, // ✅ 질문 ID가 null일 경우 처리
-              question: question,
-              answers: [],
+        // ✅ 4️⃣ 답변을 질문에 매칭
+        answersData.forEach((a) => {
+          // ✅ question_id가 있으면 그대로 매칭
+          if (a.question_id && questionMap.has(a.question)) {
+            questionMap.get(a.question).answers.push({
+              id: a.id, // ✅ answer ID
+              answer: a.answer, // ✅ 답변 내용
             });
           }
-
-          if (answer) {
-            questionMap.get(question).answers.push({ id, answer });
+          // ✅ question_id가 없고, 질문 내용만 있는 경우 매칭
+          else if (a.question && questionMap.has(a.question)) {
+            questionMap.get(a.question).answers.push({
+              id: a.id, // ✅ answer ID
+              answer: a.answer, // ✅ 답변 내용
+            });
           }
         });
 
-        // 🔹 객체를 배열로 변환 + 질문을 `id` 기준 역순 정렬 (최신 질문이 위로)
+        // ✅ 5️⃣ 정렬
         const formattedQuestions = Array.from(questionMap.values()).sort((a, b) => b.id - a.id);
-
-        // 🔹 각 질문 안의 답변은 `id` 기준 오름차순 정렬 (등록된 순서대로)
         formattedQuestions.forEach((q) => {
           q.answers.sort((a, b) => a.id - b.id);
         });
 
-        console.log("✅ 정렬된 질문 데이터:", formattedQuestions);
+        console.log("✅ 최종 정렬된 질문 데이터:", formattedQuestions);
         setQuestions(formattedQuestions);
-      })
-      .catch((error) => {
-        console.error("❌ 답변 조회 실패:", error);
-      });
+      } catch (error) {
+        console.error("❌ 질문/답변 조회 실패:", error);
+      }
+    };
+
+    fetchQuestionsAndAnswers();
   }, []);
 
   const handleInputChange = (e) => {

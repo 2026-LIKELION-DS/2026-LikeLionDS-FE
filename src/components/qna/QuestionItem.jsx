@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { isAdminLoggedIn } from "@utils/Admin";
 import rightArrow from "@assets/icons/icon_arrow_button.svg";
@@ -21,6 +21,7 @@ import {
   ButtonContainer,
   CancelButton,
   ConfirmButton,
+  WrapContainer,
 } from "@components/qna/QuestionItemStyle";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -33,6 +34,7 @@ const QuestionItem = ({ question, setQuestions }) => {
   const [isAddingAnswer, setIsAddingAnswer] = useState(false);
   const [newAnswer, setNewAnswer] = useState("");
   const inputRef = useRef(null);
+  const wrapperRef = useRef(null); // 여백 감지용 ref 추가
   const isAdmin = isAdminLoggedIn();
 
   // ✅ `answers`가 배열이 아닐 경우 빈 배열로 설정
@@ -56,42 +58,6 @@ const QuestionItem = ({ question, setQuestions }) => {
         inputRef.current.focus();
       }
     }, 100);
-  };
-
-  // ✅ 답변 저장 (PATCH 요청)
-  const handleSaveAnswer = () => {
-    if (!isAdmin || editingIndex === null) return;
-
-    const answerId = normalizedAnswers[editingIndex]?.id;
-    if (!answerId) {
-      console.warn("⚠️ answerId가 null입니다. 수정할 수 없습니다.");
-      return;
-    }
-
-    axios
-      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, { answer: editValue })
-      .then(() => {
-        setQuestions((prev) =>
-          prev.map((q) =>
-            q.id === question.id
-              ? {
-                  ...q,
-                  answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
-                }
-              : q,
-          ),
-        );
-        setEditingIndex(null);
-      })
-      .catch((error) => {
-        console.error("❌ 답변 수정 실패:", error);
-      });
-  };
-
-  // ✅ 답변 추가 활성화
-  const handleAddAnswerClick = () => {
-    setIsAddingAnswer(true);
-    setTimeout(() => inputRef.current?.focus(), 100);
   };
 
   // ✅ 답변 추가 (POST 요청)
@@ -132,6 +98,122 @@ const QuestionItem = ({ question, setQuestions }) => {
     }
   };
 
+  // ✅ 답변 저장 (PATCH 요청)
+  const handleSaveAnswer = () => {
+    if (!isAdmin || editingIndex === null) return;
+
+    // 🔹 answerId가 null이면 임시 ID 부여
+    let answerId = normalizedAnswers[editingIndex]?.id || Date.now();
+
+    if (!normalizedAnswers[editingIndex]?.id) {
+      console.warn("⚠️ 서버에서 ID를 반환하지 않음. 임시 ID 할당:", answerId);
+
+      // 🔹 바로 setQuestions을 통해 새로운 ID 적용
+      setQuestions((prev) =>
+        prev.map((q) =>
+          q.id === question.id
+            ? {
+                ...q,
+                answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, id: answerId } : a)),
+              }
+            : q,
+        ),
+      );
+    }
+
+    axios
+      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, { answer: editValue })
+      .then(() => {
+        setQuestions((prev) =>
+          prev.map((q) =>
+            q.id === question.id
+              ? {
+                  ...q,
+                  answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
+                }
+              : q,
+          ),
+        );
+        setEditingIndex(null);
+      })
+      .catch((error) => {
+        console.error("❌ 답변 수정 실패:", error);
+      });
+  };
+
+  // ✅ 답변 삭제 (DELETE 요청)
+  const handleDeleteAnswer = () => {
+    if (!isAdmin || selectedAnswerIndex === null) return;
+
+    let answerId = normalizedAnswers[selectedAnswerIndex]?.id;
+
+    // ✅ 클라이언트에서 먼저 삭제 처리
+    setQuestions((prev) =>
+      prev.map((q) =>
+        q.id === question.id
+          ? {
+              ...q,
+              answers: q.answers.filter((_, i) => i !== selectedAnswerIndex),
+            }
+          : q,
+      ),
+    );
+
+    // ✅ answerId가 `null`이어도 삭제 가능하도록 처리
+    if (!answerId) {
+      console.warn("⚠️ answerId가 null이지만 클라이언트에서 삭제 처리함.");
+      setIsModalOpen(false);
+      return;
+    }
+
+    axios
+      .delete(`${API_URL}/qna/answer/manage/${answerId}/`)
+      .then(() => {
+        console.log(`✅ ${answerId} 삭제 완료`);
+      })
+      .catch((error) => {
+        console.error("❌ 답변 삭제 실패:", error);
+      });
+
+    setIsModalOpen(false);
+  };
+
+  // ✅ 답변 추가 활성화
+  const handleAddAnswerClick = () => {
+    setIsAddingAnswer(true);
+    setTimeout(() => inputRef.current?.focus(), 100);
+  };
+
+  // ✅ 답변 추가 취소 로직 (여백 클릭 감지)
+  const handleOutsideClick = (event) => {
+    // 현재 입력창을 클릭한 경우 예외 처리
+    const isClickInsideInput = inputRef.current && inputRef.current.contains(event.target);
+
+    // 🔹 입력 필드 외부 클릭 시
+    if (!isClickInsideInput) {
+      // 🔹 newAnswer가 비어있거나 공백/엔터만 입력된 경우만 닫기
+      if (isAddingAnswer && !newAnswer.trim()) {
+        setIsAddingAnswer(false);
+        setNewAnswer("");
+      }
+
+      // 🔹 수정 중인 답변도 공백/엔터만 남아있을 경우 닫기
+      if (editingIndex !== null && !editValue.trim()) {
+        setEditingIndex(null);
+        setEditValue("");
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (isAddingAnswer || editingIndex !== null) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [isAddingAnswer, editingIndex, newAnswer]); // ✅ newAnswer 추가
+
   // ✅ 모달 열기 (답변 삭제 확인)
   const openModal = (index) => {
     if (!isAdmin) return;
@@ -139,38 +221,8 @@ const QuestionItem = ({ question, setQuestions }) => {
     setIsModalOpen(true);
   };
 
-  // ✅ 답변 삭제 (DELETE 요청)
-  const handleDeleteAnswer = () => {
-    if (!isAdmin || selectedAnswerIndex === null) return;
-
-    const answerId = normalizedAnswers[selectedAnswerIndex]?.id;
-    if (!answerId) {
-      console.warn("⚠️ answerId가 null이므로 삭제할 수 없음.");
-      return;
-    }
-
-    axios
-      .delete(`${API_URL}/qna/answer/manage/${answerId}/`)
-      .then(() => {
-        setQuestions((prev) =>
-          prev.map((q) =>
-            q.id === question.id
-              ? {
-                  ...q,
-                  answers: normalizedAnswers.filter((_, i) => i !== selectedAnswerIndex),
-                }
-              : q,
-          ),
-        );
-        setIsModalOpen(false);
-      })
-      .catch((error) => {
-        console.error("❌ 답변 삭제 실패:", error);
-      });
-  };
-
   return (
-    <>
+    <WrapContainer>
       <QuestionContainer>
         <QuestionBubbleWrapper>{question.question}</QuestionBubbleWrapper>
         {isAdmin && (
@@ -179,34 +231,36 @@ const QuestionItem = ({ question, setQuestions }) => {
           </ArrowButton>
         )}
       </QuestionContainer>
-      <Wrapper>
-        {normalizedAnswers.map((answer, index) => (
-          <AnswerContainer key={answer.id || index}>
-            <img className="reply" src={replyArrow} alt="답변 아이콘" />
-            {isAdmin && editingIndex === index ? (
-              <AnswerInput
-                ref={inputRef}
-                value={editValue}
-                onChange={(e) => {
-                  setEditValue(e.target.value);
-                  adjustTextareaHeight(e.target);
-                }}
-              />
-            ) : (
-              <AnswerBubble onClick={() => enableEditing(index)}>{answer.answer}</AnswerBubble>
-            )}
-            {isAdmin &&
-              (editingIndex === index ? (
-                <CloseButton onClick={handleSaveAnswer}>
-                  <img src={rightArrow} alt="전송" />
-                </CloseButton>
+      <Wrapper ref={wrapperRef}>
+        {normalizedAnswers
+          .filter((answer) => answer.id) // ✅ answer.id가 null이 아닌 경우만 렌더링
+          .map((answer, index) => (
+            <AnswerContainer key={answer.id || index}>
+              <img className="reply" src={replyArrow} alt="답변 아이콘" />
+              {isAdmin && editingIndex === index ? (
+                <AnswerInput
+                  ref={inputRef}
+                  value={editValue}
+                  onChange={(e) => {
+                    setEditValue(e.target.value);
+                    adjustTextareaHeight(e.target);
+                  }}
+                />
               ) : (
-                <CloseButton onClick={() => openModal(index)}>
-                  <img src={closeIcon} alt="닫기" />
-                </CloseButton>
-              ))}
-          </AnswerContainer>
-        ))}
+                <AnswerBubble onClick={() => enableEditing(index)}>{answer.answer}</AnswerBubble>
+              )}
+              {isAdmin &&
+                (editingIndex === index ? (
+                  <CloseButton onClick={handleSaveAnswer}>
+                    <img src={rightArrow} alt="전송" />
+                  </CloseButton>
+                ) : (
+                  <CloseButton onClick={() => openModal(index)}>
+                    <img src={closeIcon} alt="닫기" />
+                  </CloseButton>
+                ))}
+            </AnswerContainer>
+          ))}
         {isAddingAnswer && (
           <AnswerContainer>
             <img className="reply" src={replyArrow} alt="답변 아이콘" />
@@ -237,8 +291,9 @@ const QuestionItem = ({ question, setQuestions }) => {
           </ModalContent>
         </ModalOverlay>
       )}
-    </>
+    </WrapContainer>
   );
 };
 
 export default QuestionItem;
+//

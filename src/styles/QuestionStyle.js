@@ -13,11 +13,11 @@ export const Question = styled.h1`
 `;
 
 export const InputContainer = styled.div`
-  margin-top: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
+  padding: 15px 20px;
 `;
 
 export const InputBox = styled.textarea`
@@ -57,4 +57,9 @@ export const Divider = styled.div`
   width: 100%;
   border-bottom: 1px solid #56585cde;
   margin-bottom: 25px; /* 위아래 여백 추가 */
+`;
+
+export const WrapContainer = styled.div`
+  display: flex;
+  padding: 20px;
 `;
