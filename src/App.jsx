@@ -1,23 +1,21 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "@/App.css";
-import ScrollToTop from "@components/ScrollToTop";
+import ScrollToTop from "@/hooks/ScrollToTop";
 import Splash from "@routes/Splash";
 import Main from "@routes/Main";
 import NoticeList from "@routes/NoticeList";
 import NoticeDetail from "@routes/NoticeDetail";
+import ImageDetail from "@routes/ImageDetail";
 import Question from "@routes/Question";
 import Applicants from "@routes/Applicants";
 import ApplicantsResult from "@routes/ApplicantsResult";
 import AdminLogin from "@routes/AdminLogin";
 import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
+import Error from "@routes/Error";
 import ProtectedRoute from "@/ProtectedRoute";
-import Footer from "@components/Footer";
 
 function App() {
-  const location = useLocation();
-  const isSplash = location.pathname === "/";
-
   return (
     <>
       <ScrollToTop />
@@ -26,6 +24,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/notice" element={<NoticeList />} />
         <Route path="/notice/:id" element={<NoticeDetail />} />
+        <Route path="/image-detail" element={<ImageDetail />} />
         <Route path="/qna" element={<Question />} />
         <Route path="/input" element={<Applicants />} />
         <Route path="/result" element={<ApplicantsResult />} />
@@ -55,8 +54,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/*" element={<Error />} />
       </Routes>
-      {!isSplash && <Footer />}
     </>
   );
 }

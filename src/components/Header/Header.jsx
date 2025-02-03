@@ -6,7 +6,7 @@ import LikelionDS from "@assets/logo/logo_ds_topbar_burgundy.svg";
 import Menu from "@assets/icons/icon_menu.svg";
 import SideBar from "@components/SideBar";
 
-function Header() {
+function Header({ scrollToSection, activeSection, setActiveManually }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -39,7 +39,14 @@ function Header() {
 
       {isSidebarOpen && (
         <>
-          <SideBar onClose={closeSideBarClick} isSidebarOpen={isSidebarVisible} currentPath={location.pathname} />
+          <SideBar
+            onClose={closeSideBarClick}
+            isSidebarOpen={isSidebarVisible}
+            currentPath={location.pathname}
+            scrollToSection={scrollToSection}
+            activeSection={activeSection}
+            setActiveManually={setActiveManually}
+          />
         </>
       )}
     </>

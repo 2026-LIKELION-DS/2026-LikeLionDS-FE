@@ -2,10 +2,10 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const Applicants = styled.div`
-  height: 25px;
+  height: 60px;
 `;
 
-export const form = styled.form`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,6 +35,8 @@ export const InputName = styled.div`
 export const Input = styled.input`
   outline: none;
   border: none;
+  width: 200px;
+  font-family: Pretendard;
 `;
 
 export const bar = styled.div`
