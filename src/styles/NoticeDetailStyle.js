@@ -18,7 +18,7 @@ export const NoticeDetail = styled.div`
 
 export const Created = styled.div`
   width: calc(100% -48px);
-  padding: 24px 24px 0 24px;
+  padding: 80px 24px 0 24px;
   color: ${palette.boldBlack.ex5};
   font-family: Pretendard;
   font-size: 12px;
