@@ -25,4 +25,6 @@ export const Text = styled.p`
 
   margin-right: 11px;
   margin-left: 11px;
+
+  flex-shrink: 0;
 `;

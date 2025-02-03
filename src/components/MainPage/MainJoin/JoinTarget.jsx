@@ -30,7 +30,10 @@ const JoinTarget = () => {
         <M.ItemLine />
 
         <M.ItemText>
-          25년도 기준 덕성여대 대학생 및 휴학생, 자대 편입생, 졸업유예자 (졸업자, 타대생 참여 불가)
+          25년도 기준 덕성여대 대학생 및 휴학생, 자대 편입
+          <br />
+          생, 졸업유예자
+          <br /> (졸업자, 타대생 참여 불가)
         </M.ItemText>
       </M.ItemWrapper>
     </M_.ComponentContainer>
