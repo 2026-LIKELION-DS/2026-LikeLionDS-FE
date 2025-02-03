@@ -48,16 +48,16 @@ const MainPartInfo = () => {
 
         {/* 이미지 */}
         <M.PartContainer>
-          <M.PartImgContainer>
-            <M.PartImgWrapper src={getImageSrc("plan")} onClick={() => handleImgClicked("plan")} />
+          <M.PartImgContainer onClick={() => handleImgClicked("plan")}>
+            <M.PartImgWrapper data={getImageSrc("plan")} />
           </M.PartImgContainer>
 
-          <M.PartImgContainer>
-            <M.PartImgWrapper src={getImageSrc("FE")} $marginTop={"17px"} onClick={() => handleImgClicked("FE")} />
+          <M.PartImgContainer onClick={() => handleImgClicked("FE")}>
+            <M.PartImgWrapper data={getImageSrc("FE")} $marginTop={"17px"} />
           </M.PartImgContainer>
 
-          <M.PartImgContainer>
-            <M.PartImgWrapper src={getImageSrc("BE")} $marginTop={"-70px"} onClick={() => handleImgClicked("BE")} />
+          <M.PartImgContainer onClick={() => handleImgClicked("BE")}>
+            <M.PartImgWrapper data={getImageSrc("BE")} $marginTop={"-70px"} />
           </M.PartImgContainer>
         </M.PartContainer>
       </M.ComponentContainer>

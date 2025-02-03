@@ -3,7 +3,7 @@ import * as M_ from "@styles/PartInfoStyle";
 
 const JoinTarget = () => {
   return (
-    <M_.ComponentContainer>
+    <M_.ComponentContainer $width={"342px"}>
       <M.TitleText>모집 대상</M.TitleText>
       <M.ItemWrapper>
         <M.ItemText>자신의 아이디어를 실현시켜 꿈을 펼치고 싶으신 분</M.ItemText>
@@ -30,7 +30,10 @@ const JoinTarget = () => {
         <M.ItemLine />
 
         <M.ItemText>
-          25년도 기준 덕성여대 대학생 및 휴학생, 자대 편입생, 졸업유예자 (졸업자, 타대생 참여 불가)
+          25년도 기준 덕성여대 대학생 및 휴학생, 자대 편입
+          <br />
+          생, 졸업유예자
+          <br /> (졸업자, 타대생 참여 불가)
         </M.ItemText>
       </M.ItemWrapper>
     </M_.ComponentContainer>

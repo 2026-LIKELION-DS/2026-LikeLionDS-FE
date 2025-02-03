@@ -35,6 +35,9 @@ export const ItemText = styled.p`
   letter-spacing: -0.48px;
 
   color: ${palette.boldBlack.ex2};
+
+  white-space: nowrap;
+  flex-shrink: 0;
 `;
 
 export const ItemLine = styled.div`

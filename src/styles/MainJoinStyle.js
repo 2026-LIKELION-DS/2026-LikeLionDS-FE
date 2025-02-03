@@ -47,4 +47,8 @@ export const TextAniWrapper = styled.div`
   animation: ${TextAnimation} 5s linear infinite;
 
   margin-bottom: 63px;
+
+  img {
+    flex-shrink: 0;
+  }
 `;

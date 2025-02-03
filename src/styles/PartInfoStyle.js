@@ -16,7 +16,7 @@ export const ComponentContainer = styled.div`
   flex-direction: column;
   align-items: self-start;
 
-  width: ${(props) => props.width || "350px"};
+  width: ${(props) => props.$width || "350px"};
 `;
 
 export const TextContainer = styled.div`
@@ -53,6 +53,8 @@ export const PartImgContainer = styled.div`
   height: 212px;
 `;
 
-export const PartImgWrapper = styled.img`
+export const PartImgWrapper = styled.object`
   margin-top: ${(props) => props.$marginTop || "0px"};
+
+  pointer-events: none;
 `;

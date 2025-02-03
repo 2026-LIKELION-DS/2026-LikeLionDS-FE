@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const ScheduleWrapper = styled.div`
-  width: 335px;
+  width: 100%;
   display: flex;
 
   flex-direction: row;

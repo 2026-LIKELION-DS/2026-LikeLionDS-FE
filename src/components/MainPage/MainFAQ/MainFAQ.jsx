@@ -17,7 +17,7 @@ const MainFAQ = () => {
   };
   return (
     <M_.PageContainer>
-      <M_.ComponentContainer width={"342px"}>
+      <M_.ComponentContainer $width={"342px"}>
         {/* 자주 묻는 질문 */}
         <M.ComponentContainer $marginTop={"215px"}>
           <M_.TextWrapper $fontSize={"28px"} $fontWeight={600}>

@@ -16,14 +16,22 @@ import JoinPeriod from "./JoinPeriod";
 import JoinSchedule from "./JoinSchedule";
 
 const MainJoin = () => {
+  const IMAGE_WIDTH = 402; // 이미지 하나의 너비 (px)
+
+  // 반복할 이미지 개수
+  // (화면 채우기 위한 최소 이미지 개수) + 여유분
+  const NUM_IMAGES = Math.ceil(390 / IMAGE_WIDTH) + 2;
+
   return (
     <>
       <M.JoinContainer $marginTop={"244px"}>
         {/* 텍스트 애니메이션 */}
         <M.TextAniContainer>
           <M.TextAniWrapper>
-            <img src={text_animation} />
-            <img src={text_animation} />
+            {/* NUM_IMAGES개만큼 이미지 반복하도록  */}
+            {[...Array(NUM_IMAGES)].map((_, i) => (
+              <img key={i} src={text_animation} />
+            ))}
           </M.TextAniWrapper>
         </M.TextAniContainer>
 
@@ -55,7 +63,7 @@ const MainJoin = () => {
 
       {/* 아기사자 모집 안내 */}
       <M_.PageContainer>
-        <M_.ComponentContainer>
+        <M_.ComponentContainer $width={"342px"}>
           <M.TitleContainer>
             <M_.TextWrapper $fontSize={"28px"} $fontWeight={600} $letterSpacing={"-0.84px"}>
               아기사자 모집 안내
