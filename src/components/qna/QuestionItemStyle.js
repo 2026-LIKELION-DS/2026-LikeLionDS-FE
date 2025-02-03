@@ -1,6 +1,10 @@
 import styled, { keyframes } from "styled-components";
 import palette from "@lib/colorPalette";
 
+export const WrapContainer = styled.div`
+  padding: 0 20px;
+`;
+
 export const QuestionContainer = styled.div`
   display: flex;
   align-items: center;
@@ -30,6 +34,7 @@ export const QuestionBubbleWrapper = styled.div`
   padding: 20px 25px;
   border-radius: 40px;
   margin-right: 0;
+  // margin-left: 20px;
 `;
 
 export const AnswerContainer = styled.div`
@@ -57,10 +62,37 @@ export const CloseButton = styled.button`
   backdrop-filter: blur(8.6px);
   border-radius: 50%;
   top: 0px;
-  right: 15px;
+  right: 10px;
 
   img {
+    width: 20px;
+    height: 20px;
     filter: brightness(0) invert(0);
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+`;
+
+export const CloseArrowButton = styled.button`
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8.6px);
+  border-radius: 50%;
+  top: 0px;
+  right: 10px;
+
+  img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(0);
+    position: absolute;
+    top: 4px;
+    right: 3px;
   }
 `;
 
@@ -69,7 +101,7 @@ export const AnswerBubble = styled.div`
   border: 1px solid #ccc;
   border-radius: 40px;
   padding: 20px 25px 15px 25px;
-  width: 250px;
+  width: 100%;
   min-height: 30px;
   word-wrap: break-word;
   white-space: pre-wrap;
@@ -85,7 +117,7 @@ export const AnswerInput = styled.textarea`
   border: 1px solid #ccc;
   border-radius: 40px;
   padding: 20px 25px 3px 25px;
-  width: 250px;
+  width: 100%;
   height: auto;
   resize: none;
   overflow-y: hidden;
@@ -105,7 +137,7 @@ export const ArrowButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 13px;
+  padding-right: 5px;
 
   img {
     width: 28px;

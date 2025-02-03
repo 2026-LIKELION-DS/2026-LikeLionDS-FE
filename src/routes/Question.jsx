@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import * as Q from "@styles/QuestionStyle";
 import arrowIcon from "@assets/icons/icon_send.svg";
 import { isAdminLoggedIn } from "@utils/Admin";
@@ -6,43 +7,68 @@ import QuestionList from "@/components/qna/QuestionList";
 import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Question() {
   const [questions, setQuestions] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
 
-  // useEffect(() => {
-  //   // 🔹 질문 목록 불러오기(API 연동_질문 조회)
-  //   fetch("/qna/question/")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.result) {
-  //         setQuestions(data.result);
-
-  //         // 🔹 각 질문의 답변을 개별적으로 가져오기(API 연동_답변 조회)
-  //         data.result.forEach((question) => {
-  //           fetch(`/qna/answer/?question_id=${question.id}`)
-  //             .then((res) => res.json())
-  //             .then((answerData) => {
-  //               setQuestions((prev) =>
-  //                 prev.map((q) => (q.id === question.id ? { ...q, answers: answerData.result || [] } : q)),
-  //               );
-  //             })
-  //             .catch((err) => console.error(`답변 불러오기 실패 (질문 ID: ${question.id})`, err));
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => console.error("질문 불러오기 실패:", err));
-  // }, []);
-
-  // ✅ 더미데이터 사용 (👆🏻 연동시 윗 코드)
-  const dummyQuestions = [
-    { id: 1, text: "백엔드와 어떻게 연동하나요?", answers: ["API를 통해 요청을 보냅니다."] },
-    { id: 2, text: "React에서 상태 관리는 어떻게 하나요?", answers: [] },
-  ];
-
   useEffect(() => {
-    setQuestions(dummyQuestions);
+    const fetchQuestionsAndAnswers = async () => {
+      try {
+        // ✅ 1️⃣ 질문 리스트 가져오기
+        const questionResponse = await axios.get(`${API_URL}/qna/question/`);
+        console.log("✅ 질문 조회 응답:", questionResponse.data);
+        const questionsData = questionResponse.data.result || [];
+
+        // ✅ 2️⃣ 답변 리스트 가져오기
+        const answerResponse = await axios.get(`${API_URL}/qna/answer/`);
+        console.log("✅ 답변 조회 응답:", answerResponse.data);
+        const answersData = answerResponse.data.result || [];
+
+        // ✅ 3️⃣ 질문을 기준으로 매핑
+        const questionMap = new Map();
+        questionsData.forEach((q) => {
+          questionMap.set(q.question, {
+            id: q.id, // ✅ 질문 ID 저장
+            question: q.question, // ✅ 질문 내용
+            answers: [],
+          });
+        });
+
+        // ✅ 4️⃣ 답변을 질문에 매칭
+        answersData.forEach((a) => {
+          // ✅ question_id가 있으면 그대로 매칭
+          if (a.question_id && questionMap.has(a.question)) {
+            questionMap.get(a.question).answers.push({
+              id: a.id, // ✅ answer ID
+              answer: a.answer, // ✅ 답변 내용
+            });
+          }
+          // ✅ question_id가 없고, 질문 내용만 있는 경우 매칭
+          else if (a.question && questionMap.has(a.question)) {
+            questionMap.get(a.question).answers.push({
+              id: a.id, // ✅ answer ID
+              answer: a.answer, // ✅ 답변 내용
+            });
+          }
+        });
+
+        // ✅ 5️⃣ 정렬
+        const formattedQuestions = Array.from(questionMap.values()).sort((a, b) => b.id - a.id);
+        formattedQuestions.forEach((q) => {
+          q.answers.sort((a, b) => a.id - b.id);
+        });
+
+        console.log("✅ 최종 정렬된 질문 데이터:", formattedQuestions);
+        setQuestions(formattedQuestions);
+      } catch (error) {
+        console.error("❌ 질문/답변 조회 실패:", error);
+      }
+    };
+
+    fetchQuestionsAndAnswers();
   }, []);
 
   const handleInputChange = (e) => {
@@ -51,55 +77,31 @@ function Question() {
     e.target.style.height = `${Math.max(e.target.scrollHeight, 30)}px`;
   };
 
-  // 🔹 질문 추가 (API 연동_질문 작성)
-  // const handleAddQuestion = async () => {
-  //   if (!inputValue.trim()) return;
-
-  //   try {
-  //     const response = await fetch("/qna/question/", {
-  //       method: "POST",
-  //       body: JSON.stringify({ question: inputValue }),
-  //       headers: { "Content-Type": "application/json" },
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error("서버 오류: 질문을 추가할 수 없습니다.");
-  //     }
-
-  //     const data = await response.json();
-  //     if (data.result) {
-  //       setQuestions((prev) => [{ id: data.result.id, text: data.result.question, answers: [] }, ...prev]);
-  //       setInputValue("");
-  //       if (inputRef.current) inputRef.current.style.height = "auto";
-  //     }
-  //   } catch (error) {
-  //     alert(`❌ 질문 작성 실패: ${error.message}`);
-  //     console.error("질문 작성 실패:", error);
-  //   }
-  // };
-
-  // 👆🏻 연동시 윗 코드
-  const handleAddQuestion = () => {
+  const handleAddQuestion = async () => {
     if (!inputValue.trim()) return;
 
-    const newQuestion = {
-      id: questions.length + 1,
-      text: inputValue,
-      answers: [],
-    };
+    try {
+      const response = await axios.post(`${API_URL}/qna/question/`, { question: inputValue });
+      console.log("✅ 질문 추가 응답:", response.data);
 
-    setQuestions([newQuestion, ...questions]);
-    setInputValue("");
+      if (!response.data.result || !response.data.result.id) {
+        console.warn("⚠️ 서버에서 질문 ID를 반환하지 않음.");
+        return;
+      }
 
-    if (inputRef.current) inputRef.current.style.height = "auto";
-  };
+      const newQuestion = {
+        id: response.data.result.id, // ✅ 서버에서 반환한 question.id
+        question: response.data.result.question,
+        answers: [], // ✅ 새 질문에는 답변 없음
+      };
 
-  const handleDeleteAnswer = (questionId, answerIndex) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.id === questionId ? { ...q, answers: q.answers.filter((_, i) => i !== answerIndex) } : q,
-      ),
-    );
+      // 🔹 새 질문을 최상단에 추가 (최신 질문이 위로)
+      setQuestions((prevQuestions) => [newQuestion, ...prevQuestions]);
+      setInputValue("");
+      if (inputRef.current) inputRef.current.style.height = "auto";
+    } catch (error) {
+      console.error("❌ 질문 추가 실패:", error);
+    }
   };
 
   return (
@@ -120,7 +122,7 @@ function Question() {
             </Q.SendButton>
           </Q.InputContainer>
           <Q.Divider />
-          <QuestionList questions={questions} setQuestions={setQuestions} handleDeleteAnswer={handleDeleteAnswer} />
+          <QuestionList questions={questions} setQuestions={setQuestions} />
         </div>
         <Footer />
       </Q.Space>

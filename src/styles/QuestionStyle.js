@@ -21,12 +21,12 @@ export const Question = styled.h1`
 `;
 
 export const InputContainer = styled.div`
-  margin-top: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
-  padding-top: 56px;
+  padding: 15px 20px;
+  padding-top: calc(56px + 15px);
 `;
 
 export const InputBox = styled.textarea`
