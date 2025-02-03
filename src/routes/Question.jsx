@@ -10,51 +10,45 @@ function Question() {
   const [questions, setQuestions] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
-
   const API_URL = import.meta.env.VITE_API_URL;
-
-  console.log("✅ API_URL:", API_URL);
 
   useEffect(() => {
     axios
       .get(`${API_URL}/qna/answer/`)
       .then((response) => {
         console.log("✅ 답변 조회 응답:", response.data);
-        const data = response.data.result;
+        const fetchedData = response.data.result || [];
 
-        const existingIds = data.map((q) => q.id).filter((id) => id !== null);
-        const maxId = existingIds.length > 0 ? Math.max(...existingIds) : 0;
-        let tempId = maxId + 1; // 🟢 가장 높은 ID + 1을 시작점으로 설정
-
-        // ✅ 질문을 기준으로 answers 배열을 생성하는 로직
+        // 🔹 질문을 기준으로 그룹화 (question.id를 key로 사용)
         const questionMap = new Map();
 
-        data.forEach((item) => {
-          let { id, question, answer } = item;
-
-          if (!id) {
-            id = tempId++; // 🟢 null ID에 대해서 새로운 임시 ID 부여
-          }
-
+        fetchedData.forEach((item) => {
+          const { id, question, answer } = item; // ✅ id는 answer의 id
           if (!questionMap.has(question)) {
-            questionMap.set(question, { id, question, answers: [] });
+            questionMap.set(question, {
+              id: id || null, // ✅ 질문 ID가 null일 경우 처리
+              question: question,
+              answers: [],
+            });
           }
 
           if (answer) {
-            questionMap.get(question).answers.push(answer);
+            questionMap.get(question).answers.push({ id, answer });
           }
         });
 
-        // ✅ 객체를 배열로 변환
-        const formattedQuestions = Array.from(questionMap.values());
-        console.log("✅ 가공된 질문 데이터:", formattedQuestions);
+        // 🔹 객체를 배열로 변환 + 질문을 `id` 기준 역순 정렬 (최신 질문이 위로)
+        const formattedQuestions = Array.from(questionMap.values()).sort((a, b) => b.id - a.id);
+
+        // 🔹 각 질문 안의 답변은 `id` 기준 오름차순 정렬 (등록된 순서대로)
+        formattedQuestions.forEach((q) => {
+          q.answers.sort((a, b) => a.id - b.id);
+        });
+
+        console.log("✅ 정렬된 질문 데이터:", formattedQuestions);
         setQuestions(formattedQuestions);
       })
       .catch((error) => {
-        if (error.response) {
-          console.log("❌ 서버 응답 데이터:", error.response.data);
-          console.log("❌ 상태 코드:", error.response.status);
-        }
         console.error("❌ 답변 조회 실패:", error);
       });
   }, []);
@@ -73,16 +67,17 @@ function Question() {
       console.log("✅ 질문 추가 응답:", response.data);
 
       if (!response.data.result || !response.data.result.id) {
-        console.warn("⚠️ 서버에서 ID를 반환하지 않음. 요청 실패 가능성 있음.");
+        console.warn("⚠️ 서버에서 질문 ID를 반환하지 않음.");
         return;
       }
 
       const newQuestion = {
-        id: response.data.result.id, // ✅ 서버에서 반환한 ID 사용
+        id: response.data.result.id, // ✅ 서버에서 반환한 question.id
         question: response.data.result.question,
-        answers: "운영진이 질문을 확인하고 답변을 달아줘요.",
+        answers: [], // ✅ 새 질문에는 답변 없음
       };
 
+      // 🔹 새 질문을 최상단에 추가 (최신 질문이 위로)
       setQuestions((prevQuestions) => [newQuestion, ...prevQuestions]);
       setInputValue("");
       if (inputRef.current) inputRef.current.style.height = "auto";

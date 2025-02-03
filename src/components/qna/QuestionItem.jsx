@@ -29,30 +29,26 @@ const QuestionItem = ({ question, setQuestions }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
-  const [editValue, setEditValue] = useState(""); // ✅ 수정 중인 답변 상태 저장
-  const [isAddingAnswer, setIsAddingAnswer] = useState(false); // ✅ 답변 추가 상태
-  const [newAnswer, setNewAnswer] = useState(""); // ✅ 새 답변 입력값
+  const [editValue, setEditValue] = useState("");
+  const [isAddingAnswer, setIsAddingAnswer] = useState(false);
+  const [newAnswer, setNewAnswer] = useState("");
   const inputRef = useRef(null);
-  const isAdmin = isAdminLoggedIn(); // ✅ 로그인 여부 확인
+  const isAdmin = isAdminLoggedIn();
 
-  // ✅ `answers`가 문자열일 경우 배열로 변환
-  const normalizedAnswers = question.answers
-    ? Array.isArray(question.answers)
-      ? question.answers
-      : [question.answers] // ✅ API 응답이 문자열이므로 배열로 변환
-    : [];
+  // ✅ `answers`가 배열이 아닐 경우 빈 배열로 설정
+  const normalizedAnswers = Array.isArray(question.answers) ? question.answers : [];
 
   // 🔹 입력 높이 자동 조절 함수
   const adjustTextareaHeight = (textarea) => {
-    textarea.style.height = "30px"; // 초기 높이
-    textarea.style.height = `${Math.max(textarea.scrollHeight, 30)}px`; // 내용에 맞게 자동 조절
+    textarea.style.height = "30px";
+    textarea.style.height = `${Math.max(textarea.scrollHeight, 30)}px`;
   };
 
-  // ✅ 수정 모드 활성화 (버블 클릭 시)
+  // ✅ 수정 모드 활성화
   const enableEditing = (index) => {
     if (!isAdmin) return;
     setEditingIndex(index);
-    setEditValue(normalizedAnswers[index]); // 기존 답변 불러오기
+    setEditValue(normalizedAnswers[index]?.answer || "");
 
     setTimeout(() => {
       if (inputRef.current) {
@@ -62,17 +58,18 @@ const QuestionItem = ({ question, setQuestions }) => {
     }, 100);
   };
 
+  // ✅ 답변 저장 (PATCH 요청)
   const handleSaveAnswer = () => {
     if (!isAdmin || editingIndex === null) return;
 
-    const answerId = normalizedAnswers[editingIndex]?.id; // ✅ 해당 답변의 ID 가져오기
+    const answerId = normalizedAnswers[editingIndex]?.id;
     if (!answerId) {
       console.warn("⚠️ answerId가 null입니다. 수정할 수 없습니다.");
       return;
     }
 
     axios
-      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, { answer: editValue }) // ✅ answerId 사용
+      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, { answer: editValue })
       .then(() => {
         setQuestions((prev) =>
           prev.map((q) =>
@@ -97,6 +94,7 @@ const QuestionItem = ({ question, setQuestions }) => {
     setTimeout(() => inputRef.current?.focus(), 100);
   };
 
+  // ✅ 답변 추가 (POST 요청)
   const handleAddAnswer = async () => {
     if (!newAnswer.trim()) return;
     if (!question.id) {
@@ -133,6 +131,7 @@ const QuestionItem = ({ question, setQuestions }) => {
       console.error("❌ 답변 추가 실패:", error);
     }
   };
+
   // ✅ 모달 열기 (답변 삭제 확인)
   const openModal = (index) => {
     if (!isAdmin) return;
@@ -140,12 +139,18 @@ const QuestionItem = ({ question, setQuestions }) => {
     setIsModalOpen(true);
   };
 
-  // ✅ 답변 삭제 기능
+  // ✅ 답변 삭제 (DELETE 요청)
   const handleDeleteAnswer = () => {
     if (!isAdmin || selectedAnswerIndex === null) return;
 
+    const answerId = normalizedAnswers[selectedAnswerIndex]?.id;
+    if (!answerId) {
+      console.warn("⚠️ answerId가 null이므로 삭제할 수 없음.");
+      return;
+    }
+
     axios
-      .delete(`${API_URL}/qna/answer/manage/${question.id}/`)
+      .delete(`${API_URL}/qna/answer/manage/${answerId}/`)
       .then(() => {
         setQuestions((prev) =>
           prev.map((q) =>
@@ -157,7 +162,7 @@ const QuestionItem = ({ question, setQuestions }) => {
               : q,
           ),
         );
-        setIsModalOpen(false); // ✅ 모달 닫기
+        setIsModalOpen(false);
       })
       .catch((error) => {
         console.error("❌ 답변 삭제 실패:", error);
@@ -176,7 +181,7 @@ const QuestionItem = ({ question, setQuestions }) => {
       </QuestionContainer>
       <Wrapper>
         {normalizedAnswers.map((answer, index) => (
-          <AnswerContainer key={index}>
+          <AnswerContainer key={answer.id || index}>
             <img className="reply" src={replyArrow} alt="답변 아이콘" />
             {isAdmin && editingIndex === index ? (
               <AnswerInput
@@ -184,16 +189,16 @@ const QuestionItem = ({ question, setQuestions }) => {
                 value={editValue}
                 onChange={(e) => {
                   setEditValue(e.target.value);
-                  adjustTextareaHeight(e.target); // ✅ 입력 시 높이 자동 조정
+                  adjustTextareaHeight(e.target);
                 }}
               />
             ) : (
-              <AnswerBubble onClick={() => enableEditing(index)}>{answer}</AnswerBubble>
+              <AnswerBubble onClick={() => enableEditing(index)}>{answer.answer}</AnswerBubble>
             )}
             {isAdmin &&
               (editingIndex === index ? (
                 <CloseButton onClick={handleSaveAnswer}>
-                  <img src={rightArrow} alt="전송" /> {/* ✅ 수정 완료 버튼 */}
+                  <img src={rightArrow} alt="전송" />
                 </CloseButton>
               ) : (
                 <CloseButton onClick={() => openModal(index)}>
@@ -202,7 +207,6 @@ const QuestionItem = ({ question, setQuestions }) => {
               ))}
           </AnswerContainer>
         ))}
-        {/* ✅ 답변 추가 입력창 */}
         {isAddingAnswer && (
           <AnswerContainer>
             <img className="reply" src={replyArrow} alt="답변 아이콘" />
@@ -216,7 +220,7 @@ const QuestionItem = ({ question, setQuestions }) => {
               placeholder="답변을 입력하세요..."
             />
             <CloseButton onClick={handleAddAnswer}>
-              <img src={rightArrow} alt="전송" /> {/* ✅ 답변 추가 버튼 */}
+              <img src={rightArrow} alt="전송" />
             </CloseButton>
           </AnswerContainer>
         )}
