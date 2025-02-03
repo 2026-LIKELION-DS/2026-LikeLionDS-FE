@@ -12,9 +12,10 @@ import Footer from "@components/Footer";
 function NoticeList() {
   const [notices, setNotices] = useState([]);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/board`)
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/board`)
       .then((response) => {
         setNotices(response.data);
       })
@@ -28,10 +29,10 @@ function NoticeList() {
     const year = String(date.getFullYear()).slice(2);
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
-  
+
     return `${year}.${month}.${day}`;
   };
-  
+
   const handleNoticeClick = (id) => {
     navigate(`/notice/${id}`);
   };
@@ -41,18 +42,19 @@ function NoticeList() {
       navigate("/admin/notice/new");
     }
   };
-  
+
   return (
     <>
       <N.Space>
-        <Header title="공지사항" />
-        <N.NoticeList>
-          {isAdminLoggedIn() && 
-            <A.Button type="submit" onClick={handleNewNotice}>
-              작성하기
-            </A.Button>
-          }
-          {notices.map((notice) => (
+        <>
+          <Header title="공지사항" />
+          <N.NoticeList>
+            {isAdminLoggedIn() && (
+              <A.Button type="submit" onClick={handleNewNotice}>
+                작성하기
+              </A.Button>
+            )}
+            {notices.map((notice) => (
               <NoticeContent
                 key={notice.id}
                 title={notice.title}
@@ -61,7 +63,8 @@ function NoticeList() {
                 onClick={() => handleNoticeClick(notice.id)}
               />
             ))}
-        </N.NoticeList>
+          </N.NoticeList>
+        </>
         <Footer />
       </N.Space>
     </>

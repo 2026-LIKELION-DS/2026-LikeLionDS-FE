@@ -104,22 +104,26 @@ function Question() {
 
   return (
     <>
-      {isAdminLoggedIn() ? <Header title="Q&A 답변 페이지(운영진)" /> : <Header title="Q&A" />}
-      <Q.InputContainer>
-        <Q.InputBox
-          as="textarea"
-          ref={inputRef}
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="더 궁금한 내용을 질문해주세요!"
-        />
-        <Q.SendButton onClick={handleAddQuestion}>
-          <img src={arrowIcon} alt="전송 버튼" />
-        </Q.SendButton>
-      </Q.InputContainer>
-      <Q.Divider />
-      <QuestionList questions={questions} setQuestions={setQuestions} handleDeleteAnswer={handleDeleteAnswer} />
-      <Footer />
+      <Q.Space>
+        <div>
+          {isAdminLoggedIn() ? <Header title="Q&A 답변 페이지(운영진)" /> : <Header title="Q&A" />}
+          <Q.InputContainer>
+            <Q.InputBox
+              as="textarea"
+              ref={inputRef}
+              value={inputValue}
+              onChange={handleInputChange}
+              placeholder="더 궁금한 내용을 질문해주세요!"
+            />
+            <Q.SendButton onClick={handleAddQuestion}>
+              <img src={arrowIcon} alt="전송 버튼" />
+            </Q.SendButton>
+          </Q.InputContainer>
+          <Q.Divider />
+          <QuestionList questions={questions} setQuestions={setQuestions} handleDeleteAnswer={handleDeleteAnswer} />
+        </div>
+        <Footer />
+      </Q.Space>
     </>
   );
 }

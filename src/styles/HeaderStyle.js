@@ -3,7 +3,7 @@ import palette from "@lib/colorPalette";
 
 export const Header = styled.div`
   position: fixed;
-  width: calc(100% - 40px);
+  width: calc(100vw - 40px);
   top: 0;
   z-index: 2000;
   padding: 12px 20px;
