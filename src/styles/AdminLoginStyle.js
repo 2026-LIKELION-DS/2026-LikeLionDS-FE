@@ -3,6 +3,7 @@ import palette from "@lib/colorPalette";
 
 export const AdminLogin = styled.div`
   height: 25px;
+  padding-top: 56px;
 `;
 
 export const Form = styled.form`

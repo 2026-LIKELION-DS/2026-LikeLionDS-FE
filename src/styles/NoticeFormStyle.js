@@ -6,7 +6,7 @@ export const NoticeForm = styled.div`
     @media (hover: hover) and (pointer: fine) {
       width: 342px;
     }
-  padding: 24px 24px 0 24px;
+  padding: 80px 24px 0 24px;
 `;
 
 export const Input = styled.input`

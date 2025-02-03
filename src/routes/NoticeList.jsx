@@ -44,24 +44,26 @@ function NoticeList() {
   
   return (
     <>
-      <Header title="공지사항" />
-      <N.NoticeList>
-        {isAdminLoggedIn() && 
-          <A.Button type="submit" onClick={handleNewNotice}>
-            작성하기
-          </A.Button>
-        }
-        {notices.map((notice) => (
-            <NoticeContent
-              key={notice.id}
-              title={notice.title}
-              created={formatDate(notice.created_at)}
-              preview={notice.content_preview}
-              onClick={() => handleNoticeClick(notice.id)}
-            />
-          ))}
-      </N.NoticeList>
-      <Footer />
+      <N.Space>
+        <Header title="공지사항" />
+        <N.NoticeList>
+          {isAdminLoggedIn() && 
+            <A.Button type="submit" onClick={handleNewNotice}>
+              작성하기
+            </A.Button>
+          }
+          {notices.map((notice) => (
+              <NoticeContent
+                key={notice.id}
+                title={notice.title}
+                created={formatDate(notice.created_at)}
+                preview={notice.content_preview}
+                onClick={() => handleNoticeClick(notice.id)}
+              />
+            ))}
+        </N.NoticeList>
+        <Footer />
+      </N.Space>
     </>
   );
 }
