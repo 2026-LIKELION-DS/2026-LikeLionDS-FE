@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import * as Q from "@styles/QuestionStyle";
 import arrowIcon from "@assets/icons/icon_send.svg";
 import { isAdminLoggedIn } from "@utils/Admin";
@@ -10,38 +11,52 @@ function Question() {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
 
-  // useEffect(() => {
-  //   // 🔹 질문 목록 불러오기(API 연동_질문 조회)
-  //   fetch("/qna/question/")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.result) {
-  //         setQuestions(data.result);
+  const API_URL = import.meta.env.VITE_API_URL;
 
-  //         // 🔹 각 질문의 답변을 개별적으로 가져오기(API 연동_답변 조회)
-  //         data.result.forEach((question) => {
-  //           fetch(`/qna/answer/?question_id=${question.id}`)
-  //             .then((res) => res.json())
-  //             .then((answerData) => {
-  //               setQuestions((prev) =>
-  //                 prev.map((q) => (q.id === question.id ? { ...q, answers: answerData.result || [] } : q)),
-  //               );
-  //             })
-  //             .catch((err) => console.error(`답변 불러오기 실패 (질문 ID: ${question.id})`, err));
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => console.error("질문 불러오기 실패:", err));
-  // }, []);
-
-  // ✅ 더미데이터 사용 (👆🏻 연동시 윗 코드)
-  const dummyQuestions = [
-    { id: 1, text: "백엔드와 어떻게 연동하나요?", answers: ["API를 통해 요청을 보냅니다."] },
-    { id: 2, text: "React에서 상태 관리는 어떻게 하나요?", answers: [] },
-  ];
+  console.log("✅ API_URL:", API_URL);
 
   useEffect(() => {
-    setQuestions(dummyQuestions);
+    axios
+      .get(`${API_URL}/qna/answer/`)
+      .then((response) => {
+        console.log("✅ 답변 조회 응답:", response.data);
+        const data = response.data.result;
+
+        const existingIds = data.map((q) => q.id).filter((id) => id !== null);
+        const maxId = existingIds.length > 0 ? Math.max(...existingIds) : 0;
+        let tempId = maxId + 1; // 🟢 가장 높은 ID + 1을 시작점으로 설정
+
+        // ✅ 질문을 기준으로 answers 배열을 생성하는 로직
+        const questionMap = new Map();
+
+        data.forEach((item) => {
+          let { id, question, answer } = item;
+
+          if (!id) {
+            id = tempId++; // 🟢 null ID에 대해서 새로운 임시 ID 부여
+          }
+
+          if (!questionMap.has(question)) {
+            questionMap.set(question, { id, question, answers: [] });
+          }
+
+          if (answer) {
+            questionMap.get(question).answers.push(answer);
+          }
+        });
+
+        // ✅ 객체를 배열로 변환
+        const formattedQuestions = Array.from(questionMap.values());
+        console.log("✅ 가공된 질문 데이터:", formattedQuestions);
+        setQuestions(formattedQuestions);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("❌ 서버 응답 데이터:", error.response.data);
+          console.log("❌ 상태 코드:", error.response.status);
+        }
+        console.error("❌ 답변 조회 실패:", error);
+      });
   }, []);
 
   const handleInputChange = (e) => {
@@ -50,55 +65,30 @@ function Question() {
     e.target.style.height = `${Math.max(e.target.scrollHeight, 30)}px`;
   };
 
-  // 🔹 질문 추가 (API 연동_질문 작성)
-  // const handleAddQuestion = async () => {
-  //   if (!inputValue.trim()) return;
-
-  //   try {
-  //     const response = await fetch("/qna/question/", {
-  //       method: "POST",
-  //       body: JSON.stringify({ question: inputValue }),
-  //       headers: { "Content-Type": "application/json" },
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error("서버 오류: 질문을 추가할 수 없습니다.");
-  //     }
-
-  //     const data = await response.json();
-  //     if (data.result) {
-  //       setQuestions((prev) => [{ id: data.result.id, text: data.result.question, answers: [] }, ...prev]);
-  //       setInputValue("");
-  //       if (inputRef.current) inputRef.current.style.height = "auto";
-  //     }
-  //   } catch (error) {
-  //     alert(`❌ 질문 작성 실패: ${error.message}`);
-  //     console.error("질문 작성 실패:", error);
-  //   }
-  // };
-
-  // 👆🏻 연동시 윗 코드
-  const handleAddQuestion = () => {
+  const handleAddQuestion = async () => {
     if (!inputValue.trim()) return;
 
-    const newQuestion = {
-      id: questions.length + 1,
-      text: inputValue,
-      answers: [],
-    };
+    try {
+      const response = await axios.post(`${API_URL}/qna/question/`, { question: inputValue });
+      console.log("✅ 질문 추가 응답:", response.data);
 
-    setQuestions([newQuestion, ...questions]);
-    setInputValue("");
+      if (!response.data.result || !response.data.result.id) {
+        console.warn("⚠️ 서버에서 ID를 반환하지 않음. 요청 실패 가능성 있음.");
+        return;
+      }
 
-    if (inputRef.current) inputRef.current.style.height = "auto";
-  };
+      const newQuestion = {
+        id: response.data.result.id, // ✅ 서버에서 반환한 ID 사용
+        question: response.data.result.question,
+        answers: "운영진이 질문을 확인하고 답변을 달아줘요.",
+      };
 
-  const handleDeleteAnswer = (questionId, answerIndex) => {
-    setQuestions((prevQuestions) =>
-      prevQuestions.map((q) =>
-        q.id === questionId ? { ...q, answers: q.answers.filter((_, i) => i !== answerIndex) } : q,
-      ),
-    );
+      setQuestions((prevQuestions) => [newQuestion, ...prevQuestions]);
+      setInputValue("");
+      if (inputRef.current) inputRef.current.style.height = "auto";
+    } catch (error) {
+      console.error("❌ 질문 추가 실패:", error);
+    }
   };
 
   return (
@@ -117,7 +107,7 @@ function Question() {
         </Q.SendButton>
       </Q.InputContainer>
       <Q.Divider />
-      <QuestionList questions={questions} setQuestions={setQuestions} handleDeleteAnswer={handleDeleteAnswer} />
+      <QuestionList questions={questions} setQuestions={setQuestions} />
     </>
   );
 }

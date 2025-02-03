@@ -8,14 +8,19 @@ const QuestionList = ({ questions, setQuestions, handleDeleteAnswer }) => {
 
   return (
     <div>
-      {questions.map((question) => (
-        <QuestionItem
-          key={question.id}
-          question={question}
-          setQuestions={setQuestions}
-          handleDeleteAnswer={handleDeleteAnswer} // ✅ 삭제 함수 전달
-        />
-      ))}
+      {questions.map(
+        (
+          question,
+          index, // ✅ `index` 추가
+        ) => (
+          <QuestionItem
+            key={question.id !== null ? question.id : `fallback-${index}`} // ✅ null이면 index로 대체
+            question={question}
+            setQuestions={setQuestions}
+            handleDeleteAnswer={handleDeleteAnswer}
+          />
+        ),
+      )}
     </div>
   );
 };
