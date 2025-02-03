@@ -108,36 +108,39 @@ const QuestionItem = ({ question, setQuestions }) => {
       return;
     }
 
-    // ✅ 프론트에서 먼저 UI 업데이트 (ID 변경 X)
-    setQuestions((prev) =>
-      prev.map((q) =>
-        q.id === question.id
-          ? {
-              ...q,
-              answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
-            }
-          : q,
-      ),
-    );
-
     console.log("📌 [디버깅] PATCH 요청 URL:", `${API_URL}/qna/answer/manage/${answerId}/`);
     console.log("📌 [디버깅] 수정할 answerId:", answerId);
     console.log("📌 [디버깅] 수정할 값:", editValue);
 
-    // ✅ PATCH 요청 (ID는 유지하고, answer 값만 변경)
+    // ✅ PATCH 요청 (answer 값만 변경)
     axios
-      .patch(`${API_URL}/qna/answer/manage/${answerId}/`)
+      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, {
+        answer: editValue, // 🔹 수정할 값
+      })
       .then((response) => {
         console.log("✅ [디버깅] PATCH 응답:", response.data);
+
+        // ✅ 서버 응답을 기반으로 상태 업데이트 (프론트에서 먼저 변경 X)
+        setQuestions((prev) =>
+          prev.map((q) =>
+            q.id === question.id
+              ? {
+                  ...q,
+                  answers: q.answers.map((a, i) =>
+                    i === editingIndex ? { ...a, answer: response.data.result.answer } : a,
+                  ),
+                }
+              : q,
+          ),
+        );
+
+        setEditingIndex(null); // ✅ 수정 모드 종료
       })
       .catch((error) => {
         console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
         console.error("❌ 답변 수정 실패:", error);
         console.log("🔍 서버 응답 전체:", error.response);
       });
-
-    // ✅ 수정 모드 종료
-    setEditingIndex(null);
   };
 
   // ✅ 답변 삭제 (DELETE 요청)
