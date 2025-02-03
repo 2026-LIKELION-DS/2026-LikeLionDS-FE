@@ -139,83 +139,6 @@ const QuestionItem = ({ question, setQuestions }) => {
     // ✅ 수정 모드 종료
     setEditingIndex(null);
   };
-  // const handleSaveAnswer = () => {
-  //   if (!isAdmin || editingIndex === null) return;
-
-  //   // 🔹 answerId가 null이면 임시 ID 부여
-  //   let answerId = normalizedAnswers[editingIndex]?.id || Date.now();
-
-  //   if (!normalizedAnswers[editingIndex]?.id) {
-  //     console.warn("⚠️ 서버에서 ID를 반환하지 않음. 임시 ID 할당:", answerId);
-
-  //     // 🔹 바로 setQuestions을 통해 새로운 ID 적용
-  //     setQuestions((prev) =>
-  //       prev.map((q) =>
-  //         q.id === question.id
-  //           ? {
-  //               ...q,
-  //               answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, id: answerId } : a)),
-  //             }
-  //           : q,
-  //       ),
-  //     );
-  //   }
-
-  //   // ✅ 요청 URL 및 ID 확인
-  //   console.log("📌 [디버깅] PATCH 요청 URL:", `${API_URL}/qna/answer/manage/${answerId}/`);
-  //   console.log("📌 [디버깅] 수정할 answerId:", answerId);
-  //   console.log("📌 [디버깅] 수정할 값:", editValue);
-
-  //   axios
-  //     .patch(`${API_URL}/qna/answer/manage/${answerId}/`) // ✅ request body 제거
-  //     .then((response) => {
-  //       console.log("✅ [디버깅] PATCH 응답:", response.data);
-  //       setQuestions((prev) =>
-  //         prev.map((q) =>
-  //           q.id === question.id
-  //             ? {
-  //                 ...q,
-  //                 answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
-  //               }
-  //             : q,
-  //         ),
-  //       );
-  //       setEditingIndex(null);
-  //     })
-  //     .catch((error) => {
-  //       console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
-  //       console.error("❌ 답변 수정 실패:", error);
-  //       console.log("🔍 서버 응답 전체:", error.response);
-  //     });
-
-  // ✅ question_id 포함하여 요청 데이터 수정
-  // const requestData = {
-  //   question_id: question.id, // 🔹 질문 ID 추가
-  //   answer: editValue,
-  // };
-
-  //   axios
-  //     .patch(`${API_URL}/qna/answer/manage/${answerId}/`, requestData)
-  //     .then(() => {
-  //       setQuestions((prev) =>
-  //         prev.map((q) =>
-  //           q.id === question.id
-  //             ? {
-  //                 ...q,
-  //                 answers: normalizedAnswers.map((a, i) => (i === editingIndex ? { ...a, answer: editValue } : a)),
-  //               }
-  //             : q,
-  //         ),
-  //       );
-  //       setEditingIndex(null);
-  //     })
-  //     .catch((error) => {
-  //       console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
-  //       console.log("📌 요청 데이터:", requestData); // ✅ 수정된 요청 데이터 로그 출력
-  //       console.error("❌ 답변 수정 실패:", error);
-  //       console.log("🔍 서버 응답 전체:", error.response);
-  //     });
-  // };
 
   // ✅ 답변 삭제 (DELETE 요청)
   const handleDeleteAnswer = () => {
@@ -223,7 +146,7 @@ const QuestionItem = ({ question, setQuestions }) => {
 
     let answerId = normalizedAnswers[selectedAnswerIndex]?.id;
 
-    // ✅ 클라이언트에서 먼저 삭제 처리
+    // ✅ 클라이언트에서 먼저 삭제 처리 <- answerId가 null이라고 새로고침하기 전까지 삭제가 안돼서
     setQuestions((prev) =>
       prev.map((q) =>
         q.id === question.id
@@ -235,7 +158,7 @@ const QuestionItem = ({ question, setQuestions }) => {
       ),
     );
 
-    // ✅ answerId가 `null`이어도 삭제 가능하도록 처리
+    // ✅ answerId가 `null`이어도 삭제 가능하도록 처리 <- 반영 안되는거 같긴 함..
     if (!answerId) {
       console.warn("⚠️ answerId가 null이지만 클라이언트에서 삭제 처리함.");
       setIsModalOpen(false);
@@ -288,7 +211,7 @@ const QuestionItem = ({ question, setQuestions }) => {
       document.removeEventListener("mousedown", handleOutsideClick);
     }
     return () => document.removeEventListener("mousedown", handleOutsideClick);
-  }, [isAddingAnswer, editingIndex, newAnswer]); // ✅ newAnswer 추가
+  }, [isAddingAnswer, editingIndex, newAnswer]);
 
   // ✅ 모달 열기 (답변 삭제 확인)
   const openModal = (index) => {
