@@ -49,7 +49,7 @@ const JoinSchedule = () => {
       </M__.TextContainer>
 
       <M.LineContainer>
-        <div>
+        <div style={{ width: "100%" }}>
           <Schedule date={"02.06 - 02.20"} text={"13기 모집"} className="schedules"></Schedule>
           <M.Line />
 

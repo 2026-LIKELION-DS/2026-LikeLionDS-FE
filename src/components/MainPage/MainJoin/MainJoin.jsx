@@ -63,7 +63,7 @@ const MainJoin = () => {
 
       {/* 아기사자 모집 안내 */}
       <M_.PageContainer>
-        <M_.ComponentContainer>
+        <M_.ComponentContainer $width={"342px"}>
           <M.TitleContainer>
             <M_.TextWrapper $fontSize={"28px"} $fontWeight={600} $letterSpacing={"-0.84px"}>
               아기사자 모집 안내

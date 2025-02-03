@@ -16,7 +16,7 @@ export const ComponentContainer = styled.div`
   flex-direction: column;
   align-items: self-start;
 
-  width: ${(props) => props.width || "350px"};
+  width: ${(props) => props.$width || "350px"};
 `;
 
 export const TextContainer = styled.div`

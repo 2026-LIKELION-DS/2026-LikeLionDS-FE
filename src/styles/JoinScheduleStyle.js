@@ -7,6 +7,10 @@ export const LineContainer = styled.div`
 
   margin-top: 30px;
   z-index: 1000;
+
+  width: 342px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Line = styled.div`

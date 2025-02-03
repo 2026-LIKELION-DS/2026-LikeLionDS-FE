@@ -3,7 +3,7 @@ import * as M_ from "@styles/PartInfoStyle";
 
 const JoinTarget = () => {
   return (
-    <M_.ComponentContainer>
+    <M_.ComponentContainer $width={"342px"}>
       <M.TitleText>모집 대상</M.TitleText>
       <M.ItemWrapper>
         <M.ItemText>자신의 아이디어를 실현시켜 꿈을 펼치고 싶으신 분</M.ItemText>
