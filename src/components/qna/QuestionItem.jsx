@@ -22,6 +22,7 @@ import {
   CancelButton,
   ConfirmButton,
   WrapContainer,
+  CloseArrowButton,
 } from "@components/qna/QuestionItemStyle";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -34,7 +35,7 @@ const QuestionItem = ({ question, setQuestions }) => {
   const [isAddingAnswer, setIsAddingAnswer] = useState(false);
   const [newAnswer, setNewAnswer] = useState("");
   const inputRef = useRef(null);
-  const wrapperRef = useRef(null); // 여백 감지용 ref 추가
+  const wrapperRef = useRef(null);
   const isAdmin = isAdminLoggedIn();
 
   // ✅ `answers`가 배열이 아닐 경우 빈 배열로 설정
@@ -64,7 +65,6 @@ const QuestionItem = ({ question, setQuestions }) => {
   const handleAddAnswer = async () => {
     if (!newAnswer.trim()) return;
     if (!question.id) {
-      console.warn("⚠️ question.id가 null이므로 답변 추가 요청을 보낼 수 없음.");
       return;
     }
 
@@ -121,8 +121,14 @@ const QuestionItem = ({ question, setQuestions }) => {
       );
     }
 
+    // ✅ question_id 포함하여 요청 데이터 수정
+    const requestData = {
+      question_id: question.id, // 🔹 질문 ID 추가
+      answer: editValue,
+    };
+
     axios
-      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, { answer: editValue })
+      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, requestData)
       .then(() => {
         setQuestions((prev) =>
           prev.map((q) =>
@@ -137,7 +143,10 @@ const QuestionItem = ({ question, setQuestions }) => {
         setEditingIndex(null);
       })
       .catch((error) => {
+        console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
+        console.log("📌 요청 데이터:", requestData); // ✅ 수정된 요청 데이터 로그 출력
         console.error("❌ 답변 수정 실패:", error);
+        console.log("🔍 서버 응답 전체:", error.response);
       });
   };
 
@@ -251,9 +260,9 @@ const QuestionItem = ({ question, setQuestions }) => {
               )}
               {isAdmin &&
                 (editingIndex === index ? (
-                  <CloseButton onClick={handleSaveAnswer}>
+                  <CloseArrowButton onClick={handleSaveAnswer}>
                     <img src={rightArrow} alt="전송" />
-                  </CloseButton>
+                  </CloseArrowButton>
                 ) : (
                   <CloseButton onClick={() => openModal(index)}>
                     <img src={closeIcon} alt="닫기" />
@@ -273,9 +282,9 @@ const QuestionItem = ({ question, setQuestions }) => {
               }}
               placeholder="답변을 입력하세요..."
             />
-            <CloseButton onClick={handleAddAnswer}>
+            <CloseArrowButton onClick={handleAddAnswer}>
               <img src={rightArrow} alt="전송" />
-            </CloseButton>
+            </CloseArrowButton>
           </AnswerContainer>
         )}
       </Wrapper>

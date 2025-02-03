@@ -65,7 +65,34 @@ export const CloseButton = styled.button`
   right: 10px;
 
   img {
+    width: 20px;
+    height: 20px;
     filter: brightness(0) invert(0);
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+`;
+
+export const CloseArrowButton = styled.button`
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8.6px);
+  border-radius: 50%;
+  top: 0px;
+  right: 10px;
+
+  img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(0);
+    position: absolute;
+    top: 4px;
+    right: 3px;
   }
 `;
 
@@ -90,7 +117,7 @@ export const AnswerInput = styled.textarea`
   border: 1px solid #ccc;
   border-radius: 40px;
   padding: 20px 25px 3px 25px;
-  width: 250px;
+  width: 100%;
   height: auto;
   resize: none;
   overflow-y: hidden;

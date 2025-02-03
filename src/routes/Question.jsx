@@ -6,11 +6,12 @@ import { isAdminLoggedIn } from "@utils/Admin";
 import QuestionList from "@/components/qna/QuestionList";
 import Header from "@components/Header/HeaderSub";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Question() {
   const [questions, setQuestions] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
-  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchQuestionsAndAnswers = async () => {

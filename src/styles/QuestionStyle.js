@@ -58,8 +58,3 @@ export const Divider = styled.div`
   border-bottom: 1px solid #56585cde;
   margin-bottom: 25px; /* 위아래 여백 추가 */
 `;
-
-export const WrapContainer = styled.div`
-  display: flex;
-  padding: 20px;
-`;
