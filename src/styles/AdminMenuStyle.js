@@ -6,6 +6,7 @@ export const AdminMenu = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 60px;
 `;
 
 export const Menu = styled.div`

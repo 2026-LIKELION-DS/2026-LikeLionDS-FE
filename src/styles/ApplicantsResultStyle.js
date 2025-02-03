@@ -3,7 +3,7 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const ApplicantsResult = styled.div`
-  height: 50px;
+  height: 60px;
 `;
 
 export const Page = styled.div`

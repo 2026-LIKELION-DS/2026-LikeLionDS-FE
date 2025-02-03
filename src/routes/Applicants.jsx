@@ -22,6 +22,7 @@ function Applicants() {
       };
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, tel, email } = formValue;

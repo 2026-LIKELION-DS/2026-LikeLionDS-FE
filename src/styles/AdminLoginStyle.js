@@ -2,6 +2,7 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const AdminLogin = styled.div`
+  height: 60px;
   height: 25px;
   padding-top: 56px;
 `;
