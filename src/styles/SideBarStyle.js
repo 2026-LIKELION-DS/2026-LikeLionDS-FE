@@ -122,4 +122,10 @@ export const SubIndex = styled.div`
   border-left: 1px solid ${(props) => (props.$isActive ? palette.realOrange.ex4 : palette.boldBlack.ex4)};
   margin-left: -1px;
   cursor: pointer;
+  transition: 200ms ease-in-out;
+
+  &:hover {
+    color: ${palette.realOrange.ex4};
+    border-left: 1px solid ${palette.realOrange.ex4};
+  }
 `;
