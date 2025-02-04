@@ -25,6 +25,7 @@ export const ChartText = styled.div`
     font-weight: 300;
     text-align: right;
     cursor: pointer;
+    transition: 200ms ease-in-out;
 
     &:hover {
       color: ${palette.realOrange.ex4};
