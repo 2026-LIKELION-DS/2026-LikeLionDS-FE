@@ -22,8 +22,6 @@ function NoticeForm({ type }) {
   const [imageFiles, setImageFiles] = useState([]); // 새로 추가된 이미지 파일
   const [deletedImages, setDeletedImages] = useState([]); // 삭제한 서버 이미지 목록
 
-  console.log(images);
-  
   useEffect(() => {
     if (boardId) {
       axios
@@ -107,7 +105,6 @@ function NoticeForm({ type }) {
     // 서버에 남아있는 이미지 전송
     serverImages.forEach((img) => {
       formData.append("images_to_keep", img.image_url);
-      console.log(img.image_url);
     });
   
     // 새로 추가한 이미지 파일 전송
