@@ -6,6 +6,8 @@ export const JoinContainer = styled.div`
   align-items: center;
 
   margin-top: ${(props) => props.$marginTop || "0px"};
+
+  margin-bottom: 91.24px;
 `;
 
 export const AnimationWrapper = styled.div`
@@ -22,7 +24,6 @@ export const ImgWrapper = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  margin-top: 91.24px;
   width: fit-content;
 `;
 

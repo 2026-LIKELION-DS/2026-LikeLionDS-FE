@@ -12,6 +12,7 @@ import MainLastPage from "@components/Main/MainLastPage";
 import Footer from "@components/Footer";
 import useScrollToSection from "@/hooks/useScrollToSection";
 import useScrollObserver from "@/hooks/useScrollObserver";
+import MainJoinHeader from "../components/MainPage/MainJoin/MainJoinHeader";
 
 function Main() {
   const location = useLocation();
@@ -42,6 +43,7 @@ function Main() {
         <div ref={refs.projectsRef} data-section="projects">
           <Main12thProjects />
         </div>
+        <MainJoinHeader />
         <div ref={refs.joinRef} data-section="join">
           <MainJoin />
         </div>
