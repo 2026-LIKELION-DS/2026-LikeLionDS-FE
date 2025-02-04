@@ -53,6 +53,9 @@ export const TextAniWrapper = styled.div`
 
   box-sizing: border-box;
 
+  flex-wrap: nowrap;
+  gap: 0px;
+
   img {
     flex-shrink: 0;
     font-size: 0;
