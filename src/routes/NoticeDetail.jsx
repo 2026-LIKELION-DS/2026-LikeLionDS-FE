@@ -54,8 +54,6 @@ function NoticeDetail() {
     }
   };
 
-  console.log(notice);
-
   const handleImageClick = (clickedIndex) => {
     navigate("/image-detail", { state: { initialIndex: clickedIndex, images: notice.images } });
   };
