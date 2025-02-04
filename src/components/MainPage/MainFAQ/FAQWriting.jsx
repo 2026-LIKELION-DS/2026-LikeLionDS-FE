@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 
 const FAQWriting = ({ isClicked }) => {
   return (
-    <M.ComponentContainer isClicked={isClicked === 7}>
+    <M.ComponentContainer $isClicked={isClicked === 7}>
       <M.AnimationContainer>
         <M.AnimationWrapper>
           <Lottie animationData={writingLottie} loop autoplay />
