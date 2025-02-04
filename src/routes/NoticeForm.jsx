@@ -37,6 +37,13 @@ function NoticeForm({ type }) {
     }
   }, [boardId]);
 
+  useEffect(() => {
+    if (content && textAreaRef.current) {
+      textAreaRef.current.style.height = "auto";
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+    }
+  }, [content]);  
+
   const handleInput = () => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = "auto";
