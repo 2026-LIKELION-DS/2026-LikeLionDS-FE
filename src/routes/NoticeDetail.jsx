@@ -68,15 +68,24 @@ function NoticeDetail() {
               <>
                 <N.Created>{formatDate(notice.created_at)}</N.Created>
                 <N.Title>{notice.title}</N.Title>
-                <N.Content>{notice.content}</N.Content>
-                {notice.images.map((img, index) => (
-                  <N.Image
-                    key={img.id}
-                    src={`${import.meta.env.VITE_API_URL}${img.image_url}`}
-                    alt="공지 이미지"
-                    onClick={() => handleImageClick(index)}
-                  />
-                ))}
+                <N.Content>
+                  {notice.content.split("\n").map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </N.Content>
+                <N.ImageContainer>
+                  {notice.images.map((img, index) => (
+                    <N.Image
+                      key={img.id}
+                      src={`${import.meta.env.VITE_IMAGE_URL}${img.image_url}`}
+                      alt="공지 이미지"
+                      onClick={() => handleImageClick(index)}
+                    />
+                  ))}
+                </N.ImageContainer>
                 {isAdminLoggedIn() && (
                   <N.Admin>
                     <N.Button onClick={handleEdit}>수정</N.Button>

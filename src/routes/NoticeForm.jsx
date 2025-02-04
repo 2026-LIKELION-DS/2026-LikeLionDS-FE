@@ -17,9 +17,13 @@ function NoticeForm({ type }) {
   const fileInputRef = useRef(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [images, setImages] = useState([]); // 미리보기 이미지
-  const [imageFiles, setImageFiles] = useState([]) // 실제 파일 데이터
+  const [images, setImages] = useState([]); // 미리보기 이미지 (서버 이미지 + 새로 추가된 이미지)
+  const [serverImages, setServerImages] = useState([]); // 서버에서 불러온 이미지
+  const [imageFiles, setImageFiles] = useState([]); // 새로 추가된 이미지 파일
+  const [deletedImages, setDeletedImages] = useState([]); // 삭제한 서버 이미지 목록
 
+  console.log(images);
+  
   useEffect(() => {
     if (boardId) {
       axios
@@ -28,7 +32,13 @@ function NoticeForm({ type }) {
           const { title, content, images } = response.data;
           setTitle(title);
           setContent(content);
-          setImages(images || []);
+          if (images && images.length > 0) {
+            setServerImages(images);
+            setImages(images.map(img => ({
+              id: img.id,
+              src: `${import.meta.env.VITE_IMAGE_URL}${img.image_url}`
+            })));
+          }
         })
         .catch((error) => {
           console.error("공지사항 데이터를 불러오는 중 오류 발생:", error);
@@ -36,6 +46,13 @@ function NoticeForm({ type }) {
         });
     }
   }, [boardId]);
+
+  useEffect(() => {
+    if (content && textAreaRef.current) {
+      textAreaRef.current.style.height = "auto";
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+    }
+  }, [content]);  
 
   const handleInput = () => {
     if (textAreaRef.current) {
@@ -55,37 +72,55 @@ function NoticeForm({ type }) {
     files.forEach((file) => {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImages((prevImages) => [...prevImages, reader.result]);
+        setImages((prevImages) => [...prevImages, { id: null, src: reader.result }]);
       };
       reader.readAsDataURL(file);
     });
   };
 
   const handleDeleteImage = (index) => {
-    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
-    setImageFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    setImages((prevImages) => {
+      const newImages = [...prevImages];
+      const deletedImage = newImages[index];
+      if (deletedImage.id) {
+        setDeletedImages((prev) => [...prev, deletedImage.id]);
+        setServerImages((prev) => prev.filter(img => img.id !== deletedImage.id));
+      } else {
+        setImageFiles((prevFiles) => prevFiles.filter((_, i) => i !== index - serverImages.length));
+      }
+      newImages.splice(index, 1);
+      return newImages;
+    });
   };
+  
 
   const handleSubmit = async () => {
     if (!title.trim() || !content.trim()) {
       alert("제목과 내용을 입력해주세요.");
       return;
     }
-
+  
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    imageFiles.forEach((file) => {
-      formData.append("upload_images", file);
+  
+    // 서버에 남아있는 이미지 전송
+    serverImages.forEach((img) => {
+      formData.append("images_to_keep", img.image_url);
+      console.log(img.image_url);
     });
-
+  
+    // 새로 추가한 이미지 파일 전송
+    imageFiles.forEach((file) => {
+      formData.append("uploaded_images", file);
+    });
+  
     try {
       const url = boardId
         ? `${import.meta.env.VITE_API_URL}/board/${boardId}/`
         : `${import.meta.env.VITE_API_URL}/board/`;
-
       const method = boardId ? "put" : "post";
-
+  
       const response = await axios({
         method,
         url,
@@ -94,18 +129,15 @@ function NoticeForm({ type }) {
           "Content-Type": "multipart/form-data",
         },
       });
-
-      console.log("공지사항 업로드 성공:");
+  
       alert(boardId ? "공지사항이 성공적으로 수정되었습니다." : "공지사항이 성공적으로 등록되었습니다.");
-
       const newId = boardId || response.data.id;
       navigate(`/notice/${newId}`);
-
     } catch (error) {
       console.error("공지사항 업로드 실패:", error);
       alert("공지사항 업로드에 실패했습니다.");
     }
-  };
+  };  
 
   return (
     <>
@@ -129,9 +161,9 @@ function NoticeForm({ type }) {
         <N.ImagePicker onClick={handleImagePickerClick}>
           <img src={Add} alt="image" />
         </N.ImagePicker>
-        {images.map((src, index) => (
+        {images.map((image, index) => (
           <N.PreviewImage key={index}>
-            <img src={src} alt={`preview-${index}`} />
+            <img src={image.src} alt={`preview-${index}`} />
             <N.DeleteButton onClick={() => handleDeleteImage(index)}>
               <img src={Delete} alt="delete" />
             </N.DeleteButton>
