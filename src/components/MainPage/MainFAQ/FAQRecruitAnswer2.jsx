@@ -42,8 +42,8 @@ const FAQRecruitAnswer2 = () => {
             $textAlign={"start"}>
             하지만 본인의 <b style={{ fontWeight: "700" }}>열정과 끈기만 있다면</b>
             <br />
-            학년과 상관없이 충분히 참여하실 수 <br />
-            있습니다.
+            학년과 상관없이 충분히 참여하실 수 있<br />
+            습니다.
           </JoinRectangle>
         </M.ComponentContainer>
       </M_.AnswerContainer>
