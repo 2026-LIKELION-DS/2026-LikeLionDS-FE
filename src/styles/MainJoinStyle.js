@@ -48,7 +48,11 @@ export const TextAniWrapper = styled.div`
 
   margin-bottom: 63px;
 
+  box-sizing: border-box;
+
   img {
     flex-shrink: 0;
+    font-size: 0;
+    display: block;
   }
 `;

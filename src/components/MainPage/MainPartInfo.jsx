@@ -11,21 +11,49 @@ import icon_BE_back from "@assets/icons/icon_BE_back.svg";
 import { useState } from "react";
 
 const MainPartInfo = () => {
+  // 파트별 이미지 상태
+  // 초기엔 front 이미지가 로딩되도록
+  const [imgSrc, setImgSrc] = useState({
+    plan: icon_plan_front,
+    FE: icon_FE_front,
+    BE: icon_BE_front,
+  });
+
   // 클릭된 이미지 키 저장 (plan, FE, BE)
   const [activeKey, setActiveKey] = useState(null);
 
-  const getImageSrc = (key) => {
-    // 클릭된 상태에 따라 이미지 결정
-    // 클릭되면 _back 이미지 반환
-    if (activeKey === key) {
-      return key === "plan" ? icon_plan_back : key === "FE" ? icon_FE_back : icon_BE_back;
-    }
-    // 클릭되지 않으면 _front 이미지 반환
-    return key === "plan" ? icon_plan_front : key === "FE" ? icon_FE_front : icon_BE_front;
-  };
-
   const handleImgClicked = (key) => {
-    setActiveKey((prevKey) => (prevKey === key ? null : key)); // 클릭된 상태를 토글
+    setImgSrc((prev) => {
+      const newImgSrc = { ...prev };
+
+      // 하나만 클릭되도록, 클릭된 이미지는 back, 나머지는 front
+      Object.keys(newImgSrc).forEach((part) => {
+        // 클릭된 key와 파트가 일치한다면 ...
+        if (part === key) {
+          newImgSrc[part] =
+            newImgSrc[part] === icon_plan_front ||
+            newImgSrc[part] === icon_FE_front ||
+            newImgSrc[part] === icon_BE_front
+              ? part === "plan"
+                ? icon_plan_back // plan이 클릭되면 back 이미지 보여줌
+                : part === "FE"
+                  ? icon_FE_back
+                  : icon_BE_back
+              : part === "plan" // 이미 back 이미지라면 ...
+                ? icon_plan_front
+                : part === "FE"
+                  ? icon_FE_front
+                  : icon_BE_front;
+        } else {
+          // 클릭되지 않으면 front
+          newImgSrc[part] = part === "plan" ? icon_plan_front : part === "FE" ? icon_FE_front : icon_BE_front;
+        }
+      });
+
+      return newImgSrc; // 변경된 이미지
+    });
+
+    setActiveKey(key); // 클릭된 키를 저장
   };
 
   return (
@@ -49,16 +77,16 @@ const MainPartInfo = () => {
         {/* 이미지 */}
         <M.PartContainer>
           <M.PartImgContainer onClick={() => handleImgClicked("plan")}>
-            <M.PartImgWrapper data={getImageSrc("plan")} />
+            <M.PartImgWrapper data={imgSrc.plan} />
           </M.PartImgContainer>
 
-          <M.PartImgContainer onClick={() => handleImgClicked("FE")}>
-            <M.PartImgWrapper data={getImageSrc("FE")} $marginTop={"17px"} />
-          </M.PartImgContainer>
+          <M.PartImgContainerFE onClick={() => handleImgClicked("FE")}>
+            <M.PartImgWrapper data={imgSrc.FE} />
+          </M.PartImgContainerFE>
 
-          <M.PartImgContainer onClick={() => handleImgClicked("BE")}>
-            <M.PartImgWrapper data={getImageSrc("BE")} $marginTop={"-70px"} />
-          </M.PartImgContainer>
+          <M.PartImgContainerBE onClick={() => handleImgClicked("BE")}>
+            <M.PartImgWrapper data={imgSrc.BE} />
+          </M.PartImgContainerBE>
         </M.PartContainer>
       </M.ComponentContainer>
     </M.PageContainer>

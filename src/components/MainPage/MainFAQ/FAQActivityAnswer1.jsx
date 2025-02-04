@@ -44,7 +44,7 @@ const FAQActivityAnswer1 = () => {
             $textAlign={"start"}>
             <b style={{ fontWeight: "700" }}>스터디</b>는 매주 목요일, 아기사자들의 일
             <br />
-            정을 고려해<b style={{ fontWeight: "700" }}>소규모로 팀을 꾸려서 진행</b>돼
+            정을 고려해 <b style={{ fontWeight: "700" }}>소규모로 팀을 꾸려서 진행</b>돼
             <br />
             요.
           </JoinRectangle>
