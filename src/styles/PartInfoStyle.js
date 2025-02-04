@@ -49,7 +49,6 @@ export const PartContainer = styled.div`
 
   width: 350px;
   height: 575px;
-  position: relative;
 `;
 
 export const PartImgContainer = styled.div`
@@ -60,14 +59,12 @@ export const PartImgContainer = styled.div`
 `;
 
 export const PartImgContainerFE = styled(PartImgContainer)`
-  position: relative;
-  top: 17px;
+  margin-top: 17px;
   z-index: 10;
 `;
 
 export const PartImgContainerBE = styled(PartImgContainer)`
-  position: relative;
-  top: -70px;
+  margin-top: -80px;
   z-index: 20;
 `;
 

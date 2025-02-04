@@ -40,6 +40,7 @@ export const TextAniContainer = styled.div`
   width: 100%;
   overflow: hidden;
   display: flex;
+  flex-wrap: nowrap;
 `;
 
 export const TextAniWrapper = styled.div`
@@ -53,6 +54,7 @@ export const TextAniWrapper = styled.div`
   img {
     flex-shrink: 0;
     font-size: 0;
+    margin: 0;
     display: block;
   }
 `;
