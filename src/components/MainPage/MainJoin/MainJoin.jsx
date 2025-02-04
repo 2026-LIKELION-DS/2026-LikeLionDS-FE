@@ -20,7 +20,7 @@ const MainJoin = () => {
 
   // 반복할 이미지 개수
   // (화면 채우기 위한 최소 이미지 개수) + 여유분
-  const NUM_IMAGES = Math.ceil(390 / IMAGE_WIDTH) + 2;
+  const NUM_IMAGES = Math.ceil(390 / IMAGE_WIDTH) + 5;
 
   return (
     <>
