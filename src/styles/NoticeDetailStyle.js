@@ -83,6 +83,7 @@ export const Button = styled.div`
 export const ImageContainer = styled.div`
   padding: 0 24px 0 24px;
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
