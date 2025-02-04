@@ -54,6 +54,8 @@ function NoticeDetail() {
     }
   };
 
+  console.log(notice);
+
   const handleImageClick = (clickedIndex) => {
     navigate("/image-detail", { state: { initialIndex: clickedIndex, images: notice.images } });
   };
@@ -68,7 +70,14 @@ function NoticeDetail() {
               <>
                 <N.Created>{formatDate(notice.created_at)}</N.Created>
                 <N.Title>{notice.title}</N.Title>
-                <N.Content>{notice.content}</N.Content>
+                <N.Content>
+                  {notice.content.split("\n").map((line, index) => (
+                    <span key={index}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </N.Content>
                 <N.ImageContainer>
                   {notice.images.map((img, index) => (
                     <N.Image
