@@ -42,6 +42,7 @@ export const TextAniContainer = styled.div`
   overflow: hidden;
   display: flex;
   flex-wrap: nowrap;
+  gap: 0px;
 `;
 
 export const TextAniWrapper = styled.div`
