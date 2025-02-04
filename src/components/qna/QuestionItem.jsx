@@ -137,9 +137,12 @@ const QuestionItem = ({ question, setQuestions }) => {
         setEditingIndex(null); // ✅ 수정 모드 종료
       })
       .catch((error) => {
-        // console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
         // console.error("❌ 답변 수정 실패:", error);
-        // console.log("🔍 서버 응답 전체:", error.response);
+  
+        // 🔹 400 에러 처리: 300자 제한 알림
+        if (error.response && error.response.status === 400) {
+          alert("최대 300자까지 입력 가능합니다.");
+        }
       });
   };
 
