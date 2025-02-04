@@ -34,7 +34,7 @@ function Main() {
       <Header scrollToSection={scrollToSection} activeSection={activeSection} setActiveManually={setActiveManually} />
       <M.Main>
         <div ref={refs.startRef} data-section="start">
-          <MainStartPage />
+          <MainStartPage scrollToSection={scrollToSection} />
         </div>
         <div ref={refs.partInfoRef} data-section="partInfo">
           <MainPartInfo />

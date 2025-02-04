@@ -5,7 +5,7 @@ import whiteLine from "@assets/icons/icon_whiteLine.png";
 import likelionBack from "@assets/logo/logo_likelion_background.svg";
 import underLine from "@assets/icons/icon_underline.svg";
 
-function MainStartPage() {
+function MainStartPage({ scrollToSection }) {
   const [translateX, setTranslateX] = useState(150); // 초기값 (공백 최소화)
   const [scrollY, setScrollY] = useState(0); // 현재 스크롤 위치 저장
 
@@ -36,11 +36,11 @@ function MainStartPage() {
         <img src={splash} alt="splash logo" />
         <M.FlexBox>
           <M.ChartText>
-            <p>멋쟁이사자처럼이란?</p>
-            <p>파트별 소개</p>
-            <p>덕성 멋사는</p>
-            <p>아기사자 모집 안내</p>
-            <p>자주 묻는 질문</p>
+            <p onClick={() => scrollToSection("start")}>멋쟁이사자처럼이란?</p>
+            <p onClick={() => scrollToSection("partInfo")}>파트별 소개</p>
+            <p onClick={() => scrollToSection("projects")}>덕성 멋사는</p>
+            <p onClick={() => scrollToSection("join")}>아기사자 모집 안내</p>
+            <p onClick={() => scrollToSection("faq")}>자주 묻는 질문</p>
           </M.ChartText>
           <M.WhiteLine src={whiteLine} alt="white line" />
         </M.FlexBox>
