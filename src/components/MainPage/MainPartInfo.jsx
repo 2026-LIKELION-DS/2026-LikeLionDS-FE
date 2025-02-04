@@ -80,13 +80,13 @@ const MainPartInfo = () => {
             <M.PartImgWrapper data={imgSrc.plan} />
           </M.PartImgContainer>
 
-          <M.PartImgContainer onClick={() => handleImgClicked("FE")}>
-            <M.PartImgWrapper data={imgSrc.FE} $marginTop={"17px"} />
-          </M.PartImgContainer>
+          <M.PartImgContainerFE onClick={() => handleImgClicked("FE")}>
+            <M.PartImgWrapper data={imgSrc.FE} />
+          </M.PartImgContainerFE>
 
-          <M.PartImgContainer onClick={() => handleImgClicked("BE")}>
-            <M.PartImgWrapper data={imgSrc.BE} $marginTop={"-70px"} />
-          </M.PartImgContainer>
+          <M.PartImgContainerBE onClick={() => handleImgClicked("BE")}>
+            <M.PartImgWrapper data={imgSrc.BE} />
+          </M.PartImgContainerBE>
         </M.PartContainer>
       </M.ComponentContainer>
     </M.PageContainer>

@@ -46,6 +46,10 @@ export const PartContainer = styled.div`
   justify-content: center;
 
   margin-top: 40px;
+
+  width: 350px;
+  height: 575px;
+  position: relative;
 `;
 
 export const PartImgContainer = styled.div`
@@ -53,6 +57,18 @@ export const PartImgContainer = styled.div`
   height: 212px;
 
   cursor: pointer;
+`;
+
+export const PartImgContainerFE = styled(PartImgContainer)`
+  position: relative;
+  top: 17px;
+  z-index: 10;
+`;
+
+export const PartImgContainerBE = styled(PartImgContainer)`
+  position: relative;
+  top: -70px;
+  z-index: 20;
 `;
 
 export const PartImgWrapper = styled.object`
