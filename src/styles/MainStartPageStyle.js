@@ -24,6 +24,11 @@ export const ChartText = styled.div`
     font-size: 16px;
     font-weight: 300;
     text-align: right;
+    cursor: pointer;
+
+    &:hover {
+      color: ${palette.realOrange.ex4};
+    }
   }
 `;
 
