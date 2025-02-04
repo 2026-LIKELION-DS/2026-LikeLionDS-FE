@@ -39,7 +39,6 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 130%;
   letter-spacing: -0.6px;
-  margin-bottom: 24px;
 `;
 
 export const Content = styled.div`

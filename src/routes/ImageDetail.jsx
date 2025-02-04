@@ -28,19 +28,21 @@ function ImageDetail({ index }) {
   return (
     <>
       <Header current={currentIndex + 1} total={images.length} />
-      <I.ImageDetail>
-        <Slider {...settings}>
-          {images.map((img) => (
-            <div key={img.id}>
-              <img
-                src={`${import.meta.env.VITE_API_URL}${img.image_url}`}
-                alt="상세 이미지"
-                style={{ width: "100%", height: "auto" }}
-              />
-            </div>
-          ))}
-        </Slider>
-      </I.ImageDetail>
+      <I.Space>
+        <I.ImageDetail>
+          <Slider {...settings}>
+            {images.map((img) => (
+              <div key={img.id}>
+                <img
+                  src={`${import.meta.env.VITE_IMAGE_URL}${img.image_url}`}
+                  alt="상세 이미지"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+            ))}
+          </Slider>
+        </I.ImageDetail>
+      </I.Space>
     </>
   );
 }

@@ -47,6 +47,7 @@ export const TextArea = styled.textarea`
 
 export const ImageArea = styled.div`
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   padding: 0 24px 0 24px;
   gap: 12px;
