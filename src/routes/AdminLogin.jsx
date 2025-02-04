@@ -47,7 +47,7 @@ function AdminLogin() {
           style={{
             backgroundColor: id && password ? "#ff7710" : "#FFB175",
           }}>
-          합격자 조회하기
+          로그인
         </A.Button>
       </A.Form>
     </>

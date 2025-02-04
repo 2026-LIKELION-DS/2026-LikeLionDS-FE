@@ -5,7 +5,7 @@ export const isAdminLoggedIn = () => {
 };
 
 export const loginAdmin = (id, password) => {
-  if (id === "likelion" && password === "likelion1234") {
+  if (id === `${import.meta.env.VITE_ADMIN_ID}` && password === `${import.meta.env.VITE_ADMIN_PW}`) {
     localStorage.setItem("isAdmin", "true");
     return true;
   }

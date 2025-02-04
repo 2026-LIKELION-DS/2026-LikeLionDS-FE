@@ -2,7 +2,9 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const AdminLogin = styled.div`
+  height: 60px;
   height: 25px;
+  padding-top: 56px;
 `;
 
 export const Form = styled.form`
@@ -35,6 +37,7 @@ export const InputName = styled.div`
 export const Input = styled.input`
   outline: none;
   border: none;
+  font-family: Pretendard;
 `;
 
 export const Bar = styled.div`
@@ -54,4 +57,5 @@ export const Button = styled.button`
   border: none;
   margin: 10px;
   font-size: 18px;
+  cursor: pointer;
 `;
