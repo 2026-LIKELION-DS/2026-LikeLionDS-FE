@@ -51,6 +51,8 @@ export const PartContainer = styled.div`
 export const PartImgContainer = styled.div`
   width: 350px;
   height: 212px;
+
+  cursor: pointer;
 `;
 
 export const PartImgWrapper = styled.object`
