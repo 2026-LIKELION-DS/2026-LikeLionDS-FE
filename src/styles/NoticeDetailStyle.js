@@ -31,7 +31,7 @@ export const Created = styled.div`
 
 export const Title = styled.div`
   width: calc(100% -48px);
-  padding: 24px 24px 0 24px;
+  padding: 0px 24px 0 24px;
   color: ${palette.style.white};
   font-family: Pretendard;
   font-size: 20px;
