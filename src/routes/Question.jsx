@@ -12,7 +12,17 @@ const API_URL = import.meta.env.VITE_API_URL;
 function Question() {
   const [questions, setQuestions] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef(null);
+  const textAreaRef = useRef(null);
+  const [borderRadius, setBorderRadius] = useState(88);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = "18px";
+      textAreaRef.current.style.height = `${Math.max(textAreaRef.current.scrollHeight, 18)}px`;
+      const newBorderRadius = Math.max(30, 88 - inputValue.length * 0.5); // 최소 30px 유지
+      setBorderRadius(newBorderRadius);
+    } 
+  }, [inputValue]); 
 
   useEffect(() => {
     const fetchQuestionsAndAnswers = async () => {
@@ -73,8 +83,6 @@ function Question() {
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
-    e.target.style.height = "30px";
-    e.target.style.height = `${Math.max(e.target.scrollHeight, 30)}px`;
   };
 
   const handleAddQuestion = async () => {
@@ -98,7 +106,6 @@ function Question() {
       // 🔹 새 질문을 최상단에 추가 (최신 질문이 위로)
       setQuestions((prevQuestions) => [newQuestion, ...prevQuestions]);
       setInputValue("");
-      if (inputRef.current) inputRef.current.style.height = "auto";
     } catch (error) {
       console.error("❌ 질문 추가 실패:", error);
     }
@@ -111,11 +118,11 @@ function Question() {
           {isAdminLoggedIn() ? <Header title="Q&A 답변 페이지(운영진)" /> : <Header title="Q&A" />}
           <Q.InputContainer>
             <Q.InputBox
-              as="textarea"
-              ref={inputRef}
+              ref={textAreaRef}
               value={inputValue}
               onChange={handleInputChange}
               placeholder="더 궁금한 내용을 질문해주세요!"
+              style={{ borderRadius: `${borderRadius}px` }}
             />
             <Q.SendButton onClick={handleAddQuestion}>
               <img src={arrowIcon} alt="전송 버튼" />

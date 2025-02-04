@@ -10,6 +10,7 @@ export const QuestionContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  font-size: 14px;
 `;
 
 export const Wrapper = styled.div`
@@ -29,9 +30,9 @@ export const QuestionBubbleWrapper = styled.div`
   overflow-wrap: break-word;
   word-break: break-word;
   width: 100%;
-  min-height: 30px;
+  min-height: 18px;
   max-width: 77%;
-  padding: 20px 25px;
+  padding: 15px 16px;
   border-radius: 40px;
   margin-right: 0;
   // margin-left: 20px;
@@ -100,7 +101,7 @@ export const AnswerBubble = styled.div`
   background-color: ${palette.style.white};
   border: 1px solid #ccc;
   border-radius: 40px;
-  padding: 20px 25px 15px 25px;
+  padding: 15px 16px;
   width: 100%;
   min-height: 30px;
   word-wrap: break-word;
@@ -108,8 +109,9 @@ export const AnswerBubble = styled.div`
   color: black;
   margin-left: 35px;
   line-height: 1.4;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 0.01px;
+  min-height: 18px;
 `;
 
 export const AnswerInput = styled.textarea`
@@ -125,9 +127,15 @@ export const AnswerInput = styled.textarea`
   font-size: 16px;
   line-height: 1.4;
   margin-left: 35px;
-
   margin-bottom: 0;
   padding-bottom: 0;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.42px;
 `;
 
 export const ArrowButton = styled.button`
