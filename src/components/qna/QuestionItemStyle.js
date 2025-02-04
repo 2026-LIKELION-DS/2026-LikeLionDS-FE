@@ -33,7 +33,7 @@ export const QuestionBubbleWrapper = styled.div`
   min-height: 18px;
   max-width: 77%;
   padding: 15px 16px;
-  border-radius: 40px;
+  border-radius: 30px;
   margin-right: 0;
   // margin-left: 20px;
 `;
@@ -118,7 +118,7 @@ export const AnswerInput = styled.textarea`
   background-color: ${palette.style.white};
   border: 1px solid #ccc;
   border-radius: 40px;
-  padding: 20px 25px 3px 25px;
+  padding: 15px 16px 0px 16px;
   width: 100%;
   height: auto;
   resize: none;

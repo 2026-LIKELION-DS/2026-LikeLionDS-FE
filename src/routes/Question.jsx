@@ -29,12 +29,12 @@ function Question() {
       try {
         // ✅ 1️⃣ 질문 리스트 가져오기
         const questionResponse = await axios.get(`${API_URL}/qna/question/`);
-        console.log("✅ 질문 조회 응답:", questionResponse.data);
+        // console.log("✅ 질문 조회 응답:", questionResponse.data);
         const questionsData = questionResponse.data.result || [];
 
         // ✅ 2️⃣ 답변 리스트 가져오기
         const answerResponse = await axios.get(`${API_URL}/qna/answer/`);
-        console.log("✅ 답변 조회 응답:", answerResponse.data);
+        //console.log("✅ 답변 조회 응답:", answerResponse.data);
         const answersData = answerResponse.data.result || [];
 
         // ✅ 3️⃣ 질문을 기준으로 매핑
@@ -71,7 +71,7 @@ function Question() {
           q.answers.sort((a, b) => a.id - b.id);
         });
 
-        console.log("✅ 최종 정렬된 질문 데이터:", formattedQuestions);
+        // console.log("✅ 최종 정렬된 질문 데이터:", formattedQuestions);
         setQuestions(formattedQuestions);
       } catch (error) {
         console.error("❌ 질문/답변 조회 실패:", error);
@@ -87,29 +87,34 @@ function Question() {
 
   const handleAddQuestion = async () => {
     if (!inputValue.trim()) return;
-
+  
     try {
       const response = await axios.post(`${API_URL}/qna/question/`, { question: inputValue });
-      console.log("✅ 질문 추가 응답:", response.data);
-
+      // console.log("✅ 질문 추가 응답:", response.data);
+  
       if (!response.data.result || !response.data.result.id) {
         console.warn("⚠️ 서버에서 질문 ID를 반환하지 않음.");
         return;
       }
-
+  
       const newQuestion = {
         id: response.data.result.id, // ✅ 서버에서 반환한 question.id
         question: response.data.result.question,
         answers: [], // ✅ 새 질문에는 답변 없음
       };
-
+  
       // 🔹 새 질문을 최상단에 추가 (최신 질문이 위로)
       setQuestions((prevQuestions) => [newQuestion, ...prevQuestions]);
       setInputValue("");
     } catch (error) {
       console.error("❌ 질문 추가 실패:", error);
+  
+      // 🔹 400 에러 처리: 300자 제한 알림
+      if (error.response && error.response.status === 400) {
+        alert("질문은 최대 300자까지 입력 가능합니다.");
+      }
     }
-  };
+  };  
 
   return (
     <>
