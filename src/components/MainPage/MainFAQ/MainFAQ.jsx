@@ -41,7 +41,7 @@ const MainFAQ = () => {
         <FAQActivityChat isClicked={isClicked} handleChatClick={handleChatClick} />
 
         {/* 입력중 */}
-        <FAQWriting />
+        <FAQWriting isClicked={isClicked} />
 
         {/* 퇴장 */}
         <FAQLine text={"아기사자님과 운영진님이 퇴장하셨습니다."} $marginTop={"72px"} />
