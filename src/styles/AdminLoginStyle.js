@@ -56,14 +56,16 @@ export const Bar = styled.div`
 export const Button = styled.button`
   width: 342px;
   height: 56px;
-  border-radius: 24px;
+  border-radius: 88px;
   background-color: #ff7710;
   color: white;
   border: none;
   margin: 10px;
   font-size: 18px;
-  cursor: pointer;
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
+  &:hover {
+    cursor: pointer;
+  }
 `;

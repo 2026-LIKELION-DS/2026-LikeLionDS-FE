@@ -31,6 +31,13 @@ function SideBar({
     onClose();
   };
 
+  // 지원 마감
+  const isFormDateRange = () => {
+    const today = new Date();
+    const startDate = new Date(2025, 1, 20, 18, 0, 0);
+    return today >= startDate;
+  };
+
   // 1차 합격자 조회
   const isWithinDateRange = () => {
     const today = new Date();
@@ -86,7 +93,13 @@ function SideBar({
           <S.Title onClick={() => handleNavLinkClick("/qna")} $isActive={currentPath === "/qna"}>
             질문하러가기
           </S.Title>
-          <S.Title onClick={handleOpenApplicationForm}>지원하러가기</S.Title>
+          {isFormDateRange() ? (
+            <S.ResultGroup>
+              <S.SubTitle>지원하러가기</S.SubTitle>
+            </S.ResultGroup>
+          ) : (
+            <S.Title onClick={handleOpenApplicationForm}>지원하러가기</S.Title>
+          )}
           {isWithinDateRange() ? (
             <S.Title onClick={() => handleNavLinkClick("/input")} $isActive={currentPath === "/input"}>
               1차 합격자 조회하기
