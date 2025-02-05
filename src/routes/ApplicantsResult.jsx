@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as A from "@styles/ApplicantsResultStyle";
 import discord from "../assets/icons/icon_discord.svg";
@@ -9,6 +9,7 @@ import kakao from "../assets/icons/icon_kakaotalk.svg";
 import Header from "@components/Header/HeaderApp";
 
 function ApplicantsResult() {
+  const [finalResult, setFinalResult] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { name, is_passed } = location.state || {};
@@ -21,6 +22,15 @@ function ApplicantsResult() {
 
   if (!location.state) return null; // 리디렉션 전에 렌더링 방지
 
+  useEffect(() => {
+    const today = new Date();
+    const finalDate = new Date("2025-03-07");
+
+    if (today > finalDate) {
+      setFinalResult(true);
+    }
+  });
+
   return (
     <>
       <Header />
@@ -32,72 +42,79 @@ function ApplicantsResult() {
             <A.H1>축하드립니다!</A.H1>
             <br />
             {/* 최종 합격 */}
-            {/* <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
-            <A.Orange>최종 합격되신 것을 축하드립니다.</A.Orange>
+            {finalResult ? (
+              <>
+                <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
+                <A.Orange>최종 합격되신 것을 축하드립니다.</A.Orange>
 
-            <br />
-            <br />
-            <A.Info>
-              지원자 분께 좋은 소식을 알려드리게 되어 <br />
-              기쁘네요.
-            </A.Info>
-            <A.Info>3월 10일 전체 OT가 있습니다.</A.Info>
-            <A.Info>자세한 사항은 추후 공지를 확인해주세요.</A.Info>
-            <br />
-            <A.Info>
-              아래 노션 및 디스코드 링크에 접속하셔서 <br /> 최종 합격자로서의 기쁨을 누리세요!
-            </A.Info>
-            <A.LinkBox>
-              <A.Button>
-                <A.Img src={notion} />
-                <A.StyledLink to="#">노션 바로가기</A.StyledLink>
-              </A.Button>
-              <A.Button>
-                <A.Img src={discord} />
-                <A.StyledLink to="#">디스코드 바로가기</A.StyledLink>
-              </A.Button>
-            </A.LinkBox>
-            <br /> */}
+                <br />
+                <br />
+                <A.Info>
+                  지원자 분께 좋은 소식을 알려드리게 되어 <br />
+                  기쁘네요.
+                </A.Info>
+                <A.Info>3월 10일 전체 OT가 있습니다.</A.Info>
+                <A.Info>자세한 사항은 추후 공지를 확인해주세요.</A.Info>
+                <br />
+                <A.Info>
+                  아래 노션 및 디스코드 링크에 접속하셔서 <br /> 최종 합격자로서의 기쁨을 누리세요!
+                </A.Info>
+                <br />
+                <A.LinkBox>
+                  <A.Button>
+                    <A.Img src={notion} />
+                    <A.StyledLink to="#">노션 바로가기</A.StyledLink>
+                  </A.Button>
+                  <A.Button>
+                    <A.Img src={discord} />
+                    <A.StyledLink to="#">디스코드 바로가기</A.StyledLink>
+                  </A.Button>
+                </A.LinkBox>
+                <br />
+              </>
+            ) : (
+              <>
+                {/* 1차 합격 */}
+                <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
+                <A.Orange>1차 합격되신 것을 축하드립니다.</A.Orange>
+                <br />
 
-            {/* 1차 합격 */}
-            <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
-            <A.Orange>1차 합격되신 것을 축하드립니다.</A.Orange>
-            <br />
-
-            <A.Info>면접 일정 안내드립니다.</A.Info>
-            <A.Info>면접은 교내에서 대면으로 진행됩니다.</A.Info>
-            <br />
-            <A.Info>
-              면접 시간은 <br />
-              아래 폼에서 선착순으로 선택 가능합니다.
-            </A.Info>
-            <br />
-            <A.Infos>
-              - 폼 응답 시간: 2/26(수) 21시 ~ 2/27(목) 21시
-              <br />* 이 기간 내 자유로운 수정이 가능합니다.
-            </A.Infos>
-            <br />
-            <A.Info>
-              면접 시간과 장소는 <br />
-              3/1(토)에 이메일로 안내드리겠습니다.
-            </A.Info>
-            <br />
-            <A.Info>
-              추가 문의 사항은 카카오톡 오픈채팅으로
-              <br />
-              부탁드립니다. 감사합니다.
-            </A.Info>
-            <br />
-            <A.LinkBox>
-              <A.Button>
-                <A.Img src={chair} />
-                <A.StyledLink to="#">면접 폼 바로가기</A.StyledLink>
-              </A.Button>
-              <A.Button>
-                <A.Img src={kakao} />
-                <A.StyledLink to="#">카카오 오픈채팅 바로가기</A.StyledLink>
-              </A.Button>
-            </A.LinkBox>
+                <A.Info>면접 일정 안내드립니다.</A.Info>
+                <A.Info>면접은 교내에서 대면으로 진행됩니다.</A.Info>
+                <br />
+                <A.Info>
+                  면접 시간은 <br />
+                  아래 폼에서 선착순으로 선택 가능합니다.
+                </A.Info>
+                <br />
+                <A.Infos>
+                  - 폼 응답 시간: 2/26(수) 21시 ~ 2/27(목) 21시
+                  <br />* 이 기간 내 자유로운 수정이 가능합니다.
+                </A.Infos>
+                <br />
+                <A.Info>
+                  면접 시간과 장소는 <br />
+                  3/1(토)에 이메일로 안내드리겠습니다.
+                </A.Info>
+                <br />
+                <A.Info>
+                  추가 문의 사항은 카카오톡 오픈채팅으로
+                  <br />
+                  부탁드립니다. 감사합니다.
+                </A.Info>
+                <br />
+                <A.LinkBox>
+                  <A.Button>
+                    <A.Img src={chair} />
+                    <A.StyledLink to="#">면접 폼 바로가기</A.StyledLink>
+                  </A.Button>
+                  <A.Button>
+                    <A.Img src={kakao} />
+                    <A.StyledLink to="#">카카오 오픈채팅 바로가기</A.StyledLink>
+                  </A.Button>
+                </A.LinkBox>
+              </>
+            )}
           </A.Box>
         ) : (
           <A.Box>
