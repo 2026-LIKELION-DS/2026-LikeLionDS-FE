@@ -41,7 +41,7 @@ function HeaderApp() {
     <>
       <H.Header>
         <H.Back src={Back} alt="뒤로가기" onClick={onClickBack} />
-        <H.LogoOrg onClick={() => handleNavLinkClick("/")}>
+        <H.LogoOrg onClick={() => handleNavLinkClick("/main")}>
           <img src={LikelionDS} alt="덕성 멋사" />
         </H.LogoOrg>
         <H.Menu src={Menu} alt="메뉴" onClick={handleSideBarlick} />

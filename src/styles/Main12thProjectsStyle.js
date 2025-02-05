@@ -183,6 +183,7 @@ export const InstaMain = styled.div`
     font-size: 12px;
     color: #78726e;
   }
+  cursor: pointer;
 `;
 export const TextContainer = styled.div`
   display: inline; /* 기본적으로 한 줄에 표시 */
