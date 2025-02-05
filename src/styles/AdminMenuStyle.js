@@ -20,4 +20,7 @@ export const Menu = styled.div`
   color: #ff7710;
   font-size: 20px;
   margin-top: 10px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
