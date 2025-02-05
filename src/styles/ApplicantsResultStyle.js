@@ -11,6 +11,7 @@ export const Page = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 50px;
 `;
 
 export const Box = styled.div`
@@ -19,7 +20,6 @@ export const Box = styled.div`
   padding: 20px;
   color: black;
   border-radius: 24px;
-  margin-bottom: 50px;
 `;
 
 export const Info = styled.div`
