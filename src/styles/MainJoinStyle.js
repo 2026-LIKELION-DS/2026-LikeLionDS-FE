@@ -61,5 +61,7 @@ export const TextAniWrapper = styled.div`
     font-size: 0;
     margin: 0;
     display: block;
+    line-height: 0;
+    vertical-align: middle;
   }
 `;
