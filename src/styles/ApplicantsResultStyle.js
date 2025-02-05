@@ -74,4 +74,5 @@ export const Button = styled.button`
   border: none;
   background-color: white;
   margin-top: 8px;
+  font-family: Pretendard;
 `;

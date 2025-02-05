@@ -28,7 +28,6 @@ export const TextContainer = styled.div`
 `;
 
 export const AnimationWrapper = styled.div`
-  width: min(486px, 124.61vw);
   height: min(486px, 124.61vw);
   align-self: center;
 

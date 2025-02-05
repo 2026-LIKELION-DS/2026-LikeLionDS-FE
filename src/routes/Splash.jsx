@@ -64,9 +64,9 @@ function Splash() {
   // 날짜 조건 체크
   useEffect(() => {
     const today = new Date();
-    const startDate1 = new Date("2025-02-25");
-    const endDate1 = new Date("2025-03-07");
-    const startDate2 = new Date("2025-03-07");
+    const startDate1 = new Date(2025, 1, 26, 12, 0, 0);
+    const endDate1 = new Date(2025, 2, 8, 12, 0, 0);
+    const startDate2 = new Date(2025, 2, 8, 12, 0, 0);
 
     if (today >= startDate2) {
       setAppText("최종 합격자 조회하기");

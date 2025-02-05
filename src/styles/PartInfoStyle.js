@@ -9,6 +9,7 @@ export const PageContainer = styled.div`
   box-sizing: border-box;
 
   margin-top: ${(props) => props.$marginTop || "0px"};
+  margin-bottom: ${(props) => props.$marginBottom || "0px"};
 
   padding: 0 20px;
 `;
@@ -93,10 +94,6 @@ export const PartOrangeWrapper = styled.div`
   box-sizing: border-box;
 
   top: ${(props) => props.$top};
-  right: ${(props) => props.$right};
-
-  width: ${(props) => props.$width};
-  height: ${(props) => props.$height};
 
   border-radius: 20px;
   background: rgba(255, 119, 16, 0.35);
@@ -107,6 +104,14 @@ export const PartOrangeWrapper = styled.div`
   align-items: center;
 
   padding: 6px 14px;
+`;
+
+export const PartOrangeWrapperBE = styled(PartOrangeWrapper)`
+  right: ${(props) => props.$right};
+`;
+
+export const PartOrangeWrapperFE = styled(PartOrangeWrapper)`
+  left: ${(props) => props.$left};
 `;
 
 export const PartName = styled.p`
@@ -126,7 +131,6 @@ export const PartNameWrapper = styled.div`
   height: ${(props) => props.$height};
 
   top: ${(props) => props.$top};
-  right: ${(props) => props.$right};
 
   display: flex;
   padding: 2px 12px;
@@ -138,4 +142,12 @@ export const PartNameWrapper = styled.div`
   background: rgba(255, 255, 255, 0.2);
 
   backdrop-filter: blur(4px);
+`;
+
+export const PartNameWrapperFE = styled(PartNameWrapper)`
+  left: ${(props) => props.$left};
+`;
+
+export const PartNameWrapperBE = styled(PartNameWrapper)`
+  right: ${(props) => props.$right};
 `;

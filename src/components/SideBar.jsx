@@ -34,15 +34,15 @@ function SideBar({
   // 1차 합격자 조회
   const isWithinDateRange = () => {
     const today = new Date();
-    const startDate = new Date("2025-02-26");
-    const endDate = new Date("2025-03-08");
+    const startDate = new Date(2025, 1, 26, 12, 0, 0);
+    const endDate = new Date(2025, 2, 8, 12, 0, 0);
     return today >= startDate && today <= endDate;
   };
 
   // 최종 합격자 조회
   const isFinalDateRange = () => {
     const today = new Date();
-    const startDate = new Date("2025-03-08");
+    const startDate = new Date(2025, 2, 8, 12, 0, 0);
     return today >= startDate;
   };
 

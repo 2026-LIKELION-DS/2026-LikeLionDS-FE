@@ -58,6 +58,24 @@ function NoticeDetail() {
     navigate("/image-detail", { state: { initialIndex: clickedIndex, images: notice.images } });
   };
 
+  const renderContentWithLinks = (content) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return content.split("\n").map((line, index) => (
+      <React.Fragment key={index}>
+        {line.split(urlRegex).map((part, i) =>
+          urlRegex.test(part) ? (
+            <a key={i} href={part} target="_blank" rel="noopener noreferrer">
+              {part}
+            </a>
+          ) : (
+            part
+          )
+        )}
+        <br />
+      </React.Fragment>
+    ));
+  };  
+
   return (
     <>
       <N.Space>
@@ -68,14 +86,7 @@ function NoticeDetail() {
               <>
                 <N.Created>{formatDate(notice.created_at)}</N.Created>
                 <N.Title>{notice.title}</N.Title>
-                <N.Content>
-                  {notice.content.split("\n").map((line, index) => (
-                    <span key={index}>
-                      {line}
-                      <br />
-                    </span>
-                  ))}
-                </N.Content>
+                <N.Content>{renderContentWithLinks(notice.content)}</N.Content>
                 <N.ImageContainer>
                   {notice.images.map((img, index) => (
                     <N.Image
