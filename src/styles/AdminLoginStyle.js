@@ -33,7 +33,7 @@ export const InputBox = styled.div`
 `;
 
 export const InputName = styled.div`
-  width: 90px;
+  width: 70px;
   font-size: 16px;
   display: flex;
   justify-content: center;
@@ -68,6 +68,6 @@ export const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
-  padding: 0px 135.075px;
+  padding: 0px 125.075px;
   height: 56px;
 `;
