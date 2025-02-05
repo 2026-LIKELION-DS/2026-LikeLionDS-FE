@@ -37,7 +37,7 @@ const MainPartInfo = () => {
   };
 
   return (
-    <M.PageContainer $marginTop={"232px"}>
+    <M.PageContainer $marginTop={"232px"} $marginBottom={"270px"}>
       <M.ComponentContainer>
         {/* 텍스트 */}
         <M.TextContainer>

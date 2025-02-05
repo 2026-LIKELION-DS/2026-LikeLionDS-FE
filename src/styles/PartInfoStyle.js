@@ -9,6 +9,7 @@ export const PageContainer = styled.div`
   box-sizing: border-box;
 
   margin-top: ${(props) => props.$marginTop || "0px"};
+  margin-bottom: ${(props) => props.$marginBottom || "0px"};
 
   padding: 0 20px;
 `;
@@ -93,9 +94,6 @@ export const PartOrangeWrapper = styled.div`
   box-sizing: border-box;
 
   top: ${(props) => props.$top};
-
-  width: ${(props) => props.$width};
-  height: ${(props) => props.$height};
 
   border-radius: 20px;
   background: rgba(255, 119, 16, 0.35);
