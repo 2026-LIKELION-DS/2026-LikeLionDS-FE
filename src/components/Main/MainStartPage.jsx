@@ -33,7 +33,7 @@ function MainStartPage({ scrollToSection }) {
   return (
     <M.WrapperContainer>
       <M.PageContainer>
-        <img src={splash} alt="splash logo" />
+        <img src={splash} alt="splash logo" style={{padding:"20px", width:"auto"}}/>
         <M.FlexBox>
           <M.ChartText>
             <p onClick={() => scrollToSection("start")}>멋쟁이사자처럼이란?</p>

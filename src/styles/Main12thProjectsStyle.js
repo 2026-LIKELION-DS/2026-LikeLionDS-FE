@@ -9,7 +9,6 @@ const slideAnimationLeft = keyframes`
 
 // 최상위 컨테이너 (패딩 추가)
 export const WrapperContainer = styled.div`
-  max-width: 390px;
   overflow: hidden;
   position: relative;
   margin: 0 auto;
@@ -30,7 +29,7 @@ export const DSBack = styled.img`
   height: 208px;
   display: block;
   position: absolute;
-  top: -30px;
+  top:-5%;
   left: 0%; /* 왼쪽 정렬 */
   transform: translateX(${(props) => props.$translateX}px); /* 스크롤 이동 적용 */
   transition: transform 0.1s ease-out;
@@ -42,9 +41,10 @@ export const WhatisDSdiv = styled.div`
   font-size: 28px;
   margin-top: 50px;
   padding: 0 20px;
+  font-weight: 600;
   span {
     font-size: 18px;
-    font-weight: 200;
+    font-weight: 300;
     margin-bottom: 58px;
     margin-top: 20px;
     display: block;
@@ -64,7 +64,7 @@ export const Projects12th = styled.div`
   display: block;
   margin-bottom: 58px;
   span {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 18px;
     padding: 0 20px;
   }
@@ -158,7 +158,12 @@ export const SessionInfo = styled.section`
 export const More = styled.div`
   font-size: 18px;
   padding: 20px;
+  display: flex;
+  flex-wrap: wrap; /* ✅ 요소들이 줄 바꿈되도록 설정 */
+  align-items: center; /* ✅ 세로 중앙 정렬 유지 */
+  gap: 5px; /* ✅ 요소 간격 추가 */
 `;
+
 
 export const InstaMain = styled.div`
   width: 199px;
@@ -177,7 +182,6 @@ export const InstaMain = styled.div`
   span {
     color: ${palette.style.white};
     font-size: 18px;
-    font-weight: 500;
   }
   p {
     font-size: 12px;
@@ -185,18 +189,16 @@ export const InstaMain = styled.div`
   }
   cursor: pointer;
 `;
-export const TextContainer = styled.div`
-  display: inline; /* 기본적으로 한 줄에 표시 */
-
-  @media (max-width: 401px) {
-    display: flex;
-    flex-direction: column; /* 401px 이하에서 세로 정렬 */
-    align-items: flex-start;
-  }
+export const ContentWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap; /* ✅ 요소들이 화면 크기에 맞게 줄 바꿈되도록 설정 */
+  align-items: center;
+  gap: 5px; /* ✅ 요소 간격 조정 */
 `;
 
-export const HighlightText = styled.span`
-  @media (max-width: 401px) {
-    display: block; /* 401px 이하일 때 "확인해주세요"만 줄바꿈 */
-  }
+export const TextContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px; /* ✅ "을 확인해주세요" 사이의 자연스러운 간격 추가 */
 `;

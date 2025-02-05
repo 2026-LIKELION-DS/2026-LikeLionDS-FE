@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
-// 최상위 컨테이너 (패딩 추가)
+// 최상위 컨테이너
 export const WrapperContainer = styled.div`
-  padding: 0 20px;
   max-width: 390px; /* 전체 화면에서 좌우 padding을 제외한 최대 너비 */
   margin: 0 auto; /* 중앙 정렬 */
   overflow: hidden; /* 넘치는 부분 숨김 */
@@ -16,6 +15,8 @@ export const FlexBox = styled.div`
   justify-content: right;
   margin-top: 48px;
   margin-bottom: 100px; /* 공백 최소화 */
+  padding: 0 20px;
+  
 `;
 
 export const ChartText = styled.div`
@@ -41,6 +42,7 @@ export const WhiteLine = styled.img`
   height: 145px;
   width: 2px;
   margin-left: 20px;
+  
 `;
 
 // 스크롤에 따라 부드럽게 이동하는 이미지
@@ -48,7 +50,7 @@ export const LikelionBack = styled.img`
   height: 208px;
   display: block;
   position: absolute;
-  top: 60%;
+  top: 62%;
   left: 55%; /* 중앙 정렬 */
   transform: translateX(${(props) => props.$translateX - 200}px); /* 가운데 정렬 보정 */
   transition: transform 0.1s ease-out;
@@ -59,13 +61,14 @@ export const LikelionBack = styled.img`
 
 export const WhatisLLdiv = styled.div`
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 600;
   margin-top: 20px;
+  padding: 0 20px;
 
   span {
     font-size: 18px;
     margin-top: 20px;
-    font-weight: 200;
+    font-weight: 300;
     display: block;
   }
 
@@ -78,10 +81,10 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: calc(100vw - 40px); /* 최대 너비 제한 */
   margin: 0 auto;
   overflow: hidden; /* 가로 스크롤 방지 */
   position: relative; /* absolute 요소 정리 */
+
 `;
 
 export const UnderLine = styled.img`
