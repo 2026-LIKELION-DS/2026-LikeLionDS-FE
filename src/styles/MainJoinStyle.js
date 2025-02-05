@@ -40,7 +40,6 @@ from {
 
 export const TextAniContainer = styled.div`
   width: 100%;
-  height: 67.9px;
 
   overflow: hidden;
   display: flex;
@@ -70,5 +69,6 @@ export const TextAniWrapper = styled.div`
     display: block;
     line-height: 0;
     vertical-align: middle;
+    object-fit: contain;
   }
 `;
