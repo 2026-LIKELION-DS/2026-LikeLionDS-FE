@@ -25,7 +25,7 @@ function MainLastPage() {
 
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-    return diffDays === 0 ? "D-Day" : `지원마감까지 D-${diffDays}`;
+    return diffDays === 0 ? "지원 마감까지 D-Day" : `지원 마감까지 D-${diffDays}`;
   };
 
   // D-Day 상태 및 마감 여부 관리
