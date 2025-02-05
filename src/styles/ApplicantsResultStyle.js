@@ -23,7 +23,12 @@ export const Box = styled.div`
 
 export const Info = styled.div`
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
+`;
+
+export const Infos = styled.div`
+  font-size: 16px;
+  font-weight: 500;
 `;
 
 export const H1 = styled.div`
