@@ -7,6 +7,9 @@ import growltoworld from "@assets/logo/logo_growlToWorld.png";
 import * as M from "@styles/MainLastPageStyle.js"; // 스타일 분리 파일 import
 
 function MainLastPage() {
+  const handleClick = () => {
+    window.location.href = "https://forms.gle/QDrszV6xmGcnxr6g6";
+  };
   return (
     <M.WrapperContainer>
       <M.Container>
@@ -25,7 +28,7 @@ function MainLastPage() {
           <img src={fire} alt="fire" />
         </div>
         <div>
-          <button>지금 지원하러 가기</button>
+          <button onClick={handleClick}>지금 지원하러 가기</button>
         </div>
       </M.Magam>
     </M.WrapperContainer>

@@ -4,6 +4,10 @@ import palette from "@lib/colorPalette";
 // 최상위 컨테이너 (패딩 추가)
 export const WrapperContainer = styled.div`
   padding: 0 20px;
+  max-width: 390px; /* 전체 화면에서 좌우 padding을 제외한 최대 너비 */
+  margin: 0 auto; /* 중앙 정렬 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  position: relative; /* 자식 absolute 요소가 벗어나지 않도록 설정 */
 `;
 
 export const FlexBox = styled.div`
@@ -44,10 +48,13 @@ export const LikelionBack = styled.img`
   height: 208px;
   display: block;
   position: absolute;
-  top: 67%;
-  left: 0;
-  transform: translateX(${(props) => props.$translateX}px);
+  top: 60%;
+  left: 50%; /* 중앙 정렬 */
+  transform: translateX(${(props) => props.$translateX - 200}px); /* 가운데 정렬 보정 */
   transition: transform 0.1s ease-out;
+  z-index: -100;
+  overflow: hidden;
+  max-width: 100vw; /* 가로 스크롤 방지 */
 `;
 
 export const WhatisLLdiv = styled.div`
@@ -68,10 +75,14 @@ export const WhatisLLdiv = styled.div`
 `;
 
 export const PageContainer = styled.div`
-  min-height: 100vh; /* 공백 줄이기 */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: calc(100vw - 40px); /* 최대 너비 제한 */
+  margin: 0 auto;
+  overflow: hidden; /* 가로 스크롤 방지 */
+  position: relative; /* absolute 요소 정리 */
 `;
 
 export const UnderLine = styled.img`

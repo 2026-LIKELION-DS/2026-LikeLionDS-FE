@@ -3,7 +3,7 @@ import palette from "@lib/colorPalette";
 
 // 최상위 컨테이너 (패딩 추가)
 export const WrapperContainer = styled.div`
-  padding: 0 20px;
+  /* padding: 0 20px; */
 `;
 
 export const LoadingScreenContainer = styled.div`
@@ -47,6 +47,7 @@ export const Magam = styled.div`
     font-size: 20px;
     font-weight: 500;
     margin-top: 24px;
+    border: none;
   }
 `;
 
