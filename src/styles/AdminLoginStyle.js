@@ -86,7 +86,7 @@ export const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
-  padding: 0px 155.075px;
+  padding: 0px 155.575px;
   height: 56px;
 
   background: var(--Real-Orange-ex5_Primary, #ff7710);

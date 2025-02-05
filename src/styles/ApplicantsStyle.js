@@ -69,7 +69,7 @@ export const bar = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 0px 117.63px;
+  padding: 0px 118.63px;
   height: 56px;
   border-radius: 88px;
   background-color: #ff7710;
