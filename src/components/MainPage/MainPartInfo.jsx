@@ -29,6 +29,8 @@ const MainPartInfo = () => {
 
   return (
     <M.PageContainer $marginTop={"232px"}>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
       <M.ComponentContainer>
         {/* 텍스트 */}
         <M.TextContainer>
@@ -51,13 +53,16 @@ const MainPartInfo = () => {
             <M.PartImgWrapper src={imgSrc.plan} />
           </M.PartImgContainer>
 
-          <M.PartImgContainerFE onClick={() => handleImgClicked("FE")}>
-            <M.PartImgWrapper src={imgSrc.FE} />
-          </M.PartImgContainerFE>
+          {/* 사다리꼴 모양으로 */}
+          <div>
+            <M.PartImgContainerFE onClick={() => handleImgClicked("FE")}>
+              <M.PartImgWrapper src={imgSrc.FE} />
+            </M.PartImgContainerFE>
 
-          <M.PartImgContainerBE onClick={() => handleImgClicked("BE")}>
-            <M.PartImgWrapper src={imgSrc.BE} />
-          </M.PartImgContainerBE>
+            <M.PartImgContainerBE onClick={() => handleImgClicked("BE")}>
+              <M.PartImgWrapper src={imgSrc.BE} />
+            </M.PartImgContainerBE>
+          </div>
         </M.PartContainer>
       </M.ComponentContainer>
     </M.PageContainer>

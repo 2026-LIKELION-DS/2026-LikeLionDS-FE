@@ -65,9 +65,14 @@ export const PartImgContainer = styled.div`
 export const PartImgContainerFE = styled(PartImgContainer)`
   margin-top: 17px;
   z-index: 10;
+  clip-path: polygon(0 0, 200% 0, 15% 95%, 0 95%);
+  border-radius: 32px;
 `;
 
 export const PartImgContainerBE = styled(PartImgContainer)`
+  clip-path: polygon(95% 2%, 100% 2%, 100% 100%, -100% 100%);
+  border-radius: 32px;
+
   margin-top: -80px;
   z-index: 20;
 `;
