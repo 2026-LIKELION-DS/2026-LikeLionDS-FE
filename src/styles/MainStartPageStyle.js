@@ -49,7 +49,7 @@ export const LikelionBack = styled.img`
   display: block;
   position: absolute;
   top: 60%;
-  left: 50%; /* 중앙 정렬 */
+  left: 55%; /* 중앙 정렬 */
   transform: translateX(${(props) => props.$translateX - 200}px); /* 가운데 정렬 보정 */
   transition: transform 0.1s ease-out;
   z-index: -100;
@@ -75,7 +75,6 @@ export const WhatisLLdiv = styled.div`
 `;
 
 export const PageContainer = styled.div`
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

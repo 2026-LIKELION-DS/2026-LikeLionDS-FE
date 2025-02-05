@@ -9,12 +9,11 @@ const slideAnimationLeft = keyframes`
 
 // 최상위 컨테이너 (패딩 추가)
 export const WrapperContainer = styled.div`
-  /* padding: 0 20px;*/
   max-width: 390px;
   overflow: hidden;
   position: relative;
   margin: 0 auto;
-  padding: 0;
+  padding: 0px;
 `;
 
 export const PageContainer = styled.div`
@@ -22,28 +21,26 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: calc(100vw - 40px); /* 최대 너비 제한 */
   margin: 0 auto;
   overflow: hidden;
-  position: relative; /* absolute 요소 정리 */
+  position: relative;
 `;
 
 export const DSBack = styled.img`
   height: 208px;
   display: block;
   position: absolute;
-  top: 13%;
-  left: 10%; /* 왼쪽 정렬 */
+  top: -30px;
+  left: 0%; /* 왼쪽 정렬 */
   transform: translateX(${(props) => props.$translateX}px); /* 스크롤 이동 적용 */
   transition: transform 0.1s ease-out;
   z-index: -100;
   max-width: none;
-  width: 746px;
 `;
 
 export const WhatisDSdiv = styled.div`
   font-size: 28px;
-  margin-top: 270px;
+  margin-top: 50px;
   padding: 0 20px;
   span {
     font-size: 18px;
@@ -128,7 +125,8 @@ export const ProjectsSlide2 = styled.div`
 `;
 
 export const SessionInfo = styled.section`
-  display: block;
+  display: flex;
+  flex-direction: column;
   justify-items: center;
   align-items: center;
   div {
@@ -138,12 +136,18 @@ export const SessionInfo = styled.section`
     align-items: center;
   }
   span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
     color: ${palette.duksungBurgundy.ex4};
   }
   p {
     color: ${palette.style.white};
     font-size: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   strong {
     font-size: 42px;
