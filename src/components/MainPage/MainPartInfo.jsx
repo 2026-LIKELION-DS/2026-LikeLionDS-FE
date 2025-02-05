@@ -59,7 +59,7 @@ const MainPartInfo = () => {
           <M.PartImgContainer onClick={() => handleImgClicked("plan")}>
             <M.PartImgWrapper src={imgSrc.plan} />
 
-            {imgSrc.plan === icon_plan_front_bgr && (
+            {/* {imgSrc.plan === icon_plan_front_bgr && (
               <>
                 <M.PartOrangeWrapperBE $width={"122px"} $height={"38px"} $top={"58.96%"} $right={"4.28%"}>
                   <M.PartName $fontSize={"20px"}>기획•디자인</M.PartName>
@@ -74,7 +74,7 @@ const MainPartInfo = () => {
                   </M.PartNameWrapperBE>
                 </div>
               </>
-            )}
+            )} */}
           </M.PartImgContainer>
 
           {/* 사다리꼴 모양으로 */}
@@ -82,7 +82,7 @@ const MainPartInfo = () => {
             <M.PartImgContainerFE onClick={() => handleImgClicked("FE")}>
               <M.PartImgWrapper src={imgSrc.FE} />
 
-              {imgSrc.FE === icon_FE_front_bgr && (
+              {/* {imgSrc.FE === icon_FE_front_bgr && (
                 <>
                   <M.PartOrangeWrapperFE $width={"113px"} $height={"38px"} $top={"7.54%"} $left={"4.57%"}>
                     <M.PartName $fontSize={"20px"}>프론트엔드</M.PartName>
@@ -91,13 +91,13 @@ const MainPartInfo = () => {
                     <M.PartName $fontSize={"16px"}>Front-end</M.PartName>
                   </M.PartNameWrapperFE>
                 </>
-              )}
+              )} */}
             </M.PartImgContainerFE>
 
             <M.PartImgContainerBE onClick={() => handleImgClicked("BE")}>
               <M.PartImgWrapper src={imgSrc.BE} />
 
-              {imgSrc.BE === icon_BE_front_bgr && (
+              {/* {imgSrc.BE === icon_BE_front_bgr && (
                 <>
                   <M.PartOrangeWrapperBE $width={"79px"} $height={"38px"} $top={"58.96%"} $right={"4.57%"}>
                     <M.PartName $fontSize={"20px"}>백엔드</M.PartName>
@@ -106,7 +106,7 @@ const MainPartInfo = () => {
                     <M.PartName $fontSize={"16px"}>Back-end</M.PartName>
                   </M.PartNameWrapperBE>
                 </>
-              )}
+              )} */}
             </M.PartImgContainerBE>
           </div>
         </M.PartContainer>
