@@ -79,6 +79,10 @@ export const Title = styled.div`
   line-height: 130%;
   letter-spacing: -0.6px;
   cursor: pointer;
+
+  &:hover {
+    color: ${palette.realOrange.ex4};
+  }
 `;
 
 export const ResultGroup = styled.div`
