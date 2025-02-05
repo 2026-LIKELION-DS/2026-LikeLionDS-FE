@@ -8,8 +8,9 @@ import * as M from "@styles/MainLastPageStyle.js"; // 스타일 분리 파일 im
 
 function MainLastPage() {
   const handleClick = () => {
-    window.location.href = "https://forms.gle/QDrszV6xmGcnxr6g6";
+    window.open("https://forms.gle/QDrszV6xmGcnxr6g6", "_blank");
   };
+
   return (
     <M.WrapperContainer>
       <M.Container>
