@@ -60,6 +60,8 @@ export const PartImgContainer = styled.div`
 
   cursor: pointer;
   overflow: hidden;
+
+  position: relative;
 `;
 
 export const PartImgContainerFE = styled(PartImgContainer)`
@@ -84,4 +86,56 @@ export const PartImgWrapper = styled.img`
 
   width: 100%;
   height: 100%;
+`;
+
+export const PartOrangeWrapper = styled.div`
+  position: absolute;
+  box-sizing: border-box;
+
+  top: ${(props) => props.$top};
+  right: ${(props) => props.$right};
+
+  width: ${(props) => props.$width};
+  height: ${(props) => props.$height};
+
+  border-radius: 20px;
+  background: rgba(255, 119, 16, 0.35);
+  backdrop-filter: blur(4px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 6px 14px;
+`;
+
+export const PartName = styled.p`
+  color: ${palette.style.white};
+
+  font-size: ${(props) => props.$fontSize};
+  font-weight: 600;
+  line-height: 130%; /* 26px */
+  letter-spacing: -0.6px;
+`;
+
+export const PartNameWrapper = styled.div`
+  position: absolute;
+  box-sizing: border-box;
+
+  width: ${(props) => props.$width};
+  height: ${(props) => props.$height};
+
+  top: ${(props) => props.$top};
+  right: ${(props) => props.$right};
+
+  display: flex;
+  padding: 2px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.2);
+
+  backdrop-filter: blur(4px);
 `;

@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import palette from "@lib/colorPalette";
 
 export const JoinContainer = styled.div`
   display: flex;
@@ -39,22 +40,28 @@ from {
 
 export const TextAniContainer = styled.div`
   width: 100%;
+  height: 67.9px;
+
   overflow: hidden;
   display: flex;
   flex-wrap: nowrap;
   gap: 0px;
+
+  background: ${palette.style.white};
+
+  margin-bottom: 63px;
 `;
 
 export const TextAniWrapper = styled.div`
   display: flex;
   animation: ${TextAnimation} 5s linear infinite;
 
-  margin-bottom: 63px;
-
   box-sizing: border-box;
 
   flex-wrap: nowrap;
   gap: 0px;
+
+  height: 100%;
 
   img {
     flex-shrink: 0;

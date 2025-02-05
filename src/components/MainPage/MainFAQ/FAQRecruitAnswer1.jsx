@@ -41,7 +41,7 @@ const FAQRecruitAnswer1 = () => {
             멋쟁이사자처럼은 비전공자들도 코딩을
             <br /> 배우며 자신만의 아이디어를 실현하는
             <br />
-            동아리입니다.
+            동아리입니다.&nbsp;
             <b style={{ fontWeight: "700" }}>기초부터 알려드리기 때문에</b>
             <br />
             <b style={{ fontWeight: "700" }}>개발을 잘 몰라도 참여하실 수 있습니다.</b>
