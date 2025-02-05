@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import * as A from "@styles/ApplicantsResultStyle";
 import discord from "../assets/icons/icon_discord.svg";
 import notion from "../assets/icons/icon_notion.svg";
@@ -9,6 +9,11 @@ import Header from "@components/Header/HeaderApp";
 function ApplicantsResult() {
   const location = useLocation();
   const { name, is_passed } = location.state || {};
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // 페이지 진입 시 맨 위로 이동
+  }, []);
+
   return (
     <>
       <Header />
