@@ -5,7 +5,7 @@ export const ComponentContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  margin-top: 25px;
+  margin-top: ${(props) => (props.$isClicked ? "8px" : "25px")};
   width: 100%;
 `;
 

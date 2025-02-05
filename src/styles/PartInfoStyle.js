@@ -9,6 +9,8 @@ export const PageContainer = styled.div`
   box-sizing: border-box;
 
   margin-top: ${(props) => props.$marginTop || "0px"};
+
+  padding: 0 20px;
 `;
 
 export const ComponentContainer = styled.div`
@@ -72,4 +74,6 @@ export const PartImgWrapper = styled.object`
   margin-top: ${(props) => props.$marginTop || "0px"};
 
   pointer-events: none;
+
+  max-width: 100%;
 `;

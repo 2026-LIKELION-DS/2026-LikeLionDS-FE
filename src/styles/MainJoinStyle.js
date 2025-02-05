@@ -6,6 +6,8 @@ export const JoinContainer = styled.div`
   align-items: center;
 
   margin-top: ${(props) => props.$marginTop || "0px"};
+
+  margin-bottom: 91.24px;
 `;
 
 export const AnimationWrapper = styled.div`
@@ -22,7 +24,6 @@ export const ImgWrapper = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  margin-top: 91.24px;
   width: fit-content;
 `;
 
@@ -41,6 +42,7 @@ export const TextAniContainer = styled.div`
   overflow: hidden;
   display: flex;
   flex-wrap: nowrap;
+  gap: 0px;
 `;
 
 export const TextAniWrapper = styled.div`
@@ -50,6 +52,9 @@ export const TextAniWrapper = styled.div`
   margin-bottom: 63px;
 
   box-sizing: border-box;
+
+  flex-wrap: nowrap;
+  gap: 0px;
 
   img {
     flex-shrink: 0;

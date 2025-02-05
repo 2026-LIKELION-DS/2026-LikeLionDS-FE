@@ -44,22 +44,6 @@ const FAQActivityAnswer2 = () => {
             <br />꼭 운영진에게 미리 전달해야 해요.
           </JoinRectangle>
         </M.ComponentContainer>
-
-        <M.ComponentContainer $marginTop={"8px"}>
-          <JoinRectangle
-            width={"246px"}
-            height={"60px"}
-            $borderRadius={"24px"}
-            $bgr={palette.boldBlack.ex2}
-            color={palette.boldBlack.ex10Primary}
-            fontWeight={400}
-            fontSize={"14px"}
-            $textAlign={"start"}>
-            세션에서 다루지 못한 실습이나 사이드
-            <br />
-            프로젝트를 진행하는 등의 활동을 해요.
-          </JoinRectangle>
-        </M.ComponentContainer>
       </M_.AnswerContainer>
     </>
   );

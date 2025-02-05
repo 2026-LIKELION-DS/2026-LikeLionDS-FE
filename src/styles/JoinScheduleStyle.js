@@ -6,6 +6,7 @@ export const LineContainer = styled.div`
   flex-direction: row;
 
   margin-top: 30px;
+  margin-bottom: 215px;
   z-index: 1000;
 
   width: 342px;

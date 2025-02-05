@@ -37,7 +37,11 @@ const FAQRecruitChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 1 && <FAQRecruitAnswer1 />}
 
         {/* 모집 관련 질문 2 */}
-        <M.ComponentContainer $marginTop={"12px"} onClick={() => handleChatClick(2)} width={"100%"} cursor={"pointer"}>
+        <M.ComponentContainer
+          $marginTop={isClicked === 1 ? "16px" : "12px"}
+          onClick={() => handleChatClick(2)}
+          width={"100%"}
+          cursor={"pointer"}>
           <JoinRectangle
             width={"169px"}
             height={"42px"}
@@ -55,7 +59,11 @@ const FAQRecruitChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 2 && <FAQRecruitAnswer2 />}
 
         {/* 모집 관련 질문 3 */}
-        <M.ComponentContainer $marginTop={"12px"} onClick={() => handleChatClick(3)} width={"100%"} cursor={"pointer"}>
+        <M.ComponentContainer
+          $marginTop={isClicked === 2 ? "16px" : "12px"}
+          onClick={() => handleChatClick(3)}
+          width={"100%"}
+          cursor={"pointer"}>
           <JoinRectangle
             width={"193px"}
             height={"42px"}

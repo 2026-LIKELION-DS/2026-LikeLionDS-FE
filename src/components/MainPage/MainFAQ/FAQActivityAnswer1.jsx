@@ -24,11 +24,12 @@ const FAQActivityAnswer1 = () => {
             fontWeight={400}
             fontSize={"14px"}
             $textAlign={"start"}>
-            <b style={{ fontWeight: "700" }}>세션</b>은 매주 월요일 19시~21시30분에
+            <b style={{ fontWeight: "700" }}>세션</b>은 매주 월요일 19시~21시 30분에
             <br />
             진행 예정으로, 파트 별로 학습에 필요한
             <br />
-            <b style={{ fontWeight: "700" }}>내용을 담은 운영진의 강의로 이루어져요.</b>
+            내용을 담은
+            <b style={{ fontWeight: "700" }}> 운영진의 강의로 이루어져요.</b>
           </JoinRectangle>
         </M.ComponentContainer>
 
