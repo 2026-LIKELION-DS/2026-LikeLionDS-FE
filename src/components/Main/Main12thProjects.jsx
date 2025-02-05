@@ -128,17 +128,19 @@ function Main12thProjects() {
           </div>
         </M.SessionInfo>
         <M.More>
-          <span>더 자세한 활동이 궁금하다면?</span>
-          <M.InstaMain onClick={() => (window.location.href = "https://www.instagram.com/likelion_ds/")}>
-            <img src={Instagram} alt="instagram" />
-            <div>인스타그램</div>
-            <p>@likelion_ds</p>
-          </M.InstaMain>
-          을
-          <M.TextContainer>
-            <M.HighlightText> 확인해주세요.</M.HighlightText>
-          </M.TextContainer>
-        </M.More>
+  <span>더 자세한 활동이 궁금하다면?</span>
+  <M.ContentWrapper>
+    <M.InstaMain onClick={() => (window.location.href = "https://www.instagram.com/likelion_ds/")}>
+      <img src={Instagram} alt="instagram" />
+      <div>인스타그램</div>
+      <p>@likelion_ds</p>
+    </M.InstaMain>
+    <M.TextContainer>
+      <span>을 확인해주세요.</span>
+    </M.TextContainer>
+  </M.ContentWrapper>
+</M.More>
+
       </M.PageContainer>
     </M.WrapperContainer>
   );
