@@ -1,18 +1,25 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as A from "@styles/ApplicantsResultStyle";
 import discord from "../assets/icons/icon_discord.svg";
 import notion from "../assets/icons/icon_notion.svg";
+import chair from "../assets/icons/chair.svg";
+import kakao from "../assets/icons/icon_kakaotalk.svg";
 
 import Header from "@components/Header/HeaderApp";
 
 function ApplicantsResult() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { name, is_passed } = location.state || {};
 
   useEffect(() => {
-    window.scrollTo(0, 0); // 페이지 진입 시 맨 위로 이동
-  }, []);
+    if (!location.state || !location.state.name || location.state.is_passed === undefined) {
+      navigate("/error");
+    }
+  }, [location, navigate]);
+
+  if (!location.state) return null; // 리디렉션 전에 렌더링 방지
 
   return (
     <>
@@ -24,7 +31,8 @@ function ApplicantsResult() {
             <A.H1>{name} 님</A.H1>
             <A.H1>축하드립니다!</A.H1>
             <br />
-            <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
+            {/* 최종 합격 */}
+            {/* <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
             <A.Orange>최종 합격되신 것을 축하드립니다.</A.Orange>
 
             <br />
@@ -39,8 +47,6 @@ function ApplicantsResult() {
             <A.Info>
               아래 노션 및 디스코드 링크에 접속하셔서 <br /> 최종 합격자로서의 기쁨을 누리세요!
             </A.Info>
-            <br />
-
             <A.LinkBox>
               <A.Button>
                 <A.Img src={notion} />
@@ -51,11 +57,52 @@ function ApplicantsResult() {
                 <A.StyledLink to="#">디스코드 바로가기</A.StyledLink>
               </A.Button>
             </A.LinkBox>
+            <br /> */}
+
+            {/* 1차 합격 */}
+            <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
+            <A.Orange>1차 합격되신 것을 축하드립니다.</A.Orange>
+            <br />
+
+            <A.Info>면접 일정 안내드립니다.</A.Info>
+            <A.Info>면접은 교내에서 대면으로 진행됩니다.</A.Info>
+            <br />
+            <A.Info>
+              면접 시간은 <br />
+              아래 폼에서 선착순으로 선택 가능합니다.
+            </A.Info>
+            <br />
+            <A.Infos>
+              - 폼 응답 시간: 2/26(수) 21시 ~ 2/27(목) 21시
+              <br />* 이 기간 내 자유로운 수정이 가능합니다.
+            </A.Infos>
+            <br />
+            <A.Info>
+              면접 시간과 장소는 <br />
+              3/1(토)에 이메일로 안내드리겠습니다.
+            </A.Info>
+            <br />
+            <A.Info>
+              추가 문의 사항은 카카오톡 오픈채팅으로
+              <br />
+              부탁드립니다. 감사합니다.
+            </A.Info>
+            <br />
+            <A.LinkBox>
+              <A.Button>
+                <A.Img src={chair} />
+                <A.StyledLink to="#">면접 폼 바로가기</A.StyledLink>
+              </A.Button>
+              <A.Button>
+                <A.Img src={kakao} />
+                <A.StyledLink to="#">카카오 오픈채팅 바로가기</A.StyledLink>
+              </A.Button>
+            </A.LinkBox>
           </A.Box>
         ) : (
           <A.Box>
             <A.H2>{name} 님, 덕성여자대학교</A.H2>
-            <A.H2>멋쟁이사자처럼 12기에</A.H2>
+            <A.H2>멋쟁이사자처럼 13기에</A.H2>
             <A.H2>지원해주셔서 감사합니다.</A.H2>
             <br />
             <A.Info>예상보다 많은 지원자들로 인해</A.Info>

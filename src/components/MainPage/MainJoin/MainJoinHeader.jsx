@@ -10,13 +10,15 @@ import loadingLottie from "@assets/motions/카드 모션/card.json";
 
 import icon_arrow_red from "@assets/icons/icon_arrow_red.svg";
 import text_animation from "@assets/icons/icon_textAnimation1.svg";
+import text_animation2 from "@assets/icons/icon_textAnimation2.svg";
+import text_animation_png from "@assets/logo/logo_textAnimation.png";
 
 const MainJoinHeader = () => {
   const IMAGE_WIDTH = 402; // 이미지 하나의 너비 (px)
 
   // 반복할 이미지 개수
   // (화면 채우기 위한 최소 이미지 개수) + 여유분
-  const NUM_IMAGES = Math.ceil(390 / IMAGE_WIDTH) + 5;
+  const NUM_IMAGES = Math.ceil(390 / IMAGE_WIDTH) + 2;
   return (
     <M.JoinContainer $marginTop={"244px"}>
       {/* 텍스트 애니메이션 */}
@@ -24,7 +26,7 @@ const MainJoinHeader = () => {
         <M.TextAniWrapper>
           {/* NUM_IMAGES개만큼 이미지 반복하도록  */}
           {[...Array(NUM_IMAGES)].map((_, i) => (
-            <img key={i} src={text_animation} />
+            <img key={i} src={text_animation2} />
           ))}
         </M.TextAniWrapper>
       </M.TextAniContainer>

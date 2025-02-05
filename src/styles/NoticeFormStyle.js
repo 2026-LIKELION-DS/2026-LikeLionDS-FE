@@ -2,7 +2,7 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const NoticeForm = styled.div`
-  width: calc(100vw - 48px);
+  /* width: calc(100vw - 48px); */
     @media (hover: hover) and (pointer: fine) {
       width: 342px;
     }

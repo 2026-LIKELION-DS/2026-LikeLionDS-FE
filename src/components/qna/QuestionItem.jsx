@@ -37,21 +37,33 @@ const QuestionItem = ({ question, setQuestions }) => {
   const inputRef = useRef(null);
   const wrapperRef = useRef(null);
   const isAdmin = isAdminLoggedIn();
+  // ✅ 질문과 답변 입력 제한을 위한 상수
+  const MAX_LENGTH = 299;
 
   // ✅ `answers`가 배열이 아닐 경우 빈 배열로 설정
   const normalizedAnswers = Array.isArray(question.answers) ? question.answers : [];
 
-  // 🔹 입력 높이 자동 조절 함수
+  // ✅ 입력 높이 자동 조절 함수
   const adjustTextareaHeight = (textarea) => {
     textarea.style.height = "30px";
     textarea.style.height = `${Math.max(textarea.scrollHeight, 30)}px`;
   };
 
   // ✅ 수정 모드 활성화
-  const enableEditing = (index) => {
+  const enableEditing = (answerId) => {
+    // ✅ index 대신 answerId 사용
     if (!isAdmin) return;
-    setEditingIndex(index);
-    setEditValue(normalizedAnswers[index]?.answer || "");
+
+    const selectedAnswer = normalizedAnswers.find((a) => a.id === answerId); // ✅ id로 직접 찾기
+    if (!selectedAnswer) return;
+
+    console.log("📝 [디버깅] 수정할 답변 선택:", {
+      answerId: selectedAnswer.id, // ✅ 클릭한 답변의 ID
+      answerText: selectedAnswer.answer, // ✅ 클릭한 답변 내용
+    });
+
+    setEditingIndex(answerId); // ✅ id를 저장
+    setEditValue(selectedAnswer.answer || "");
 
     setTimeout(() => {
       if (inputRef.current) {
@@ -64,6 +76,11 @@ const QuestionItem = ({ question, setQuestions }) => {
   // ✅ 답변 추가 (POST 요청)
   const handleAddAnswer = async () => {
     if (!newAnswer.trim()) return;
+    // ✅ 답변 추가
+    if (newAnswer.length > MAX_LENGTH) {
+      alert(`답변은 300자 미만으로 입력 가능합니다.`);
+      return;
+    }
     if (!question.id) {
       return;
     }
@@ -98,13 +115,13 @@ const QuestionItem = ({ question, setQuestions }) => {
     }
   };
 
-  // ✅ 답변 저장 (PATCH 요청)
+  // ✅ PATCH 요청 수정 (answer ID를 URL에 포함, 수정 내용은 request 바디에 담음)
   const handleSaveAnswer = () => {
     if (!isAdmin || editingIndex === null) return;
 
-    let answerId = normalizedAnswers[editingIndex]?.id;
+    const answerId = editingIndex; // ✅ id 직접 사용 (이전엔 index였음)
     if (!answerId) {
-      console.warn("⚠️ 서버에서 ID를 반환하지 않음. answerId가 null이므로 요청을 보낼 수 없음.");
+      console.warn("⚠️ answerId가 null이므로 요청을 보낼 수 없음.");
       return;
     }
 
@@ -112,29 +129,31 @@ const QuestionItem = ({ question, setQuestions }) => {
     // console.log("📌 [디버깅] 수정할 answerId:", answerId);
     // console.log("📌 [디버깅] 수정할 값:", editValue);
 
-    // ✅ PATCH 요청 (answer 값만 변경)
+    if (editValue.length > MAX_LENGTH) {
+      alert(`답변은 ${MAX_LENGTH}자까지 입력 가능합니다.`);
+      return;
+    }
+
     axios
-      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, {
-        answer: editValue, // 🔹 수정할 값
-      })
+      .patch(`${API_URL}/qna/answer/manage/${answerId}/`, { answer: editValue }) // ✅ URL에 answer ID 포함, 수정 내용 request body로 전달
       .then((response) => {
         // console.log("✅ [디버깅] PATCH 응답:", response.data);
 
-        // ✅ 서버 응답을 기반으로 상태 업데이트 (프론트에서 먼저 변경 X)
+        // ✅ id 기반으로 찾아서 업데이트
         setQuestions((prev) =>
           prev.map((q) =>
             q.id === question.id
               ? {
                   ...q,
-                  answers: q.answers.map((a, i) =>
-                    i === editingIndex ? { ...a, answer: response.data.result.answer } : a,
+                  answers: q.answers.map((a) =>
+                    a.id === answerId ? { ...a, answer: response.data.result.answer } : a,
                   ),
                 }
               : q,
           ),
         );
 
-        setEditingIndex(null); // ✅ 수정 모드 종료
+        setEditingIndex(null);
       })
       .catch((error) => {
         // console.error("❌ 답변 수정 실패:", error);
@@ -146,25 +165,37 @@ const QuestionItem = ({ question, setQuestions }) => {
       });
   };
 
+  // ✅ 입력 필드에서 자동 제한 적용
+  const handleInputChange = (setter) => (event) => {
+    let value = event.target.value;
+    if (value.length > MAX_LENGTH) {
+      alert(`최대 300자 미만까지 입력 가능합니다.`);
+      value = value.slice(0, MAX_LENGTH); // 300자 초과하면 자동으로 잘라줌
+    }
+    setter(value);
+
+    // ✅ 높이 자동 조정 실행
+    adjustTextareaHeight(event.target);
+  };
+
   // ✅ 답변 삭제 (DELETE 요청)
   const handleDeleteAnswer = () => {
     if (!isAdmin || selectedAnswerIndex === null) return;
 
-    let answerId = normalizedAnswers[selectedAnswerIndex]?.id;
+    let answerId = selectedAnswerIndex; // ✅ id 기반으로 변경
 
-    // ✅ 클라이언트에서 먼저 삭제 처리 <- answerId가 null이라고 새로고침하기 전까지 삭제가 안돼서
     setQuestions((prev) =>
       prev.map((q) =>
         q.id === question.id
           ? {
               ...q,
-              answers: q.answers.filter((_, i) => i !== selectedAnswerIndex),
+              answers: q.answers.filter((a) => a.id !== answerId), // ✅ id 기반으로 삭제
             }
           : q,
       ),
     );
 
-    // ✅ answerId가 `null`이어도 삭제 가능하도록 처리 <- 반영 안되는거 같긴 함..
+    // ✅ answerId가 `null`이어도 삭제 가능하도록 처리 (혹시 몰라서..)
     if (!answerId) {
       console.warn("⚠️ answerId가 null이지만 클라이언트에서 삭제 처리함.");
       setIsModalOpen(false);
@@ -194,15 +225,15 @@ const QuestionItem = ({ question, setQuestions }) => {
     // 현재 입력창을 클릭한 경우 예외 처리
     const isClickInsideInput = inputRef.current && inputRef.current.contains(event.target);
 
-    // 🔹 입력 필드 외부 클릭 시
+    // ✅ 입력 필드 외부 클릭 시
     if (!isClickInsideInput) {
-      // 🔹 newAnswer가 비어있거나 공백/엔터만 입력된 경우만 닫기
+      // ✅ newAnswer가 비어있거나 공백/엔터만 입력된 경우만 닫기
       if (isAddingAnswer && !newAnswer.trim()) {
         setIsAddingAnswer(false);
         setNewAnswer("");
       }
 
-      // 🔹 수정 중인 답변도 공백/엔터만 남아있을 경우 닫기
+      // ✅ 수정 중인 답변도 공백/엔터만 남아있을 경우 닫기
       if (editingIndex !== null && !editValue.trim()) {
         setEditingIndex(null);
         setEditValue("");
@@ -238,29 +269,22 @@ const QuestionItem = ({ question, setQuestions }) => {
       </QuestionContainer>
       <Wrapper ref={wrapperRef}>
         {normalizedAnswers
-          .filter((answer) => answer.id) // ✅ answer.id가 null이 아닌 경우만 렌더링
-          .map((answer, index) => (
-            <AnswerContainer key={answer.id || index}>
+          .filter((answer) => answer.id !== null) // ✅ id가 null인 데이터 완전히 제거
+          .map((answer) => (
+            <AnswerContainer key={answer.id}>
               <img className="reply" src={replyArrow} alt="답변 아이콘" />
-              {isAdmin && editingIndex === index ? (
-                <AnswerInput
-                  ref={inputRef}
-                  value={editValue}
-                  onChange={(e) => {
-                    setEditValue(e.target.value);
-                    adjustTextareaHeight(e.target);
-                  }}
-                />
+              {isAdmin && editingIndex === answer.id ? (
+                <AnswerInput ref={inputRef} value={editValue} onChange={handleInputChange(setEditValue)} />
               ) : (
-                <AnswerBubble onClick={() => enableEditing(index)}>{answer.answer}</AnswerBubble>
+                <AnswerBubble onClick={() => enableEditing(answer.id)}>{answer.answer}</AnswerBubble>
               )}
               {isAdmin &&
-                (editingIndex === index ? (
+                (editingIndex === answer.id ? (
                   <CloseArrowButton onClick={handleSaveAnswer}>
                     <img src={rightArrow} alt="전송" />
                   </CloseArrowButton>
                 ) : (
-                  <CloseButton onClick={() => openModal(index)}>
+                  <CloseButton onClick={() => openModal(answer.id)}>
                     <img src={closeIcon} alt="닫기" />
                   </CloseButton>
                 ))}
@@ -272,10 +296,7 @@ const QuestionItem = ({ question, setQuestions }) => {
             <AnswerInput
               ref={inputRef}
               value={newAnswer}
-              onChange={(e) => {
-                setNewAnswer(e.target.value);
-                adjustTextareaHeight(e.target);
-              }}
+              onChange={handleInputChange(setNewAnswer)}
               placeholder="답변을 입력하세요..."
             />
             <CloseArrowButton onClick={handleAddAnswer}>
@@ -301,4 +322,3 @@ const QuestionItem = ({ question, setQuestions }) => {
 };
 
 export default QuestionItem;
-//

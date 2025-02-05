@@ -7,14 +7,16 @@ export const MsgContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 342px;
+  width: min(342px, 87.7vw);
 
   margin-top: 32px;
   margin-bottom: 233px;
+  box-sizing: border-box;
 `;
 
 export const MsgInput = styled.input`
-  width: 284px;
+  box-sizing: border-box;
+  width: min(284px, 72.82vw);
   height: 48px;
 
   border-radius: 100px;
@@ -51,4 +53,6 @@ export const SendBtn = styled.button`
   border: none;
 
   cursor: pointer;
+
+  flex-shrink: 0;
 `;

@@ -21,8 +21,8 @@ function Question() {
       textAreaRef.current.style.height = `${Math.max(textAreaRef.current.scrollHeight, 18)}px`;
       const newBorderRadius = Math.max(30, 88 - inputValue.length * 0.5); // 최소 30px 유지
       setBorderRadius(newBorderRadius);
-    } 
-  }, [inputValue]); 
+    }
+  }, [inputValue]);
 
   useEffect(() => {
     const fetchQuestionsAndAnswers = async () => {
@@ -81,40 +81,46 @@ function Question() {
     fetchQuestionsAndAnswers();
   }, []);
 
+  // const handleInputChange = (e) => {
+  //   setInputValue(e.target.value);
+  //   e.target.style.height = "30px";
+  //   e.target.style.height = `${Math.max(e.target.scrollHeight, 30)}px`;
+  // };
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
   const handleAddQuestion = async () => {
     if (!inputValue.trim()) return;
-  
+
     try {
       const response = await axios.post(`${API_URL}/qna/question/`, { question: inputValue });
       // console.log("✅ 질문 추가 응답:", response.data);
-  
+
       if (!response.data.result || !response.data.result.id) {
         console.warn("⚠️ 서버에서 질문 ID를 반환하지 않음.");
         return;
       }
-  
+
       const newQuestion = {
         id: response.data.result.id, // ✅ 서버에서 반환한 question.id
         question: response.data.result.question,
         answers: [], // ✅ 새 질문에는 답변 없음
       };
-  
+
       // 🔹 새 질문을 최상단에 추가 (최신 질문이 위로)
       setQuestions((prevQuestions) => [newQuestion, ...prevQuestions]);
       setInputValue("");
     } catch (error) {
       console.error("❌ 질문 추가 실패:", error);
-  
+
       // 🔹 400 에러 처리: 300자 제한 알림
       if (error.response && error.response.status === 400) {
         alert("질문은 최대 300자까지 입력 가능합니다.");
       }
     }
-  };  
+  };
 
   return (
     <>

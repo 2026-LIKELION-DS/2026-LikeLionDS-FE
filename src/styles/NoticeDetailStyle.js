@@ -10,7 +10,7 @@ export const Space = styled.div`
 `;
 
 export const NoticeDetail = styled.div`
-  width: 100vw;
+  /* width: 100vw; */
   @media (hover: hover) and (pointer: fine) {
     width: 390px;
   }
@@ -50,6 +50,10 @@ export const Content = styled.div`
   line-height: 130%;
   letter-spacing: -0.48px;
   color: ${palette.boldBlack.ex2};
+  a {
+    color: ${palette.realOrange.ex5Primary};
+    text-decoration: underline;
+  }
 `;
 
 export const Admin = styled.div`

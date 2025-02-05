@@ -6,7 +6,6 @@ import Header from "@components/Header/HeaderApp";
 
 function Applicants() {
   const navigate = useNavigate();
-
   const [formValue, setFormValue] = useState({
     name: "",
     tel: "",

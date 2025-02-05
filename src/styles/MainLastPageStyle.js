@@ -48,6 +48,7 @@ export const Magam = styled.div`
     font-weight: 500;
     margin-top: 24px;
     border: none;
+    cursor: pointer;
   }
 `;
 
