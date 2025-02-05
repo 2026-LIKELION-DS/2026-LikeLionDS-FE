@@ -45,6 +45,24 @@ export const Input = styled.input`
   font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
+  width: 232px;
+  /* 기본 상태 */
+  background-color: white;
+  color: black;
+
+  /* 자동 완성된 상태에서 배경 제거 */
+  &:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-text-fill-color: black !important;
+  }
+
+  /* 자동 완성 시 포커스 상태에서도 유지 */
+  &:-webkit-autofill:focus {
+    box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-text-fill-color: black !important;
+  }
 `;
 
 export const Bar = styled.div`
@@ -68,6 +86,9 @@ export const Button = styled.button`
   &:hover {
     cursor: pointer;
   }
-  padding: 0px 125.075px;
+  padding: 0px 155.075px;
   height: 56px;
+
+  background: var(--Real-Orange-ex5_Primary, #ff7710);
+  box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.2);
 `;
