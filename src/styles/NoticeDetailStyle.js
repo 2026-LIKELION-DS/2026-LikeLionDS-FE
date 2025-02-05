@@ -31,7 +31,7 @@ export const Created = styled.div`
 
 export const Title = styled.div`
   width: calc(100% -48px);
-  padding: 24px 24px 0 24px;
+  padding: 0px 24px 0 24px;
   color: ${palette.style.white};
   font-family: Pretendard;
   font-size: 20px;
@@ -39,7 +39,6 @@ export const Title = styled.div`
   font-weight: 600;
   line-height: 130%;
   letter-spacing: -0.6px;
-  margin-bottom: 24px;
 `;
 
 export const Content = styled.div`
@@ -51,6 +50,10 @@ export const Content = styled.div`
   line-height: 130%;
   letter-spacing: -0.48px;
   color: ${palette.boldBlack.ex2};
+  a {
+    color: ${palette.realOrange.ex5Primary};
+    text-decoration: underline;
+  }
 `;
 
 export const Admin = styled.div`
@@ -83,6 +86,7 @@ export const Button = styled.div`
 export const ImageContainer = styled.div`
   padding: 0 24px 0 24px;
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;

@@ -12,20 +12,29 @@ const API_URL = import.meta.env.VITE_API_URL;
 function Question() {
   const [questions, setQuestions] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef(null);
-  const MAX_LENGTH = 299; // 🦋 질문 입력 제한
+  const textAreaRef = useRef(null);
+  const [borderRadius, setBorderRadius] = useState(88);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = "18px";
+      textAreaRef.current.style.height = `${Math.max(textAreaRef.current.scrollHeight, 18)}px`;
+      const newBorderRadius = Math.max(30, 88 - inputValue.length * 0.5); // 최소 30px 유지
+      setBorderRadius(newBorderRadius);
+    }
+  }, [inputValue]);
 
   useEffect(() => {
     const fetchQuestionsAndAnswers = async () => {
       try {
         // ✅ 1️⃣ 질문 리스트 가져오기
         const questionResponse = await axios.get(`${API_URL}/qna/question/`);
-        console.log("✅ 질문 조회 응답:", questionResponse.data);
+        // console.log("✅ 질문 조회 응답:", questionResponse.data);
         const questionsData = questionResponse.data.result || [];
 
         // ✅ 2️⃣ 답변 리스트 가져오기
         const answerResponse = await axios.get(`${API_URL}/qna/answer/`);
-        console.log("✅ 답변 조회 응답:", answerResponse.data);
+        //console.log("✅ 답변 조회 응답:", answerResponse.data);
         const answersData = answerResponse.data.result || [];
 
         // ✅ 3️⃣ 질문을 기준으로 매핑
@@ -62,7 +71,7 @@ function Question() {
           q.answers.sort((a, b) => a.id - b.id);
         });
 
-        console.log("✅ 최종 정렬된 질문 데이터:", formattedQuestions);
+        // console.log("✅ 최종 정렬된 질문 데이터:", formattedQuestions);
         setQuestions(formattedQuestions);
       } catch (error) {
         console.error("❌ 질문/답변 조회 실패:", error);
@@ -79,30 +88,15 @@ function Question() {
   // };
 
   const handleInputChange = (e) => {
-    let value = e.target.value;
-
-    if (value.length > MAX_LENGTH) {
-      alert(`질문은 최대 300자 미만까지 입력 가능합니다.`);
-      value = value.slice(0, MAX_LENGTH); // 🦋 초과된 부분 자르기
-    }
-
-    setInputValue(value);
-    e.target.style.height = "30px";
-    e.target.style.height = `${Math.max(e.target.scrollHeight, 30)}px`;
+    setInputValue(e.target.value);
   };
 
   const handleAddQuestion = async () => {
     if (!inputValue.trim()) return;
 
-    // 🦋 서버 요청 전에 체크
-    if (inputValue.length > MAX_LENGTH) {
-      alert(`질문은 최대 300자 미만으로 입력 가능합니다.`);
-      return;
-    }
-
     try {
       const response = await axios.post(`${API_URL}/qna/question/`, { question: inputValue });
-      console.log("✅ 질문 추가 응답:", response.data);
+      // console.log("✅ 질문 추가 응답:", response.data);
 
       if (!response.data.result || !response.data.result.id) {
         console.warn("⚠️ 서버에서 질문 ID를 반환하지 않음.");
@@ -118,9 +112,13 @@ function Question() {
       // 🔹 새 질문을 최상단에 추가 (최신 질문이 위로)
       setQuestions((prevQuestions) => [newQuestion, ...prevQuestions]);
       setInputValue("");
-      if (inputRef.current) inputRef.current.style.height = "auto";
     } catch (error) {
       console.error("❌ 질문 추가 실패:", error);
+
+      // 🔹 400 에러 처리: 300자 제한 알림
+      if (error.response && error.response.status === 400) {
+        alert("질문은 최대 300자까지 입력 가능합니다.");
+      }
     }
   };
 
@@ -131,11 +129,11 @@ function Question() {
           {isAdminLoggedIn() ? <Header title="Q&A 답변 페이지(운영진)" /> : <Header title="Q&A" />}
           <Q.InputContainer>
             <Q.InputBox
-              as="textarea"
-              ref={inputRef}
+              ref={textAreaRef}
               value={inputValue}
               onChange={handleInputChange}
-              placeholder="궁금한 내용을 질문해주세요"
+              placeholder="더 궁금한 내용을 질문해주세요!"
+              style={{ borderRadius: `${borderRadius}px` }}
             />
             <Q.SendButton onClick={handleAddQuestion}>
               <img src={arrowIcon} alt="전송 버튼" />

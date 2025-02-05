@@ -6,9 +6,10 @@ export const LineContainer = styled.div`
   flex-direction: row;
 
   margin-top: 30px;
+  margin-bottom: 215px;
   z-index: 1000;
 
-  width: 342px;
+  width: min(342px, 87.7vw);
   align-items: center;
   justify-content: center;
 `;

@@ -17,4 +17,5 @@ export const ChatWrapper = styled.div`
 
 export const IconImg = styled.img`
   width: ${(props) => props.width};
+  margin-right: 8px;
 `;

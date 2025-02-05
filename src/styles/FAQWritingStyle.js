@@ -5,7 +5,7 @@ export const ComponentContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  margin-top: 25px;
+  margin-top: ${(props) => (props.$isClicked ? "8px" : "25px")};
   width: 100%;
 `;
 
@@ -28,4 +28,10 @@ export const AnimationWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  // Lottie
+  > div {
+    width: 50px;
+    height: 50px;
+  }
 `;

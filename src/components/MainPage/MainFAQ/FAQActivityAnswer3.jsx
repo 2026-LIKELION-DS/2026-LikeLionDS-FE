@@ -42,7 +42,7 @@ const FAQActivityAnswer3 = () => {
             $textAlign={"start"}>
             <b style={{ fontWeight: "700" }}>
               중간고사와 기말고사 2주 전부터는 세션
-              <br />과 스터디가 진행되지 않으니,
+              <br />과 스터디가 진행되지 않으니,&nbsp;
             </b>
             부담없이
             <br />

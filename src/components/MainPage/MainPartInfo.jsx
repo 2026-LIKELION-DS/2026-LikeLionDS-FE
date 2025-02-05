@@ -8,24 +8,32 @@ import icon_FE_back from "@assets/icons/icon_FE_back.svg";
 import icon_BE_front from "@assets/icons/icon_BE_front.svg";
 import icon_BE_back from "@assets/icons/icon_BE_back.svg";
 
+import icon_plan_front_bgr from "@assets/icons/icon_plan_front_bgr.svg";
+import icon_FE_front_bgr from "@assets/icons/icon_FE_front_bgr.svg";
+import icon_BE_front_bgr from "@assets/icons/icon_BE_front_bgr.svg";
+
 import { useState } from "react";
 
 const MainPartInfo = () => {
-  // 클릭된 이미지 키 저장 (plan, FE, BE)
-  const [activeKey, setActiveKey] = useState(null);
-
-  const getImageSrc = (key) => {
-    // 클릭된 상태에 따라 이미지 결정
-    // 클릭되면 _back 이미지 반환
-    if (activeKey === key) {
-      return key === "plan" ? icon_plan_back : key === "FE" ? icon_FE_back : icon_BE_back;
-    }
-    // 클릭되지 않으면 _front 이미지 반환
-    return key === "plan" ? icon_plan_front : key === "FE" ? icon_FE_front : icon_BE_front;
-  };
+  // 파트별 이미지 상태
+  // 초기엔 front 이미지가 로딩되도록
+  const [imgSrc, setImgSrc] = useState({
+    plan: icon_plan_front_bgr,
+    FE: icon_FE_front_bgr,
+    BE: icon_BE_front_bgr,
+  });
 
   const handleImgClicked = (key) => {
-    setActiveKey((prevKey) => (prevKey === key ? null : key)); // 클릭된 상태를 토글
+    setImgSrc((prev) => ({
+      plan:
+        key === "plan"
+          ? prev.plan === icon_plan_front_bgr
+            ? icon_plan_back
+            : icon_plan_front_bgr
+          : icon_plan_front_bgr,
+      FE: key === "FE" ? (prev.FE === icon_FE_front_bgr ? icon_FE_back : icon_FE_front_bgr) : icon_FE_front_bgr,
+      BE: key === "BE" ? (prev.BE === icon_BE_front_bgr ? icon_BE_back : icon_BE_front_bgr) : icon_BE_front_bgr,
+    }));
   };
 
   return (
@@ -49,16 +57,58 @@ const MainPartInfo = () => {
         {/* 이미지 */}
         <M.PartContainer>
           <M.PartImgContainer onClick={() => handleImgClicked("plan")}>
-            <M.PartImgWrapper data={getImageSrc("plan")} />
+            <M.PartImgWrapper src={imgSrc.plan} />
+
+            {imgSrc.plan === icon_plan_front_bgr && (
+              <>
+                <M.PartOrangeWrapperBE $width={"122px"} $height={"38px"} $top={"58.96%"} $right={"4.28%"}>
+                  <M.PartName $fontSize={"20px"}>기획•디자인</M.PartName>
+                </M.PartOrangeWrapperBE>
+                <div>
+                  <M.PartNameWrapperBE $width={"55px"} $height={"25px"} $top={"80.66%"} $right={"28%"}>
+                    <M.PartName $fontSize={"16px"}>Plan</M.PartName>
+                  </M.PartNameWrapperBE>
+
+                  <M.PartNameWrapperBE $width={"74px"} $height={"25px"} $top={"80.66%"} $right={"4.28%"}>
+                    <M.PartName $fontSize={"16px"}>Design</M.PartName>
+                  </M.PartNameWrapperBE>
+                </div>
+              </>
+            )}
           </M.PartImgContainer>
 
-          <M.PartImgContainer onClick={() => handleImgClicked("FE")}>
-            <M.PartImgWrapper data={getImageSrc("FE")} $marginTop={"17px"} />
-          </M.PartImgContainer>
+          {/* 사다리꼴 모양으로 */}
+          <div>
+            <M.PartImgContainerFE onClick={() => handleImgClicked("FE")}>
+              <M.PartImgWrapper src={imgSrc.FE} />
 
-          <M.PartImgContainer onClick={() => handleImgClicked("BE")}>
-            <M.PartImgWrapper data={getImageSrc("BE")} $marginTop={"-70px"} />
-          </M.PartImgContainer>
+              {imgSrc.FE === icon_FE_front_bgr && (
+                <>
+                  <M.PartOrangeWrapperFE $width={"113px"} $height={"38px"} $top={"7.54%"} $left={"4.57%"}>
+                    <M.PartName $fontSize={"20px"}>프론트엔드</M.PartName>
+                  </M.PartOrangeWrapperFE>
+                  <M.PartNameWrapperFE $width={"95px"} $height={"25px"} $top={"29.24%"} $left={"4.57%"}>
+                    <M.PartName $fontSize={"16px"}>Front-end</M.PartName>
+                  </M.PartNameWrapperFE>
+                </>
+              )}
+            </M.PartImgContainerFE>
+
+            <M.PartImgContainerBE onClick={() => handleImgClicked("BE")}>
+              <M.PartImgWrapper src={imgSrc.BE} />
+
+              {imgSrc.BE === icon_BE_front_bgr && (
+                <>
+                  <M.PartOrangeWrapperBE $width={"79px"} $height={"38px"} $top={"58.96%"} $right={"4.57%"}>
+                    <M.PartName $fontSize={"20px"}>백엔드</M.PartName>
+                  </M.PartOrangeWrapperBE>
+                  <M.PartNameWrapperBE $width={"92px"} $height={"25px"} $top={"81.60%"} $right={"4.57%"}>
+                    <M.PartName $fontSize={"16px"}>Back-end</M.PartName>
+                  </M.PartNameWrapperBE>
+                </>
+              )}
+            </M.PartImgContainerBE>
+          </div>
         </M.PartContainer>
       </M.ComponentContainer>
     </M.PageContainer>

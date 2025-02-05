@@ -1,26 +1,50 @@
 import styled, { keyframes } from "styled-components";
 import palette from "@lib/colorPalette";
 
-// 최상위 컨테이너 (패딩 추가)
-export const WrapperContainer = styled.div`
-  padding: 0 20px;
+// 왼쪽으로 무한 슬라이드하는 애니메이션
+const slideAnimationLeft = keyframes`
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* 절반 이동 후 자연스럽게 반복 */
 `;
 
-// 스크롤에 따라 이동하는 배경 이미지
+// 최상위 컨테이너 (패딩 추가)
+export const WrapperContainer = styled.div`
+  /* padding: 0 20px;*/
+  max-width: 390px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+`;
+
+export const PageContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: calc(100vw - 40px); /* 최대 너비 제한 */
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative; /* absolute 요소 정리 */
+`;
+
 export const DSBack = styled.img`
   height: 208px;
   display: block;
   position: absolute;
-  left: 0%;
-  top: 120%;
-  transform: translateX(${(props) => props.$translateX}px);
+  top: 13%;
+  left: 10%; /* 왼쪽 정렬 */
+  transform: translateX(${(props) => props.$translateX}px); /* 스크롤 이동 적용 */
   transition: transform 0.1s ease-out;
+  z-index: -100;
+  max-width: none;
+  width: 746px;
 `;
 
 export const WhatisDSdiv = styled.div`
   font-size: 28px;
   margin-top: 270px;
-
+  padding: 0 20px;
   span {
     font-size: 18px;
     font-weight: 200;
@@ -45,17 +69,19 @@ export const Projects12th = styled.div`
   span {
     font-weight: 200;
     font-size: 18px;
+    padding: 0 20px;
   }
 `;
 
-export const slideAnimationLeft = keyframes`
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-`;
+// export const slideAnimationLeft = keyframes`
+//   0% { transform: translateX(-100%); }
+//   100% { transform: translateX(100%); }
+// `;
 
-export const slideAnimationRight = keyframes`
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+// 오른쪽으로 슬라이드하는 무한 애니메이션
+const slideAnimationRight = keyframes`
+  0% { transform: translateX(-50%); } /* 가장 오른쪽에서 시작 */
+  100% { transform: translateX(0%); } /* 왼쪽에서 오른쪽으로 이동 */
 `;
 
 export const ProjectsSlide1 = styled.div`
@@ -63,11 +89,18 @@ export const ProjectsSlide1 = styled.div`
   margin-top: 12px;
   overflow: hidden;
   white-space: nowrap;
-  img {
-    width: 224px;
-    height: 126px;
-    margin-right: 10px;
-    animation: ${slideAnimationLeft} 20s linear infinite;
+  position: relative;
+  width: 100%;
+  .slide-track {
+    display: flex;
+    width: calc(224px * 16 * 2); /* 원본 + 복제 */
+    animation: ${slideAnimationLeft} 20s linear infinite; /* 무한 반복 */
+    img {
+      width: 224px;
+      height: 126px;
+      margin-right: 10px;
+      animation: ${slideAnimationLeft} 20s linear infinite;
+    }
   }
 `;
 
@@ -76,11 +109,21 @@ export const ProjectsSlide2 = styled.div`
   margin-top: 12px;
   overflow: hidden;
   white-space: nowrap;
-  img {
-    width: 224px;
-    height: 126px;
-    margin-right: 10px;
+  position: relative;
+  width: 100%;
+
+  .slide-track {
+    display: flex;
     animation: ${slideAnimationRight} 20s linear infinite;
+    width: calc(224px * 16 * 2); /* 원본 + 복제 */
+
+    img {
+      width: 224px;
+      height: 126px;
+      margin-right: 10px;
+      flex-shrink: 0;
+      animation: ${slideAnimationRight} 20s linear infinite;
+    }
   }
 `;
 
@@ -110,6 +153,7 @@ export const SessionInfo = styled.section`
 
 export const More = styled.div`
   font-size: 18px;
+  padding: 20px;
 `;
 
 export const InstaMain = styled.div`
@@ -134,5 +178,20 @@ export const InstaMain = styled.div`
   p {
     font-size: 12px;
     color: #78726e;
+  }
+`;
+export const TextContainer = styled.div`
+  display: inline; /* 기본적으로 한 줄에 표시 */
+
+  @media (max-width: 401px) {
+    display: flex;
+    flex-direction: column; /* 401px 이하에서 세로 정렬 */
+    align-items: flex-start;
+  }
+`;
+
+export const HighlightText = styled.span`
+  @media (max-width: 401px) {
+    display: block; /* 401px 이하일 때 "확인해주세요"만 줄바꿈 */
   }
 `;

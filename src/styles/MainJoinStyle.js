@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import palette from "@lib/colorPalette";
 
 export const JoinContainer = styled.div`
   display: flex;
@@ -6,6 +7,8 @@ export const JoinContainer = styled.div`
   align-items: center;
 
   margin-top: ${(props) => props.$marginTop || "0px"};
+
+  margin-bottom: 91.24px;
 `;
 
 export const AnimationWrapper = styled.div`
@@ -22,7 +25,6 @@ export const ImgWrapper = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  margin-top: 91.24px;
   width: fit-content;
 `;
 
@@ -38,17 +40,35 @@ from {
 
 export const TextAniContainer = styled.div`
   width: 100%;
+  height: 67.9px;
+
   overflow: hidden;
   display: flex;
+  flex-wrap: nowrap;
+  gap: 0px;
+
+  background: ${palette.style.white};
+
+  margin-bottom: 63px;
 `;
 
 export const TextAniWrapper = styled.div`
   display: flex;
   animation: ${TextAnimation} 5s linear infinite;
 
-  margin-bottom: 63px;
+  box-sizing: border-box;
+
+  flex-wrap: nowrap;
+  gap: 0px;
+
+  height: 100%;
 
   img {
     flex-shrink: 0;
+    font-size: 0;
+    margin: 0;
+    display: block;
+    line-height: 0;
+    vertical-align: middle;
   }
 `;

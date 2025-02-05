@@ -39,7 +39,11 @@ const FAQActivityChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 4 && <FAQActivityAnswer1 />}
 
         {/* 활동 관련 질문 2 */}
-        <M.ComponentContainer $marginTop={"12px"} onClick={() => handleChatClick(5)} width={"100%"} cursor={"pointer"}>
+        <M.ComponentContainer
+          $marginTop={isClicked === 4 ? "16px" : "12px"}
+          onClick={() => handleChatClick(5)}
+          width={"100%"}
+          cursor={"pointer"}>
           <JoinRectangle
             width={"231px"}
             height={"42px"}
@@ -57,7 +61,11 @@ const FAQActivityChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 5 && <FAQActivityAnswer2 />}
 
         {/* 활동 관련 질문 3 */}
-        <M.ComponentContainer $marginTop={"12px"} onClick={() => handleChatClick(6)} width={"100%"} cursor={"pointer"}>
+        <M.ComponentContainer
+          $marginTop={isClicked === 5 ? "16px" : "12px"}
+          onClick={() => handleChatClick(6)}
+          width={"100%"}
+          cursor={"pointer"}>
           <JoinRectangle
             width={"178px"}
             height={"42px"}
@@ -75,7 +83,11 @@ const FAQActivityChat = ({ isClicked, handleChatClick }) => {
         {isClicked === 6 && <FAQActivityAnswer3 />}
 
         {/* 활동 관련 질문 4 */}
-        <M.ComponentContainer $marginTop={"12px"} onClick={() => handleChatClick(7)} width={"100%"} cursor={"pointer"}>
+        <M.ComponentContainer
+          $marginTop={isClicked === 6 ? "16px" : "12px"}
+          onClick={() => handleChatClick(7)}
+          width={"100%"}
+          cursor={"pointer"}>
           <JoinRectangle
             width={"231px"}
             height={"78px"}

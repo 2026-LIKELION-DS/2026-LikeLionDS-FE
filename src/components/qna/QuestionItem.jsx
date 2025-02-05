@@ -91,7 +91,7 @@ const QuestionItem = ({ question, setQuestions }) => {
         answer: newAnswer,
       });
 
-      console.log("✅ 답변 추가 응답:", response.data);
+      // console.log("✅ 답변 추가 응답:", response.data);
 
       if (!response.data.result || !response.data.result.id) {
         console.warn("⚠️ 서버에서 answer ID를 반환하지 않음.");
@@ -125,9 +125,9 @@ const QuestionItem = ({ question, setQuestions }) => {
       return;
     }
 
-    console.log("📌 [디버깅] PATCH 요청 URL:", `${API_URL}/qna/answer/manage/${answerId}/`);
-    console.log("📌 [디버깅] 수정할 answerId:", answerId);
-    console.log("📌 [디버깅] 수정할 값:", editValue);
+    // console.log("📌 [디버깅] PATCH 요청 URL:", `${API_URL}/qna/answer/manage/${answerId}/`);
+    // console.log("📌 [디버깅] 수정할 answerId:", answerId);
+    // console.log("📌 [디버깅] 수정할 값:", editValue);
 
     if (editValue.length > MAX_LENGTH) {
       alert(`답변은 ${MAX_LENGTH}자까지 입력 가능합니다.`);
@@ -137,7 +137,7 @@ const QuestionItem = ({ question, setQuestions }) => {
     axios
       .patch(`${API_URL}/qna/answer/manage/${answerId}/`, { answer: editValue }) // ✅ URL에 answer ID 포함, 수정 내용 request body로 전달
       .then((response) => {
-        console.log("✅ [디버깅] PATCH 응답:", response.data);
+        // console.log("✅ [디버깅] PATCH 응답:", response.data);
 
         // ✅ id 기반으로 찾아서 업데이트
         setQuestions((prev) =>
@@ -156,9 +156,12 @@ const QuestionItem = ({ question, setQuestions }) => {
         setEditingIndex(null);
       })
       .catch((error) => {
-        console.log("📌 엔드포인트:", `${API_URL}/qna/answer/manage/${answerId}/`);
-        console.error("❌ 답변 수정 실패:", error);
-        console.log("🔍 서버 응답 전체:", error.response);
+        // console.error("❌ 답변 수정 실패:", error);
+  
+        // 🔹 400 에러 처리: 300자 제한 알림
+        if (error.response && error.response.status === 400) {
+          alert("최대 300자까지 입력 가능합니다.");
+        }
       });
   };
 
@@ -202,7 +205,7 @@ const QuestionItem = ({ question, setQuestions }) => {
     axios
       .delete(`${API_URL}/qna/answer/manage/${answerId}/`)
       .then(() => {
-        console.log(`✅ ${answerId} 삭제 완료`);
+        // console.log(`✅ ${answerId} 삭제 완료`);
       })
       .catch((error) => {
         console.error("❌ 답변 삭제 실패:", error);

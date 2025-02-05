@@ -19,7 +19,7 @@ const MainFAQ = () => {
     <M_.PageContainer>
       <M_.ComponentContainer $width={"342px"}>
         {/* 자주 묻는 질문 */}
-        <M.ComponentContainer $marginTop={"215px"}>
+        <M.ComponentContainer>
           <M_.TextWrapper $fontSize={"28px"} $fontWeight={600}>
             자주 묻는 질문
           </M_.TextWrapper>
@@ -41,7 +41,7 @@ const MainFAQ = () => {
         <FAQActivityChat isClicked={isClicked} handleChatClick={handleChatClick} />
 
         {/* 입력중 */}
-        <FAQWriting />
+        <FAQWriting isClicked={isClicked} />
 
         {/* 퇴장 */}
         <FAQLine text={"아기사자님과 운영진님이 퇴장하셨습니다."} $marginTop={"72px"} />
