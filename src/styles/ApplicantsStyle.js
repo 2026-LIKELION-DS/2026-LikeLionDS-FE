@@ -10,12 +10,13 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 24px;
+  gap: 12px;
 `;
 
 export const InputBox = styled.div`
   gap: 10px;
-  padding: 0 16px;
-  height: 48px;
+  padding: 9px 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,21 +24,24 @@ export const InputBox = styled.div`
   border-radius: 24px;
   background-color: white;
   color: #d9650d;
-  margin: 8px;
+  width: calc(100% - 32px);
 `;
 
 export const InputName = styled.div`
   width: 66px;
-  font-size: 16px;
-  font-weight: 500;
   display: flex;
   justify-content: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%; /* 20.8px */
+  letter-spacing: -0.48px;
 `;
 
 export const Input = styled.input`
   outline: none;
   border: none;
-  width: 240px;
+  width: 100%;
   font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
@@ -64,24 +68,31 @@ export const bar = styled.div`
   width: 1px;
   height: 30px;
   background-color: #d9650d;
-  position: relative;
-  right: 10px;
 `;
 
 export const Button = styled.button`
-  padding: 0px 118.63px;
-  height: 56px;
+  width: 100%;
+  padding: 15px 0;
   border-radius: 88px;
   background-color: #ff7710;
   color: white;
   border: none;
-  margin: 10px;
-  font-family: Pretendard;
-  font-size: 20px;
-  font-weight: 600;
+  margin-top: 16px;
   &:hover {
     cursor: pointer;
   }
   background: var(--Real-Orange-ex5_Primary, #ff7710);
   box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.2);
+
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%; /* 26px */
+  letter-spacing: -0.6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
