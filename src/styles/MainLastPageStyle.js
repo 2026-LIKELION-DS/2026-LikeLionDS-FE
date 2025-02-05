@@ -56,8 +56,10 @@ export const DisabledButton = styled.button`
   font-weight: 600;
   margin-top: 24px;
   border: none;
+margin:24px;
+  box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.20);
   cursor: ${({ $isDeadlinePassed }) => ($isDeadlinePassed ? "default" : "pointer")};
-  background-color: ${({ $isDeadlinePassed }) => ($isDeadlinePassed ? "#78726E" : palette.realOrange.ex4)};
+  background-color: ${({ $isDeadlinePassed }) => ($isDeadlinePassed ? "#78726E" : "#FF7710")};
   color: ${({ $isDeadlinePassed }) => ($isDeadlinePassed ? "#FFFFFF" : palette.style.white)};
 `;
 
