@@ -19,6 +19,7 @@ export const LottieContainer = styled.div`
   bottom: auto;
 `;
 
+
 export const Magam = styled.div`
   margin-top: 200px;
 
@@ -26,31 +27,41 @@ export const Magam = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: ${palette.realOrange.ex4};
     font-size: 20px;
     font-weight: 500;
+
     img {
       width: 30px;
       margin: 10px;
     }
   }
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    border-radius: 88px;
-    width: 342px;
-    height: 65px;
-    background-color: ${palette.realOrange.ex4};
-    color: ${palette.style.white};
-    font-size: 20px;
-    font-weight: 500;
-    margin-top: 24px;
-    border: none;
-    cursor: pointer;
-  }
 `;
+
+// D-Day 텍스트 색상 변경 (마감 시 회색)
+export const DdayText = styled.span`
+  color: ${({ $isDeadlinePassed }) => ($isDeadlinePassed ? "#78726E" : palette.realOrange.ex4)};
+  font-weight: 500;
+`;
+
+// 버튼 스타일 변경 (모집 마감 시 회색)
+export const DisabledButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 88px;
+  width: 342px;
+  height: 65px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 24px;
+  border: none;
+  cursor: ${({ $isDeadlinePassed }) => ($isDeadlinePassed ? "default" : "pointer")};
+  background-color: ${({ $isDeadlinePassed }) => ($isDeadlinePassed ? "#78726E" : palette.realOrange.ex4)};
+  color: ${({ $isDeadlinePassed }) => ($isDeadlinePassed ? "#FFFFFF" : palette.style.white)};
+`;
+
+
 
 // 부모 컨테이너 (배경 유지)
 export const Container = styled.div`
