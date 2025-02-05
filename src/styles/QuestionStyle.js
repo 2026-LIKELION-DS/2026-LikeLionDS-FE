@@ -25,7 +25,7 @@ export const InputContainer = styled.div`
   align-items: center;
   gap: 10px;
   margin-bottom: 20px;
-  padding: 15px 20px;
+  padding: 10px 20px;
   padding-top: calc(56px + 15px);
 `;
 
@@ -49,6 +49,11 @@ export const InputBox = styled.textarea`
   &::placeholder {
     font-size: 16px;
     line-height: 1.3; /* placeholder도 line-height 적용 */
+
+    // placeholder 2줄로 줄바꿈되는 현상 때문에 수정
+    white-space: nowrap; /* ✅ 줄바꿈 방지 */
+    overflow: hidden; /* ✅ 넘칠 경우 숨김 */
+    text-overflow: ellipsis; /* ✅ 말줄임 처리 */
   }
 `;
 

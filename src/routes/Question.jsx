@@ -13,6 +13,7 @@ function Question() {
   const [questions, setQuestions] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
+  const MAX_LENGTH = 299; // 🦋 질문 입력 제한
 
   useEffect(() => {
     const fetchQuestionsAndAnswers = async () => {
@@ -71,14 +72,33 @@ function Question() {
     fetchQuestionsAndAnswers();
   }, []);
 
+  // const handleInputChange = (e) => {
+  //   setInputValue(e.target.value);
+  //   e.target.style.height = "30px";
+  //   e.target.style.height = `${Math.max(e.target.scrollHeight, 30)}px`;
+  // };
+
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    let value = e.target.value;
+
+    if (value.length > MAX_LENGTH) {
+      alert(`질문은 최대 300자 미만까지 입력 가능합니다.`);
+      value = value.slice(0, MAX_LENGTH); // 🦋 초과된 부분 자르기
+    }
+
+    setInputValue(value);
     e.target.style.height = "30px";
     e.target.style.height = `${Math.max(e.target.scrollHeight, 30)}px`;
   };
 
   const handleAddQuestion = async () => {
     if (!inputValue.trim()) return;
+
+    // 🦋 서버 요청 전에 체크
+    if (inputValue.length > MAX_LENGTH) {
+      alert(`질문은 최대 300자 미만으로 입력 가능합니다.`);
+      return;
+    }
 
     try {
       const response = await axios.post(`${API_URL}/qna/question/`, { question: inputValue });
@@ -115,7 +135,7 @@ function Question() {
               ref={inputRef}
               value={inputValue}
               onChange={handleInputChange}
-              placeholder="더 궁금한 내용을 질문해주세요!"
+              placeholder="궁금한 내용을 질문해주세요"
             />
             <Q.SendButton onClick={handleAddQuestion}>
               <img src={arrowIcon} alt="전송 버튼" />
