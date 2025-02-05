@@ -13,7 +13,7 @@ export const Header = styled.div`
   background-color: ${palette.boldBlack.ex10Primary};
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
 
-  @media (hover: hover) and (pointer: fine) {
+  @media (hover: hover) and (pointer: fine), screen and (min-width: 768px) {
     width: calc(390px - 40px);
   }
 `;
