@@ -19,6 +19,7 @@ export const Box = styled.div`
   padding: 20px;
   color: black;
   border-radius: 24px;
+  margin-bottom: 50px;
 `;
 
 export const Info = styled.div`
@@ -68,9 +69,10 @@ export const Button = styled.button`
   flex-direction: row;
   align-items: center;
 
-  gap: 5px;
+  gap: 6px;
 
   border: none;
   background-color: white;
+  margin-top: 8px;
   font-family: Pretendard;
 `;
