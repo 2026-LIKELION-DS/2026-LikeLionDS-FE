@@ -106,11 +106,11 @@ function ApplicantsResult() {
                   <A.LinkBox>
                     <A.Button>
                       <A.Img src={chair} />
-                      <A.StyledLink to="#">면접 폼 바로가기</A.StyledLink>
+                      <A.StyledLink to="https://forms.gle/EfqhaNuzcbyiveJ49">면접 폼 바로가기</A.StyledLink>
                     </A.Button>
                     <A.Button>
                       <A.Img src={kakao} />
-                      <A.StyledLink to="#">카카오 오픈채팅 바로가기</A.StyledLink>
+                      <A.StyledLink to="https://open.kakao.com/me/LikelionDS">카카오 오픈채팅 바로가기</A.StyledLink>
                     </A.Button>
                   </A.LinkBox>
                 </>
