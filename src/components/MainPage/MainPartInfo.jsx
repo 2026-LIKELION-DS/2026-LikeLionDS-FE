@@ -38,8 +38,6 @@ const MainPartInfo = () => {
 
   return (
     <M.PageContainer $marginTop={"232px"}>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-rwdImageMaps/1.6/jquery.rwdImageMaps.min.js"></script>
       <M.ComponentContainer>
         {/* 텍스트 */}
         <M.TextContainer>
@@ -63,17 +61,17 @@ const MainPartInfo = () => {
 
             {imgSrc.plan === icon_plan_front_bgr && (
               <>
-                <M.PartOrangeWrapper $width={"122px"} $height={"38px"} $top={"125px"} $right={"15px"}>
+                <M.PartOrangeWrapperBE $width={"122px"} $height={"38px"} $top={"58.96%"} $right={"4.28%"}>
                   <M.PartName $fontSize={"20px"}>기획•디자인</M.PartName>
-                </M.PartOrangeWrapper>
+                </M.PartOrangeWrapperBE>
                 <div>
-                  <M.PartNameWrapper $width={"55px"} $height={"25px"} $top={"171px"} $right={"98px"}>
+                  <M.PartNameWrapperBE $width={"55px"} $height={"25px"} $top={"80.66%"} $right={"28%"}>
                     <M.PartName $fontSize={"16px"}>Plan</M.PartName>
-                  </M.PartNameWrapper>
+                  </M.PartNameWrapperBE>
 
-                  <M.PartNameWrapper $width={"74px"} $height={"25px"} $top={"171px"} $right={"16px"}>
+                  <M.PartNameWrapperBE $width={"74px"} $height={"25px"} $top={"80.66%"} $right={"4.28%"}>
                     <M.PartName $fontSize={"16px"}>Design</M.PartName>
-                  </M.PartNameWrapper>
+                  </M.PartNameWrapperBE>
                 </div>
               </>
             )}
@@ -86,12 +84,12 @@ const MainPartInfo = () => {
 
               {imgSrc.FE === icon_FE_front_bgr && (
                 <>
-                  <M.PartOrangeWrapper $width={"113px"} $height={"38px"} $top={"16px"} $right={"221px"}>
+                  <M.PartOrangeWrapperFE $width={"113px"} $height={"38px"} $top={"7.54%"} $left={"4.57%"}>
                     <M.PartName $fontSize={"20px"}>프론트엔드</M.PartName>
-                  </M.PartOrangeWrapper>
-                  <M.PartNameWrapper $width={"95px"} $height={"25px"} $top={"62px"} $right={"239px"}>
+                  </M.PartOrangeWrapperFE>
+                  <M.PartNameWrapperFE $width={"95px"} $height={"25px"} $top={"29.24%"} $left={"4.57%"}>
                     <M.PartName $fontSize={"16px"}>Front-end</M.PartName>
-                  </M.PartNameWrapper>
+                  </M.PartNameWrapperFE>
                 </>
               )}
             </M.PartImgContainerFE>
@@ -101,12 +99,12 @@ const MainPartInfo = () => {
 
               {imgSrc.BE === icon_BE_front_bgr && (
                 <>
-                  <M.PartOrangeWrapper $width={"79px"} $height={"38px"} $top={"125px"} $right={"16px"}>
+                  <M.PartOrangeWrapperBE $width={"79px"} $height={"38px"} $top={"58.96%"} $right={"4.57%"}>
                     <M.PartName $fontSize={"20px"}>백엔드</M.PartName>
-                  </M.PartOrangeWrapper>
-                  <M.PartNameWrapper $width={"92px"} $height={"25px"} $top={"171px"} $right={"16px"}>
+                  </M.PartOrangeWrapperBE>
+                  <M.PartNameWrapperBE $width={"92px"} $height={"25px"} $top={"81.60%"} $right={"4.57%"}>
                     <M.PartName $fontSize={"16px"}>Back-end</M.PartName>
-                  </M.PartNameWrapper>
+                  </M.PartNameWrapperBE>
                 </>
               )}
             </M.PartImgContainerBE>
