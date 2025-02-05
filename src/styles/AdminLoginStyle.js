@@ -2,9 +2,8 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const AdminLogin = styled.div`
-  height: 60px;
-  height: 25px;
-  padding-top: 56px;
+  margin-top: 76px;
+  padding: 0 24px;
 `;
 
 export const Form = styled.form`
@@ -12,6 +11,9 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  gap: 12px;
+  margin-top: 28px;
 `;
 
 export const InputBox = styled.div`
@@ -22,19 +24,23 @@ export const InputBox = styled.div`
   border-radius: 24px;
   background-color: white;
   color: #d9650d;
-  margin: 8px;
-
   font-size: 16px;
   font-weight: 500;
 
   gap: 12px;
-  padding: 0 16px;
-  height: 48px;
+  padding: 9px 16px;
+  width: calc(100% - 32px);
 `;
 
 export const InputName = styled.div`
-  width: 70px;
+  width: 80px;
+  text-align: center;
+  font-family: Pretendard;
   font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 20.8px */
+  letter-spacing: -0.48px;
   display: flex;
   justify-content: center;
 `;
@@ -45,7 +51,8 @@ export const Input = styled.input`
   font-family: Pretendard;
   font-size: 16px;
   font-weight: 400;
-  width: 232px;
+  width: 100%;
+
   /* 기본 상태 */
   background-color: white;
   color: black;
@@ -69,8 +76,6 @@ export const Bar = styled.div`
   width: 1px;
   height: 30px;
   background-color: #d9650d;
-  position: relative;
-  right: 10px;
 `;
 
 export const Button = styled.button`
@@ -78,17 +83,24 @@ export const Button = styled.button`
   background-color: #ff7710;
   color: white;
   border: none;
-  margin: 10px;
+
   font-size: 18px;
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
+
   &:hover {
     cursor: pointer;
   }
-  padding: 0px 155.575px;
-  height: 56px;
 
   background: var(--Real-Orange-ex5_Primary, #ff7710);
   box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.2);
+
+  width: 100%;
+  padding: 16px 0;
+  margin-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

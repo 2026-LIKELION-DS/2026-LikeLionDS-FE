@@ -22,34 +22,35 @@ function AdminLogin() {
   return (
     <>
       <Header title="운영진이신가요" />
-      <A.AdminLogin></A.AdminLogin>
-      {/* 테스트를 위해 임시로 만든 어드민 로그인 (수정바람)*/}
+      <A.AdminLogin>
+        {/* 테스트를 위해 임시로 만든 어드민 로그인 (수정바람)*/}
 
-      <A.Form>
-        <A.InputBox>
-          <A.InputName>로그인</A.InputName>
-          <A.Bar></A.Bar>
-          <A.Input type="text" placeholder="아이디" value={id} onChange={(e) => setId(e.target.value)} />
-        </A.InputBox>
-        <A.InputBox>
-          <A.InputName>비밀번호</A.InputName>
-          <A.Bar></A.Bar>
-          <A.Input
-            type="password"
-            placeholder="비밀번호"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </A.InputBox>
-        <A.Button
-          type="submit"
-          onClick={handleLogin}
-          style={{
-            backgroundColor: id && password ? "#ff7710" : "#FFB175",
-          }}>
-          로그인
-        </A.Button>
-      </A.Form>
+        <A.Form>
+          <A.InputBox>
+            <A.InputName>로그인</A.InputName>
+            <A.Bar></A.Bar>
+            <A.Input type="text" placeholder="아이디" value={id} onChange={(e) => setId(e.target.value)} />
+          </A.InputBox>
+          <A.InputBox>
+            <A.InputName>비밀번호</A.InputName>
+            <A.Bar></A.Bar>
+            <A.Input
+              type="password"
+              placeholder="비밀번호"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </A.InputBox>
+          <A.Button
+            type="submit"
+            onClick={handleLogin}
+            style={{
+              backgroundColor: id && password ? "#ff7710" : "#FFB175",
+            }}>
+            로그인
+          </A.Button>
+        </A.Form>
+      </A.AdminLogin>
     </>
   );
 }
