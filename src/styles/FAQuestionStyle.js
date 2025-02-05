@@ -7,7 +7,7 @@ export const MsgContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 342px;
+  width: min(342px, 87.7vw);
 
   margin-top: 32px;
   margin-bottom: 233px;

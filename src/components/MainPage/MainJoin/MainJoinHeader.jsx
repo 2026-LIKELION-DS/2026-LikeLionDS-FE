@@ -10,6 +10,7 @@ import loadingLottie from "@assets/motions/카드 모션/card.json";
 
 import icon_arrow_red from "@assets/icons/icon_arrow_red.svg";
 import text_animation from "@assets/icons/icon_textAnimation1.svg";
+import text_animation_png from "@assets/logo/logo_textAnimation.png";
 
 const MainJoinHeader = () => {
   const IMAGE_WIDTH = 402; // 이미지 하나의 너비 (px)
