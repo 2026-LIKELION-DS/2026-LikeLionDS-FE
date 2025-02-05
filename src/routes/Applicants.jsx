@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as A from "@styles/ApplicantsStyle";
 import Header from "@components/Header/HeaderApp";
+import Error from "@routes/Error";
 
 function Applicants() {
   const navigate = useNavigate();
@@ -11,6 +12,27 @@ function Applicants() {
     tel: "",
     email: "",
   });
+
+  const [isAccessible, setIsAccessible] = useState(false);
+
+  useEffect(() => {
+    const checkAccessTime = () => {
+      const now = new Date();
+      const accessTime = new Date(now.getFullYear(), now.getMonth(), 26, 12, 0, 0);
+  
+      if (now >= accessTime) {
+        setIsAccessible(true);
+      } else {
+        setIsAccessible(false);
+      }
+    };
+
+    checkAccessTime();
+  }, []);
+
+  if (!isAccessible) {
+    return <Error />;
+  }
 
   const handleChange = (e) => {
     setFormValue((prevValue) => {
