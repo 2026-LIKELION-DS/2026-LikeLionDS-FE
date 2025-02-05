@@ -24,7 +24,8 @@ function ApplicantsResult() {
             <A.H1>{name} 님</A.H1>
             <A.H1>축하드립니다!</A.H1>
             <br />
-            <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
+            {/* 최종 합격 */}
+            {/* <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기에</A.Orange>
             <A.Orange>최종 합격되신 것을 축하드립니다.</A.Orange>
 
             <br />
@@ -39,8 +40,6 @@ function ApplicantsResult() {
             <A.Info>
               아래 노션 및 디스코드 링크에 접속하셔서 <br /> 최종 합격자로서의 기쁨을 누리세요!
             </A.Info>
-            <br />
-
             <A.LinkBox>
               <A.Button>
                 <A.Img src={notion} />
@@ -51,11 +50,39 @@ function ApplicantsResult() {
                 <A.StyledLink to="#">디스코드 바로가기</A.StyledLink>
               </A.Button>
             </A.LinkBox>
+            <br /> */}
+
+            {/* 1차 합격 */}
+            <A.Orange>덕성여자대학교 멋쟁이사자처럼 13기</A.Orange>
+            <A.Orange>1차 합격되신 것을 축하드립니다.</A.Orange>
+            <br />
+
+            <A.Info>면접 일정 안내드립니다.</A.Info>
+
+            <A.Info>면접은 교내에서 대면으로 진행됩니다.</A.Info>
+            <br />
+            <A.Info>면접 시간은 아래에 안내드리는 폼에서 선택 가능하며, 선착순으로 반영됩니다.</A.Info>
+            <br />
+            <A.Info>
+              시간 확인을 위해 폼을 열어 두었으나, <br />
+              응답은 2/28 21시부터 인정하며 <br />
+              2/29 21시까지 수정 가능합니다. <br />
+              시간 수정 시 수정한 시간으로 반영됩니다.
+            </A.Info>
+            <br />
+            <A.Info>면접 시간과 장소는 3/1에 안내드리겠습니다.</A.Info>
+            <br />
+
+            <A.LinkBox>
+              <A.Button>
+                <A.StyledLink to="#">🗓️ 면접 폼 바로가기</A.StyledLink>
+              </A.Button>
+            </A.LinkBox>
           </A.Box>
         ) : (
           <A.Box>
             <A.H2>{name} 님, 덕성여자대학교</A.H2>
-            <A.H2>멋쟁이사자처럼 12기에</A.H2>
+            <A.H2>멋쟁이사자처럼 13기에</A.H2>
             <A.H2>지원해주셔서 감사합니다.</A.H2>
             <br />
             <A.Info>예상보다 많은 지원자들로 인해</A.Info>
