@@ -63,6 +63,7 @@ export const Button = styled.button`
   margin: 10px;
   font-size: 18px;
   cursor: pointer;
+  font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
 `;

@@ -58,6 +58,7 @@ export const Button = styled.button`
   color: white;
   border: none;
   margin: 10px;
+  font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
 `;
