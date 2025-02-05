@@ -13,7 +13,7 @@ export const Form = styled.form`
 `;
 
 export const InputBox = styled.div`
-  gap: 12px;
+  gap: 10px;
   padding: 0 16px;
   height: 48px;
   display: flex;
@@ -27,7 +27,7 @@ export const InputBox = styled.div`
 `;
 
 export const InputName = styled.div`
-  width: 90px;
+  width: 66px;
   font-size: 16px;
   font-weight: 500;
   display: flex;
@@ -52,7 +52,7 @@ export const bar = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 0px 112.63px;
+  padding: 0px 98.63px;
   height: 56px;
   border-radius: 88px;
   background-color: #ff7710;
