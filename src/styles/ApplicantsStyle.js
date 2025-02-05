@@ -52,12 +52,13 @@ export const bar = styled.div`
 
 export const Button = styled.button`
   width: 342px;
-  height: 48px;
+  height: 56px;
   border-radius: 24px;
   background-color: #ff7710;
   color: white;
   border: none;
   margin: 10px;
+  font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
 `;
