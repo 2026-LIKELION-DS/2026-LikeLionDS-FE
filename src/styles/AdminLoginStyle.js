@@ -25,6 +25,9 @@ export const InputBox = styled.div`
   background-color: white;
   color: #d9650d;
   margin: 8px;
+
+  font-size: 16px;
+  font-weight: 500;
 `;
 
 export const InputName = styled.div`
@@ -38,6 +41,8 @@ export const Input = styled.input`
   outline: none;
   border: none;
   font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
 `;
 
 export const Bar = styled.div`
@@ -58,4 +63,6 @@ export const Button = styled.button`
   margin: 10px;
   font-size: 18px;
   cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
 `;

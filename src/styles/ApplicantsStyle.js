@@ -28,6 +28,7 @@ export const InputBox = styled.div`
 export const InputName = styled.div`
   width: 90px;
   font-size: 16px;
+  font-weight: 500;
   display: flex;
   justify-content: center;
 `;
@@ -37,6 +38,8 @@ export const Input = styled.input`
   border: none;
   width: 200px;
   font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
 `;
 
 export const bar = styled.div`
@@ -55,4 +58,6 @@ export const Button = styled.button`
   color: white;
   border: none;
   margin: 10px;
+  font-size: 20px;
+  font-weight: 600;
 `;
