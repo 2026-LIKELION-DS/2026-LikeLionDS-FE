@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -12,14 +12,30 @@ function ImageDetail({ index }) {
   const { initialIndex, images } = location.state;
 
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  
+  const [showArrows, setShowArrows] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    // 초기값 설정
+    setShowArrows(mediaQuery.matches);
+
+    // 미디어 조건 변화 감지
+    const handleChange = (e) => setShowArrows(e.matches);
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: initialIndex,
-    arrows: false,
+    arrows: showArrows,
     beforeChange: (current, next) => {
       setCurrentIndex(next);
     },
