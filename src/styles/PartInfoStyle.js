@@ -18,7 +18,7 @@ export const ComponentContainer = styled.div`
   flex-direction: column;
   align-items: self-start;
 
-  width: ${(props) => props.$width || "350px"};
+  width: ${(props) => (props.$width ? `min(${props.$width}, 87.7vw)` : `min(350px, 89.74vw)`)};
 `;
 
 export const TextContainer = styled.div`
@@ -49,15 +49,17 @@ export const PartContainer = styled.div`
 
   margin-top: 40px;
 
-  width: 350px;
+  width: min(350px, 89.74vw);
   height: 575px;
 `;
 
 export const PartImgContainer = styled.div`
-  width: 350px;
-  height: 212px;
+  width: min(350px, 89.74vw);
+  // height: 212px;
+  aspect-ratio: 350 / 212;
 
   cursor: pointer;
+  overflow: hidden;
 `;
 
 export const PartImgContainerFE = styled(PartImgContainer)`
@@ -70,10 +72,11 @@ export const PartImgContainerBE = styled(PartImgContainer)`
   z-index: 20;
 `;
 
-export const PartImgWrapper = styled.object`
+export const PartImgWrapper = styled.img`
   margin-top: ${(props) => props.$marginTop || "0px"};
 
   pointer-events: none;
 
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
 `;

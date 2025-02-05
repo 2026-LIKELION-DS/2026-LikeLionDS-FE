@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LineWrapper = styled.div`
-  width: 342px;
+  width: min(342px, 87.7vw);
 
   display: flex;
   flex-direction: row;

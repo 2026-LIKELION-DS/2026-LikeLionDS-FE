@@ -13,7 +13,7 @@ export const TitleText = styled.p`
 `;
 
 export const ItemWrapper = styled.div`
-  width: 342px;
+  width: min(342px, 87.7vw);
   padding: 10px 0px;
 
   display: flex;
@@ -38,6 +38,10 @@ export const ItemText = styled.p`
 
   white-space: nowrap;
   flex-shrink: 0;
+
+  @media (max-width: 370px) {
+    font-size: 14px;
+  }
 `;
 
 export const ItemLine = styled.div`
