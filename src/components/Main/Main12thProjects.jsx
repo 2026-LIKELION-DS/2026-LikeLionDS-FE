@@ -26,12 +26,10 @@ function Main12thProjects() {
   useEffect(() => {
     const handleScroll = () => {
       const newScrollY = window.scrollY || document.documentElement.scrollTop;
-      console.log("현재 스크롤 위치:", newScrollY); // 현재 스크롤 값 출력
 
-      if (newScrollY >= 1400) {
+      if (newScrollY >= 1300) {
         // 스크롤이 1400px 이상일 때만 동작
-        const newTranslateX = Math.max(0, 150 - ((newScrollY - 1600) / window.innerHeight) * 150); // 1400px 이후부터 translateX 적용
-        console.log("업데이트될 translateX:", newTranslateX); // translateX 값 확인
+        const newTranslateX = Math.max(0, 150 - ((newScrollY - 1300) / window.innerHeight) * 150); // 1400px 이후부터 translateX 적용
 
         // 애니메이션 프레임 요청
         if (animationFrameId.current) {
@@ -41,7 +39,7 @@ function Main12thProjects() {
           setTranslateX(newTranslateX);
         });
       } else {
-        setTranslateX(150); // 1400px 이전에는 움직이지 않음
+        setTranslateX(150);
       }
     };
 
