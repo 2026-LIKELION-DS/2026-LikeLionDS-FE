@@ -2,8 +2,8 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const NoticeContent = styled.div`
-  /* width: calc(100vw - 72px); */
-  @media (hover: hover) and (pointer: fine) {
+  width: calc(100vw - 72px);
+  @media (hover: hover) and (pointer: fine), screen and (min-width: 768px) {
     width: 318px;
   }
   height: 67px;

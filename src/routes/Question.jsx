@@ -19,10 +19,18 @@ function Question() {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = "18px";
       textAreaRef.current.style.height = `${Math.max(textAreaRef.current.scrollHeight, 18)}px`;
-      const newBorderRadius = Math.max(30, 88 - inputValue.length * 0.5); // 최소 30px 유지
+  
+      const maxHeight = 200; // 원하는 최대 높이 설정 (예: 200px)
+      const minRadius = 30; // 최소 border-radius 값
+      const maxRadius = 88; // 최대 border-radius 값
+  
+      // textArea 높이를 기준으로 border-radius 조정
+      const heightRatio = (textAreaRef.current.scrollHeight - 18) / (maxHeight - 18);
+      const newBorderRadius = Math.max(minRadius, maxRadius - heightRatio * (maxRadius - minRadius));
+  
       setBorderRadius(newBorderRadius);
     }
-  }, [inputValue]);
+  }, [inputValue]);  
 
   useEffect(() => {
     const fetchQuestionsAndAnswers = async () => {

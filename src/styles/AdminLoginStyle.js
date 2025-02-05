@@ -15,8 +15,6 @@ export const Form = styled.form`
 `;
 
 export const InputBox = styled.div`
-  width: 342px;
-  height: 48px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -28,6 +26,10 @@ export const InputBox = styled.div`
 
   font-size: 16px;
   font-weight: 500;
+
+  gap: 12px;
+  padding: 0 16px;
+  height: 48px;
 `;
 
 export const InputName = styled.div`
@@ -54,16 +56,18 @@ export const Bar = styled.div`
 `;
 
 export const Button = styled.button`
-  width: 342px;
-  height: 56px;
-  border-radius: 24px;
+  border-radius: 88px;
   background-color: #ff7710;
   color: white;
   border: none;
   margin: 10px;
   font-size: 18px;
-  cursor: pointer;
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
+  &:hover {
+    cursor: pointer;
+  }
+  padding: 0px 135.075px;
+  height: 56px;
 `;

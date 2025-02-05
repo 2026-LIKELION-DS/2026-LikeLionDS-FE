@@ -3,7 +3,10 @@ import styled from "styled-components";
 import palette from "@lib/colorPalette";
 
 export const ApplicantsResult = styled.div`
-  height: 160px;
+  height: 788px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Page = styled.div`
@@ -19,7 +22,6 @@ export const Box = styled.div`
   padding: 20px;
   color: black;
   border-radius: 24px;
-  margin-bottom: 50px;
 `;
 
 export const Info = styled.div`
