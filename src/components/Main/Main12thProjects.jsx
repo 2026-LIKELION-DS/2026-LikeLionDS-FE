@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import * as M from "@styles/Main12thProjectsStyle.js"; // 스타일 분리 파일 import
 import dsBack from "@assets/logo/logo_ds_background.svg";
 import underLineDS from "@assets/icons/icon_underlineDS.svg";
@@ -21,92 +21,127 @@ import Instagram from "@assets/icons/icon_instagram.svg";
 
 function Main12thProjects() {
   const [translateX, setTranslateX] = useState(150); // 초기 위치 (오른쪽에서 시작)
-  const [scrollY, setScrollY] = useState(0); // 현재 스크롤 위치 저장
+  const animationFrameId = useRef(null); // requestAnimationFrame ID 저장
 
   useEffect(() => {
-    let animationFrameId;
-
     const handleScroll = () => {
-      const newScrollY = window.scrollY;
-      setScrollY(newScrollY);
+      const newScrollY = window.scrollY || document.documentElement.scrollTop;
+      console.log("현재 스크롤 위치:", newScrollY); // 현재 스크롤 값 출력
 
-      // 스크롤 값에 따라 X 좌표 조정 (속도 조절 가능)
-      const newTranslateX = Math.max(0, 150 - newScrollY * 0.3); // 속도 조정 가능
+      if (newScrollY >= 1400) {
+        // 스크롤이 1400px 이상일 때만 동작
+        const newTranslateX = Math.max(0, 150 - ((newScrollY - 1600) / window.innerHeight) * 150); // 1400px 이후부터 translateX 적용
+        console.log("업데이트될 translateX:", newTranslateX); // translateX 값 확인
 
-      // 애니메이션 프레임 최적화
-      animationFrameId = requestAnimationFrame(() => setTranslateX(newTranslateX));
+        // 애니메이션 프레임 요청
+        if (animationFrameId.current) {
+          cancelAnimationFrame(animationFrameId.current);
+        }
+        animationFrameId.current = requestAnimationFrame(() => {
+          setTranslateX(newTranslateX);
+        });
+      } else {
+        setTranslateX(150); // 1400px 이전에는 움직이지 않음
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId.current) {
+        cancelAnimationFrame(animationFrameId.current);
+      }
     };
   }, []);
 
   return (
     <M.WrapperContainer>
-      <M.WhatisDSdiv>
-        {/* 스크롤 시 왼쪽으로 이동하는 배경 이미지 */}
-        <M.DSBack src={dsBack} alt="dsBackground" $translateX={translateX} />
-        <div>덕성여대</div>
-        <div>멋쟁이사자처럼은?</div>
-        <M.UnderLine src={underLineDS} />
-        <span>
-          매주 세션 1회, 팀별 스터디 1회 총 2번의 대면 만남을 통해 서로 상호교류하며 프로그래밍을 함께 공부합니다.
-        </span>
-      </M.WhatisDSdiv>
-      <M.Projects12th>
-        <span>작년 12기에는...</span>
-        <M.ProjectsSlide1>
-          <img src={four1} alt="project1" />
-          <img src={four2} alt="project2" />
-          <img src={four3} alt="project3" />
-          <img src={four4} alt="project4" />
-          <img src={ideathon1} alt="ideathon1" />
-          <img src={ideathon2} alt="ideathon2" />
-          <img src={ideathon3} alt="ideathon3" />
-        </M.ProjectsSlide1>
-        <M.ProjectsSlide2>
-          <img src={ideathon4} alt="ideathon4" />
-          <img src={ideathon5} alt="ideathon5" />
-          <img src={pioneer1} alt="pioneer1" />
-          <img src={pioneer2} alt="pioneer2" />
-          <img src={pioneer3} alt="pioneer3" />
-          <img src={pioneer4} alt="pioneer4" />
-          <img src={pioneer5} alt="pioneer5" />
-          <img src={pioneer6} alt="pioneer6" />
-        </M.ProjectsSlide2>
-      </M.Projects12th>
-      <M.SessionInfo>
-        <div>
-          <span>세션</span>
-          <p>
-            <strong>7</strong>회
-          </p>
-        </div>
-        <div>
-          <span>파트별 스터디</span>
-          <p>
-            <strong>9</strong>회
-          </p>
-        </div>
-        <div>
-          <span>해커톤 및 프로젝트</span>
-          <p>
-            <strong>5</strong>+
-          </p>
-        </div>
-      </M.SessionInfo>
-      <M.More>
-        <span>더 자세한 활동이 궁금하다면?</span>
-        <M.InstaMain>
-          <img src={Instagram} alt="instagram" />
-          <div>인스타그램</div>
-          <p>@likelion_ds</p>
-        </M.InstaMain>
-        <span>을 확인해주세요.</span>
-      </M.More>
+      <M.PageContainer>
+        <M.WhatisDSdiv>
+          {/* 스크롤 시 왼쪽으로 이동하는 배경 이미지 */}
+          <M.DSBack src={dsBack} alt="dsBackground" $translateX={translateX} />
+          <div>덕성여대</div>
+          <div>멋쟁이사자처럼은?</div>
+          <M.UnderLine src={underLineDS} />
+          <span>
+            매주 세션 1회, 팀별 스터디 1회 총 2번의 대면 만남을 통해 서로 상호교류하며 프로그래밍을 함께 공부합니다.
+          </span>
+        </M.WhatisDSdiv>
+        <M.Projects12th>
+          <span>작년 12기에는...</span>
+          <M.ProjectsSlide1>
+            <div className="slide-track">
+              <img src={four1} alt="project1" />
+              <img src={four2} alt="project2" />
+              <img src={four3} alt="project3" />
+              <img src={four4} alt="project4" />
+              <img src={ideathon1} alt="ideathon1" />
+              <img src={ideathon2} alt="ideathon2" />
+              <img src={ideathon3} alt="ideathon3" />
+              <img src={four1} alt="project1" />
+              <img src={four2} alt="project2" />
+              <img src={four3} alt="project3" />
+              <img src={four4} alt="project4" />
+              <img src={ideathon1} alt="ideathon1" />
+              <img src={ideathon2} alt="ideathon2" />
+              <img src={ideathon3} alt="ideathon3" />
+            </div>
+          </M.ProjectsSlide1>
+          <M.ProjectsSlide2>
+            <div className="slide-track">
+              <img src={ideathon4} alt="ideathon4" />
+              <img src={ideathon5} alt="ideathon5" />
+              <img src={pioneer1} alt="pioneer1" />
+              <img src={pioneer2} alt="pioneer2" />
+              <img src={pioneer3} alt="pioneer3" />
+              <img src={pioneer4} alt="pioneer4" />
+              <img src={pioneer5} alt="pioneer5" />
+              <img src={pioneer6} alt="pioneer6" />
+              <img src={ideathon4} alt="ideathon4" />
+              <img src={ideathon5} alt="ideathon5" />
+              <img src={pioneer1} alt="pioneer1" />
+              <img src={pioneer2} alt="pioneer2" />
+              <img src={pioneer3} alt="pioneer3" />
+              <img src={pioneer4} alt="pioneer4" />
+              <img src={pioneer5} alt="pioneer5" />
+              <img src={pioneer6} alt="pioneer6" />
+            </div>
+          </M.ProjectsSlide2>
+        </M.Projects12th>
+        <M.SessionInfo>
+          <div>
+            <span>세션</span>
+            <p>
+              <strong>7</strong>회
+            </p>
+          </div>
+          <div>
+            <span>파트별 스터디</span>
+            <p>
+              <strong>9</strong>회
+            </p>
+          </div>
+          <div>
+            <span>해커톤 및 프로젝트</span>
+            <p>
+              <strong>5</strong>+
+            </p>
+          </div>
+        </M.SessionInfo>
+        <M.More>
+          <span>더 자세한 활동이 궁금하다면?</span>
+          <M.InstaMain onClick={() => (window.location.href = "https://www.instagram.com/likelion_ds/")}>
+            <img src={Instagram} alt="instagram" />
+            <div>인스타그램</div>
+            <p>@likelion_ds</p>
+          </M.InstaMain>
+          을
+          <M.TextContainer>
+            <M.HighlightText> 확인해주세요.</M.HighlightText>
+          </M.TextContainer>
+        </M.More>
+      </M.PageContainer>
     </M.WrapperContainer>
   );
 }
