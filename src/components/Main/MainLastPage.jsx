@@ -17,16 +17,26 @@ function MainLastPage() {
 
   const calculateDday = () => {
     const now = new Date();
-    const diffTime = deadline - now;
-
-    if (diffTime <= 0) {
-      return "지원이 마감되었습니다!"; // 2025년 2월 20일 18시 이후
+    const deadline = new Date(2025, 1, 20, 18, 0, 0); // 2025년 2월 20일 18:00 마감
+  
+    if (now >= deadline) {
+      return "지원이 마감되었습니다!"; // 2월 20일 18:00 이후
     }
-
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-    return diffDays === 0 ? "지원 마감까지 D-Day" : `지원 마감까지 D-${diffDays}`;
-  };
+  
+    const dDayStart = new Date(2025, 1, 20, 0, 0, 0);
+    const d1Start = new Date(2025, 1, 19, 0, 0, 0);
+  
+    if (now >= dDayStart) {
+      return "지원 마감까지 D-Day"; // 2월 20일 00:00 ~ 17:59
+    }
+  
+    if (now >= d1Start) {
+      return "지원 마감까지 D-1"; // 2월 19일 00:00 ~ 23:59
+    }
+  
+    const diffDays = Math.floor((d1Start - now) / (1000 * 60 * 60 * 24));
+    return `지원 마감까지 D-${diffDays}`;
+  };  
 
   // D-Day 상태 및 마감 여부 관리
   const [dday, setDday] = useState(calculateDday());
