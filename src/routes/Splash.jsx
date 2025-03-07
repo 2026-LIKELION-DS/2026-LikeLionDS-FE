@@ -64,16 +64,19 @@ function Splash() {
   // 날짜 조건 체크
   useEffect(() => {
     const today = new Date();
-    const startDate1 = new Date(2025, 1, 26, 12, 0, 0);
-    const endDate1 = new Date(2025, 2, 8, 12, 0, 0);
-    const startDate2 = new Date(2025, 2, 8, 12, 0, 0);
+    const startDate1 = new Date(2025, 1, 26, 12, 0, 0); // 2월 26일 12시
+    const endDate1 = new Date(2025, 2, 8, 0, 0, 0); // 3월 8일 00시
+    const midDate = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시
+    const startDate2 = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시 이후
 
     if (today >= startDate2) {
       setAppText("최종 합격자 조회하기");
       setAppDate(true);
-    } else if (today >= startDate1 && today <= endDate1) {
+    } else if (today >= startDate1 && today < endDate1) {
       setAppText("1차 합격자 조회하기");
       setAppDate(true);
+    } else if (today >= endDate1 && today < midDate) {
+      setAppDate(false); // 3월 8일 00시 ~ 3월 8일 12시
     } else {
       setAppDate(false);
     }

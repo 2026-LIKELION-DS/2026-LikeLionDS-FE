@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as A from "@styles/ApplicantsStyle";
 import Header from "@components/Header/HeaderApp";
-// import Error from "@routes/Error";
+import Error from "@routes/Error";
 
 function Applicants() {
   const navigate = useNavigate();
@@ -13,26 +13,29 @@ function Applicants() {
     email: "",
   });
 
-  // const [isAccessible, setIsAccessible] = useState(false);
+  const [isAccessible, setIsAccessible] = useState(false);
 
-  // useEffect(() => {
-  //   const checkAccessTime = () => {
-  //     const now = new Date();
-  //     const accessTime = new Date(now.getFullYear(), now.getMonth(), 26, 12, 0, 0);
-  
-  //     if (now >= accessTime) {
-  //       setIsAccessible(true);
-  //     } else {
-  //       setIsAccessible(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const checkAccessTime = () => {
+      const now = new Date();
+      const firstResultStart = new Date(2025, 1, 26, 12, 0, 0); // 2월 26일 12시부터 조회 가능
+      const disabledStart = new Date(2025, 2, 8, 0, 0, 0); // 3월 8일 00시 비활성화 시작
+      const disabledEnd = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시 비활성화 종료
 
-  //   checkAccessTime();
-  // }, []);
+      // 3월 8일 00시 ~ 3월 8일 12시 동안 접근 불가능
+      if (now >= disabledStart && now < disabledEnd) {
+        setIsAccessible(false);
+      } else {
+        setIsAccessible(now >= firstResultStart);
+      }
+    };
 
-  // if (!isAccessible) {
-  //   return <Error />;
-  // }
+    checkAccessTime();
+  }, []);
+
+  if (!isAccessible) {
+    return <Error />;
+  }
 
   const handleChange = (e) => {
     setFormValue((prevValue) => {

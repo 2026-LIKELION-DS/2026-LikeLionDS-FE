@@ -42,14 +42,22 @@ function SideBar({
   const isWithinDateRange = () => {
     const today = new Date();
     const startDate = new Date(2025, 1, 26, 12, 0, 0);
-    const endDate = new Date(2025, 2, 8, 12, 0, 0);
-    return today >= startDate && today <= endDate;
+    const endDate = new Date(2025, 2, 8, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
+    return today >= startDate && today < endDate;
+  };
+
+  // 3월 8일 00시 ~ 3월 8일 12시 동안 비활성화
+  const isInDisabledRange = () => {
+    const today = new Date();
+    const startDate = new Date(2025, 2, 8, 0, 0, 0); // 3월 8일 00시
+    const endDate = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시
+    return today >= startDate && today < endDate;
   };
 
   // 최종 합격자 조회
   const isFinalDateRange = () => {
     const today = new Date();
-    const startDate = new Date(2025, 2, 8, 12, 0, 0);
+    const startDate = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시 이후부터 활성화
     return today >= startDate;
   };
 
@@ -100,7 +108,7 @@ function SideBar({
           ) : (
             <S.Title onClick={handleOpenApplicationForm}>지원하러가기</S.Title>
           )}
-          {isWithinDateRange() ? (
+          {isWithinDateRange() && !isInDisabledRange() ? (
             <S.Title onClick={() => handleNavLinkClick("/input")} $isActive={currentPath === "/input"}>
               1차 합격자 조회하기
             </S.Title>

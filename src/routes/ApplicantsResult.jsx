@@ -63,13 +63,18 @@ function ApplicantsResult() {
                   <A.LinkBox>
                     <A.Button>
                       <A.Img src={notion} />
-                      <A.StyledLink to="https://mogg22.notion.site/13-1abbe6508c3c8002a5efc6b1e05fb186?pvs=4">
+                      <A.StyledLink
+                        to="https://mogg22.notion.site/13-1abbe6508c3c8002a5efc6b1e05fb186?pvs=4"
+                        target="_blank"
+                        rel="noopener noreferrer">
                         노션 바로가기
                       </A.StyledLink>
                     </A.Button>
                     <A.Button>
                       <A.Img src={discord} />
-                      <A.StyledLink to="https://discord.gg/WxJrCJYcyQ">디스코드 바로가기</A.StyledLink>
+                      <A.StyledLink to="https://discord.gg/WxJrCJYcyQ" target="_blank" rel="noopener noreferrer">
+                        디스코드 바로가기
+                      </A.StyledLink>
                     </A.Button>
                   </A.LinkBox>
                   <br />
