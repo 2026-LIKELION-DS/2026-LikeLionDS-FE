@@ -6,6 +6,7 @@ import { isAdminLoggedIn } from "@utils/Admin";
 
 import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
+import noticeDetailData from "@/data/noticeDetailData.json";
 
 function NoticeDetail() {
   const { id } = useParams();
@@ -13,15 +14,21 @@ function NoticeDetail() {
   const [notice, setNotice] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/board/${id}`)
-      .then((response) => {
-        setNotice(response.data);
-      })
-      .catch((error) => {
-        console.error("공지사항을 불러오는 중 오류 발생:", error);
-      });
+    const selectedNotice = noticeDetailData.find((item) => item.id === Number(id));
+    setNotice(selectedNotice || null);
   }, [id]);
+
+  // 서버 연동 코드 (배포 중단으로 프론트 내에서 아카이빙 처리)
+  // useEffect(() => {
+  //   axios
+  //     .get(`${import.meta.env.VITE_API_URL}/board/${id}`)
+  //     .then((response) => {
+  //       setNotice(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("공지사항을 불러오는 중 오류 발생:", error);
+  //     });
+  // }, [id]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -69,12 +76,16 @@ function NoticeDetail() {
             </a>
           ) : (
             part
-          )
+          ),
         )}
         <br />
       </React.Fragment>
     ));
-  };  
+  };
+
+  const getImagePath = (imageUrl) => {
+    return imageUrl;
+  };
 
   return (
     <>
@@ -91,7 +102,7 @@ function NoticeDetail() {
                   {notice.images.map((img, index) => (
                     <N.Image
                       key={img.id}
-                      src={`${import.meta.env.VITE_IMAGE_URL}${img.image_url}`}
+                      src={getImagePath(img.image_url)}
                       alt="공지 이미지"
                       onClick={() => handleImageClick(index)}
                     />

@@ -41,6 +41,10 @@ function ImageDetail({ index }) {
     },
   };
 
+  const getImagePath = (imageUrl) => {
+    return imageUrl;
+  };
+
   return (
     <>
       <Header current={currentIndex + 1} total={images.length} />
@@ -49,11 +53,7 @@ function ImageDetail({ index }) {
           <Slider {...settings}>
             {images.map((img) => (
               <div key={img.id}>
-                <img
-                  src={`${import.meta.env.VITE_IMAGE_URL}${img.image_url}`}
-                  alt="상세 이미지"
-                  style={{ width: "100%", height: "auto" }}
-                />
+                <img src={getImagePath(img.image_url)} alt="상세 이미지" style={{ width: "100%", height: "auto" }} />
               </div>
             ))}
           </Slider>
