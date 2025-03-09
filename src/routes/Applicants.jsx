@@ -21,9 +21,10 @@ function Applicants() {
       const firstResultStart = new Date(2025, 1, 26, 12, 0, 0); // 2월 26일 12시부터 조회 가능
       const disabledStart = new Date(2025, 2, 8, 0, 0, 0); // 3월 8일 00시 비활성화 시작
       const disabledEnd = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시 비활성화 종료
+      const finalEndDate = new Date(2025, 2, 11, 0, 0, 0); // 3월 11일 00시 이후 접근 불가
 
       // 3월 8일 00시 ~ 3월 8일 12시 동안 접근 불가능
-      if (now >= disabledStart && now < disabledEnd) {
+      if ((now >= disabledStart && now < disabledEnd) || now >= finalEndDate) {
         setIsAccessible(false);
       } else {
         setIsAccessible(now >= firstResultStart);

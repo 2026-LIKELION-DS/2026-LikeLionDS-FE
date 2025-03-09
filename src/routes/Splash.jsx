@@ -68,8 +68,11 @@ function Splash() {
     const endDate1 = new Date(2025, 2, 8, 0, 0, 0); // 3월 8일 00시
     const midDate = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시
     const startDate2 = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시 이후
+    const finalEndDate = new Date(2025, 2, 11, 0, 0, 0); // 3월 11일 00시
 
-    if (today >= startDate2) {
+    if (today >= finalEndDate) {
+      setAppDate(false); // 3월 11일 00시 이후부터 비활성화
+    } else if (today >= startDate2) {
       setAppText("최종 합격자 조회하기");
       setAppDate(true);
     } else if (today >= startDate1 && today < endDate1) {
