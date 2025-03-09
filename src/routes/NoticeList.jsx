@@ -8,21 +8,27 @@ import { isAdminLoggedIn } from "@utils/Admin";
 import Header from "@components/Header/HeaderSub";
 import NoticeContent from "@components/Notice/NoticeContent";
 import Footer from "@components/Footer";
+import noticeListData from "@/data/noticeListData.json";
 
 function NoticeList() {
   const [notices, setNotices] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/board`)
-      .then((response) => {
-        setNotices(response.data);
-      })
-      .catch((error) => {
-        console.error("공지사항 목록을 불러오는 중 오류 발생:", error);
-      });
+    setNotices(noticeListData);
   }, []);
+
+  // 서버 연동 코드 (배포 중단으로 프론트 내에서 아카이빙 처리)
+  // useEffect(() => {
+  //   axios
+  //     .get(`${import.meta.env.VITE_API_URL}/board`)
+  //     .then((response) => {
+  //       setNotices(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("공지사항 목록을 불러오는 중 오류 발생:", error);
+  //     });
+  // }, []);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
