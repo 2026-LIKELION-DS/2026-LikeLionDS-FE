@@ -24,9 +24,32 @@ export const InputContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
-  padding: 15px 20px;
+  padding: 25px 20px;
   margin-top: 56px;
+`;
+
+export const KakaoButton = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 15px 20px;
+  border-radius: 88px;
+  background-color: ${palette.style.white};
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+
+  color: ${palette.boldBlack.ex10Primary};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.42px;
+`;
+
+export const Icon = styled.img`
+  width: 20px;
 `;
 
 export const InputBox = styled.textarea`

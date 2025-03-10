@@ -6,6 +6,7 @@ import { isAdminLoggedIn } from "@utils/Admin";
 import QuestionList from "@/components/qna/QuestionList";
 import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
+import Kakao from "@assets/icons/icon_kakaotalk_black.svg";
 import questionsData from "@/data/questionsData.json";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -15,6 +16,7 @@ function Question() {
   const [inputValue, setInputValue] = useState("");
   const textAreaRef = useRef(null);
   const [borderRadius, setBorderRadius] = useState(88);
+  const [showKakaoButton, setShowKakaoButton] = useState(false);
 
   useEffect(() => {
     if (textAreaRef.current) {
@@ -154,23 +156,52 @@ function Question() {
     }
   };
 
+  useEffect(() => {
+    const checkDate = () => {
+      const now = new Date();
+      const finalEndDate = new Date(2025, 2, 11, 0, 0, 0); // 3월 11일 00시
+
+      if (now >= finalEndDate) {
+        setShowKakaoButton(true);
+      } else {
+        setShowKakaoButton(false);
+      }
+    };
+
+    checkDate();
+  }, []);
+
+  const handleKakaoClick = () => {
+    window.open("https://open.kakao.com/me/LikelionDS", "_blank", "noopener,noreferrer");
+  };
+
   return (
     <>
       <Q.Space>
         <div>
           {isAdminLoggedIn() ? <Header title="Q&A 답변 페이지(운영진)" /> : <Header title="Q&A" />}
           <Q.InputContainer>
-            <Q.InputBox
-              ref={textAreaRef}
-              value={inputValue}
-              onChange={handleInputChange}
-              placeholder="더 궁금한 내용을 질문해주세요!"
-              style={{ borderRadius: `${borderRadius}px` }}
-            />
-            <Q.SendButton onClick={handleAddQuestion}>
-              <img src={arrowIcon} alt="전송 버튼" />
-            </Q.SendButton>
+            {showKakaoButton ? (
+              <Q.KakaoButton onClick={handleKakaoClick}>
+                <Q.Icon src={Kakao} alt="카카오톡" />
+                추가 문의사항은 카카오톡으로 질문해주세요!
+              </Q.KakaoButton>
+            ) : (
+              <>
+                <Q.InputBox
+                  ref={textAreaRef}
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  placeholder="더 궁금한 내용을 질문해주세요!"
+                  style={{ borderRadius: `${borderRadius}px` }}
+                />
+                <Q.SendButton onClick={handleAddQuestion}>
+                  <img src={arrowIcon} alt="전송 버튼" />
+                </Q.SendButton>
+              </>
+            )}
           </Q.InputContainer>
+
           <Q.Divider />
           <QuestionList questions={questions} setQuestions={setQuestions} />
         </div>

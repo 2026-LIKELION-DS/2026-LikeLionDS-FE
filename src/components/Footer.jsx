@@ -48,10 +48,10 @@ function Footer({ isMain }) {
             )}
           </F.InformGroup>
           <F.Sns>
-            <a href="https://www.instagram.com/likelion_ds">
+            <a href="https://www.instagram.com/likelion_ds" target="_blank" rel="noopener noreferrer">
               <F.Icon src={Instagram} alt="인스타그램" />
             </a>
-            <a href="https://open.kakao.com/me/LikelionDS">
+            <a href="https://open.kakao.com/me/LikelionDS" target="_blank" rel="noopener noreferrer">
               <F.Icon src={Kakao} alt="카카오톡" />
             </a>
           </F.Sns>
