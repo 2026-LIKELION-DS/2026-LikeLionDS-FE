@@ -26,6 +26,10 @@ export const InputContainer = styled.div`
   gap: 10px;
   padding: 25px 20px;
   margin-top: 56px;
+
+  @media (hover: hover) and (pointer: fine), screen and (min-width: 768px) {
+    margin-top: 46px;
+  }
 `;
 
 export const KakaoButton = styled.div`
