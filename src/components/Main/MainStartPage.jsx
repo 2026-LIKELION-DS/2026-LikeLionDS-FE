@@ -54,7 +54,7 @@ function MainStartPage({ scrollToSection }) {
           <div>멋쟁이사자처럼이란?</div>
           <M.UnderLine src={underLine} alt="underline" />
           <span>
-            멋쟁이사자처럼은 테크 기반의 아이디어 실현을 위해 국내 53개 대학이 모여 이루어진 국내 최대 규모{" "}
+            멋쟁이사자처럼은 테크 기반의 아이디어 실현을 위해 국내 54개 대학이 모여 이루어진 국내 최대 규모{" "}
             <strong>IT 창업 동아리</strong>입니다.
           </span>
           <span>각 대학별로 세션 및 스터디가 진행되며, 중앙 해커톤 및 연합 해커톤 등을 함께 하게 됩니다.</span>
