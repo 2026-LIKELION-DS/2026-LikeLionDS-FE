@@ -47,7 +47,7 @@ yarn dev # 실행
 ### 💫 Git Flow
 
 ```
-main ← feat
+main ← develop
 ```
 
 - main : 배포 및 전체 개발 브랜치 (feat이 merge되는 브랜치) -> 1차 배포 브랜치
