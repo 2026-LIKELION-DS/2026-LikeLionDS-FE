@@ -1,9 +1,10 @@
 ---
-name: "[태그] 이슈 제목"
-about: 해당 이슈 생성 템플릿을 사용하여 이슈를 생성해주세요.
-title: ""
-labels: ""
-assignees: ""
+name: "✨Feat - 새로운 기능 추가"
+about: 새로운 기능 개발 시 해당 이슈템플릿을 사용해주세요.
+title: "✨Feat - "
+labels: "✨Feature"
+assignees: ''
+
 ---
 
 ## 📄 About
@@ -16,7 +17,3 @@ assignees: ""
 
 - [ ] todo
 - [ ] todo
-
-## 🎨 Preview
-
-작업하고자 하는 내용의 뷰를 첨부해주세요.
