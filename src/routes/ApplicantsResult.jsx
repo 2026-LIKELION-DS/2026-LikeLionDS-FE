@@ -118,7 +118,12 @@ function ApplicantsResult() {
                   </>
                 )}
               </A.Box>
-              {is_passed && !finalResult && <A.TimeButton onClick={handleTime}>면접시간 작성하기</A.TimeButton>}
+
+              {is_passed && !finalResult && (
+                <A.TimeButtonGrid>
+                  <A.TimeButton onClick={handleTime}>면접시간 작성하기</A.TimeButton>
+                </A.TimeButtonGrid>
+              )}
             </>
           ) : (
             <A.Box>
