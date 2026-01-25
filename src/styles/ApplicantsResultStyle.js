@@ -78,3 +78,30 @@ export const Button = styled.button`
   margin-top: 8px;
   font-family: Pretendard;
 `;
+
+export const TimeButton = styled.button`
+  border-radius: 88px;
+  background-color: #ff7710;
+  color: white;
+  border: none;
+
+  font-size: 18px;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  background: var(--Real-Orange-ex5_Primary, #ff7710);
+  box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.2);
+
+  width: 100%;
+  padding: 16px 0;
+  margin-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

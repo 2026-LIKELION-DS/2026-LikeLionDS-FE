@@ -12,6 +12,7 @@ function MainLastPage() {
   const handleClick = () => {
     if (!isDeadlinePassed) {
       window.open("https://forms.gle/QDrszV6xmGcnxr6g6", "_blank");
+      // 위 코드를 지원서 페이지로 바꿔 연결해주세요!
     }
   };
 
