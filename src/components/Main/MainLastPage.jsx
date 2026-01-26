@@ -7,27 +7,28 @@ import growltoworld from "@assets/logo/logo_growlToWorld.png";
 import * as M from "@styles/MainLastPageStyle.js"; // 스타일 파일 import
 
 function MainLastPage() {
-  const deadline = new Date(2025, 1, 20, 18, 0, 0); // 2025년 2월 20일 18:00 마감
+  const deadline = new Date(2026, 1, 19, 18, 0, 0); // 2026년 2월 19일 18:00 마감
 
   const handleClick = () => {
     if (!isDeadlinePassed) {
       window.open("https://forms.gle/QDrszV6xmGcnxr6g6", "_blank");
+      // 위 코드를 지원서 페이지로 바꿔 연결해주세요!
     }
   };
 
   const calculateDday = () => {
     const now = new Date();
-    const deadline = new Date(2025, 1, 20, 18, 0, 0); // 2025년 2월 20일 18:00 마감
+    const deadline = new Date(2026, 1, 19, 18, 0, 0); // 2026년 2월 19일 18:00 마감
   
     if (now >= deadline) {
-      return "지원이 마감되었습니다!"; // 2월 20일 18:00 이후
+      return "지원이 마감되었습니다!"; // 2월 19일 18:00 이후
     }
   
-    const dDayStart = new Date(2025, 1, 20, 0, 0, 0);
-    const d1Start = new Date(2025, 1, 19, 0, 0, 0);
+    const dDayStart = new Date(2026, 1, 19, 0, 0, 0);
+    const d1Start = new Date(2026, 1, 18, 0, 0, 0);
   
     if (now >= dDayStart) {
-      return "지원 마감까지 D-Day"; // 2월 20일 00:00 ~ 17:59
+      return "지원 마감까지 D-Day"; // 2월 19일 00:00 ~ 17:59
     }
   
     if (now >= d1Start) {
@@ -63,7 +64,7 @@ function MainLastPage() {
           <Lottie animationData={loadingLottie} loop={true} />
         </M.LottieContainer>
       </M.LoadingScreenContainer>
-      <M.Magam isDeadlinePassed={isDeadlinePassed}>
+      <M.Magam $isDeadlinePassed={isDeadlinePassed}>
       <div>
   {!isDeadlinePassed && <img src={fire} alt="fire" />}
   <M.DdayText $isDeadlinePassed={isDeadlinePassed}>{dday}</M.DdayText>
