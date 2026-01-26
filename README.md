@@ -2,12 +2,17 @@
 
 ## 🖥️ FE Developer
 
-**덕성여자대학교 멋쟁이사자처럼 13기 프론트엔드 운영진**
-| <a href="https://github.com/mogg22"><img src="https://avatars.githubusercontent.com/u/126389940?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/pookey1104"><img src="https://avatars.githubusercontent.com/u/90364700?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/jinhyo0"><img src="https://avatars.githubusercontent.com/u/150879545?v=4" width="120px;" alt=""/></a> |
+**덕성여자대학교 멋쟁이사자처럼 14기 프론트엔드 운영진**
+| <a href="https://github.com/aney0714"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/edb19912-e704-4f0a-8138-968ef5c0f93a" />
+</a> | <a href="https://github.com/yangyangeeee"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/77e0daf6-f6da-4b6e-851b-76c92edb578e" />
+</a> | <a href="https://github.com/2godong"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/742b1e86-f412-4211-aa66-9dc938fb8291" />
+</a> |
 | --- | --- | --- |
-| 목소연 | 김서윤 | 김진효 |
-| <a href="https://github.com/yeon-yeon1"><img src="https://avatars.githubusercontent.com/u/158417764?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/mzxxzysy"><img src="https://avatars.githubusercontent.com/u/163836325?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/chldsbdud"><img src="https://avatars.githubusercontent.com/u/142567232?v=4" width="120px;" alt=""/></a> |
-| 노진경 | 정서영 | 최윤영 |
+| 김예나 | 양서윤 | 이소라 |
+| <a href="https://github.com/soool22"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/7abf94f6-ca68-4055-a0fa-165d52bf5b06" />
+</a> | <a href="https://github.com/gjdbsdk"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/4b5856a5-0356-47fd-9975-059ad33c5074" />
+</a> |
+| 최솔 | 허윤아 |
 
 ## 🛠 기술 스택
 
