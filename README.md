@@ -1,18 +1,16 @@
 # 🦁 LIKELION-DS 13th
 
-## 🖥️ FE Developer
-
+## 🖥️ FE Developer  
 **덕성여자대학교 멋쟁이사자처럼 14기 프론트엔드 운영진**
-| <a href="https://github.com/aney0714"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/edb19912-e704-4f0a-8138-968ef5c0f93a" />
-</a> | <a href="https://github.com/yangyangeeee"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/77e0daf6-f6da-4b6e-851b-76c92edb578e" />
-</a> | <a href="https://github.com/2godong"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/742b1e86-f412-4211-aa66-9dc938fb8291" />
-</a> |
+
+| <a href="https://github.com/aney0714"><img width="150" alt="/" src="https://github.com/user-attachments/assets/23b07aae-7f23-4bbb-b925-317befa96897" /></a> | <a href="https://github.com/yangyangeeee"><img width="150" alt="/" src="https://github.com/user-attachments/assets/aa4d654e-746c-4e5e-836f-e634857313ee" /></a> | <a href="https://github.com/2godong"><img src="https://github.com/user-attachments/assets/742b1e86-f412-4211-aa66-9dc938fb8291" width="150" /></a> |
 | --- | --- | --- |
 | 김예나 | 양서윤 | 이소라 |
-| <a href="https://github.com/soool22"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/7abf94f6-ca68-4055-a0fa-165d52bf5b06" />
-</a> | <a href="https://github.com/gjdbsdk"><img width="420" height="420" alt="203046560" src="https://github.com/user-attachments/assets/4b5856a5-0356-47fd-9975-059ad33c5074" />
-</a> |
+
+| <a href="https://github.com/soool22"><img width="150" alt="202631132" src="https://github.com/user-attachments/assets/bb41e834-f6b4-4099-9e92-b60cb119af1a" /></a> | <a href="https://github.com/gjdbsdk"><img width="150" alt="202630862" src="https://github.com/user-attachments/assets/e9245286-eab6-4b63-a988-c8c119c2cf7c" /></a> |
+| --- | --- |
 | 최솔 | 허윤아 |
+
 
 ## 🛠 기술 스택
 
