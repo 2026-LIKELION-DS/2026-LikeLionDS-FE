@@ -92,15 +92,15 @@ export const Button = styled.button`
 `;
 
 export const TimeButtonGrid = styled.div`
+  width: 90%;
   margin-top: 60px;
   display: Flex;
   justify-content: center;
   align-items: center;
 `;
 export const TimeButton = styled.button`
-  width: 90%;
+  width: 100%;
   padding: 16px 0;
-  margin-top: 16px;
 
   border-radius: 88px;
   border: none;
@@ -121,9 +121,6 @@ export const TimeButton = styled.button`
   &:hover {
     cursor: pointer;
     background-color: ${palette.realOrange.ex4};
-  }
-
-  &:active {
-    transform: scale(0.98);
+    transform: scale(1.01);
   }
 `;

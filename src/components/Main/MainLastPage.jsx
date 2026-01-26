@@ -64,7 +64,7 @@ function MainLastPage() {
           <Lottie animationData={loadingLottie} loop={true} />
         </M.LottieContainer>
       </M.LoadingScreenContainer>
-      <M.Magam isDeadlinePassed={isDeadlinePassed}>
+      <M.Magam $isDeadlinePassed={isDeadlinePassed}>
       <div>
   {!isDeadlinePassed && <img src={fire} alt="fire" />}
   <M.DdayText $isDeadlinePassed={isDeadlinePassed}>{dday}</M.DdayText>
