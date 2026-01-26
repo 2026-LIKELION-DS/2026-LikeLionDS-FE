@@ -3,11 +3,11 @@
 ## 🖥️ FE Developer  
 **덕성여자대학교 멋쟁이사자처럼 14기 프론트엔드 운영진**
 
-| <a href="https://github.com/aney0714"><img width="150" alt="/" src="https://github.com/user-attachments/assets/23b07aae-7f23-4bbb-b925-317befa96897" /></a> | <a href="https://github.com/yangyangeeee"><img width="150" alt="/" src="https://github.com/user-attachments/assets/aa4d654e-746c-4e5e-836f-e634857313ee" /></a> | <a href="https://github.com/2godong"><img src="https://github.com/user-attachments/assets/742b1e86-f412-4211-aa66-9dc938fb8291" width="150" alt="/"/></a> |
+| <a href="https://github.com/aney0714"><img width="150" alt="/" src="https://avatars.githubusercontent.com/aney0714" /></a> | <a href="https://github.com/yangyangeeee"><img width="150" alt="/" src="https://avatars.githubusercontent.com/yangyangeeee" /></a> | <a href="https://github.com/2godong"><img src="https://avatars.githubusercontent.com/2godong" width="150" alt="/"/></a> |
 | --- | --- | --- |
 | 김예나 | 양서윤 | 이소라 |
 
-| <a href="https://github.com/soool22"><img width="150" alt="/" src="https://github.com/user-attachments/assets/bb41e834-f6b4-4099-9e92-b60cb119af1a" /></a> | <a href="https://github.com/gjdbsdk"><img width="150" alt="/" src="https://github.com/user-attachments/assets/e9245286-eab6-4b63-a988-c8c119c2cf7c" /></a> |
+| <a href="https://github.com/soool22"><img width="150" alt="/" src="https://avatars.githubusercontent.com/soool22 /></a> | <a href="https://github.com/gjdbsdk"><img width="150" alt="/" src="https://avatars.githubusercontent.com/gjdbsdk" /></a> |
 | --- | --- |
 | 최솔 | 허윤아 |
 
