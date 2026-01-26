@@ -180,7 +180,7 @@ main ← develop
 ## 📂 프로젝트 구조
 
 ```
-📦2025-LikeLionDS-FE
+📦2026-LikeLionDS-FE
  ┣ 📁.github
  ┣ 📁node_modules
  ┣ 📂public
