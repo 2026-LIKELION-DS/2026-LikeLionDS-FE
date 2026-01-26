@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as N from "@styles/TimeSelectionStyle";
 
 import Header from "@components/Header/HeaderSub";
@@ -24,17 +24,28 @@ const DAYS = [
 
 function TimeSelection() {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState([]); 
+  const location = useLocation();
+
+  const [selected, setSelected] = useState([]);
+
+  // 개발용 fallback state, 배포 전 삭제해야 함
+  const devState = {
+    fromResult: true,
+  };
+
+  const { fromResult } = location.state ?? devState;
+
+  useEffect(() => {
+    if (import.meta.env.PROD) {
+      if (!location.state || !location.state.name || location.state.is_passed === undefined) {
+        navigate("/error");
+      }
+    }
+  }, [location, navigate]);
 
   const handleSelect = (day, time) => {
     const value = `${day}-${time}`;
-
-    setSelected(
-      (prev) =>
-        prev.includes(value)
-          ? prev.filter((v) => v !== value) 
-          : [...prev, value], 
-    );
+    setSelected((prev) => (prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]));
   };
 
   return (
@@ -76,8 +87,14 @@ function TimeSelection() {
 
         <N.NextButtonGrid>
           <N.NextButton
-            disabled={selected.length === 0} 
-            onClick={() => navigate("/timedone")}>
+            disabled={selected.length === 0}
+            onClick={() =>
+              navigate("/timedone", {
+                state: {
+                  selectedTimes: selected,
+                },
+              })
+            }>
             다음으로
           </N.NextButton>
         </N.NextButtonGrid>
