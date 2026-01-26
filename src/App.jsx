@@ -29,6 +29,7 @@ function App() {
         <Route path="/input" element={<Applicants />} />
         <Route path="/result" element={<ApplicantsResult />} />
         <Route path="/admin" element={<AdminLogin />} />
+
         {/* 어드민 로그인 상태에서만 접근 가능한 라우터들 */}
         <Route
           path="/admin/menu"
