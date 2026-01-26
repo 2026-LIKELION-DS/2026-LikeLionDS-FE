@@ -136,8 +136,8 @@ main ← develop
   - `♻Refactor` : 코드 리펙토링
   - `🎉Init`: 프로젝트 세팅
 - **예시**:
-  - [Feat] Header 컴포넌트 구현
-  - [Fix] Header 컴포넌트 버그 수정
+  - [✨️Feat] Header 컴포넌트 구현
+  - [🐛Fix] Header 컴포넌트 버그 수정
 
 ### PR Template
 
