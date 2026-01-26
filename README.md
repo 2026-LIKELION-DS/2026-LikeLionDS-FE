@@ -93,17 +93,17 @@ main ← develop
 **Issue Title 규칙**
 
 - **태그 목록**:
-  - `Feat`: 새로운 기능 추가
-  - `Fix` : 버그 수정
-  - `Refactor` : 코드 리펙토링
-  - `Init`: 프로젝트 세팅
+  - `✨️Feat`: 새로운 기능 추가
+  - `🐛Fix` : 버그 수정
+  - `♻️Refactor` : 코드 리펙토링
+  - `🎉Init`: 프로젝트 세팅
 - **예시**:
-  - [Feat] Header 컴포넌트 구현
-  - [Init] 프로젝트 초기 세팅
+  - ✨️Feat - Header 컴포넌트 구현
+  - 🎉Init - 프로젝트 초기 세팅
 
 ### Issue Template
 
-- **제목**: [Feat] 간단한 요약
+- **제목**: ✨️Feat - 간단한 요약
 - **내용**:
 
 ```
