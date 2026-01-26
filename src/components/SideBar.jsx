@@ -41,7 +41,7 @@ function SideBar({
   // 1차 합격자 조회
   const isWithinDateRange = () => {
     const today = new Date();
-    const startDate = new Date(2026, 1, 26, 12, 0, 0);
+    const startDate = new Date(2026, 1, 25, 12, 0, 0);
     const endDate = new Date(2026, 2, 8, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
     return today >= startDate && today < endDate;
   };
@@ -54,10 +54,10 @@ function SideBar({
     return today >= startDate && today < endDate;
   };
 
-  // 최종 합격자 조회 가능 기간 (3월 8일 12시 이후 ~ 3월 11일 00시 이전)
+  // 최종 합격자 조회 가능 기간 (3월 7일 12시 이후 ~ 3월 11일 00시 이전)
   const isFinalDateRange = () => {
     const today = new Date();
-    const startDate = new Date(2026, 2, 8, 12, 0, 0);
+    const startDate = new Date(2026, 2, 7, 12, 0, 0);
     const endDate = new Date(2026, 2, 11, 0, 0, 0);
     return today >= startDate && today < endDate;
   };
@@ -123,7 +123,7 @@ function SideBar({
           ) : (
             <S.ResultGroup>
               <S.SubTitle>1차 합격자 조회하기</S.SubTitle>
-              <S.SubDate>02.26부터</S.SubDate>
+              <S.SubDate>02.25부터</S.SubDate>
             </S.ResultGroup>
           )}
           {isFinalDateRange() ? (
@@ -133,7 +133,7 @@ function SideBar({
           ) : (
             <S.ResultGroup>
               <S.SubTitle>최종 합격자 조회하기</S.SubTitle>
-              <S.SubDate>03.08부터</S.SubDate>
+              <S.SubDate>03.07부터</S.SubDate>
             </S.ResultGroup>
           )}
         </S.Index>
