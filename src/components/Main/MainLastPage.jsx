@@ -18,7 +18,7 @@ function MainLastPage() {
 
   const calculateDday = () => {
     const now = new Date();
-    const deadline = new Date(2026, 1, 19, 18, 0, 0); // 2025년 2월 19일 18:00 마감
+    const deadline = new Date(2026, 1, 19, 18, 0, 0); // 2026년 2월 19일 18:00 마감
   
     if (now >= deadline) {
       return "지원이 마감되었습니다!"; // 2월 19일 18:00 이후
