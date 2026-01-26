@@ -7,7 +7,7 @@
 | --- | --- | --- |
 | 김예나 | 양서윤 | 이소라 |
 
-| <a href="https://github.com/soool22"><img width="150" alt="/" src="https://avatars.githubusercontent.com/soool22 /></a> | <a href="https://github.com/gjdbsdk"><img width="150" alt="/" src="https://avatars.githubusercontent.com/gjdbsdk" /></a> |
+| <a href="https://github.com/soool22"><img width="150" alt="/" src="https://avatars.githubusercontent.com/soool22" /></a> | <a href="https://github.com/gjdbsdk"><img width="150" alt="/" src="https://avatars.githubusercontent.com/gjdbsdk" /></a> |
 | --- | --- |
 | 최솔 | 허윤아 |
 
