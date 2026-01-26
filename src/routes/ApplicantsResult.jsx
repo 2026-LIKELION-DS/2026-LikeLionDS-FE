@@ -39,7 +39,7 @@ function ApplicantsResult() {
     if (today > finalDate) {
       setFinalResult(true);
     }
-  }, []);
+  },[]);
 
   const handleTime = () => {
     navigate("/timeselection");
@@ -56,7 +56,7 @@ function ApplicantsResult() {
                 <A.H1>{name} 님</A.H1>
                 <A.H1>축하드립니다!</A.H1>
                 <br />
-
+                {/* 최종 합격 */}
                 {finalResult ? (
                   <>
                     <A.Orange>덕성여자대학교 멋쟁이사자처럼 14기에</A.Orange>
@@ -72,17 +72,13 @@ function ApplicantsResult() {
                     <A.Info>자세한 사항은 추후 공지를 확인해주세요.</A.Info>
                     <br />
                     <A.Info>
-                      아래 노션 및 디스코드 링크에 접속하셔서 <br />
-                      최종 합격자로서의 기쁨을 누리세요!
+                      아래 노션 및 디스코드 링크에 접속하셔서 <br /> 최종 합격자로서의 기쁨을 누리세요!
                     </A.Info>
                     <br />
                     <A.LinkBox>
                       <A.Button>
                         <A.Img src={notion} />
-                        <A.StyledLink
-                          to="#"
-                          target="_blank"
-                          rel="noopener noreferrer">
+                        <A.StyledLink to="#" target="_blank" rel="noopener noreferrer">
                           노션 바로가기
                         </A.StyledLink>
                       </A.Button>
