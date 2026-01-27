@@ -21,7 +21,7 @@ function Submitted({ title, messages = [], highlightText, showKakaoLink = false,
             {msg.highlight && <S.Highlight>{msg.highlight}</S.Highlight>}
             <br />
             {msg.after}
-          </S.Text>
+          </S.Text> 
         ))}
 
         {showKakaoLink && (
