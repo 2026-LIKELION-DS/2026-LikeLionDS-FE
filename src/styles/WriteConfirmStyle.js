@@ -32,6 +32,9 @@ export const StepGrid = styled.div`
 
 export const FormGrid = styled.div`
   margin: 0 20px;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
 `;
 export const FormTitleBox = styled.div`
   display: flex;
@@ -39,31 +42,79 @@ export const FormTitleBox = styled.div`
 `;
 
 // 인적사항
-export const InformationFormGrid = styled.div``;
+export const InformationFormGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+`;
 export const InfoTitle = styled.div`
   font-size: 20px;
   font-weight: 600;
+  padding: 12px 0;
 `;
-export const InfoEdit = styled.div``;
+export const InfoEdit = styled.button`
+  font-size: 12px;
+  font-weight: 300;
+  color: ${palette.style.white};
+  background-color: ${palette.boldBlack.ex10Primary};
+  border: none;
+  cursor: pointer;
+`;
 
 export const InfoBox = styled.div``;
-export const InfoNameText = styled.div``;
-export const InfoName = styled.div``;
+export const InfoNameText = styled.div`
+  font-weight: 600;
+  margin-bottom: 16px;
+`;
+export const InfoName = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: ${palette.boldBlack.ex4};
+`;
 
-export const InfoPhoneText = styled.div``;
-export const InfoPhone = styled.div``;
+export const InfoPhone = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: ${palette.boldBlack.ex4};
+`;
 
-export const InfoMailText = styled.div``;
-export const InfoMail = styled.div``;
+export const InfoMail = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: ${palette.boldBlack.ex4};
+`;
 
 //문항답변
-export const AnswerFormGrid = styled.div``;
+export const CommonPartBox = styled.div``;
+export const AnswerFormGrid = styled.div`
+  display: flex;
+  gap: 36px;
+  flex-direction: column;
+`;
 export const AnsTitle = styled.div``;
-export const AnsEdit = styled.div``;
+export const AnsEdit = styled.button`
+  font-size: 12px;
+  font-weight: 300;
+  color: ${palette.style.white};
+  background-color: ${palette.boldBlack.ex10Primary};
+  border: none;
+  cursor: pointer;
+`;
 
-export const CoText = styled.div``;
-export const CoQ = styled.div``;
-export const CoQA = styled.div``;
+export const CoText = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+`;
+export const CoQ = styled.div`
+  font-weight: 600;
+  margin: 16px 0;
+`;
+export const CoQA = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: ${palette.boldBlack.ex4};
+`;
 export const CoQABox = styled.div``;
 
 //버튼 제출

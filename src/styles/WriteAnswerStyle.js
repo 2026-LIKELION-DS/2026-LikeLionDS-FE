@@ -60,6 +60,7 @@ export const QInput = styled.textarea`
   max-height: 280px;
   min-height: 18px;
   font-family: Pretendard;
+  width: 100%;
 `;
 export const QInputBox = styled.div`
   width: 98%;

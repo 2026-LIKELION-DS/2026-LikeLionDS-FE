@@ -16,6 +16,20 @@ function WriteAnswer() {
   const [TryJava, setTryJava] = useState<"yes" | "no" | null>(null);
   const [showFab, setShowFab] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const isEdit = location.state?.isEdit;
+
+  useEffect(() => {
+    if (location.state?.isEdit) {
+      const data = location.state.answerData;
+
+      setCommon1(data.common1);
+      setCommon2(data.common2);
+      setPart1(data.part1);
+      setPart2(data.part2);
+      setTryJava(data.TryJava);
+    }
+  }, [location.state]);
 
   const isFormValid =
     common1.trim() !== "" && common2.trim() !== "" && part1.trim() !== "" && part2.trim() !== "" && TryJava !== null;
@@ -156,9 +170,35 @@ function WriteAnswer() {
             disabled={!isFormValid}
             onClick={() => {
               if (!isFormValid) return;
-              navigate("/WriteConfirm");
+              if (isEdit) {
+                navigate("/WriteConfirm", {
+                  state: {
+                    isEdit: true,
+                    answerData: {
+                      common1,
+                      common2,
+                      part1,
+                      part2,
+                      TryJava,
+                    },
+                  },
+                });
+              } else {
+                navigate("/WriteConfirm", {
+                  state: {
+                    isEdit: false,
+                    answerData: {
+                      common1,
+                      common2,
+                      part1,
+                      part2,
+                      TryJava,
+                    },
+                  },
+                });
+              }
             }}>
-            다음으로
+            {isEdit ? "수정 완료" : "다음으로"}
           </N.NextButton>
         </N.NextButtonGrid>
       </N.Space>

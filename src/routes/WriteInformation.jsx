@@ -26,10 +26,35 @@ function WriteInformation() {
     fromResult: true,
   };
 
+  useEffect(() => {
+    if (location.state?.isEdit && location.state?.formData) {
+      const data = location.state.formData;
+
+      setName(data?.name ?? "");
+      setPhone(data?.phone ?? "");
+      setMail(data?.mail ?? "");
+      setLesson(data?.lesson ?? "");
+      setNumber(data?.number ?? "");
+      setSelectedPart(data?.part ?? null);
+    }
+  }, [location.state]);
+
   // 연동시 삭제
   const { fromResult } = location.state ?? devState;
 
-  const isFormValid = name.trim() && phone.trim() && mail.trim() && lesson.trim() && number.trim() && selectedPart;
+  // const isFormValid = name.trim() && phone.trim() && mail.trim() && lesson.trim() && number.trim() && selectedPart;
+  const isFormValid =
+    typeof name === "string" &&
+    typeof phone === "string" &&
+    typeof mail === "string" &&
+    typeof lesson === "string" &&
+    typeof number === "string" &&
+    name.trim() !== "" &&
+    phone.trim() !== "" &&
+    mail.trim() !== "" &&
+    lesson.trim() !== "" &&
+    number.trim() !== "" &&
+    selectedPart;
 
   return (
     <>
@@ -107,18 +132,22 @@ function WriteInformation() {
         <N.NextButtonGrid>
           <N.NextButton
             disabled={!isFormValid}
-            onClick={() =>
+            onClick={() => {
               navigate("/WriteAnswer", {
                 state: {
-                  name,
-                  phone,
-                  mail,
-                  lesson,
-                  number,
-                  part: selectedPart,
+                  isEdit: location.state?.isEdit ?? false,
+                  formData: {
+                    name,
+                    phone,
+                    mail,
+                    lesson,
+                    number,
+                    part: selectedPart,
+                  },
+                  fromResult,
                 },
-              })
-            }>
+              });
+            }}>
             다음으로
           </N.NextButton>
         </N.NextButtonGrid>

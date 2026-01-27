@@ -11,6 +11,40 @@ import Up from "@/assets/icons/Up.svg";
 function WriteConfirm() {
   const navigate = useNavigate();
   const [showFab, setShowFab] = useState(false);
+  const location = useLocation();
+  const answerData = location.state?.answerData;
+
+  const isEdit = location.state?.isEdit ?? false;
+  const formData = location.state?.formData ?? {};
+
+  const [form, setForm] = useState(formData);
+
+  //수정으로 이동
+  useEffect(() => {
+    if (location.state?.isEdit) {
+      setForm(location.state.formData);
+    }
+  }, []);
+
+  const handleEdit = () => {
+    navigate("/WriteInformation", {
+      state: {
+        isEdit: true,
+        formData: form,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (isEdit && location.state?.answerData) {
+      const data = location.state.answerData;
+      setCommon1(data.common1);
+      setCommon2(data.common2);
+      setPart1(data.part1);
+      setPart2(data.part2);
+      setTryJava(data.TryJava);
+    }
+  }, [location.state]);
 
   // 휠 감지
   useEffect(() => {
@@ -37,25 +71,51 @@ function WriteConfirm() {
           <N.InformationFormGrid>
             <N.FormTitleBox>
               <N.InfoTitle>인적사항</N.InfoTitle>
-              <N.InfoEdit>수정하기</N.InfoEdit>
+              {/* 연동시 실제 state값 넣어주세요 */}
+              <N.InfoEdit
+                onClick={() => {
+                  navigate("/WriteInformation", {
+                    state: {
+                      isEdit: true,
+                      formData: {
+                        name: "소랑이",
+                        phone: "010-0000-0000",
+                        email: "abc@duksung.ac.kr",
+                        // 답변들도 같이 넣기
+                      },
+                    },
+                  });
+                }}>
+                수정하기
+              </N.InfoEdit>
             </N.FormTitleBox>
             <N.InfoBox>
               <N.InfoNameText>이름</N.InfoNameText>
               <N.InfoName>소랑이</N.InfoName>
             </N.InfoBox>
             <N.InfoBox>
-              <N.InfoPhoneText>전화번호</N.InfoPhoneText>
+              <N.InfoNameText>전화번호</N.InfoNameText>
               <N.InfoPhone>010-0000-0000</N.InfoPhone>
             </N.InfoBox>
             <N.InfoBox>
-              <N.InfoMailText>메일주소</N.InfoMailText>
+              <N.InfoNameText>메일주소</N.InfoNameText>
               <N.InfoMail>abc@duksung.ac.kr</N.InfoMail>
             </N.InfoBox>
           </N.InformationFormGrid>
           <N.AnswerFormGrid>
             <N.FormTitleBox>
               <N.InfoTitle>문항 답변 내역</N.InfoTitle>
-              <N.AnsEdit>수정하기</N.AnsEdit>
+              <N.AnsEdit
+                onClick={() => {
+                  navigate("/WriteAnswer", {
+                    state: {
+                      isEdit: true,
+                      answerData: answerData,
+                    },
+                  });
+                }}>
+                수정하기
+              </N.AnsEdit>
             </N.FormTitleBox>
             <N.CommonPartBox>
               <N.CoText>공통질문</N.CoText>
@@ -70,7 +130,20 @@ function WriteConfirm() {
                 <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
                 <N.CoQA>
                   사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용
+                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가 작성한내용 사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
+                  작성한내용사용자가 작성한내용사용자가 작성한내용
                 </N.CoQA>
               </N.CoQABox>
             </N.CommonPartBox>
@@ -105,9 +178,13 @@ function WriteConfirm() {
         <N.NextButtonGrid>
           <N.NextButton
             onClick={() => {
-              navigate("/submit"); // 최종 제출 페이지나 완료 페이지
+              if (isEdit) {
+                navigate("/FormDone", { state: { updated: true } });
+              } else {
+                navigate("/FormDone", { state: { submitted: true } });
+              }
             }}>
-            제출하기
+            {isEdit ? "수정 완료" : "제출하기"}
           </N.NextButton>
         </N.NextButtonGrid>
       </N.Space>
