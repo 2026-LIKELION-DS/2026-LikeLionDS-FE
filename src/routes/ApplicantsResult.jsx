@@ -126,7 +126,7 @@ function ApplicantsResult() {
           ) : (
             <A.Box>
               <A.H2>{name} 님, 덕성여자대학교</A.H2>
-              <A.H2>멋쟁이사자처럼 13기에</A.H2>
+              <A.H2>멋쟁이사자처럼 14기에</A.H2>
               <A.H2>지원해주셔서 감사합니다.</A.H2>
               <br />
               <A.Info>예상보다 많은 지원자들로 인해</A.Info>
