@@ -67,7 +67,7 @@ function Main12thProjects() {
           </span>
         </M.WhatisDSdiv>
         <M.Projects12th>
-          <span>작년 12기에는...</span>
+          <span>작년 13기에는...</span>
           <M.ProjectsSlide1>
             <div className="slide-track">
               <img src={four1} alt="project1" />
@@ -111,13 +111,13 @@ function Main12thProjects() {
           <div>
             <span>세션</span>
             <p>
-              <strong>7</strong>회
+              <strong>8</strong>회
             </p>
           </div>
           <div>
             <span>파트별 스터디</span>
             <p>
-              <strong>9</strong>회
+              <strong>11</strong>회
             </p>
           </div>
           <div>
