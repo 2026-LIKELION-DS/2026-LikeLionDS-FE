@@ -9,16 +9,11 @@ import ImageDetail from "@routes/ImageDetail";
 import Question from "@routes/Question";
 import Applicants from "@routes/Applicants";
 import ApplicantsResult from "@routes/ApplicantsResult";
-import TimeSelection from "@routes/TimeSelection";
-import TimeSelectionDone from "@routes/TimeSelectionDone";
 import AdminLogin from "@routes/AdminLogin";
 import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
 import Error from "@routes/Error";
 import ProtectedRoute from "@/ProtectedRoute";
-import WriteInformation from "@routes/WriteInformation";
-import WriteAnswer from "@routes/WriteAnswer";
-import WriteConfirm from "@routes/WriteConfirm";
 
 function App() {
   return (
@@ -33,13 +28,7 @@ function App() {
         <Route path="/qna" element={<Question />} />
         <Route path="/input" element={<Applicants />} />
         <Route path="/result" element={<ApplicantsResult />} />
-        <Route path="/timeselection" element={<TimeSelection />} />
-        <Route path="/timedone" element={<TimeSelectionDone />} />
         <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/WriteInformation" element={<WriteInformation />} />
-        <Route path="/WriteAnswer" element={<WriteAnswer />} />
-        <Route path="/WriteConfirm" element={<WriteConfirm />} />
-
         {/* 어드민 로그인 상태에서만 접근 가능한 라우터들 */}
         <Route
           path="/admin/menu"
