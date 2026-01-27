@@ -16,6 +16,9 @@ import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
 import Error from "@routes/Error";
 import ProtectedRoute from "@/ProtectedRoute";
+import WriteInformation from "@routes/WriteInformation";
+import WriteAnswer from "@routes/WriteAnswer";
+import WriteConfirm from "@routes/WriteConfirm";
 
 function App() {
   return (
@@ -33,6 +36,10 @@ function App() {
         <Route path="/timeselection" element={<TimeSelection />} />
         <Route path="/timedone" element={<TimeSelectionDone />} />
         <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/WriteInformation" element={<WriteInformation />} />
+        <Route path="/WriteAnswer" element={<WriteAnswer />} />
+        <Route path="/WriteConfirm" element={<WriteConfirm />} />
+
         {/* 어드민 로그인 상태에서만 접근 가능한 라우터들 */}
         <Route
           path="/admin/menu"

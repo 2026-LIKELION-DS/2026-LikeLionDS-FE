@@ -1,13 +1,16 @@
-# 🦁 LIKELION-DS 13th
+# 🦁 LIKELION-DS 14th
 
-## 🖥️ FE Developer
+## 🖥️ FE Developer  
+**덕성여자대학교 멋쟁이사자처럼 14기 프론트엔드 운영진**
 
-**덕성여자대학교 멋쟁이사자처럼 13기 프론트엔드 운영진**
-| <a href="https://github.com/mogg22"><img src="https://avatars.githubusercontent.com/u/126389940?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/pookey1104"><img src="https://avatars.githubusercontent.com/u/90364700?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/jinhyo0"><img src="https://avatars.githubusercontent.com/u/150879545?v=4" width="120px;" alt=""/></a> |
+| <a href="https://github.com/aney0714"><img width="150" alt="/" src="https://avatars.githubusercontent.com/aney0714" /></a> | <a href="https://github.com/yangyangeeee"><img width="150" alt="/" src="https://avatars.githubusercontent.com/yangyangeeee" /></a> | <a href="https://github.com/2godong"><img src="https://avatars.githubusercontent.com/2godong" width="150" alt="/"/></a> |
 | --- | --- | --- |
-| 목소연 | 김서윤 | 김진효 |
-| <a href="https://github.com/yeon-yeon1"><img src="https://avatars.githubusercontent.com/u/158417764?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/mzxxzysy"><img src="https://avatars.githubusercontent.com/u/163836325?v=4" width="120px;" alt=""/></a> | <a href="https://github.com/chldsbdud"><img src="https://avatars.githubusercontent.com/u/142567232?v=4" width="120px;" alt=""/></a> |
-| 노진경 | 정서영 | 최윤영 |
+| 김예나 | 양서윤 | 이소라 |
+
+| <a href="https://github.com/soool22"><img width="150" alt="/" src="https://avatars.githubusercontent.com/soool22" /></a> | <a href="https://github.com/gjdbsdk"><img width="150" alt="/" src="https://avatars.githubusercontent.com/gjdbsdk" /></a> |
+| --- | --- |
+| 최솔 | 허윤아 |
+
 
 ## 🛠 기술 스택
 
@@ -93,17 +96,17 @@ main ← develop
 **Issue Title 규칙**
 
 - **태그 목록**:
-  - `Feat`: 새로운 기능 추가
-  - `Fix` : 버그 수정
-  - `Refactor` : 코드 리펙토링
-  - `Init`: 프로젝트 세팅
+  - `✨️Feat`: 새로운 기능 추가
+  - `🐛Fix` : 버그 수정
+  - `♻️Refactor` : 코드 리펙토링
+  - `🎉Init`: 프로젝트 세팅
 - **예시**:
-  - [Feat] Header 컴포넌트 구현
-  - [Init] 프로젝트 초기 세팅
+  - ✨️Feat - Header 컴포넌트 구현
+  - 🎉Init - 프로젝트 초기 세팅
 
 ### Issue Template
 
-- **제목**: [Feat] 간단한 요약
+- **제목**: ✨️Feat - 간단한 요약
 - **내용**:
 
 ```
@@ -131,20 +134,20 @@ main ← develop
 
 - **형식**: `[태그] 제목`
 - **태그 목록**:
-  - `Feat`: 새로운 기능 추가
-  - `Fix` : 버그 수정
-  - `Refactor` : 코드 리펙토링
-  - `Init`: 프로젝트 세팅우
+  - `✨Feat`: 새로운 기능 추가
+  - `🐛Fix` : 버그 수정
+  - `♻Refactor` : 코드 리펙토링
+  - `🎉Init`: 프로젝트 세팅
 - **예시**:
-  - [Feat] Header 컴포넌트 구현
-  - [Fix] Header 컴포넌트 버그 수정
+  - [✨️Feat] Header 컴포넌트 구현
+  - [🐛Fix] Header 컴포넌트 버그 수정
 
 ### PR Template
 
 - **PR 작성 규칙**:
 
 ```
-<!-- PR 제목은 'Feat: 작업 내용' 과 같은 형태로 작성해주세요.  -->
+<!-- PR 제목은 '[✨Feat] 작업 내용' 과 같은 형태로 작성해주세요.  -->
 
 ### 📑 이슈 번호
 
@@ -156,7 +159,7 @@ main ← develop
 
 ### ✨️ 작업 내용
 
-<!-- 작업 내용을 간략히 설명해주세요 -->
+<!-- 작업 내용을 간략히 설명해주세요. 프로토타입 캡쳐본을 함께 올려주시면 좋습니다! -->
 
 <br>
 
@@ -177,7 +180,7 @@ main ← develop
 ## 📂 프로젝트 구조
 
 ```
-📦2025-LikeLionDS-FE
+📦2026-LikeLionDS-FE
  ┣ 📁.github
  ┣ 📁node_modules
  ┣ 📂public
