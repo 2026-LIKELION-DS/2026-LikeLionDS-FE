@@ -16,7 +16,7 @@ function NoExistApplication({ title, messages = [], highlightText, showKakaoLink
 
   return (
     <>
-      <Header title="면접 시간 작성하기" />
+      <Header title="제출 여부 확인하기" />
 
       <SS.Space>
         
