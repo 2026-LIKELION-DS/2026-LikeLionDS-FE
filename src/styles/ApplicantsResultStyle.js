@@ -17,39 +17,35 @@ export const Page = styled.div`
 `;
 
 export const Box = styled.div`
-  background-color: ${palette.style.white};
+  background-color: white;
   width: 302px;
   padding: 20px;
-  color: ${palette.boldBlack.ex10Primary};
+  color: black;
   border-radius: 24px;
 `;
 
 export const Info = styled.div`
   font-size: 18px;
   font-weight: 500;
-  color: ${palette.boldBlack.ex10Primary};
 `;
 
 export const Infos = styled.div`
   font-size: 16px;
   font-weight: 500;
-  color: ${palette.boldBlack.ex8};
 `;
 
 export const H1 = styled.div`
   font-size: 28px;
   font-weight: 700;
-  color: ${palette.boldBlack.ex10Primary};
 `;
 
 export const H2 = styled.div`
   font-size: 20px;
   font-weight: 500;
-  color: ${palette.boldBlack.ex9};
 `;
 
 export const Orange = styled.div`
-  color: ${palette.realOrange.ex5Primary};
+  color: #ff7710;
   font-size: 18px;
   font-weight: 600;
 `;
@@ -66,11 +62,7 @@ export const LinkBox = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
-  color: ${palette.boldBlack.ex6};
-
-  &:hover {
-    color: ${palette.boldBlack.ex8};
-  }
+  color: #78726e;
 `;
 
 export const Button = styled.button`
@@ -78,49 +70,11 @@ export const Button = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
+
   gap: 6px;
 
   border: none;
-  background-color: ${palette.style.white};
+  background-color: white;
   margin-top: 8px;
   font-family: Pretendard;
-  color: ${palette.boldBlack.ex8};
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const TimeButtonGrid = styled.div`
-  width: 90%;
-  margin-top: 60px;
-  display: Flex;
-  justify-content: center;
-  align-items: center;
-`;
-export const TimeButton = styled.button`
-  width: 100%;
-  padding: 16px 0;
-
-  border-radius: 88px;
-  border: none;
-
-  background-color: ${palette.realOrange.ex5Primary};
-  color: ${palette.style.white};
-
-  font-family: Pretendard;
-  font-size: 20px;
-  font-weight: 600;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.2);
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${palette.realOrange.ex4};
-    transform: scale(1.01);
-  }
 `;

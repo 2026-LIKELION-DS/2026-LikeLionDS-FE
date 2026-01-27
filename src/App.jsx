@@ -9,8 +9,6 @@ import ImageDetail from "@routes/ImageDetail";
 import Question from "@routes/Question";
 import Applicants from "@routes/Applicants";
 import ApplicantsResult from "@routes/ApplicantsResult";
-import TimeSelection from "@routes/TimeSelection";
-import TimeSelectionDone from "@routes/TimeSelectionDone";
 import AdminLogin from "@routes/AdminLogin";
 import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";

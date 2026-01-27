@@ -56,7 +56,7 @@ function Footer({ isMain }) {
             </a>
           </F.Sns>
         </F.Inform>
-        <F.Rights>© 2026. likelion_ds all rights reserved.</F.Rights>
+        <F.Rights>© 2025. likelion_ds all rights reserved.</F.Rights>
       </F.Footer>
     </>
   );
