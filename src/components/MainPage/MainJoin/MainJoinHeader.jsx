@@ -41,7 +41,7 @@ const MainJoinHeader = () => {
         fontSize={"20px"}
         letterSpacing={"-0.6px"}>
         <div>
-          <p>덕성여대 멋쟁이사자처럼 13기를</p>
+          <p>덕성여대 멋쟁이사자처럼 14기를</p>
           <p>모집합니다!</p>
         </div>
       </JoinRectangle>

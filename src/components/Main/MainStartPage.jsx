@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as M from "@styles/MainStartPageStyle.js"; // 스타일 파일에서 가져오기
-import splash from "@assets/logo/splash.svg";
+import splash from "@assets/logo/Logo14th.svg";
 import whiteLine from "@assets/icons/icon_whiteLine.png";
 import likelionBack from "@assets/logo/logo_likelion_background.svg";
 import underLine from "@assets/icons/icon_underline.svg";

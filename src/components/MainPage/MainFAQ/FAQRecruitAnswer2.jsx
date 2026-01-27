@@ -24,7 +24,7 @@ const FAQRecruitAnswer2 = () => {
             fontWeight={400}
             fontSize={"14px"}
             $textAlign={"start"}>
-            작년 12기 아기사자 기준 2-3학년이
+            작년 13기 아기사자 기준 2-3학년이
             <br />
             가장 많았어요.
           </JoinRectangle>

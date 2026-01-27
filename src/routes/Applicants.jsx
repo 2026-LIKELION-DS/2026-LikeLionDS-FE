@@ -103,7 +103,7 @@ function Applicants() {
             name="email"
             value={formValue.email}
             onChange={handleChange}
-            placeholder="ds13likelion@duksung.ac.kr"
+            placeholder="ds14likelion@duksung.ac.kr"
           />
         </A.InputBox>
         <A.Button
