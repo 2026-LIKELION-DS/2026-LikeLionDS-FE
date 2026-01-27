@@ -16,6 +16,8 @@ import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
 import Error from "@routes/Error";
 import ProtectedRoute from "@/ProtectedRoute";
+import CheckSubmit from "./routes/CheckSubmit";
+import NoExistApplication from "./routes/NoExistApplication";
 import WriteInformation from "@routes/WriteInformation";
 import WriteAnswer from "@routes/WriteAnswer";
 import WriteConfirm from "@routes/WriteConfirm";
@@ -35,6 +37,8 @@ function App() {
         <Route path="/result" element={<ApplicantsResult />} />
         <Route path="/timeselection" element={<TimeSelection />} />
         <Route path="/timedone" element={<TimeSelectionDone />} />
+        <Route path="/CheckSubmit" element={<CheckSubmit />} />
+        <Route path="/NoExist" element={<NoExistApplication />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/WriteInformation" element={<WriteInformation />} />
         <Route path="/WriteAnswer" element={<WriteAnswer />} />

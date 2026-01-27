@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
   margin-top: 80px;
 `;
 
-
 export const Icon = styled.img`
   width: 25px;
 `;
@@ -39,6 +38,16 @@ export const Card = styled.div`
   text-align: center;
   margin-top: 40px;
   
+`;
+export const Checking_Card = styled.div`
+  background-color: ${palette.style.white};
+  border-radius: 16px;
+  padding:20px 20px 0 20px;
+  width: 230px;
+  text-align: center;
+  margin-top: 40px;
+  display: flex;
+  flex-direction:column;
 `;
 
 export const Text = styled.p`
@@ -96,3 +105,20 @@ export const KakaoIMG = styled.img`
   width: 16px;
 `;
 
+export const Submit_Button = styled.button`
+ width:342px;
+min-height:65px;
+display:flex;
+color:white;
+background-color:#FF7710;
+border-radius:88px;
+justify-content: center;
+    align-items: center;
+margin-top:70px;
+cursor:pointer;
+border:none;
+font-size:20px;
+font-weight:600;
+  font-family: "Pretendard";
+
+`;
