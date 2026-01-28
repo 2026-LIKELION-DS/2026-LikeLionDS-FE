@@ -11,8 +11,26 @@ const getPageMode = () => {
   const formDeadline = new Date(2026, 1, 19, 18, 0, 0); // 2/19 18:00
   const firstResultStart = new Date(2026, 1, 25, 12, 0, 0); // 2/25 12:00
 
-  if (now < formDeadline) return "FORM_CHECK";
-  if (now >= firstResultStart) return "RESULT";
+  const disabledStart = new Date(2026, 2, 8, 0, 0, 0); // 3/8 00:00
+  const disabledEnd = new Date(2026, 2, 8, 12, 0, 0); // 3/8 12:00
+  const finalEndDate = new Date(2026, 2, 11, 0, 0, 0); // 3/11 00:00
+
+  // 접근 불가 기간
+  if ((now >= disabledStart && now < disabledEnd) || now >= finalEndDate) {
+    return "CLOSED";
+  }
+
+  // 지원서 확인
+  if (now < formDeadline) {
+    return "FORM_CHECK";
+  }
+
+  // 합격자 조회
+  if (now >= firstResultStart) {
+    return "RESULT";
+  }
+
+  // 그 외 기간 (2/19 ~ 2/25)
   return "CLOSED";
 };
 
@@ -30,7 +48,7 @@ function Applicants() {
     setPageMode(getPageMode());
   }, []);
 
-  // 접근 불가 기간
+  // 접근 불가
   if (pageMode === "CLOSED") {
     return <Error />;
   }
