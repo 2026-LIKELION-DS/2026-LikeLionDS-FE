@@ -13,28 +13,30 @@ function WriteAnswer() {
   const [common2, setCommon2] = useState("");
   const [part1, setPart1] = useState("");
   const [part2, setPart2] = useState("");
-  const [TryJava, setTryJava] = useState<"yes" | "no" | null>(null);
+  // const [TryJava, setTryJava] = (useState < "yes") | "no" | (null > null);
+  const [TryJava, setTryJava] = useState(null);
+
   const [showFab, setShowFab] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const isEdit = location.state?.isEdit;
 
   useEffect(() => {
-    if (location.state?.isEdit) {
+    if (location.state?.isEdit && location.state?.answerData) {
       const data = location.state.answerData;
 
-      setCommon1(data.common1);
-      setCommon2(data.common2);
-      setPart1(data.part1);
-      setPart2(data.part2);
-      setTryJava(data.TryJava);
+      setCommon1(data.common1 ?? "");
+      setCommon2(data.common2 ?? "");
+      setPart1(data.part1 ?? "");
+      setPart2(data.part2 ?? "");
+      setTryJava(data.TryJava ?? null);
     }
   }, [location.state]);
 
   const isFormValid =
     common1.trim() !== "" && common2.trim() !== "" && part1.trim() !== "" && part2.trim() !== "" && TryJava !== null;
 
-  const handleTryJava = (value: "yes" | "no") => {
+  const handleTryJava = (value) => {
     setTryJava(value);
   };
 
