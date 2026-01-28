@@ -32,7 +32,7 @@ function NoExistApplication({ title, messages = [], highlightText, showKakaoLink
 
 const handleClick = () => {
   if (!isDeadlinePassed) {
-    navigate("/WriteInformation");
+    navigate("/InformationCollection");
   }
 };
 
