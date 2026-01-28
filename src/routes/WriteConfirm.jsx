@@ -168,7 +168,7 @@ function WriteConfirm() {
         <N.NextButtonGrid>
           <N.NextButton
             onClick={() => {
-              navigate("/WriteInformation"); //경로 수정
+              navigate("/ApplicationFormDone");
             }}>
             제출하기
           </N.NextButton>
