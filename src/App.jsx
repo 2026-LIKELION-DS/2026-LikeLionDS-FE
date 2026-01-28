@@ -38,8 +38,8 @@ function App() {
         <Route path="/result" element={<ApplicantsResult />} />
         <Route path="/timeselection" element={<TimeSelection />} />
         <Route path="/timedone" element={<TimeSelectionDone />} />
-        <Route path="/CheckSubmit" element={<CheckSubmit />} />
-        <Route path="/NoExist" element={<NoExistApplication />} />
+        <Route path="/checksubmit" element={<CheckSubmit />} />
+        <Route path="/noexist" element={<NoExistApplication />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/WriteInformation" element={<WriteInformation />} />
         <Route path="/WriteAnswer" element={<WriteAnswer />} />
