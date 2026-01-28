@@ -120,6 +120,18 @@ function SideBar({
               지원하러가기
             </S.Title>
           )}
+
+          {isFormDateRange() ? (
+            <S.ResultGroup>
+              <S.SubTitle>제출 여부 확인하기</S.SubTitle>
+            </S.ResultGroup>
+          ) : (
+            <S.Title
+              onClick={() => handleNavLinkClick("/input")}
+              $isActive={currentPath === "/input"}>
+              제출 여부 확인하기
+            </S.Title>
+          )}
           {isWithinDateRange() && !isInDisabledRange() && !isAfterFinalDate() ? (
             <S.Title onClick={() => handleNavLinkClick("/input")} $isActive={currentPath === "/input"}>
               1차 합격자 조회하기
