@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as SS from "@styles/SubmittedPageStyle";
-import * as S from "@styles/SubmittedApplication";
+import * as S from "@styles/SubmittedApplicationStyle";
 
 
 import Header from "@components/Header/HeaderSub";

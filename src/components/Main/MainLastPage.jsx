@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import loadingLottie from "@assets/motions/노트북 모션/notebook.json";
 import fire from "@assets/icons/img_fire.svg";
@@ -8,14 +9,13 @@ import * as M from "@styles/MainLastPageStyle.js"; // 스타일 파일 import
 
 function MainLastPage() {
   const deadline = new Date(2026, 1, 19, 18, 0, 0); // 2026년 2월 19일 18:00 마감
+  const navigate = useNavigate();
 
-  const handleClick = () => {
-    if (!isDeadlinePassed) {
-      window.open("https://forms.gle/QDrszV6xmGcnxr6g6", "_blank");
-      // 위 코드를 지원서 페이지로 바꿔 연결해주세요!
-    }
-  };
-
+const handleClick = () => {
+  if (!isDeadlinePassed) {
+    navigate("/WriteInformation");
+  }
+};
   const calculateDday = () => {
     const now = new Date();
     const deadline = new Date(2026, 1, 19, 18, 0, 0); // 2026년 2월 19일 18:00 마감

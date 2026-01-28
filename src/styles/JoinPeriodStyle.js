@@ -33,8 +33,8 @@ export const AnimationWrapper = styled.div`
 
   z-index: 999;
 
-  margin-top: -170px;
-  margin-bottom: -120px;
+  margin-top: 30px;
+  margin-bottom: -300px;
 
   > div {
     width: 100%;
@@ -46,4 +46,7 @@ export const AnimationWrapper = styled.div`
     height: 100%;
     object-fit: contain;
   }
+`;
+export const Period = styled.img`
+
 `;

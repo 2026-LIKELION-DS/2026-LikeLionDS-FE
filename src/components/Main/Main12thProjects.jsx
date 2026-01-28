@@ -2,21 +2,22 @@ import React, { useEffect, useState, useRef } from "react";
 import * as M from "@styles/Main12thProjectsStyle.js"; // 스타일 분리 파일 import
 import dsBack from "@assets/logo/logo_ds_background.svg";
 import underLineDS from "@assets/icons/icon_underlineDS.svg";
-import four1 from "@assets/projects/사개절_1.png";
-import four2 from "@assets/projects/사개절_2.png";
-import four3 from "@assets/projects/사개절_3.png";
-import four4 from "@assets/projects/사개절_4.png";
-import ideathon1 from "@assets/projects/아이디어톤_1.jpg";
-import ideathon2 from "@assets/projects/아이디어톤_2.jpg";
-import ideathon3 from "@assets/projects/아이디어톤_3.jpg";
-import ideathon4 from "@assets/projects/아이디어톤_4.jpg";
-import ideathon5 from "@assets/projects/아이디어톤_5.png";
-import pioneer1 from "@assets/projects/중앙해커톤_1.png";
-import pioneer2 from "@assets/projects/중앙해커톤_2.png";
-import pioneer3 from "@assets/projects/중앙해커톤_3.png";
-import pioneer4 from "@assets/projects/중앙해커톤_4.png";
-import pioneer5 from "@assets/projects/중앙해커톤_5.png";
-import pioneer6 from "@assets/projects/중앙해커톤_6.png";
+
+import demoday1 from "@assets/projects/데모데이_1.png";
+import demoday2 from "@assets/projects/데모데이_2.png";
+import demoday3 from "@assets/projects/데모데이_3.png";
+import demoday4 from "@assets/projects/데모데이_4.png";
+import demoday5 from "@assets/projects/데모데이_5.png";
+import ideathon1 from "@assets/projects/아이디어톤13_1.png";
+import ideathon2 from "@assets/projects/아이디어톤13_2.png";
+import ideathon3 from "@assets/projects/아이디어톤13_3.png";
+import ideathon4 from "@assets/projects/아이디어톤13_4.png";
+import ideathon5 from "@assets/projects/아이디어톤13_5.png";
+import pioneer1 from "@assets/projects/중앙해커톤13_1.png";
+import pioneer2 from "@assets/projects/중앙해커톤13_2.png";
+import pioneer3 from "@assets/projects/중앙해커톤13_3.png";
+import pioneer4 from "@assets/projects/중앙해커톤13_4.png";
+import pioneer5 from "@assets/projects/중앙해커톤13_5.png";
 import Instagram from "@assets/icons/icon_instagram.svg";
 
 function Main12thProjects() {
@@ -70,24 +71,25 @@ function Main12thProjects() {
           <span>작년 13기에는...</span>
           <M.ProjectsSlide1>
             <div className="slide-track">
-              <img src={four1} alt="project1" />
-              <img src={four2} alt="project2" />
-              <img src={four3} alt="project3" />
-              <img src={four4} alt="project4" />
+              <img src={demoday1} alt="project1" />
+              <img src={demoday2} alt="project2" />
+              <img src={demoday3} alt="project3" />
+              <img src={demoday4} alt="project4" />
+              <img src={demoday5} alt="project5" />
               <img src={ideathon1} alt="ideathon1" />
               <img src={ideathon2} alt="ideathon2" />
-              <img src={ideathon3} alt="ideathon3" />
-              <img src={four1} alt="project1" />
-              <img src={four2} alt="project2" />
-              <img src={four3} alt="project3" />
-              <img src={four4} alt="project4" />
+              <img src={demoday1} alt="project1" />
+              <img src={demoday2} alt="project2" />
+              <img src={demoday3} alt="project3" />
+              <img src={demoday4} alt="project4" />
+              <img src={demoday5} alt="project5" />
               <img src={ideathon1} alt="ideathon1" />
               <img src={ideathon2} alt="ideathon2" />
-              <img src={ideathon3} alt="ideathon3" />
             </div>
           </M.ProjectsSlide1>
           <M.ProjectsSlide2>
             <div className="slide-track">
+            <img src={ideathon3} alt="ideathon3" />
               <img src={ideathon4} alt="ideathon4" />
               <img src={ideathon5} alt="ideathon5" />
               <img src={pioneer1} alt="pioneer1" />
@@ -95,7 +97,7 @@ function Main12thProjects() {
               <img src={pioneer3} alt="pioneer3" />
               <img src={pioneer4} alt="pioneer4" />
               <img src={pioneer5} alt="pioneer5" />
-              <img src={pioneer6} alt="pioneer6" />
+              <img src={ideathon3} alt="ideathon3" />
               <img src={ideathon4} alt="ideathon4" />
               <img src={ideathon5} alt="ideathon5" />
               <img src={pioneer1} alt="pioneer1" />
@@ -103,7 +105,6 @@ function Main12thProjects() {
               <img src={pioneer3} alt="pioneer3" />
               <img src={pioneer4} alt="pioneer4" />
               <img src={pioneer5} alt="pioneer5" />
-              <img src={pioneer6} alt="pioneer6" />
             </div>
           </M.ProjectsSlide2>
         </M.Projects12th>

@@ -4,6 +4,7 @@ import * as M from "@styles/JoinPeriodStyle";
 import Lottie from "./LottieComponent";
 import loadingLottie from "@assets/motions/활동기간 모션/period.json";
 import { useEffect, useRef, useState } from "react";
+import Period from "@assets/icons/JoinPeriod.svg";
 
 const JoinPeriod = () => {
   const lottieRef = useRef(null); // <M.AnimationWrapper> 요소 참조하는 데 사용
@@ -44,7 +45,7 @@ const JoinPeriod = () => {
 
       {/* lottie */}
       <M.AnimationWrapper ref={lottieRef}>
-        <Lottie animationData={loadingLottie} speed={3} loop={false} autoplay={false} isPaused={!isPlaying} />
+        <M.Period src={Period}></M.Period>
       </M.AnimationWrapper>
     </>
   );
