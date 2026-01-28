@@ -21,7 +21,8 @@ import NoExistApplication from "./routes/NoExistApplication";
 import WriteInformation from "@routes/WriteInformation";
 import WriteAnswer from "@routes/WriteAnswer";
 import WriteConfirm from "@routes/WriteConfirm";
-import ExitModal from "@components/Modal/ExitModal"; //경로확인
+import ExitModal from "@components/Modal/ExitModal";
+import InformationCollection from "@routes/InformationCollection";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/WriteAnswer" element={<WriteAnswer />} />
         <Route path="/WriteConfirm" element={<WriteConfirm />} />
         <Route path="/ExitModal" element={<ExitModal />} />
+        <Route path="/InformationCollection" element={<InformationCollection />} />
 
         {/* 어드민 로그인 상태에서만 접근 가능한 라우터들 */}
         <Route

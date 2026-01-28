@@ -30,100 +30,25 @@ export const StepGrid = styled.div`
   margin: 24px 0 24px 0;
 `;
 
-export const FormGrid = styled.div`
-  margin: 0 0 36px 0;
-  gap: 36px;
+export const ContentsGrid = styled.div`
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
+  gap: 16px;
 `;
-
-export const Name = styled.div``;
-export const NameText = styled.div`
-  margin-bottom: 16px;
+export const ContentsTitle = styled.div`
+  font-weight: 600;
 `;
-export const NameInput = styled.input`
-  width: 340px;
-  padding: 12px;
-  border-radius: 16px;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-  }
+export const Contents = styled.div`
+  font-size: 14px;
+  font-weight: 400;
 `;
-
-export const Phone = styled.div``;
-export const PhoneText = styled.div``;
-export const InputEx = styled.div`
-  font-weight: 340;
-  font-size: 12px;
-  margin-bottom: 16px;
-  color: ${palette.boldBlack.ex5};
-`;
-export const PhoneInput = styled.input`
-  width: 340px;
-  padding: 12px;
-  border-radius: 16px;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const Mail = styled.div``;
-export const MailText = styled.div``;
-export const MailInput = styled.input`
-  width: 340px;
-  padding: 12px;
-  border-radius: 16px;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const Lesson = styled.div``;
-export const LessonText = styled.div``;
-export const LessonInput = styled.input`
-  width: 340px;
-  padding: 12px;
-  border-radius: 16px;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const Number = styled.div``;
-export const NumberText = styled.div``;
-export const NumberInput = styled.input`
-  width: 340px;
-  padding: 12px;
-  border-radius: 16px;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const HlColor = styled.span`
-  color: ${palette.realOrange.ex5Primary};
-`;
-
-export const PartGrid = styled.div``;
-export const PartText = styled.div`
-  margin-bottom: 16px;
-`;
-export const PartCon = styled.div`
+export const ContentsBox = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 368px;
-  gap: 8px;
-  flex: 1 0 0;
-  cursor: pointer;
+  flex-direction: column;
+  gap: 16px;
 `;
-export const PartButton = styled.button`
+
+export const QButton = styled.button`
   padding: 12px 24px;
   font-size: 14px;
   border-radius: 12px;
@@ -137,6 +62,26 @@ export const PartButton = styled.button`
   &:active {
     transform: scale(0.97);
   }
+`;
+export const AgreeGrid = styled.div`
+  margin: 36px 0;
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  flex: 1 0 0;
+  cursor: pointer;
+  flex-direction: column;
+`;
+
+export const AgreeBox = styled.div`
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  flex: 1 0 0;
+  cursor: pointer;
 `;
 
 export const NextButton = styled.button`

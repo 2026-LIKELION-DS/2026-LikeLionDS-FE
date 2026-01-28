@@ -5,7 +5,7 @@ import * as N from "@styles/WriteConfirmStyle";
 import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
 
-import Step3 from "@/assets/icons/Step3.svg";
+import Step4 from "@/assets/icons/Step4.svg";
 import Up from "@/assets/icons/Up.svg";
 
 function WriteConfirm() {
@@ -60,12 +60,12 @@ function WriteConfirm() {
   }, []);
   return (
     <>
-      <Header title="지원서 작성 확인"></Header>
+      <Header title="서류 지원서 작성"></Header>
       <N.Space>
         <N.StepGrid>
-          <N.StepTitle>STEP 3</N.StepTitle>
+          <N.StepTitle>STEP 4</N.StepTitle>
           <N.StepText>작성한 답변 확인</N.StepText>
-          <N.StepIcon src={Step3} alt="단계3" />
+          <N.StepIcon src={Step4} alt="단계3" />
         </N.StepGrid>
         <N.FormGrid>
           <N.InformationFormGrid>

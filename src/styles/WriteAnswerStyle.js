@@ -6,7 +6,8 @@ export const Space = styled.div`
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  margin: 40px 7.5px 0px 7.5px;
+  margin: 40px 24px 0px 24px;
+
   min-height: 100dvh;
 `;
 export const StepIcon = styled.img`
@@ -171,7 +172,6 @@ export const NextButton = styled.button`
 
   &:disabled {
     background-color: ${palette.boldBlack.ex6};
-    box-shadow: none;
     cursor: not-allowed;
     &:active {
       transform: none;
