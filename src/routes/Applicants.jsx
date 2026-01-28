@@ -68,7 +68,9 @@ function Applicants() {
       }
 
       if (pageMode === "FORM_CHECK") {
-        navigate("/input", {
+        navigate("/checksubmit", {
+          // 연동시 지원자의 지원서 제출 여부에 따라 연결되는 페이지를 분기처리하는 코드를 추가하셔야 할 것 같아요!!
+          // 일단 제출 완료 페이지로 연결해두었습니당
           state: { name, email },
         });
       }
