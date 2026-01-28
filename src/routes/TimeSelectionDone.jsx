@@ -6,11 +6,7 @@ import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
 import Submitted from "@components/Submitted";
 
-
-
 function TimeSelectionDone() {
-
-
   return (
     <>
       <Header title="면접 시간 작성하기" />
@@ -33,7 +29,7 @@ function TimeSelectionDone() {
             },
           ]}
           showKakaoLink
-          onKakaoClick={() => window.open("https://open.kakao.com/...", "_blank")} // 추후 수정 
+          onKakaoClick={() => window.open("https://open.kakao.com/...", "_blank")} // 추후 수정
         />
       </S.Space>
 

@@ -11,33 +11,33 @@ function MainLastPage() {
   const deadline = new Date(2026, 1, 19, 18, 0, 0); // 2026년 2월 19일 18:00 마감
   const navigate = useNavigate();
 
-const handleClick = () => {
-  if (!isDeadlinePassed) {
-    navigate("/WriteInformation");
-  }
-};
+  const handleClick = () => {
+    if (!isDeadlinePassed) {
+      navigate("/InformationCollection");
+    }
+  };
   const calculateDday = () => {
     const now = new Date();
     const deadline = new Date(2026, 1, 19, 18, 0, 0); // 2026년 2월 19일 18:00 마감
-  
+
     if (now >= deadline) {
       return "지원이 마감되었습니다!"; // 2월 19일 18:00 이후
     }
-  
+
     const dDayStart = new Date(2026, 1, 19, 0, 0, 0);
     const d1Start = new Date(2026, 1, 18, 0, 0, 0);
-  
+
     if (now >= dDayStart) {
       return "지원 마감까지 D-Day"; // 2월 19일 00:00 ~ 17:59
     }
-  
+
     if (now >= d1Start) {
       return "지원 마감까지 D-1"; // 2월 19일 00:00 ~ 23:59
     }
-  
+
     const diffDays = Math.floor((d1Start - now) / (1000 * 60 * 60 * 24));
     return `지원 마감까지 D-${diffDays}`;
-  };  
+  };
 
   // D-Day 상태 및 마감 여부 관리
   const [dday, setDday] = useState(calculateDday());
@@ -45,10 +45,13 @@ const handleClick = () => {
 
   // 1시간마다 업데이트
   useEffect(() => {
-    const timer = setInterval(() => {
-      setDday(calculateDday());
-      setIsDeadlinePassed(new Date() >= deadline);
-    }, 1000 * 60 * 60);
+    const timer = setInterval(
+      () => {
+        setDday(calculateDday());
+        setIsDeadlinePassed(new Date() >= deadline);
+      },
+      1000 * 60 * 60,
+    );
 
     return () => clearInterval(timer);
   }, []);
@@ -65,11 +68,11 @@ const handleClick = () => {
         </M.LottieContainer>
       </M.LoadingScreenContainer>
       <M.Magam $isDeadlinePassed={isDeadlinePassed}>
-      <div>
-  {!isDeadlinePassed && <img src={fire} alt="fire" />}
-  <M.DdayText $isDeadlinePassed={isDeadlinePassed}>{dday}</M.DdayText>
-  {!isDeadlinePassed && <img src={fire} alt="fire" />}
-</div>
+        <div>
+          {!isDeadlinePassed && <img src={fire} alt="fire" />}
+          <M.DdayText $isDeadlinePassed={isDeadlinePassed}>{dday}</M.DdayText>
+          {!isDeadlinePassed && <img src={fire} alt="fire" />}
+        </div>
 
         <div>
           <M.DisabledButton $isDeadlinePassed={isDeadlinePassed} onClick={handleClick}>
