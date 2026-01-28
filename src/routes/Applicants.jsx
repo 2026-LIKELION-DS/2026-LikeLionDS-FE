@@ -5,48 +5,42 @@ import * as A from "@styles/ApplicantsStyle";
 import Header from "@components/Header/HeaderApp";
 import Error from "@routes/Error";
 
+const getPageMode = () => {
+  const now = new Date();
+
+  const formDeadline = new Date(2026, 1, 19, 18, 0, 0); // 2/19 18:00
+  const firstResultStart = new Date(2026, 1, 25, 12, 0, 0); // 2/25 12:00
+
+  if (now < formDeadline) return "FORM_CHECK";
+  if (now >= firstResultStart) return "RESULT";
+  return "CLOSED";
+};
+
 function Applicants() {
   const navigate = useNavigate();
+
+  const [pageMode, setPageMode] = useState(null);
   const [formValue, setFormValue] = useState({
     name: "",
     tel: "",
     email: "",
   });
 
-  const [isAccessible, setIsAccessible] = useState(false);
-
   useEffect(() => {
-    const checkAccessTime = () => {
-      const now = new Date();
-      const firstResultStart = new Date(2026, 1, 25, 12, 0, 0); // 2월 25일 12시부터 조회 가능
-      const disabledStart = new Date(2026, 2, 8, 0, 0, 0); // 3월 8일 00시 비활성화 시작
-      const disabledEnd = new Date(2026, 2, 8, 12, 0, 0); // 3월 8일 12시 비활성화 종료
-      const finalEndDate = new Date(2026, 2, 11, 0, 0, 0); // 3월 11일 00시 이후 접근 불가
-
-      // 3월 8일 00시 ~ 3월 8일 12시 동안 접근 불가능
-      if ((now >= disabledStart && now < disabledEnd) || now >= finalEndDate) {
-        setIsAccessible(false);
-      } else {
-        setIsAccessible(true); // 개발용 코드,  배포 전 삭제
-        // setIsAccessible(now >= firstResultStart);
-      }
-    };
-
-    checkAccessTime();
+    setPageMode(getPageMode());
   }, []);
 
-  if (!isAccessible) {
+  // 접근 불가 기간
+  if (pageMode === "CLOSED") {
     return <Error />;
   }
 
   const handleChange = (e) => {
-    setFormValue((prevValue) => {
-      const { name, value } = e.target;
-      return {
-        ...prevValue,
-        [name]: value,
-      };
-    });
+    const { name, value } = e.target;
+    setFormValue((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -70,34 +64,50 @@ function Applicants() {
 
       if (data.status === "fail") {
         alert(data.message);
-      } else if (data.status === "success") {
-        // 성공하면 특정 페이지로 이동
+        return;
+      }
+
+      if (pageMode === "FORM_CHECK") {
+        navigate("/input", {
+          state: { name, email },
+        });
+      }
+
+      if (pageMode === "RESULT") {
         navigate("/result", {
-          state: { name: data.data.name, is_passed: data.data.is_passed },
+          state: {
+            name: data.data.name,
+            is_passed: data.data.is_passed,
+          },
         });
       }
     } catch (error) {
       alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
     }
   };
+
+  const isFormValid = formValue.name && formValue.tel && formValue.email;
+
   return (
     <>
       <Header />
-      <A.Applicants></A.Applicants>
+
+      <A.Applicants />
+
       <A.Form onSubmit={handleSubmit}>
         <A.InputBox>
           <A.InputName>이름</A.InputName>
-          <A.bar></A.bar>
+          <A.bar />
           <A.Input type="text" name="name" value={formValue.name} onChange={handleChange} placeholder="김멋사" />
         </A.InputBox>
         <A.InputBox>
           <A.InputName>번호</A.InputName>
-          <A.bar></A.bar>
+          <A.bar />
           <A.Input type="tel" name="tel" value={formValue.tel} onChange={handleChange} placeholder="010-1234-5678" />
         </A.InputBox>
         <A.InputBox>
           <A.InputName>이메일</A.InputName>
-          <A.bar></A.bar>
+          <A.bar />
           <A.Input
             type="email"
             name="email"
@@ -109,9 +119,9 @@ function Applicants() {
         <A.Button
           type="submit"
           style={{
-            backgroundColor: formValue.name && formValue.email && formValue.tel ? "#ff7710" : "#FFB175",
+            backgroundColor: isFormValid ? "#ff7710" : "#FFB175",
           }}>
-          합격자 조회하기
+          {pageMode === "FORM_CHECK" ? "지원서 확인하러 가기" : "합격자 조회하기"}
         </A.Button>
       </A.Form>
     </>
