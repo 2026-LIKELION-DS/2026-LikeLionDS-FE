@@ -100,7 +100,6 @@ export const NextButton = styled.button`
 
   &:disabled {
     background-color: ${palette.boldBlack.ex6};
-    box-shadow: none;
     cursor: not-allowed;
   }
 `;
