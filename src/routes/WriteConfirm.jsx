@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as N from "@styles/WriteConfirmStyle";
 
-import Header from "@components/Header/HeaderSub";
+import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
 
 import Step4 from "@/assets/icons/Step4.svg";
@@ -34,17 +34,6 @@ function WriteConfirm() {
       },
     });
   };
-
-  useEffect(() => {
-    if (isEdit && location.state?.answerData) {
-      const data = location.state.answerData;
-      setCommon1(data.common1);
-      setCommon2(data.common2);
-      setPart1(data.part1);
-      setPart2(data.part2);
-      setTryJava(data.TryJava);
-    }
-  }, [location.state]);
 
   // 휠 감지
   useEffect(() => {
@@ -78,10 +67,11 @@ function WriteConfirm() {
                     state: {
                       isEdit: true,
                       formData: {
+                        form,
                         name: "소랑이",
                         phone: "010-0000-0000",
                         email: "abc@duksung.ac.kr",
-                        // 답변들도 같이 넣기
+                        // 연동시 수정하세용
                       },
                     },
                   });
@@ -178,13 +168,9 @@ function WriteConfirm() {
         <N.NextButtonGrid>
           <N.NextButton
             onClick={() => {
-              if (isEdit) {
-                navigate("/FormDone", { state: { updated: true } });
-              } else {
-                navigate("/FormDone", { state: { submitted: true } });
-              }
+              navigate("/WriteInformation"); //경로 수정
             }}>
-            {isEdit ? "수정 완료" : "제출하기"}
+            제출하기
           </N.NextButton>
         </N.NextButtonGrid>
       </N.Space>

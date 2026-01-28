@@ -7,8 +7,6 @@ export const ModalGrid = styled.div`
   align-items: center;
   text-align: center;
   flex-direction: column;
-  /* background-color: ${palette.style.white};
-  border-radius: 24px; */
 `;
 
 export const Text = styled.div`
@@ -29,13 +27,13 @@ export const Span = styled.span`
 
 export const ChGrid = styled.span`
   display: flex;
-  border-top: 1px solid var(--Black-2, #606268);
+  border-top: 1px solid ${palette.boldBlack.ex4};
 `;
 export const ReT = styled.div`
   color: var(--Black-2, #606268);
   background-color: ${palette.style.white};
   padding-top: 13px;
-
+  cursor: pointer;
   width: 140px;
   height: 44px;
   border-radius: 0 0 0 24px;
@@ -47,6 +45,7 @@ export const Back = styled.div`
   padding-top: 13px;
   border-radius: 0 0 24px 0;
   background-color: ${palette.style.white};
+  cursor: pointer;
 
   text-align: center;
 `;
@@ -62,4 +61,9 @@ export const ModalBackground = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
+`;
+
+export const Line = styled.div`
+  width: 1px;
+  background-color: ${palette.boldBlack.ex4};
 `;

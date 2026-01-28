@@ -114,7 +114,11 @@ function SideBar({
               <S.SubTitle>지원하러가기</S.SubTitle>
             </S.ResultGroup>
           ) : (
-            <S.Title onClick={handleOpenApplicationForm}>지원하러가기</S.Title>
+            <S.Title
+              onClick={() => handleNavLinkClick("/InformationCollection")}
+              $isActive={currentPath === "/InformationCollection"}>
+              지원하러가기
+            </S.Title>
           )}
           {isWithinDateRange() && !isInDisabledRange() && !isAfterFinalDate() ? (
             <S.Title onClick={() => handleNavLinkClick("/input")} $isActive={currentPath === "/input"}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as N from "@styles/WriteInformationStyle";
 
-import Header from "@components/Header/HeaderSub";
+import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
 
 import Step2 from "@/assets/icons/Step2.svg";
@@ -162,25 +162,83 @@ function WriteInformation() {
         </N.FormGrid>
         <N.NextButtonGrid>
           <N.NextButton
+            // disabled={!isFormValid}
+            // onClick={() => {
+            //   navigate("/WriteAnswer", {
+            //     state: {
+            //       isEdit: location.state?.isEdit ?? false,
+            //       formData: {
+            //         name,
+            //         phone,
+            //         mail,
+            //         lesson,
+            //         number,
+            //         student,
+            //         part: selectedPart,
+            //       },
+            //       fromResult,
+            //     },
+            //   });
+            // }}
+            // disabled={!isFormValid}
+            // onClick={() => {
+            //   const nextState = {
+            //     isEdit: location.state?.isEdit ?? false,
+            //     formData: {
+            //       name,
+            //       phone,
+            //       mail,
+            //       lesson,
+            //       number,
+            //       student,
+            //       part: selectedPart,
+            //     },
+            //   };
+
+            //   if (location.state?.isEdit) {
+            //     // 🔥 수정 중 → 다시 확인 페이지
+            //     navigate("/WriteConfirm", {
+            //       state: nextState,
+            //     });
+            //   } else {
+            //     // 신규 작성 → 다음 단계
+            //     navigate("/WriteAnswer", {
+            //       state: {
+            //         ...nextState,
+            //         fromResult,
+            //       },
+            //     });
+            //   }
+            // }}
             disabled={!isFormValid}
             onClick={() => {
-              navigate("/WriteAnswer", {
-                state: {
-                  isEdit: location.state?.isEdit ?? false,
-                  formData: {
-                    name,
-                    phone,
-                    mail,
-                    lesson,
-                    number,
-                    student,
-                    part: selectedPart,
-                  },
-                  fromResult,
+              const nextState = {
+                isEdit: location.state?.isEdit ?? false,
+                formData: {
+                  name,
+                  phone,
+                  mail,
+                  lesson,
+                  number,
+                  student,
+                  part: selectedPart,
                 },
-              });
+              };
+
+              if (location.state?.isEdit) {
+                navigate("/WriteConfirm", {
+                  state: nextState,
+                });
+              } else {
+                navigate("/WriteAnswer", {
+                  state: {
+                    ...nextState,
+                    fromResult,
+                  },
+                });
+              }
             }}>
-            다음으로
+            {location.state?.isEdit ? "수정 완료" : "다음으로"}
           </N.NextButton>
         </N.NextButtonGrid>
       </N.Space>

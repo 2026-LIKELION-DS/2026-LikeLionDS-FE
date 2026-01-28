@@ -4,7 +4,7 @@ import * as N from "@styles/InformationCollectionStyle";
 import styled from "styled-components";
 import Step1 from "@/assets/icons/Step1.svg";
 
-import Header from "@components/Header/HeaderSub";
+import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
 
 function InformationCollection() {

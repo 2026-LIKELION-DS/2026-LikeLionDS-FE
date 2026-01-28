@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as N from "@styles/ExitModalStyle";
 import styled from "styled-components";
 
-function ExitModal({ onClose }) {
+function ExitModal({ onCancel, onExit }) {
   const navigate = useNavigate();
 
   return (
@@ -15,21 +15,9 @@ function ExitModal({ onClose }) {
           </N.Text>
 
           <N.ChGrid>
-            <N.ReT
-              onClick={() => {
-                onClose?.(); // 돌아가기: 모달 닫기
-              }}
-              style={{ cursor: "pointer" }}>
-              돌아가기
-            </N.ReT>
-            <div style={{ width: "1px", backgroundColor: "#606268" }} />
-            <N.Back
-              onClick={() => {
-                navigate("/"); // 홈으로 이동
-              }}
-              style={{ cursor: "pointer" }}>
-              나가기
-            </N.Back>
+            <N.ReT onClick={onCancel}>돌아가기</N.ReT>
+            <N.Line></N.Line>
+            <N.Back onClick={onExit}>나가기</N.Back>
           </N.ChGrid>
         </N.ModalGrid>
       </N.ModalBackground>

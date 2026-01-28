@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as N from "@styles/WriteAnswerStyle";
 
-import Header from "@components/Header/HeaderSub";
+import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
 
 import Step3 from "@/assets/icons/Step3.svg";
