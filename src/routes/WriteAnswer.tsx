@@ -5,7 +5,7 @@ import * as N from "@styles/WriteAnswerStyle";
 import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
 
-import Step2 from "@/assets/icons/Step2.svg";
+import Step3 from "@/assets/icons/Step3.svg";
 import Up from "@/assets/icons/Up.svg";
 
 function WriteAnswer() {
@@ -53,12 +53,12 @@ function WriteAnswer() {
 
   return (
     <>
-      <Header title="문항 답변 작성"></Header>
+      <Header title="서류 지원서 작성"></Header>
       <N.Space>
         <N.StepGrid>
-          <N.StepTitle>STEP 2</N.StepTitle>
+          <N.StepTitle>STEP 3</N.StepTitle>
           <N.StepText>문항 답변 입력</N.StepText>
-          <N.StepIcon src={Step2} alt="단계2" />
+          <N.StepIcon src={Step3} alt="단계2" />
         </N.StepGrid>
 
         <N.FormGrid>
