@@ -19,7 +19,7 @@ function ApplicantsResult() {
 
   const { name, is_passed } = location.state ?? devState;
 
-  const [finalResult, setFinalResult] = useState(false); // true로 바꾸면 최종합격 UI 확인 가능
+  const [finalResult, setFinalResult] = useState(true); // true로 바꾸면 최종합격 UI 확인 가능
 
   useEffect(() => {
     if (import.meta.env.PROD) {
@@ -83,7 +83,7 @@ function ApplicantsResult() {
                       </A.Button>
                       <A.Button>
                         <A.Img src={discord} />
-                        <A.StyledLink to="https://discord.gg/ycvhMnZJ" target="_blank" rel="noopener noreferrer">
+                        <A.StyledLink to="https://discord.gg/4PMSTQV2" target="_blank" rel="noopener noreferrer">
                           디스코드 바로가기
                         </A.StyledLink>
                       </A.Button>
