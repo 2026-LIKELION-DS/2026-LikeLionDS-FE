@@ -25,7 +25,7 @@ function CheckSubmit() {
             </S.Title>
             <S.Checking_Card>
                 <S.Text>
-                        1차 합격자 개별 통보는 <S.Highlight>2월 2일</S.Highlight><br/>적어주신 메일을 통해 이루어집니다.
+                        1차 합격자 개별 통보는 <S.Highlight>2월 25일</S.Highlight><br/>적어주신 메일을 통해 이루어집니다.
                      </S.Text>
                      <S.Text>
                          지원해주셔서 감사합니다.
