@@ -41,32 +41,29 @@ const handleClick = () => {
       <Header title="제출 여부 확인하기" />
 
       <SS.Space>
-        
-            <S.Wrapper>
-              <S.Title>
-                제출된 지원서가 없습니다
-              </S.Title>
-        
-              <S.Card>
-                <S.Text>
-                    해당하는 이름, 전화번호, 메일로<br/>제출된 지원서가 없습니다.
-                </S.Text>
-                <S.Text>
-                    관련 문의사항은 <br/>카카오톡 오픈채팅으로 부탁드립니다.
-                </S.Text>
-                <S.KakaoLink onClick={() => window.open("https://open.kakao.com/...", "_blank")}>
-  <S.KakaoIMG src={kakao} alt="카카오톡 로고" />
-  카카오톡 오픈채팅 바로가기
-</S.KakaoLink>
-              
-              </S.Card>
-              <S.DisabledButton $isDeadlinePassed={isDeadlinePassed} onClick={handleClick}>
-              {isDeadlinePassed ? "지금은 모집 기간이 아니에요" : "지원서 제출하러 가기"}
-              </S.DisabledButton>
-           
-            </S.Wrapper>
-      </SS.Space>
+        <S.Wrapper>
+          <S.Title>제출된 지원서가 없습니다</S.Title>
 
+          <S.Card>
+            <S.Text>
+              해당하는 이름, 전화번호, 메일로
+              <br />
+              제출된 지원서가 없습니다.
+            </S.Text>
+            <S.Text>
+              관련 문의사항은 <br />
+              카카오톡 오픈채팅으로 부탁드립니다.
+            </S.Text>
+            <S.KakaoLink onClick={() => window.open("https://open.kakao.com/o/sVlPfU7h", "_blank")}>
+              <S.KakaoIMG src={kakao} alt="카카오톡 로고" />
+              카카오톡 오픈채팅 바로가기
+            </S.KakaoLink>
+          </S.Card>
+          <S.DisabledButton $isDeadlinePassed={isDeadlinePassed} onClick={handleClick}>
+            {isDeadlinePassed ? "지금은 모집 기간이 아니에요" : "지원서 제출하러 가기"}
+          </S.DisabledButton>
+        </S.Wrapper>
+      </SS.Space>
 
       <Footer />
     </>

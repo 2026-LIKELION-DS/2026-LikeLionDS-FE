@@ -31,7 +31,6 @@ function Footer({ isMain }) {
                     <div>양서윤</div>
                     <div>최솔</div>
                     <div>허윤아</div>
-                    
                   </F.PeopleGrid>
                 </F.Group>
                 <F.Group>
@@ -51,7 +50,7 @@ function Footer({ isMain }) {
             <a href="https://www.instagram.com/likelion_ds" target="_blank" rel="noopener noreferrer">
               <F.Icon src={Instagram} alt="인스타그램" />
             </a>
-            <a href="https://open.kakao.com/me/LikelionDS" target="_blank" rel="noopener noreferrer">
+            <a href="https://open.kakao.com/o/sVlPfU7h" target="_blank" rel="noopener noreferrer">
               <F.Icon src={Kakao} alt="카카오톡" />
             </a>
           </F.Sns>

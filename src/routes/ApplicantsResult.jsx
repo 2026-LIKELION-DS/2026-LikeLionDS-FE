@@ -83,7 +83,7 @@ function ApplicantsResult() {
                       </A.Button>
                       <A.Button>
                         <A.Img src={discord} />
-                        <A.StyledLink to="https://discord.gg/ycvhMnZJ" target="_blank" rel="noopener noreferrer">
+                        <A.StyledLink to="https://discord.gg/4PMSTQV2" target="_blank" rel="noopener noreferrer">
                           디스코드 바로가기
                         </A.StyledLink>
                       </A.Button>
@@ -119,7 +119,7 @@ function ApplicantsResult() {
                     <A.LinkBox>
                       <A.Button>
                         <A.Img src={kakao} />
-                        <A.StyledLink to="https://open.kakao.com/me/LikelionDS">카카오 오픈채팅 바로가기</A.StyledLink>
+                        <A.StyledLink to="https://open.kakao.com/o/sVlPfU7h">카카오 오픈채팅 바로가기</A.StyledLink>
                       </A.Button>
                     </A.LinkBox>
                   </>
