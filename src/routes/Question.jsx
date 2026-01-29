@@ -159,7 +159,7 @@ function Question() {
   useEffect(() => {
     const checkDate = () => {
       const now = new Date();
-      const finalEndDate = new Date(2025, 2, 11, 0, 0, 0); // 3월 11일 00시
+      const finalEndDate = new Date(2026, 2, 11, 0, 0, 0); // 3월 11일 00시
 
       if (now >= finalEndDate) {
         setShowKakaoButton(true);
@@ -172,7 +172,7 @@ function Question() {
   }, []);
 
   const handleKakaoClick = () => {
-    window.open("https://open.kakao.com/me/LikelionDS", "_blank", "noopener,noreferrer");
+    window.open("https://open.kakao.com/o/sVlPfU7h", "_blank", "noopener,noreferrer");
   };
 
   return (

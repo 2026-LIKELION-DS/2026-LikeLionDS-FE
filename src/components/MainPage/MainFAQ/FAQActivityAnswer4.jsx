@@ -24,7 +24,7 @@ const FAQActivityAnswer4 = () => {
             fontWeight={400}
             fontSize={"14px"}
             $textAlign={"start"}>
-            작년 12기 기준 1번의 아이디어톤과 3번
+            작년 13기 기준 1번의 아이디어톤과 3번
             <br />의 해커톤에 참여할 수 있었어요.
           </JoinRectangle>
         </M.ComponentContainer>

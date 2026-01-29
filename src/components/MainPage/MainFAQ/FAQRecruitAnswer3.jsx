@@ -40,9 +40,9 @@ const FAQRecruitAnswer3 = () => {
             fontWeight={400}
             fontSize={"14px"}
             $textAlign={"start"}>
-            작년 12기에는 기획•디자인 4명, 프론트
+            작년 13기에는 기획•디자인 5명, 프론트
             <br />
-            엔드 12명, 백엔드 9명이 함께 했어요!
+            엔드 10명, 백엔드 10명이 함께 했어요!
           </JoinRectangle>
         </M.ComponentContainer>
       </M_.AnswerContainer>

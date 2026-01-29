@@ -50,19 +50,19 @@ const JoinSchedule = () => {
 
       <M.LineContainer>
         <div style={{ width: "100%" }}>
-          <Schedule date={"02.06 - 02.20"} text={"13기 모집"} className="schedules"></Schedule>
+          <Schedule date={"02.05 - 02.19"} text={"14기 모집"} className="schedules"></Schedule>
           <M.Line />
 
-          <Schedule date={"02.26"} text={"1차 합격자 발표"} className="schedules"></Schedule>
+          <Schedule date={"02.25"} text={"1차 합격자 발표"} className="schedules"></Schedule>
           <M.Line />
 
-          <Schedule date={"03.04 - 03.06"} text={"대면 면접"} className="schedules"></Schedule>
+          <Schedule date={"03.03 - 03.05"} text={"대면 면접"} className="schedules"></Schedule>
           <M.Line />
 
-          <Schedule date={"03.08"} text={"최종 합격자 발표"} className="schedules"></Schedule>
+          <Schedule date={"03.07"} text={"최종 합격자 발표"} className="schedules"></Schedule>
           <M.Line />
 
-          <Schedule date={"03.10"} text={"OT"} className="schedules"></Schedule>
+          <Schedule date={"03.09"} text={"OT"} className="schedules"></Schedule>
         </div>
       </M.LineContainer>
     </>
