@@ -70,9 +70,14 @@ function Applicants() {
     }
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL;
+      const API_URL = import.meta.env.VITE_API_BASE_URL;
 
-      const response = await axios.post(`${API_URL}/check/babylions/`, {
+      const url =
+        pageMode === "FORM_CHECK"
+          ? `${API_URL}/application/check-submission/` // 제출 여부 조회 API
+          : `${API_URL}/check/babylions/`; // 합격자 조회 API
+
+      const response = await axios.post(url, {
         name,
         phone_number: tel,
         email,
@@ -86,11 +91,27 @@ function Applicants() {
       }
 
       if (pageMode === "FORM_CHECK") {
-        navigate("/checksubmit", {
-          // 연동시 지원자의 지원서 제출 여부에 따라 연결되는 페이지를 분기처리하는 코드를 추가하셔야 할 것 같아요!!
-          // 일단 제출 완료 페이지로 연결해두었습니당
-          state: { name, email },
-        });
+        const submitted = data?.data?.submitted;
+
+        if (submitted === true) {
+          // 성공 - 제출 시
+          navigate("/checksubmit", {
+            state: {
+              name,
+              email,
+              submittedAt: data.data.submitted_at,
+            },
+          });
+        } else {
+          // 성공 - 미제출 시
+          navigate("/noexist", {
+            state: {
+              name,
+              email,
+            },
+          });
+        }
+        return;
       }
 
       if (pageMode === "RESULT") {

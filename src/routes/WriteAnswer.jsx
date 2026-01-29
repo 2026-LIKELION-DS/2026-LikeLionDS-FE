@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import * as N from "@styles/WriteAnswerStyle";
 import { useRef } from "react";
+import axios from "axios";
+
+import * as N from "@styles/WriteAnswerStyle";
 
 import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
 
 import Step3 from "@/assets/icons/Step3.svg";
 import Up from "@/assets/icons/Up.svg";
+
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 function WriteAnswer() {
   const nextButtonRef = useRef(null);
@@ -22,7 +26,12 @@ function WriteAnswer() {
   const [showFab, setShowFab] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const isEdit = location.state?.isEdit;
+
+  const devState = { fromResult: true };
+  const { fromResult } = location.state ?? devState;
+
+  const isEdit = location.state?.isEdit ?? false;
+  const formData = location.state?.formData ?? null;
 
   useEffect(() => {
     if (!nextButtonRef.current) return;
@@ -38,7 +47,6 @@ function WriteAnswer() {
     );
 
     observer.observe(nextButtonRef.current);
-
     return () => observer.disconnect();
   }, []);
 
@@ -66,13 +74,45 @@ function WriteAnswer() {
     const handleWheel = () => {
       setShowFab(true);
     };
-
     window.addEventListener("wheel", handleWheel, { once: true });
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
     };
   }, []);
+
+  const goConfirm = () => {
+    if (!isFormValid) return;
+
+    const payload = {
+      name: formData?.name,
+      phone_number: formData?.phone_number,
+      email: formData?.email,
+      student_id: formData?.student_id,
+      department: formData?.department,
+      academic_status: formData?.academic_status,
+      part: formData?.part,
+
+      common_answers: [
+        { question_number: 1, answer: common1 },
+        { question_number: 2, answer: common2 },
+      ],
+      part_answers: [
+        { question_number: 1, answer: part1 },
+        { question_number: 2, answer: part2 },
+      ],
+    };
+
+    navigate("/WriteConfirm", {
+      state: {
+        isEdit,
+        fromResult,
+        formData,
+        answerData: { common1, common2, part1, part2, TryJava },
+        payload,
+      },
+    });
+  };
 
   return (
     <>
@@ -208,12 +248,13 @@ function WriteAnswer() {
             disabled={!isFormValid}
             onClick={() => {
               if (!isFormValid) return;
-              navigate("/writeconfirm", {
-                state: {
-                  isEdit,
-                  answerData: { common1, common2, part1, part2, TryJava },
-                },
-              });
+              // navigate("/writeconfirm", {
+              //   state: {
+              //     isEdit,
+              //     answerData: { common1, common2, part1, part2, TryJava },
+              //   },
+              // });
+              goConfirm();
             }}>
             {isEdit ? "수정 완료" : "다음으로"}
           </N.NextButton>
