@@ -28,13 +28,16 @@ export const TextContainer = styled.div`
 `;
 
 export const AnimationWrapper = styled.div`
-  height: min(486px, 124.61vw);
-  align-self: center;
+  height: min(86px, 124.61vw);
 
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
   z-index: 999;
 
   margin-top: 30px;
-  margin-bottom: -300px;
+  margin-bottom: 120px;
 
   > div {
     width: 100%;
@@ -50,3 +53,21 @@ export const AnimationWrapper = styled.div`
 export const Period = styled.img`
 
 `;
+
+
+export const PeriodImg = styled.img`
+  width: 162px;
+  height: 62px;
+  object-fit: contain;
+    z-index: 99;
+`;
+
+export const ArrowImg = styled.img`
+  width: 50px; 
+  height: 15px;
+  object-fit: contain;
+  z-index: 999;
+  margin-left: -40px; 
+  margin-right: -40px;
+  position: relative;
+  `;
