@@ -29,7 +29,7 @@ function ApplicationFormDone() {
             },
           ]}
           showKakaoLink
-          onKakaoClick={() => window.open("https://open.kakao.com/...", "_blank")} // 추후 수정
+          onKakaoClick={() => window.open("https://open.kakao.com/o/sVlPfU7h", "_blank")} // 추후 수정
         />
       </S.Space>
 
