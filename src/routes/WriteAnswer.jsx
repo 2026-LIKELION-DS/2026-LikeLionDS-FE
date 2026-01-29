@@ -33,8 +33,6 @@ function WriteAnswer() {
   const isEdit = location.state?.isEdit ?? false;
   const formData = location.state?.formData ?? null;
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   useEffect(() => {
     if (!nextButtonRef.current) return;
 
@@ -49,7 +47,6 @@ function WriteAnswer() {
     );
 
     observer.observe(nextButtonRef.current);
-
     return () => observer.disconnect();
   }, []);
 
@@ -84,47 +81,37 @@ function WriteAnswer() {
     };
   }, []);
 
-  const submitApplication = async () => {
-    if (!isFormValid || isSubmitting) return;
+  const goConfirm = () => {
+    if (!isFormValid) return;
 
-    try {
-      setIsSubmitting(true);
+    const payload = {
+      name: formData?.name,
+      phone_number: formData?.phone_number,
+      email: formData?.email,
+      student_id: formData?.student_id,
+      department: formData?.department,
+      academic_status: formData?.academic_status,
+      part: formData?.part,
 
-      const payload = {
-        name: formData?.name,
-        phone_number: formData?.phone_number,
-        email: formData?.email,
-        student_id: formData?.student_id,
-        department: formData?.department,
-        academic_status: formData?.academic_status,
-        part: formData?.part,
+      common_answers: [
+        { question_number: 1, answer: common1 },
+        { question_number: 2, answer: common2 },
+      ],
+      part_answers: [
+        { question_number: 1, answer: part1 },
+        { question_number: 2, answer: part2 },
+      ],
+    };
 
-        common_answers: [
-          { question_number: 1, answer: common1 },
-          { question_number: 2, answer: common2 },
-        ],
-        part_answers: [
-          { question_number: 1, answer: part1 },
-          { question_number: 2, answer: part2 },
-        ],
-      };
-
-      const res = await axios.post(`${API_URL}/application/`, payload);
-
-      navigate("/WriteConfirm", {
-        state: {
-          isEdit: location.state?.isEdit ?? false,
-          fromResult,
-          formData,
-          answerData: { common1, common2, part1, part2, TryJava },
-          applicationData: res.data,
-        },
-      });
-    } catch (err) {
-      console.error("POST /application/ error:", err);
-    } finally {
-      setIsSubmitting(false);
-    }
+    navigate("/WriteConfirm", {
+      state: {
+        isEdit,
+        fromResult,
+        formData,
+        answerData: { common1, common2, part1, part2, TryJava },
+        payload,
+      },
+    });
   };
 
   return (
@@ -267,7 +254,7 @@ function WriteAnswer() {
               //     answerData: { common1, common2, part1, part2, TryJava },
               //   },
               // });
-              submitApplication();
+              goConfirm();
             }}>
             {isEdit ? "수정 완료" : "다음으로"}
           </N.NextButton>

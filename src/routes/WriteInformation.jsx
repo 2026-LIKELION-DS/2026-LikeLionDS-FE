@@ -37,7 +37,7 @@ function WriteInformation() {
       setPhone(data?.phone_number ?? "");
       setMail(data?.email ?? "");
       setLesson(data?.department ?? "");
-      setLesson(data?.academic_status ?? "");
+      setStudent(data?.academic_status ?? "");
       setNumber(data?.student_id ?? "");
 
       const partMapFromServer = {

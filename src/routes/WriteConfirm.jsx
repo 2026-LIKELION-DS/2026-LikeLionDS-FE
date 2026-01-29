@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useRef } from "react";
+import axios from "axios";
 import * as N from "@styles/WriteConfirmStyle";
 
 import Header from "@components/Header/HeaderSubExit";
@@ -8,6 +9,8 @@ import Footer from "@components/Footer";
 
 import Step4 from "@/assets/icons/Step4.svg";
 import Up from "@/assets/icons/Up.svg";
+
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 function WriteConfirm() {
   const nextButtonRef = useRef(null);
@@ -20,6 +23,7 @@ function WriteConfirm() {
   const isEdit = location.state?.isEdit ?? false;
   const formData = location.state?.formData ?? {};
   const answerData = location.state?.answerData;
+  const payload = location.state?.payload ?? null;
 
   const [form, setForm] = useState(formData);
 
@@ -70,6 +74,16 @@ function WriteConfirm() {
     });
   };
 
+  const submitFinal = async () => {
+    if (!payload) {
+      console.error("payload is missing");
+      return;
+    }
+
+    await axios.post(`${API_URL}/application/`, payload);
+    navigate("/applicationformdone");
+  };
+
   return (
     <>
       <Header title="서류 지원서 작성"></Header>
@@ -83,17 +97,7 @@ function WriteConfirm() {
           <N.InformationFormGrid>
             <N.FormTitleBox>
               <N.InfoTitle>인적사항</N.InfoTitle>
-              <N.InfoEdit
-                onClick={() => {
-                  navigate("/writeinformation", {
-                    state: {
-                      isEdit: true,
-                      formData: form,
-                    },
-                  });
-                }}>
-                수정하기
-              </N.InfoEdit>
+              <N.InfoEdit onClick={handleEdit}>수정하기</N.InfoEdit>
             </N.FormTitleBox>
             <N.InfoBox>
               <N.InfoNameText>이름</N.InfoNameText>
@@ -159,12 +163,7 @@ function WriteConfirm() {
           <N.UpIcon src={Up} alt="위로"></N.UpIcon>
         </N.Fixed>
         <N.NextButtonGrid ref={nextButtonRef}>
-          <N.NextButton
-            onClick={() => {
-              navigate("/applicationformdone");
-            }}>
-            제출하기
-          </N.NextButton>
+          <N.NextButton onClick={submitFinal}>제출하기</N.NextButton>
         </N.NextButtonGrid>
       </N.Space>
       <Footer />
