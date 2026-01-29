@@ -7,8 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import Period from "@assets/icons/JoinPeriod.svg";
-import Start from "@assets/icons/Period_start.png";
-import End from "@assets/icons/Period_End.png";
+import Start from "@assets/icons/Period_start.svg";
+import End from "@assets/icons/Period_End.svg";
 import Arrow from "@assets/icons/arrow.svg";
 
 const JoinPeriod = () => {
