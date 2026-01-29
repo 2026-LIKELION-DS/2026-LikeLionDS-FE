@@ -13,7 +13,7 @@ function MainLastPage() {
 
   const handleClick = () => {
     if (!isDeadlinePassed) {
-      navigate("/InformationCollection");
+      navigate("/informationcollection");
     }
   };
   const calculateDday = () => {

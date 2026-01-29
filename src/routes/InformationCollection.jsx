@@ -90,7 +90,7 @@ function InformationCollection() {
             disabled={!isAgreeYes}
             onClick={() => {
               if (!isAgreeYes) return;
-              navigate("/WriteInformation");
+              navigate("/writeinformation");
             }}>
             다음으로
           </N.NextButton>

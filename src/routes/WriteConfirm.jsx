@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as N from "@styles/WriteConfirmStyle";
+import { useRef } from "react";
 
 import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
@@ -9,6 +10,9 @@ import Step4 from "@/assets/icons/Step4.svg";
 import Up from "@/assets/icons/Up.svg";
 
 function WriteConfirm() {
+  const nextButtonRef = useRef(null);
+  const [isNextVisible, setIsNextVisible] = useState(true);
+
   const navigate = useNavigate();
   const [showFab, setShowFab] = useState(false);
   const location = useLocation();
@@ -19,6 +23,24 @@ function WriteConfirm() {
 
   const [form, setForm] = useState(formData);
 
+  useEffect(() => {
+    if (!nextButtonRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsNextVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.1,
+      },
+    );
+
+    observer.observe(nextButtonRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   //수정으로 이동
   useEffect(() => {
     if (location.state?.isEdit) {
@@ -27,7 +49,7 @@ function WriteConfirm() {
   }, []);
 
   const handleEdit = () => {
-    navigate("/WriteInformation", {
+    navigate("/writeinformation", {
       state: {
         isEdit: true,
         formData: form,
@@ -47,6 +69,7 @@ function WriteConfirm() {
       window.removeEventListener("wheel", handleWheel);
     };
   }, []);
+
   return (
     <>
       <Header title="서류 지원서 작성"></Header>
@@ -63,7 +86,7 @@ function WriteConfirm() {
               {/* 연동시 실제 state값 넣어주세요 */}
               <N.InfoEdit
                 onClick={() => {
-                  navigate("/WriteInformation", {
+                  navigate("/writeinformation", {
                     state: {
                       isEdit: true,
                       formData: {
@@ -97,7 +120,7 @@ function WriteConfirm() {
               <N.InfoTitle>문항 답변 내역</N.InfoTitle>
               <N.AnsEdit
                 onClick={() => {
-                  navigate("/WriteAnswer", {
+                  navigate("/writeanswer", {
                     state: {
                       isEdit: true,
                       answerData: answerData,
@@ -157,6 +180,7 @@ function WriteConfirm() {
           </N.AnswerFormGrid>
         </N.FormGrid>
         <N.Fixed
+          $withNext={isNextVisible}
           onClick={() => {
             window.scrollTo({
               top: 0,
@@ -165,10 +189,10 @@ function WriteConfirm() {
           }}>
           <N.UpIcon src={Up} alt="위로"></N.UpIcon>
         </N.Fixed>
-        <N.NextButtonGrid>
+        <N.NextButtonGrid ref={nextButtonRef}>
           <N.NextButton
             onClick={() => {
-              navigate("/ApplicationFormDone");
+              navigate("/applicationformdone");
             }}>
             제출하기
           </N.NextButton>

@@ -31,11 +31,12 @@ export const StepGrid = styled.div`
 `;
 
 export const FormGrid = styled.div`
-  margin: 0 0 36px 0;
   gap: 36px;
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
 `;
 
 export const Name = styled.div``;
@@ -43,10 +44,12 @@ export const NameText = styled.div`
   margin-bottom: 16px;
 `;
 export const NameInput = styled.input`
-  width: 340px;
+  box-sizing: border-box;
+  width: 100%;
   padding: 12px;
   border-radius: 16px;
   outline: none;
+
   &:hover {
     cursor: pointer;
   }
@@ -61,10 +64,12 @@ export const InputEx = styled.div`
   color: ${palette.boldBlack.ex5};
 `;
 export const PhoneInput = styled.input`
-  width: 340px;
+  box-sizing: border-box;
+  width: 100%;
   padding: 12px;
   border-radius: 16px;
   outline: none;
+
   &:hover {
     cursor: pointer;
   }
@@ -73,10 +78,12 @@ export const PhoneInput = styled.input`
 export const Mail = styled.div``;
 export const MailText = styled.div``;
 export const MailInput = styled.input`
-  width: 340px;
+  box-sizing: border-box;
+  width: 100%;
   padding: 12px;
   border-radius: 16px;
   outline: none;
+
   &:hover {
     cursor: pointer;
   }
@@ -85,10 +92,12 @@ export const MailInput = styled.input`
 export const Lesson = styled.div``;
 export const LessonText = styled.div``;
 export const LessonInput = styled.input`
-  width: 340px;
+  width: 100%;
   padding: 12px;
   border-radius: 16px;
   outline: none;
+  box-sizing: border-box;
+
   &:hover {
     cursor: pointer;
   }
@@ -97,10 +106,12 @@ export const LessonInput = styled.input`
 export const Number = styled.div``;
 export const NumberText = styled.div``;
 export const NumberInput = styled.input`
-  width: 340px;
+  width: 100%;
   padding: 12px;
   border-radius: 16px;
   outline: none;
+  box-sizing: border-box;
+
   &:hover {
     cursor: pointer;
   }
@@ -115,12 +126,10 @@ export const PartText = styled.div`
   margin-bottom: 16px;
 `;
 export const PartCon = styled.div`
-  display: flex;
   justify-content: center;
-  align-items: center;
-  width: 368px;
+  display: flex;
+  width: 100%;
   gap: 8px;
-  flex: 1 0 0;
   cursor: pointer;
 `;
 export const PartButton = styled.button`

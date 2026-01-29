@@ -162,54 +162,6 @@ function WriteInformation() {
         </N.FormGrid>
         <N.NextButtonGrid>
           <N.NextButton
-            // disabled={!isFormValid}
-            // onClick={() => {
-            //   navigate("/WriteAnswer", {
-            //     state: {
-            //       isEdit: location.state?.isEdit ?? false,
-            //       formData: {
-            //         name,
-            //         phone,
-            //         mail,
-            //         lesson,
-            //         number,
-            //         student,
-            //         part: selectedPart,
-            //       },
-            //       fromResult,
-            //     },
-            //   });
-            // }}
-            // disabled={!isFormValid}
-            // onClick={() => {
-            //   const nextState = {
-            //     isEdit: location.state?.isEdit ?? false,
-            //     formData: {
-            //       name,
-            //       phone,
-            //       mail,
-            //       lesson,
-            //       number,
-            //       student,
-            //       part: selectedPart,
-            //     },
-            //   };
-
-            //   if (location.state?.isEdit) {
-            //     // 🔥 수정 중 → 다시 확인 페이지
-            //     navigate("/WriteConfirm", {
-            //       state: nextState,
-            //     });
-            //   } else {
-            //     // 신규 작성 → 다음 단계
-            //     navigate("/WriteAnswer", {
-            //       state: {
-            //         ...nextState,
-            //         fromResult,
-            //       },
-            //     });
-            //   }
-            // }}
             disabled={!isFormValid}
             onClick={() => {
               const nextState = {
@@ -230,7 +182,7 @@ function WriteInformation() {
                   state: nextState,
                 });
               } else {
-                navigate("/WriteAnswer", {
+                navigate("/writeanswer", {
                   state: {
                     ...nextState,
                     fromResult,
