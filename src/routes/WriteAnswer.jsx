@@ -94,13 +94,16 @@ function WriteAnswer() {
                   <N.QInput
                     value={common1}
                     onChange={(e) => {
-                      setCommon1(e.target.value);
+                      let value = e.target.value;
+                      if (value.length > 500) value = value.slice(0, 500);
+                      setCommon1(value);
+
                       e.target.style.height = "auto";
                       e.target.style.height = e.target.scrollHeight + "px";
                     }}
                     placeholder="답변을 작성해 주세요."></N.QInput>
                   <N.TextCount>
-                    <N.WriteText>{common1.length}</N.WriteText>/500
+                    <N.WriteText>{500 - common1.length}</N.WriteText>/500
                   </N.TextCount>
                 </N.QInputBox>
               </N.QBox>
@@ -110,13 +113,16 @@ function WriteAnswer() {
                   <N.QInput
                     value={common2}
                     onChange={(e) => {
-                      setCommon2(e.target.value);
+                      let value = e.target.value;
+                      if (value.length > 500) value = value.slice(0, 500);
+                      setCommon2(value);
+
                       e.target.style.height = "auto";
                       e.target.style.height = e.target.scrollHeight + "px";
                     }}
                     placeholder="답변을 작성해 주세요."></N.QInput>
                   <N.TextCount>
-                    <N.WriteText>{common2.length}</N.WriteText>/500
+                    <N.WriteText>{500 - common2.length}</N.WriteText>/500
                   </N.TextCount>
                 </N.QInputBox>
               </N.QBox>
@@ -133,13 +139,16 @@ function WriteAnswer() {
                   <N.QInput
                     value={part1}
                     onChange={(e) => {
-                      setPart1(e.target.value);
+                      let value = e.target.value;
+                      if (value.length > 500) value = value.slice(0, 500);
+                      setPart1(value);
+
                       e.target.style.height = "auto";
                       e.target.style.height = e.target.scrollHeight + "px";
                     }}
                     placeholder="답변을 작성해 주세요."></N.QInput>
                   <N.TextCount>
-                    <N.WriteText>{part1.length}</N.WriteText>/500
+                    <N.WriteText>{500 - part1.length}</N.WriteText>/500
                   </N.TextCount>
                 </N.QInputBox>
               </N.QBox>
@@ -149,13 +158,16 @@ function WriteAnswer() {
                   <N.QInput
                     value={part2}
                     onChange={(e) => {
-                      setPart2(e.target.value);
+                      let value = e.target.value;
+                      if (value.length > 500) value = value.slice(0, 500);
+                      setPart2(value);
+
                       e.target.style.height = "auto";
                       e.target.style.height = e.target.scrollHeight + "px";
                     }}
                     placeholder="답변을 작성해 주세요."></N.QInput>
                   <N.TextCount>
-                    <N.WriteText>{part2.length}</N.WriteText>/500
+                    <N.WriteText>{500 - part2.length}</N.WriteText>/500
                   </N.TextCount>
                 </N.QInputBox>
               </N.QBox>
