@@ -17,7 +17,7 @@ function ApplicationFormDone() {
           messages={[
             {
               before: "2차 면접 시간 통보는 ",
-              highlight: "2월 2일",
+              highlight: "3월 1일",
               after: " 적어주신 메일을 통해 이루어집니다.",
             },
             {
