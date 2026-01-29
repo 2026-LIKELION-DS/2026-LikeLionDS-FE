@@ -19,7 +19,7 @@ function ApplicantsResult() {
 
   const { name, is_passed } = location.state ?? devState;
 
-  const [finalResult, setFinalResult] = useState(true); // true로 바꾸면 최종합격 UI 확인 가능
+  const [finalResult, setFinalResult] = useState(false); // true로 바꾸면 최종합격 UI 확인 가능
 
   useEffect(() => {
     if (import.meta.env.PROD) {
