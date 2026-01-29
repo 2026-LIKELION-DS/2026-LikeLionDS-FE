@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import * as N from "@styles/WriteInformationStyle";
 
 import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
 
 import Step2 from "@/assets/icons/Step2.svg";
+
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 function WriteInformation() {
   const navigate = useNavigate();
@@ -23,42 +26,31 @@ function WriteInformation() {
     setSelectedPart(part);
   };
 
-  const devState = {
-    fromResult: true,
-  };
+  const devState = { fromResult: true };
+  const { fromResult } = location.state ?? devState;
 
   useEffect(() => {
     if (location.state?.isEdit && location.state?.formData) {
       const data = location.state.formData;
 
       setName(data?.name ?? "");
-      setPhone(data?.phone ?? "");
-      setMail(data?.mail ?? "");
-      setLesson(data?.lesson ?? "");
-      setLesson(data?.student ?? "");
+      setPhone(data?.phone_number ?? "");
+      setMail(data?.email ?? "");
+      setLesson(data?.department ?? "");
+      setLesson(data?.academic_status ?? "");
+      setNumber(data?.student_id ?? "");
 
-      setNumber(data?.number ?? "");
-      setSelectedPart(data?.part ?? null);
+      const partMapFromServer = {
+        PM: "pm",
+        FE: "front",
+        BE: "back",
+      };
+      setSelectedPart(partMapFromServer[data?.part] ?? null);
     }
   }, [location.state]);
 
-  // 연동시 삭제
-  const { fromResult } = location.state ?? devState;
-
   const isFormValid =
-    typeof name === "string" &&
-    typeof phone === "string" &&
-    typeof mail === "string" &&
-    typeof lesson === "string" &&
-    typeof number === "string" &&
-    typeof student === "string" &&
-    name.trim() !== "" &&
-    phone.trim() !== "" &&
-    mail.trim() !== "" &&
-    lesson.trim() !== "" &&
-    number.trim() !== "" &&
-    student.trim() !== "" &&
-    selectedPart;
+    name.trim() && phone.trim() && mail.trim() && lesson.trim() && number.trim() && student.trim() && selectedPart;
 
   return (
     <>
@@ -164,17 +156,25 @@ function WriteInformation() {
           <N.NextButton
             disabled={!isFormValid}
             onClick={() => {
+              const partMapToServer = {
+                pm: "PM",
+                front: "FE",
+                back: "BE",
+              };
+
+              const formData = {
+                name,
+                phone_number: phone,
+                email: mail,
+                department: lesson,
+                academic_status: student,
+                student_id: number,
+                part: partMapToServer[selectedPart],
+              };
+
               const nextState = {
                 isEdit: location.state?.isEdit ?? false,
-                formData: {
-                  name,
-                  phone,
-                  mail,
-                  lesson,
-                  number,
-                  student,
-                  part: selectedPart,
-                },
+                formData,
               };
 
               if (location.state?.isEdit) {

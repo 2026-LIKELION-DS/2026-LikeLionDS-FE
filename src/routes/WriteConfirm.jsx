@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import * as N from "@styles/WriteConfirmStyle";
 import { useRef } from "react";
+import * as N from "@styles/WriteConfirmStyle";
 
 import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
@@ -16,10 +16,10 @@ function WriteConfirm() {
   const navigate = useNavigate();
   const [showFab, setShowFab] = useState(false);
   const location = useLocation();
-  const answerData = location.state?.answerData;
 
   const isEdit = location.state?.isEdit ?? false;
   const formData = location.state?.formData ?? {};
+  const answerData = location.state?.answerData;
 
   const [form, setForm] = useState(formData);
 
@@ -48,15 +48,6 @@ function WriteConfirm() {
     }
   }, []);
 
-  const handleEdit = () => {
-    navigate("/writeinformation", {
-      state: {
-        isEdit: true,
-        formData: form,
-      },
-    });
-  };
-
   // 휠 감지
   useEffect(() => {
     const handleWheel = () => {
@@ -69,6 +60,15 @@ function WriteConfirm() {
       window.removeEventListener("wheel", handleWheel);
     };
   }, []);
+
+  const handleEdit = () => {
+    navigate("/writeinformation", {
+      state: {
+        isEdit: true,
+        formData: form,
+      },
+    });
+  };
 
   return (
     <>
@@ -83,19 +83,12 @@ function WriteConfirm() {
           <N.InformationFormGrid>
             <N.FormTitleBox>
               <N.InfoTitle>인적사항</N.InfoTitle>
-              {/* 연동시 실제 state값 넣어주세요 */}
               <N.InfoEdit
                 onClick={() => {
                   navigate("/writeinformation", {
                     state: {
                       isEdit: true,
-                      formData: {
-                        form,
-                        name: "소랑이",
-                        phone: "010-0000-0000",
-                        email: "abc@duksung.ac.kr",
-                        // 연동시 수정하세용
-                      },
+                      formData: form,
                     },
                   });
                 }}>
@@ -104,15 +97,15 @@ function WriteConfirm() {
             </N.FormTitleBox>
             <N.InfoBox>
               <N.InfoNameText>이름</N.InfoNameText>
-              <N.InfoName>소랑이</N.InfoName>
+              <N.InfoName>{formData?.name ?? ""}</N.InfoName>
             </N.InfoBox>
             <N.InfoBox>
               <N.InfoNameText>전화번호</N.InfoNameText>
-              <N.InfoPhone>010-0000-0000</N.InfoPhone>
+              <N.InfoPhone>{formData?.phone_number ?? ""}</N.InfoPhone>
             </N.InfoBox>
             <N.InfoBox>
               <N.InfoNameText>메일주소</N.InfoNameText>
-              <N.InfoMail>abc@duksung.ac.kr</N.InfoMail>
+              <N.InfoMail>{formData?.email ?? ""}</N.InfoMail>
             </N.InfoBox>
           </N.InformationFormGrid>
           <N.AnswerFormGrid>
@@ -123,6 +116,7 @@ function WriteConfirm() {
                   navigate("/writeanswer", {
                     state: {
                       isEdit: true,
+                      formData: form,
                       answerData: answerData,
                     },
                   });
@@ -134,47 +128,22 @@ function WriteConfirm() {
               <N.CoText>공통질문</N.CoText>
               <N.CoQABox>
                 <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
-                <N.CoQA>
-                  사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용
-                </N.CoQA>
+                <N.CoQA>{answerData?.common1 ?? ""}</N.CoQA>
               </N.CoQABox>
               <N.CoQABox>
                 <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
-                <N.CoQA>
-                  사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가 작성한내용 사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용
-                </N.CoQA>
+                <N.CoQA>{answerData?.common2 ?? ""}</N.CoQA>
               </N.CoQABox>
             </N.CommonPartBox>
             <N.CommonPartBox>
               <N.InfoTitle>기획/디자인 파트별 질문</N.InfoTitle>
               <N.CoQABox>
                 <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
-                <N.CoQA>
-                  사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용
-                </N.CoQA>
+                <N.CoQA>{answerData?.part1 ?? ""}</N.CoQA>
               </N.CoQABox>
               <N.CoQABox>
                 <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
-                <N.CoQA>
-                  사용자가 작성한내용 사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용사용자가
-                  작성한내용사용자가 작성한내용사용자가 작성한내용사용자가 작성한내용
-                </N.CoQA>
+                <N.CoQA>{answerData?.part2 ?? ""}</N.CoQA>
               </N.CoQABox>
             </N.CommonPartBox>
           </N.AnswerFormGrid>
