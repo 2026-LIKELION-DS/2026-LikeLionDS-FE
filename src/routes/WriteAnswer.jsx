@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as N from "@styles/WriteAnswerStyle";
+import { useRef } from "react";
 
 import Header from "@components/Header/HeaderSubExit";
 import Footer from "@components/Footer";
@@ -9,17 +10,37 @@ import Step3 from "@/assets/icons/Step3.svg";
 import Up from "@/assets/icons/Up.svg";
 
 function WriteAnswer() {
+  const nextButtonRef = useRef(null);
+  const [isNextVisible, setIsNextVisible] = useState(true);
+
   const [common1, setCommon1] = useState("");
   const [common2, setCommon2] = useState("");
   const [part1, setPart1] = useState("");
   const [part2, setPart2] = useState("");
-  // const [TryJava, setTryJava] = (useState < "yes") | "no" | (null > null);
   const [TryJava, setTryJava] = useState(null);
 
   const [showFab, setShowFab] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const isEdit = location.state?.isEdit;
+
+  useEffect(() => {
+    if (!nextButtonRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsNextVisible(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.1,
+      },
+    );
+
+    observer.observe(nextButtonRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (location.state?.isEdit && location.state?.answerData) {
@@ -79,7 +100,7 @@ function WriteAnswer() {
                     }}
                     placeholder="답변을 작성해 주세요."></N.QInput>
                   <N.TextCount>
-                    <N.WriteText>500</N.WriteText>/500
+                    <N.WriteText>{common1.length}</N.WriteText>/500
                   </N.TextCount>
                 </N.QInputBox>
               </N.QBox>
@@ -95,7 +116,7 @@ function WriteAnswer() {
                     }}
                     placeholder="답변을 작성해 주세요."></N.QInput>
                   <N.TextCount>
-                    <N.WriteText>500</N.WriteText>/500
+                    <N.WriteText>{common2.length}</N.WriteText>/500
                   </N.TextCount>
                 </N.QInputBox>
               </N.QBox>
@@ -118,7 +139,7 @@ function WriteAnswer() {
                     }}
                     placeholder="답변을 작성해 주세요."></N.QInput>
                   <N.TextCount>
-                    <N.WriteText>500</N.WriteText>/500
+                    <N.WriteText>{part1.length}</N.WriteText>/500
                   </N.TextCount>
                 </N.QInputBox>
               </N.QBox>
@@ -134,7 +155,7 @@ function WriteAnswer() {
                     }}
                     placeholder="답변을 작성해 주세요."></N.QInput>
                   <N.TextCount>
-                    <N.WriteText>500</N.WriteText>/500
+                    <N.WriteText>{part2.length}</N.WriteText>/500
                   </N.TextCount>
                 </N.QInputBox>
               </N.QBox>
@@ -158,47 +179,29 @@ function WriteAnswer() {
             </N.QBox>
           </N.PartQGrid>
         </N.FormGrid>
-        <N.Fixed
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            });
-          }}>
-          <N.UpIcon src={Up} alt="위로"></N.UpIcon>
-        </N.Fixed>
-        <N.NextButtonGrid>
+        <N.FixedBox>
+          <N.Fixed
+            $withNext={isNextVisible}
+            onClick={() => {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }}>
+            <N.UpIcon src={Up} alt="위로"></N.UpIcon>
+          </N.Fixed>
+        </N.FixedBox>
+        <N.NextButtonGrid ref={nextButtonRef}>
           <N.NextButton
             disabled={!isFormValid}
             onClick={() => {
               if (!isFormValid) return;
-              if (isEdit) {
-                navigate("/WriteConfirm", {
-                  state: {
-                    isEdit: true,
-                    answerData: {
-                      common1,
-                      common2,
-                      part1,
-                      part2,
-                      TryJava,
-                    },
-                  },
-                });
-              } else {
-                navigate("/WriteConfirm", {
-                  state: {
-                    isEdit: false,
-                    answerData: {
-                      common1,
-                      common2,
-                      part1,
-                      part2,
-                      TryJava,
-                    },
-                  },
-                });
-              }
+              navigate("/writeconfirm", {
+                state: {
+                  isEdit,
+                  answerData: { common1, common2, part1, part2, TryJava },
+                },
+              });
             }}>
             {isEdit ? "수정 완료" : "다음으로"}
           </N.NextButton>

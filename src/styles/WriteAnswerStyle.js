@@ -64,7 +64,6 @@ export const QInput = styled.textarea`
   width: 100%;
 `;
 export const QInputBox = styled.div`
-  width: 98%;
   border: none;
   resize: none;
   outline: none;
@@ -131,23 +130,26 @@ export const Fixed = styled.div`
   width: 48px;
   height: 48px;
 
-  position: sticky;
-  bottom: 120px;
-  margin-left: auto;
+  position: ${({ $withNext }) => ($withNext ? "sticky" : "fixed")};
+  bottom: ${({ $withNext }) => ($withNext ? "120px" : "24px")};
+  right: ${({ $withNext }) => ($withNext ? "auto" : "24px")};
+  margin-left: ${({ $withNext }) => ($withNext ? "auto" : "0")};
 
   z-index: 1000;
+  margin-bottom: 15px;
 
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 99999px;
+  border-radius: 100%;
   background-color: ${palette.realOrange.ex5Primary};
 
   &:active {
     transform: scale(0.97);
   }
 `;
+
 export const UpIcon = styled.img`
   width: 24px;
   height: 24px;
@@ -186,4 +188,10 @@ export const NextButtonGrid = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const FixedBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
 `;

@@ -43,12 +43,12 @@ function App() {
         <Route path="/checksubmit" element={<CheckSubmit />} />
         <Route path="/noexist" element={<NoExistApplication />} />
         <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/WriteInformation" element={<WriteInformation />} />
-        <Route path="/WriteAnswer" element={<WriteAnswer />} />
-        <Route path="/WriteConfirm" element={<WriteConfirm />} />
-        <Route path="/ExitModal" element={<ExitModal />} />
-        <Route path="/InformationCollection" element={<InformationCollection />} />
-        <Route path="/ApplicationFormDone" element={<ApplicationFormDone />} />
+        <Route path="/writeinformation" element={<WriteInformation />} />
+        <Route path="/writeanswer" element={<WriteAnswer />} />
+        <Route path="/writeconfirm" element={<WriteConfirm />} />
+        <Route path="/exitmodal" element={<ExitModal />} />
+        <Route path="/informationcollection" element={<InformationCollection />} />
+        <Route path="/applicationformdone" element={<ApplicationFormDone />} />
 
         {/* 어드민 로그인 상태에서만 접근 가능한 라우터들 */}
         <Route
