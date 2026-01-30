@@ -22,6 +22,15 @@ function WriteInformation() {
   const [student, setStudent] = useState("");
   const [selectedPart, setSelectedPart] = useState(null);
 
+  const [dup, setDup] = useState({
+    checked: false,
+    isDuplicate: false,
+    loading: false,
+    error: null,
+  });
+
+  const normalizePhone = (v) => v.replace(/[^0-9]/g, "");
+
   const handlePartSelect = (part) => {
     setSelectedPart(part);
   };
@@ -49,8 +58,67 @@ function WriteInformation() {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    // 수정 모드에서는 중복 체크 안 함
+    if (location.state?.isEdit) return;
+
+    const trimmedName = name.trim();
+    const normalizedPhone = normalizePhone(phone);
+
+    // 입력이 덜 된 상태면 리셋
+    if (trimmedName.length < 2 || !(normalizedPhone.length === 10 || normalizedPhone.length === 11)) {
+      setDup({
+        checked: false,
+        isDuplicate: false,
+        loading: false,
+        error: null,
+      });
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      try {
+        setDup((prev) => ({ ...prev, loading: true, error: null }));
+
+        const res = await axios.post(`${API_URL}/application/check-duplicate/`, {
+          name: trimmedName,
+          phone_number: normalizedPhone,
+        });
+
+        const isDuplicate = Boolean(res.data?.data?.is_duplicate);
+
+        setDup({
+          checked: true,
+          isDuplicate,
+          loading: false,
+          error: null,
+        });
+      } catch (err) {
+        const msg = err?.response?.data?.message || err?.message || "중복 확인 중 오류가 발생했어요.";
+
+        setDup({
+          checked: true,
+          isDuplicate: false,
+          loading: false,
+          error: msg,
+        });
+      }
+    }, 350);
+
+    return () => clearTimeout(timer);
+  }, [name, phone, location.state?.isEdit]);
+
+  const isDuplicateBlocked = !location.state?.isEdit && dup.checked && (dup.isDuplicate || Boolean(dup.error));
+
   const isFormValid =
-    name.trim() && phone.trim() && mail.trim() && lesson.trim() && number.trim() && student.trim() && selectedPart;
+    name.trim() &&
+    phone.trim() &&
+    mail.trim() &&
+    lesson.trim() &&
+    number.trim() &&
+    student.trim() &&
+    selectedPart &&
+    !isDuplicateBlocked;
 
   return (
     <>
@@ -156,8 +224,10 @@ function WriteInformation() {
         </N.FormGrid>
         <N.NextButtonGrid>
           <N.NextButton
-            disabled={!isFormValid}
+            disabled={!isFormValid || dup.loading}
             onClick={() => {
+              if (!isFormValid) return;
+
               const partMapToServer = {
                 pm: "PM",
                 front: "FE",
@@ -165,12 +235,12 @@ function WriteInformation() {
               };
 
               const formData = {
-                name,
+                name: name.trim(),
                 phone_number: phone,
-                email: mail,
-                department: lesson,
-                academic_status: student,
-                student_id: number,
+                email: mail.trim(),
+                department: lesson.trim(),
+                academic_status: student.trim(),
+                student_id: number.trim(),
                 part: partMapToServer[selectedPart],
               };
 
@@ -180,7 +250,7 @@ function WriteInformation() {
               };
 
               if (location.state?.isEdit) {
-                navigate("/WriteConfirm", {
+                navigate("/writeconfirm", {
                   state: nextState,
                 });
               } else {
@@ -192,7 +262,7 @@ function WriteInformation() {
                 });
               }
             }}>
-            {location.state?.isEdit ? "수정 완료" : "다음으로"}
+            {dup.loading ? "중복 확인 중..." : location.state?.isEdit ? "수정 완료" : "다음으로"}
           </N.NextButton>
         </N.NextButtonGrid>
       </N.Space>
