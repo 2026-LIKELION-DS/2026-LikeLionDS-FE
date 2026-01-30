@@ -68,6 +68,7 @@ function WriteInformation() {
               placeholder="이름을 입력해 주세요"
               value={name}
               onChange={(e) => setName(e.target.value)}></N.NameInput>
+            <N.NameEx>*중복된 지원자 입니다</N.NameEx>
           </N.Name>
           <N.Phone>
             <N.PhoneText>전화번호</N.PhoneText>
@@ -76,6 +77,7 @@ function WriteInformation() {
               placeholder="‘-’ 없이 전화번호를 입력해 주세요"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}></N.PhoneInput>
+            <N.NumEx>*중복된 전화번호 입니다</N.NumEx>
           </N.Phone>
           <N.Mail>
             <N.MailText>메일</N.MailText>
