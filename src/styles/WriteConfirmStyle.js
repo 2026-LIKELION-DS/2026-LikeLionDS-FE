@@ -127,7 +127,7 @@ export const Fixed = styled.div`
 
   position: ${({ $withNext }) => ($withNext ? "sticky" : "fixed")};
   bottom: ${({ $withNext }) => ($withNext ? "120px" : "24px")};
-  right: ${({ $withNext }) => ($withNext ? "auto" : "24px")};
+  right: ${({ $withNext }) => ($withNext ? "auto" : "calc(50% - 178px)")};
   margin-left: ${({ $withNext }) => ($withNext ? "auto" : "0")};
 
   z-index: 1000;
