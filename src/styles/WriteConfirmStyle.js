@@ -114,6 +114,9 @@ export const CoQA = styled.div`
   font-size: 14px;
   font-weight: 400;
   color: ${palette.boldBlack.ex4};
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 `;
 export const CoQABox = styled.div``;
 
