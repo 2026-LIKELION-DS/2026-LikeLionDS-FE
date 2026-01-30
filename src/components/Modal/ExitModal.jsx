@@ -5,6 +5,9 @@ import styled from "styled-components";
 
 function ExitModal({ onCancel, onExit }) {
   const navigate = useNavigate();
+  const handleExit = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -17,7 +20,7 @@ function ExitModal({ onCancel, onExit }) {
           <N.ChGrid>
             <N.ReT onClick={onCancel}>돌아가기</N.ReT>
             <N.Line></N.Line>
-            <N.Back onClick={onExit}>나가기</N.Back>
+            <N.Back onClick={handleExit}>나가기</N.Back>
           </N.ChGrid>
         </N.ModalGrid>
       </N.ModalBackground>
