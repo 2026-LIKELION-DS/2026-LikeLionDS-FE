@@ -153,6 +153,7 @@ function TimeSelection() {
               navigate("/timedone", {
                 state: {
                   selectedTimes: selected,
+                  email,
                 },
               })
             }>
