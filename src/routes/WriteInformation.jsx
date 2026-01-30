@@ -8,7 +8,7 @@ import Footer from "@components/Footer";
 
 import Step2 from "@/assets/icons/Step2.svg";
 
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 function WriteInformation() {
   const navigate = useNavigate();

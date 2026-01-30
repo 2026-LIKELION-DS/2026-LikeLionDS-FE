@@ -17,17 +17,24 @@ function ApplicantsResult() {
     is_passed: true, // false로 바꾸면 불합격 UI 확인 가능
   };
 
+  if (!location.state && import.meta.env.PROD) {
+    navigate("/error");
+    return null;
+  }
+
   const { name, is_passed } = location.state ?? devState;
+
 
   const [finalResult, setFinalResult] = useState(false); // true로 바꾸면 최종합격 UI 확인 가능
 
-  useEffect(() => {
-    if (import.meta.env.PROD) {
-      if (!location.state || !location.state.name || location.state.is_passed === undefined) {
-        navigate("/error");
-      }
-    }
-  }, [location, navigate]);
+  // useEffect(() => {
+  //   if (import.meta.env.PROD) {
+  //     if (!location.state || !location.state.name || location.state.is_passed === undefined) {
+  //       navigate("/error");
+  //     }
+  //   }
+  // }, [location, navigate]);
+  //방어코드 위에 하나 더 만들어둬서 우선은 주석 처리 
 
   // if (!location.state) return null; // 리디렉션 전에 렌더링 방지
 
