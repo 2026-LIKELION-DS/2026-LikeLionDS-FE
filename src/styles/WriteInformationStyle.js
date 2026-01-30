@@ -49,6 +49,8 @@ export const NameInput = styled.input`
   padding: 12px;
   border-radius: 16px;
   outline: none;
+  border: none;
+  /* border: 1px solid ${palette.duksungBurgundy.ex3}; */
 
   &:hover {
     cursor: pointer;
@@ -69,6 +71,8 @@ export const PhoneInput = styled.input`
   padding: 12px;
   border-radius: 16px;
   outline: none;
+  border: none;
+  /* border: 1px solid ${palette.duksungBurgundy.ex3}; */
 
   &:hover {
     cursor: pointer;
@@ -83,6 +87,7 @@ export const MailInput = styled.input`
   padding: 12px;
   border-radius: 16px;
   outline: none;
+  border: none;
 
   &:hover {
     cursor: pointer;
@@ -97,6 +102,7 @@ export const LessonInput = styled.input`
   border-radius: 16px;
   outline: none;
   box-sizing: border-box;
+  border: none;
 
   &:hover {
     cursor: pointer;
@@ -111,6 +117,7 @@ export const NumberInput = styled.input`
   border-radius: 16px;
   outline: none;
   box-sizing: border-box;
+  border: none;
 
   &:hover {
     cursor: pointer;
@@ -181,4 +188,17 @@ export const NextButtonGrid = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 36px;
+`;
+
+export const NameEx = styled.div`
+  color: ${palette.duksungBurgundy.ex3};
+  margin: 12px;
+  font-size: 14px;
+  display: none;
+`;
+export const NumEx = styled.div`
+  color: ${palette.duksungBurgundy.ex3};
+  margin: 12px;
+  font-size: 14px;
+  display: none;
 `;
