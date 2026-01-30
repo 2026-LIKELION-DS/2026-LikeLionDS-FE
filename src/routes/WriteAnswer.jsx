@@ -33,6 +33,12 @@ function WriteAnswer() {
   const isEdit = location.state?.isEdit ?? false;
   const formData = location.state?.formData ?? null;
 
+  const part = formData?.part;
+
+  const isPM = part === "PM";
+  const isFE = part === "FE";
+  const isBE = part === "BE";
+
   useEffect(() => {
     if (!nextButtonRef.current) return;
 
@@ -62,8 +68,11 @@ function WriteAnswer() {
     }
   }, [location.state]);
 
-  const isFormValid =
-    common1.trim() !== "" && common2.trim() !== "" && part1.trim() !== "" && part2.trim() !== "" && TryJava !== null;
+  const isCommonValid = common1.trim() !== "" && common2.trim() !== "";
+
+  const isPartValid = (isPM && part1.trim() !== "" && part2.trim() !== "") || isFE || (isBE && TryJava !== null);
+
+  const isFormValid = isCommonValid && isPartValid;
 
   const handleTryJava = (value) => {
     setTryJava(value);
@@ -84,6 +93,25 @@ function WriteAnswer() {
   const goConfirm = () => {
     if (!isFormValid) return;
 
+    const partAnswers = (() => {
+      if (isBE) {
+        return [
+          {
+            question_number: 1,
+            answer: TryJava === "yes" ? "있다" : "없다",
+          },
+        ];
+      }
+      if (isFE) {
+        return [];
+      }
+      // PM
+      return [
+        { question_number: 1, answer: part1 },
+        { question_number: 2, answer: part2 },
+      ];
+    })();
+
     const payload = {
       name: formData?.name,
       phone_number: formData?.phone_number,
@@ -97,13 +125,10 @@ function WriteAnswer() {
         { question_number: 1, answer: common1 },
         { question_number: 2, answer: common2 },
       ],
-      part_answers: [
-        { question_number: 1, answer: part1 },
-        { question_number: 2, answer: part2 },
-      ],
+      part_answers: partAnswers,
     };
 
-    navigate("/WriteConfirm", {
+    navigate("/writeconfirm", {
       state: {
         isEdit,
         fromResult,
@@ -168,69 +193,76 @@ function WriteAnswer() {
               </N.QBox>
             </N.QBoxG>
           </N.CommonQGrid>
-          <N.PartQGrid>
-            <N.QTitle>
-              <N.PartQ>기획디자인</N.PartQ> 파트별 질문
-            </N.QTitle>
-            <N.QBoxG>
-              <N.QBox>
-                <N.Question>Q1. 질문</N.Question>
-                <N.QInputBox>
-                  <N.QInput
-                    value={part1}
-                    onChange={(e) => {
-                      let value = e.target.value;
-                      if (value.length > 500) value = value.slice(0, 500);
-                      setPart1(value);
 
-                      e.target.style.height = "auto";
-                      e.target.style.height = e.target.scrollHeight + "px";
-                    }}
-                    placeholder="답변을 작성해 주세요."></N.QInput>
-                  <N.TextCount>
-                    <N.WriteText>{500 - part1.length}</N.WriteText>/500
-                  </N.TextCount>
-                </N.QInputBox>
-              </N.QBox>
-              <N.QBox>
-                <N.Question>Q1. 질문</N.Question>
-                <N.QInputBox>
-                  <N.QInput
-                    value={part2}
-                    onChange={(e) => {
-                      let value = e.target.value;
-                      if (value.length > 500) value = value.slice(0, 500);
-                      setPart2(value);
+          {isPM && (
+            <N.PartQGrid>
+              <N.QTitle>
+                <N.PartQ>기획디자인</N.PartQ> 파트별 질문
+              </N.QTitle>
+              <N.QBoxG>
+                <N.QBox>
+                  <N.Question>Q1. 질문</N.Question>
+                  <N.QInputBox>
+                    <N.QInput
+                      value={part1}
+                      onChange={(e) => {
+                        let value = e.target.value;
+                        if (value.length > 500) value = value.slice(0, 500);
+                        setPart1(value);
 
-                      e.target.style.height = "auto";
-                      e.target.style.height = e.target.scrollHeight + "px";
-                    }}
-                    placeholder="답변을 작성해 주세요."></N.QInput>
-                  <N.TextCount>
-                    <N.WriteText>{500 - part2.length}</N.WriteText>/500
-                  </N.TextCount>
-                </N.QInputBox>
+                        e.target.style.height = "auto";
+                        e.target.style.height = e.target.scrollHeight + "px";
+                      }}
+                      placeholder="답변을 작성해 주세요."></N.QInput>
+                    <N.TextCount>
+                      <N.WriteText>{500 - part1.length}</N.WriteText>/500
+                    </N.TextCount>
+                  </N.QInputBox>
+                </N.QBox>
+                <N.QBox>
+                  <N.Question>Q1. 질문</N.Question>
+                  <N.QInputBox>
+                    <N.QInput
+                      value={part2}
+                      onChange={(e) => {
+                        let value = e.target.value;
+                        if (value.length > 500) value = value.slice(0, 500);
+                        setPart2(value);
+
+                        e.target.style.height = "auto";
+                        e.target.style.height = e.target.scrollHeight + "px";
+                      }}
+                      placeholder="답변을 작성해 주세요."></N.QInput>
+                    <N.TextCount>
+                      <N.WriteText>{500 - part2.length}</N.WriteText>/500
+                    </N.TextCount>
+                  </N.QInputBox>
+                </N.QBox>
+              </N.QBoxG>
+            </N.PartQGrid>
+          )}
+
+          {isBE && (
+            <N.PartQGrid>
+              <N.QTitle>
+                <N.PartQ>백엔드</N.PartQ> 파트별 질문
+              </N.QTitle>
+              <N.QBox>
+                <N.Question>자바(Java) 경험 유무</N.Question>
+                <N.QEx>있으면 “있다", 없으면 “없다" 버튼을 선택해주세요</N.QEx>
+                <N.ButtonGrid>
+                  <N.PartQButton $selected={TryJava === "yes"} onClick={() => handleTryJava("yes")}>
+                    있다
+                  </N.PartQButton>
+                  <N.PartQButton $selected={TryJava === "no"} onClick={() => handleTryJava("no")}>
+                    없다
+                  </N.PartQButton>
+                </N.ButtonGrid>
               </N.QBox>
-            </N.QBoxG>
-          </N.PartQGrid>
-          <N.PartQGrid>
-            <N.QTitle>
-              <N.PartQ>백엔드</N.PartQ> 파트별 질문
-            </N.QTitle>
-            <N.QBox>
-              <N.Question>자바(Java) 경험 유무</N.Question>
-              <N.QEx>있으면 “있다", 없으면 “없다" 버튼을 선택해주세요</N.QEx>
-              <N.ButtonGrid>
-                <N.PartQButton $selected={TryJava === "yes"} onClick={() => handleTryJava("yes")}>
-                  있다
-                </N.PartQButton>
-                <N.PartQButton $selected={TryJava === "no"} onClick={() => handleTryJava("no")}>
-                  없다
-                </N.PartQButton>
-              </N.ButtonGrid>
-            </N.QBox>
-          </N.PartQGrid>
+            </N.PartQGrid>
+          )}
         </N.FormGrid>
+
         <N.FixedBox>
           <N.Fixed
             $withNext={isNextVisible}
@@ -243,17 +275,12 @@ function WriteAnswer() {
             <N.UpIcon src={Up} alt="위로"></N.UpIcon>
           </N.Fixed>
         </N.FixedBox>
+
         <N.NextButtonGrid ref={nextButtonRef}>
           <N.NextButton
             disabled={!isFormValid}
             onClick={() => {
               if (!isFormValid) return;
-              // navigate("/writeconfirm", {
-              //   state: {
-              //     isEdit,
-              //     answerData: { common1, common2, part1, part2, TryJava },
-              //   },
-              // });
               goConfirm();
             }}>
             {isEdit ? "수정 완료" : "다음으로"}
