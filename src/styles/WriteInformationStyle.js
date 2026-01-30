@@ -194,11 +194,12 @@ export const NameEx = styled.div`
   color: ${palette.duksungBurgundy.ex3};
   margin: 12px;
   font-size: 14px;
-  display: none;
+  // display: none;
 `;
+
 export const NumEx = styled.div`
   color: ${palette.duksungBurgundy.ex3};
   margin: 12px;
   font-size: 14px;
-  display: none;
+  // display: none;
 `;
