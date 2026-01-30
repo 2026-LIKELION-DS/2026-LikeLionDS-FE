@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import * as N from "@styles/WriteInformationStyle";
@@ -30,6 +30,8 @@ function WriteInformation() {
   });
 
   const normalizePhone = (v) => v.replace(/[^0-9]/g, "");
+
+  const dupReqIdRef = useRef(0);
 
   const handlePartSelect = (part) => {
     setSelectedPart(part);
@@ -76,6 +78,8 @@ function WriteInformation() {
       return;
     }
 
+    const currentReqId = ++dupReqIdRef.current;
+
     const timer = setTimeout(async () => {
       try {
         setDup((prev) => ({ ...prev, loading: true, error: null }));
@@ -84,6 +88,8 @@ function WriteInformation() {
           name: trimmedName,
           phone_number: normalizedPhone,
         });
+
+        if (dupReqIdRef.current !== currentReqId) return;
 
         const isDuplicate = Boolean(res.data?.data?.is_duplicate);
 
@@ -94,6 +100,8 @@ function WriteInformation() {
           error: null,
         });
       } catch (err) {
+        if (dupReqIdRef.current !== currentReqId) return;
+
         const msg = err?.response?.data?.message || err?.message || "중복 확인 중 오류가 발생했어요.";
 
         setDup({
@@ -136,7 +144,7 @@ function WriteInformation() {
               placeholder="이름을 입력해 주세요"
               value={name}
               onChange={(e) => setName(e.target.value)}></N.NameInput>
-            <N.NameEx>*중복된 지원자 입니다</N.NameEx>
+            {dup.checked && dup.isDuplicate && <N.NameEx>*중복된 지원자 입니다</N.NameEx>}{" "}
           </N.Name>
           <N.Phone>
             <N.PhoneText>전화번호</N.PhoneText>
@@ -144,8 +152,8 @@ function WriteInformation() {
             <N.PhoneInput
               placeholder="‘-’ 없이 전화번호를 입력해 주세요"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}></N.PhoneInput>
-            <N.NumEx>*중복된 전화번호 입니다</N.NumEx>
+              onChange={(e) => setPhone(normalizePhone(e.target.value))}></N.PhoneInput>
+            {dup.checked && dup.isDuplicate && <N.NumEx>*중복된 전화번호 입니다</N.NumEx>}{" "}
           </N.Phone>
           <N.Mail>
             <N.MailText>메일</N.MailText>
@@ -236,7 +244,7 @@ function WriteInformation() {
 
               const formData = {
                 name: name.trim(),
-                phone_number: phone,
+                phone_number: normalizePhone(phone),
                 email: mail.trim(),
                 department: lesson.trim(),
                 academic_status: student.trim(),
@@ -251,7 +259,12 @@ function WriteInformation() {
 
               if (location.state?.isEdit) {
                 navigate("/writeconfirm", {
-                  state: nextState,
+                  state: {
+                    ...nextState,
+                    answerData: location.state?.answerData,
+                    payload: location.state?.payload,
+                    fromResult,
+                  },
                 });
               } else {
                 navigate("/writeanswer", {

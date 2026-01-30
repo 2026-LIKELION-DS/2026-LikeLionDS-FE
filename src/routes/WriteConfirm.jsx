@@ -21,11 +21,17 @@ function WriteConfirm() {
   const location = useLocation();
 
   const isEdit = location.state?.isEdit ?? false;
+
   const formData = location.state?.formData ?? {};
   const answerData = location.state?.answerData;
   const payload = location.state?.payload ?? null;
 
   const [form, setForm] = useState(formData);
+
+  const currentPart = form?.part ?? payload?.part ?? formData?.part;
+
+  const isPD = currentPart === "PD" || currentPart === "PM";
+  const isBE = currentPart === "BE";
 
   useEffect(() => {
     if (!nextButtonRef.current) return;
@@ -47,19 +53,17 @@ function WriteConfirm() {
 
   //수정으로 이동
   useEffect(() => {
-    if (location.state?.isEdit) {
+    if (location.state?.isEdit && location.state?.formData) {
       setForm(location.state.formData);
     }
-  }, []);
+  }, [location.state]);
 
   // 휠 감지
   useEffect(() => {
     const handleWheel = () => {
       setShowFab(true);
     };
-
     window.addEventListener("wheel", handleWheel, { once: true });
-
     return () => {
       window.removeEventListener("wheel", handleWheel);
     };
@@ -70,17 +74,27 @@ function WriteConfirm() {
       state: {
         isEdit: true,
         formData: form,
+        answerData,
+        payload,
       },
     });
   };
 
   const submitFinal = async () => {
-    if (!payload) {
-      console.error("payload is missing");
-      return;
-    }
+    if (!payload) return;
 
-    await axios.post(`${API_URL}/application/`, payload);
+    const fixedPayload = {
+      ...payload,
+      part: payload.part === "PM" ? "PD" : payload.part === "FE" ? "FE" : payload.part === "BE" ? "BE" : payload.part,
+      name: form?.name,
+      phone_number: form?.phone_number,
+      email: form?.email,
+      student_id: form?.student_id,
+      department: form?.department,
+      academic_status: form?.academic_status,
+    };
+
+    await axios.post(`${API_URL}/application/`, fixedPayload);
     navigate("/applicationformdone");
   };
 
@@ -93,6 +107,7 @@ function WriteConfirm() {
           <N.StepText>작성한 답변 확인</N.StepText>
           <N.StepIcon src={Step4} alt="단계3" />
         </N.StepGrid>
+
         <N.FormGrid>
           <N.InformationFormGrid>
             <N.FormTitleBox>
@@ -101,15 +116,15 @@ function WriteConfirm() {
             </N.FormTitleBox>
             <N.InfoBox>
               <N.InfoNameText>이름</N.InfoNameText>
-              <N.InfoName>{formData?.name ?? ""}</N.InfoName>
+              <N.InfoName>{form?.name ?? ""}</N.InfoName>
             </N.InfoBox>
             <N.InfoBox>
               <N.InfoNameText>전화번호</N.InfoNameText>
-              <N.InfoPhone>{formData?.phone_number ?? ""}</N.InfoPhone>
+              <N.InfoPhone>{form?.phone_number ?? ""}</N.InfoPhone>
             </N.InfoBox>
             <N.InfoBox>
               <N.InfoNameText>메일주소</N.InfoNameText>
-              <N.InfoMail>{formData?.email ?? ""}</N.InfoMail>
+              <N.InfoMail>{form?.email ?? ""}</N.InfoMail>
             </N.InfoBox>
           </N.InformationFormGrid>
           <N.AnswerFormGrid>
@@ -121,7 +136,8 @@ function WriteConfirm() {
                     state: {
                       isEdit: true,
                       formData: form,
-                      answerData: answerData,
+                      answerData,
+                      payload,
                     },
                   });
                 }}>
@@ -139,19 +155,33 @@ function WriteConfirm() {
                 <N.CoQA>{answerData?.common2 ?? ""}</N.CoQA>
               </N.CoQABox>
             </N.CommonPartBox>
-            <N.CommonPartBox>
-              <N.InfoTitle>기획/디자인 파트별 질문</N.InfoTitle>
-              <N.CoQABox>
-                <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
-                <N.CoQA>{answerData?.part1 ?? ""}</N.CoQA>
-              </N.CoQABox>
-              <N.CoQABox>
-                <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
-                <N.CoQA>{answerData?.part2 ?? ""}</N.CoQA>
-              </N.CoQABox>
-            </N.CommonPartBox>
+
+            {isPD && (
+              <N.CommonPartBox>
+                <N.InfoTitle>기획/디자인 파트별 질문</N.InfoTitle>
+                <N.CoQABox>
+                  <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
+                  <N.CoQA>{answerData?.part1 ?? ""}</N.CoQA>
+                </N.CoQABox>
+                <N.CoQABox>
+                  <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
+                  <N.CoQA>{answerData?.part2 ?? ""}</N.CoQA>
+                </N.CoQABox>
+              </N.CommonPartBox>
+            )}
+
+            {isBE && (
+              <N.CommonPartBox>
+                <N.InfoTitle>백엔드 파트별 질문</N.InfoTitle>
+                <N.CoQABox>
+                  <N.CoQ>자바(Java) 경험 유무</N.CoQ>
+                  <N.CoQA>{answerData?.TryJava === "yes" ? "있다" : "없다"}</N.CoQA>
+                </N.CoQABox>
+              </N.CommonPartBox>
+            )}
           </N.AnswerFormGrid>
         </N.FormGrid>
+
         <N.Fixed
           $withNext={isNextVisible}
           onClick={() => {
