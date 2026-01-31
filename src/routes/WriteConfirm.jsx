@@ -23,7 +23,7 @@ function WriteConfirm() {
   const isEdit = location.state?.isEdit ?? false;
 
   const formData = location.state?.formData ?? {};
-  const answerData = location.state?.answerData;
+  const answerData = location.state?.answerData ?? {};
   const payload = location.state?.payload ?? null;
 
   const [form, setForm] = useState(formData);
@@ -94,7 +94,17 @@ function WriteConfirm() {
       academic_status: form?.academic_status,
     };
 
-    await axios.post(`${API_URL}/application/`, fixedPayload);
+    const cleanedPayload = {
+      ...fixedPayload,
+      part_answers: (fixedPayload.part_answers ?? []).filter(
+        (a) => typeof a?.answer === "string" && a.answer.trim() !== "",
+      ),
+      common_answers: (fixedPayload.common_answers ?? []).filter(
+        (a) => typeof a?.answer === "string" && a.answer.trim() !== "",
+      ),
+    };
+
+    await axios.post(`${API_URL}/application/`, cleanedPayload);
     navigate("/applicationformdone");
   };
 
@@ -147,12 +157,59 @@ function WriteConfirm() {
             <N.CommonPartBox>
               <N.CoText>공통질문</N.CoText>
               <N.CoQABox>
-                <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
+                <N.CoQ>
+                  Q1. 다양한 IT 동아리 중에서 멋쟁이사자처럼 대학 14기를 선택하고 지원하시게 된 이유를 작성해 주세요.
+                </N.CoQ>
                 <N.CoQA>{answerData?.common1 ?? ""}</N.CoQA>
               </N.CoQABox>
+
               <N.CoQABox>
-                <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
+                <N.CoQ>
+                  Q2. 멋쟁이사자처럼 대학은 협업과 팀워크를 중요한 가치로 생각하는 공동체입니다. 본인이 가장 중요하다고
+                  생각하는 원활한 협업을 위한 태도가 무엇인지 작성해 주세요.
+                  <br />
+                  또한, 본인이 해당 태도를 갖추고 있다고 판단하는 근거를 경험을 통해 설명해 주세요.
+                </N.CoQ>
                 <N.CoQA>{answerData?.common2 ?? ""}</N.CoQA>
+              </N.CoQABox>
+
+              <N.CoQABox>
+                <N.CoQ>
+                  Q3. 협업 과정에서 팀원들과 갈등을 겪었던 경험이 있나요? 팀원과의 갈등을 어떻게 극복했는지, 그 경험을
+                  통해 본인이 깨닫게 된 점은 무엇인지 작성해 주세요.
+                </N.CoQ>
+                <N.CoQA>{answerData?.common3 ?? ""}</N.CoQA>
+              </N.CoQABox>
+
+              <N.CoQABox>
+                <N.CoQ>
+                  Q4. 멋쟁이사자처럼 대학은 최소 주 2회 모임을 비롯해 많은 시간 투자를 권장합니다. 활동 기간동안 얼마나
+                  열정적으로, 매주 얼마만큼의 시간을 할애하실 수 있는지 작성해 주세요.
+                </N.CoQ>
+                <N.CoQA>{answerData?.common4 ?? ""}</N.CoQA>
+              </N.CoQABox>
+
+              <N.CoQABox>
+                <N.CoQ>
+                  Q5. 2026년도에 멋쟁이사자처럼 이외에 참여하는(또는 참여 계획이 있는) 활동이 있나요? 만약 있다면 어떻게
+                  병행할지 계획을 작성해 주세요. 없다면 '없음'이라고 작성해 주세요.
+                </N.CoQ>
+                <N.CoQA>{answerData?.common5 ?? ""}</N.CoQA>
+              </N.CoQABox>
+
+              <N.CoQABox>
+                <N.CoQ>
+                  Q6. 본인이 열정을 가지고 깊게 몰입하여 목표했던 것을 성취한 경험에 대해서 최대한 자세히 작성해 주세요.
+                  개발 관련 경험이 아니어도 괜찮습니다.
+                </N.CoQ>
+                <N.CoQA>{answerData?.common6 ?? ""}</N.CoQA>
+              </N.CoQABox>
+
+              <N.CoQABox>
+                <N.CoQ>
+                  Q7. 선택한 파트로 지원한 이유와 해당 파트를 통해 어떠한 성장을 희망하시는지 작성해 주세요.
+                </N.CoQ>
+                <N.CoQA>{answerData?.common7 ?? ""}</N.CoQA>
               </N.CoQABox>
             </N.CommonPartBox>
 
@@ -160,12 +217,32 @@ function WriteConfirm() {
               <N.CommonPartBox>
                 <N.InfoTitle>기획/디자인 파트별 질문</N.InfoTitle>
                 <N.CoQABox>
-                  <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
+                  <N.CoQ>
+                    Q1. 인상 깊었던 서비스 하나를 선정하여 간단히 소개하고, 해당 서비스의 장점과 개선이 필요하다고
+                    생각한 점을 기획디자인 관점에서 작성해 주세요.
+                  </N.CoQ>
                   <N.CoQA>{answerData?.part1 ?? ""}</N.CoQA>
                 </N.CoQABox>
+
                 <N.CoQABox>
-                  <N.CoQ>Q1. 질문 어쩌고저쩌고</N.CoQ>
+                  <N.CoQ>
+                    Q2. 본인이 생각하고 있는 진로 또는 직무는 무엇인가요? 아직 구체적으로 정해지지 않았다면 생각해본 적
+                    있는 분야를 작성해 주세요.
+                  </N.CoQ>
                   <N.CoQA>{answerData?.part2 ?? ""}</N.CoQA>
+                </N.CoQABox>
+
+                <N.CoQABox>
+                  <N.CoQ>
+                    Q3. 1년간의 멋쟁이사자처럼 활동을 통해 얻은 지식과 경험을 바탕으로, 구현해 보고 싶은 서비스가 있다면
+                    간단하게 작성해주세요.
+                  </N.CoQ>
+                  <N.CoQA>{answerData?.part3 ?? ""}</N.CoQA>
+                </N.CoQABox>
+
+                <N.CoQABox>
+                  <N.CoQ> Q4. 사용할 수 있는 디자인 툴이 있다면 작성해 주세요. (선택)</N.CoQ>
+                  <N.CoQA>{answerData?.part4 ?? ""}</N.CoQA>
                 </N.CoQABox>
               </N.CommonPartBox>
             )}
@@ -174,8 +251,16 @@ function WriteConfirm() {
               <N.CommonPartBox>
                 <N.InfoTitle>백엔드 파트별 질문</N.InfoTitle>
                 <N.CoQABox>
-                  <N.CoQ>자바(Java) 경험 유무</N.CoQ>
+                  <N.CoQ>Q1. 자바(Java) 경험 유무</N.CoQ>
                   <N.CoQA>{answerData?.TryJava === "yes" ? "있다" : "없다"}</N.CoQA>
+                </N.CoQABox>
+
+                <N.CoQABox>
+                  <N.CoQ>
+                    Q2. Python 공부 경험에 대해 작성해 주세요. 공부하는 과정에서 어려웠던 점이나 본인만의 공부 방법 등에
+                    대해 알려주세요. 만약 공부 경험이 없다면, 세션을 진행하기 전 Python 학습 계획에 대해 알려주세요.
+                  </N.CoQ>
+                  <N.CoQA>{answerData?.part5 ?? ""}</N.CoQA>
                 </N.CoQABox>
               </N.CommonPartBox>
             )}
