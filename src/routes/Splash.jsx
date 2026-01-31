@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "@styles/SplashStyle";
 
-import SplashLogo from "@assets/logo/splash.svg";
+import SplashLogo from "@assets/logo/Logo14th.svg";
 import ArrowMotion from "@components/Splash/ArrowMotion";
 import AppButton from "@components/Splash/AppButton";
 
@@ -64,11 +64,11 @@ function Splash() {
   // 날짜 조건 체크
   useEffect(() => {
     const today = new Date();
-    const startDate1 = new Date(2025, 1, 26, 12, 0, 0); // 2월 26일 12시
-    const endDate1 = new Date(2025, 2, 8, 0, 0, 0); // 3월 8일 00시
-    const midDate = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시
-    const startDate2 = new Date(2025, 2, 8, 12, 0, 0); // 3월 8일 12시 이후
-    const finalEndDate = new Date(2025, 2, 11, 0, 0, 0); // 3월 11일 00시
+    const startDate1 = new Date(2026, 1, 25, 12, 0, 0); // 2월 25일 12시
+    const endDate1 = new Date(2026, 2, 7, 0, 0, 0); // 3월 7일 00시
+    const midDate = new Date(2026, 2, 7, 12, 0, 0); // 3월 7일 12시
+    const startDate2 = new Date(2026, 2, 7, 12, 0, 0); // 3월 7일 12시 이후
+    const finalEndDate = new Date(2026, 2, 11, 0, 0, 0); // 3월 11일 00시
 
     if (today >= finalEndDate) {
       setAppDate(false); // 3월 11일 00시 이후부터 비활성화
@@ -79,7 +79,7 @@ function Splash() {
       setAppText("1차 합격자 조회하기");
       setAppDate(true);
     } else if (today >= endDate1 && today < midDate) {
-      setAppDate(false); // 3월 8일 00시 ~ 3월 8일 12시
+      setAppDate(false); // 3월 7일 00시 ~ 3월 7일 12시
     } else {
       setAppDate(false);
     }
@@ -91,12 +91,12 @@ function Splash() {
       <S.Splash onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} onWheel={handleWheel} $appDate={appDate}>
         {appDate ? (
           <>
-            <S.LogoApp src={SplashLogo} alt="덕성 멋사 13기" $isAnimating={isAnimating} />
+            <S.LogoApp src={SplashLogo} alt="덕성 멋사 14기" $isAnimating={isAnimating} />
             <AppButton text={appText} onClick={() => handleNavLinkClick("/input")} isAnimating={isAnimating} />
           </>
         ) : (
           <>
-            <S.Logo src={SplashLogo} alt="덕성 멋사 13기" $isAnimating={isAnimating} />
+            <S.Logo src={SplashLogo} alt="덕성 멋사 14기" $isAnimating={isAnimating} />
           </>
         )}
         <ArrowMotion isAnimating={isAnimating} onClick={() => startTransition()} />

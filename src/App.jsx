@@ -9,11 +9,21 @@ import ImageDetail from "@routes/ImageDetail";
 import Question from "@routes/Question";
 import Applicants from "@routes/Applicants";
 import ApplicantsResult from "@routes/ApplicantsResult";
+import TimeSelection from "@routes/TimeSelection";
+import TimeSelectionDone from "@routes/TimeSelectionDone";
 import AdminLogin from "@routes/AdminLogin";
 import AdminMenu from "@routes/AdminMenu";
 import NoticeForm from "@routes/NoticeForm";
 import Error from "@routes/Error";
 import ProtectedRoute from "@/ProtectedRoute";
+import CheckSubmit from "./routes/CheckSubmit";
+import NoExistApplication from "./routes/NoExistApplication";
+import WriteInformation from "@routes/WriteInformation";
+import WriteAnswer from "@routes/WriteAnswer";
+import WriteConfirm from "@routes/WriteConfirm";
+import ExitModal from "@components/Modal/ExitModal";
+import InformationCollection from "@routes/InformationCollection";
+import ApplicationFormDone from "@routes/ApplicationFormDone";
 
 function App() {
   return (
@@ -28,7 +38,18 @@ function App() {
         <Route path="/qna" element={<Question />} />
         <Route path="/input" element={<Applicants />} />
         <Route path="/result" element={<ApplicantsResult />} />
+        <Route path="/timeselection" element={<TimeSelection />} />
+        <Route path="/timedone" element={<TimeSelectionDone />} />
+        <Route path="/checksubmit" element={<CheckSubmit />} />
+        <Route path="/noexist" element={<NoExistApplication />} />
         <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/writeinformation" element={<WriteInformation />} />
+        <Route path="/writeanswer" element={<WriteAnswer />} />
+        <Route path="/writeconfirm" element={<WriteConfirm />} />
+        <Route path="/exitmodal" element={<ExitModal />} />
+        <Route path="/informationcollection" element={<InformationCollection />} />
+        <Route path="/applicationformdone" element={<ApplicationFormDone />} />
+
         {/* 어드민 로그인 상태에서만 접근 가능한 라우터들 */}
         <Route
           path="/admin/menu"
