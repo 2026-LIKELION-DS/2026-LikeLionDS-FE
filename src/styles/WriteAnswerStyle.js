@@ -63,6 +63,7 @@ export const QInput = styled.textarea`
   font-family: Pretendard;
   width: 100%;
 `;
+
 export const QInputBox = styled.div`
   border: none;
   resize: none;
@@ -72,10 +73,13 @@ export const QInputBox = styled.div`
   line-height: 1.5;
   border-radius: 16px;
   padding: 12px;
-  gap: 16px;
+  display: flex; // 추가된 부분
+  flex-direction: column; // 추가된 부분
+  gap: 16px; // 추가된 부분
   max-height: 300px;
   background: ${palette.style.white};
 `;
+
 export const TextCount = styled.div`
   color: ${palette.boldBlack.ex5};
   display: flex;
