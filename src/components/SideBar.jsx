@@ -38,10 +38,18 @@ function SideBar({
     return today >= startDate;
   };
 
-  // 1차 합격자 조회
+  // // 1차 합격자 조회
+  // const isWithinDateRange = () => {
+  //   const today = new Date();
+  //   const startDate = new Date(2026, 1, 25, 12, 0, 0);
+  //   const endDate = new Date(2026, 2, 8, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
+  //   return today >= startDate && today < endDate;
+  // };
+
+  // 1차 합격자 조회 (QA용)
   const isWithinDateRange = () => {
     const today = new Date();
-    const startDate = new Date(2026, 1, 25, 12, 0, 0);
+    const startDate = new Date(2026, 1, 1, 12, 0, 0);
     const endDate = new Date(2026, 2, 8, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
     return today >= startDate && today < endDate;
   };
@@ -54,10 +62,18 @@ function SideBar({
     return today >= startDate && today < endDate;
   };
 
-  // 최종 합격자 조회 가능 기간 (3월 7일 12시 이후 ~ 3월 11일 00시 이전)
+  // // 최종 합격자 조회 가능 기간 (3월 7일 12시 이후 ~ 3월 11일 00시 이전)
+  // const isFinalDateRange = () => {
+  //   const today = new Date();
+  //   const startDate = new Date(2026, 2, 7, 12, 0, 0);
+  //   const endDate = new Date(2026, 2, 11, 0, 0, 0);
+  //   return today >= startDate && today < endDate;
+  // };
+
+  // 최종 합격자 조회 가능 기간 (QA용) (3월 7일 12시 이후 ~ 3월 11일 00시 이전)
   const isFinalDateRange = () => {
     const today = new Date();
-    const startDate = new Date(2026, 2, 7, 12, 0, 0);
+    const startDate = new Date(2026, 1, 1, 12, 0, 0);
     const endDate = new Date(2026, 2, 11, 0, 0, 0);
     return today >= startDate && today < endDate;
   };
@@ -126,9 +142,7 @@ function SideBar({
               <S.SubTitle>제출 여부 확인하기</S.SubTitle>
             </S.ResultGroup>
           ) : (
-            <S.Title
-              onClick={() => handleNavLinkClick("/input")}
-              $isActive={currentPath === "/input"}>
+            <S.Title onClick={() => handleNavLinkClick("/input")} $isActive={currentPath === "/input"}>
               제출 여부 확인하기
             </S.Title>
           )}
