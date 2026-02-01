@@ -70,10 +70,10 @@ function SideBar({
   //   return today >= startDate && today < endDate;
   // };
 
-  // 최종 합격자 조회 가능 기간 (QA용) (3월 7일 12시 이후 ~ 3월 11일 00시 이전)
+  // 최종 합격자 조회 가능 기간 (QA용)
   const isFinalDateRange = () => {
     const today = new Date();
-    const startDate = new Date(2026, 1, 1, 12, 0, 0);
+    const startDate = new Date(2026, 2, 1, 12, 0, 0);
     const endDate = new Date(2026, 2, 11, 0, 0, 0);
     return today >= startDate && today < endDate;
   };
