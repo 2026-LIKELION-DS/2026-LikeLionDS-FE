@@ -11,18 +11,19 @@ function ApplicantsResult() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 개발용 fallback state, 배포 전 삭제해야 함
-  const devState = {
-    name: "김멋사",
-    is_passed: true, // false로 바꾸면 불합격 UI 확인 가능
-  };
+  const devState = import.meta.env.DEV ? { name: "김멋사", is_passed: true } : null;
 
-  if (!location.state && import.meta.env.PROD) {
-    navigate("/error");
-    return null;
-  }
+  const state = location.state ?? devState;
 
-  const { name, is_passed } = location.state ?? devState;
+  useEffect(() => {
+    if (import.meta.env.PROD && !location.state) {
+      navigate("/error", { replace: true });
+    }
+  }, [location.state, navigate]);
+
+  if (import.meta.env.PROD && !location.state) return null;
+
+  const { name, is_passed } = state;
 
 
   const [finalResult, setFinalResult] = useState(false); // true로 바꾸면 최종합격 UI 확인 가능
