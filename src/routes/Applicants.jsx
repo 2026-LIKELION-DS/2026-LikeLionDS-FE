@@ -8,8 +8,16 @@ import Error from "@routes/Error";
 const getPageMode = () => {
   const now = new Date();
 
-  const formDeadline = new Date(2026, 1, 19, 18, 0, 0); // 2/19 18:00
-  const firstResultStart = new Date(2026, 1, 25, 12, 0, 0); // 2/25 12:00
+  // const formDeadline = new Date(2026, 1, 19, 18, 0, 0); // 2/19 18:00
+  // const firstResultStart = new Date(2026, 1, 25, 12, 0, 0); // 2/25 12:00
+
+  // const disabledStart = new Date(2026, 2, 8, 0, 0, 0); // 3/8 00:00
+  // const disabledEnd = new Date(2026, 2, 8, 12, 0, 0); // 3/8 12:00
+  // const finalEndDate = new Date(2026, 2, 11, 0, 0, 0); // 3/11 00:00
+
+  // QA용 날짜설정
+  const formDeadline = new Date(2026, 1, 1, 12, 0, 0); // 2/19 18:00
+  const firstResultStart = new Date(2026, 1, 1, 12, 0, 0); // 2/25 12:00
 
   const disabledStart = new Date(2026, 2, 8, 0, 0, 0); // 3/8 00:00
   const disabledEnd = new Date(2026, 2, 8, 12, 0, 0); // 3/8 12:00
