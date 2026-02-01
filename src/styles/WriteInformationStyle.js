@@ -140,16 +140,19 @@ export const PartCon = styled.div`
   cursor: pointer;
 `;
 export const PartButton = styled.button`
+  flex: 1;
+  min-width: 0;
   padding: 12px 24px;
   font-size: 14px;
   border-radius: 12px;
   cursor: pointer;
-  text-align: center;
-  width: 100%;
-  letter-spacing: -0.42px;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
   background-color: ${({ $selected }) => ($selected ? palette.realOrange.ex5Primary : palette.style.white)};
   color: ${({ $selected }) => ($selected ? palette.style.white : palette.boldBlack.ex10Primary)};
   border: none;
+  white-space: nowrap;
   &:active {
     transform: scale(0.97);
   }
