@@ -27,6 +27,8 @@ import notice from "@/assets/icons/notice.svg";
 function TimeSelection() {
   const navigate = useNavigate();
   const location = useLocation();
+  
+  const { email } = location.state;
 
   const [slots, setSlots] = useState([]);
   const [selected, setSelected] = useState([]);
