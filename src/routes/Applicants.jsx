@@ -127,6 +127,7 @@ function Applicants() {
           state: {
             name: data.data.name,
             is_passed: data.data.is_passed,
+            email,
           },
         });
       }
