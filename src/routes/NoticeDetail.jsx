@@ -18,17 +18,16 @@ function NoticeDetail() {
     setNotice(selectedNotice || null);
   }, [id]);
 
-  // 서버 연동 코드 (배포 중단으로 프론트 내에서 아카이빙 처리)
-  // useEffect(() => {
-  //   axios
-  //     .get(`${import.meta.env.VITE_API_URL}/board/${id}`)
-  //     .then((response) => {
-  //       setNotice(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("공지사항을 불러오는 중 오류 발생:", error);
-  //     });
-  // }, [id]);
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/board/${id}`)
+      .then((response) => {
+        setNotice(response.data);
+      })
+      .catch((error) => {
+        console.error("공지사항을 불러오는 중 오류 발생:", error);
+      });
+  }, [id]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
