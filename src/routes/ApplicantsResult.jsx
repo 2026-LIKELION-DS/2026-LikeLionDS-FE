@@ -25,7 +25,6 @@ function ApplicantsResult() {
 
   const { name, is_passed, email } = location.state ?? devState;
 
-
   const [finalResult, setFinalResult] = useState(false); // true로 바꾸면 최종합격 UI 확인 가능
 
   // useEffect(() => {
@@ -35,7 +34,7 @@ function ApplicantsResult() {
   //     }
   //   }
   // }, [location, navigate]);
-  //방어코드 위에 하나 더 만들어둬서 우선은 주석 처리 
+  //방어코드 위에 하나 더 만들어둬서 우선은 주석 처리
 
   // if (!location.state) return null; // 리디렉션 전에 렌더링 방지
 

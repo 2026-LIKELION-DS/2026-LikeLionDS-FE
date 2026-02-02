@@ -147,7 +147,7 @@ export const PartButton = styled.button`
   border-radius: 12px;
   cursor: pointer;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
   background-color: ${({ $selected }) => ($selected ? palette.realOrange.ex5Primary : palette.style.white)};
   color: ${({ $selected }) => ($selected ? palette.style.white : palette.boldBlack.ex10Primary)};
@@ -166,6 +166,7 @@ export const NextButton = styled.button`
   border: none;
   background-color: ${palette.realOrange.ex5Primary};
   color: ${palette.style.white};
+  white-space: nowrap;
 
   font-size: 20px;
   font-weight: 500;
