@@ -165,6 +165,7 @@ export const NextButton = styled.button`
   border: none;
   background-color: ${palette.realOrange.ex5Primary};
   color: ${palette.style.white};
+  white-space: nowrap;
 
   font-size: 20px;
   font-weight: 500;
