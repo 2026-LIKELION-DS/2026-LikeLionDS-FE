@@ -95,6 +95,7 @@ export const NextButton = styled.button`
 
   font-size: 20px;
   font-weight: 500;
+  white-space: nowrap;
 
   cursor: pointer;
 

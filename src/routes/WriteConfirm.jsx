@@ -38,11 +38,14 @@ function WriteConfirm() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsNextVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsNextVisible(true);
+          observer.disconnect();
+        }
       },
       {
         root: null,
-        threshold: 0.1,
+        threshold: 0.3,
       },
     );
 
