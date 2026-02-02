@@ -42,7 +42,7 @@ function TimeSelection() {
 
   useEffect(() => {
     if (import.meta.env.PROD) {
-      if (!location.state || !location.state.name || location.state.is_passed === undefined) {
+      if (!location.state || !location.state.email) {
         navigate("/error");
       }
     }
