@@ -35,27 +35,27 @@ function Question() {
     }
   }, [inputValue]);
 
-  useEffect(() => {
-    const fetchQuestionsAndAnswers = () => {
-      // JSON 파일에서 질문 데이터 로드
-      const questionsDataArray = questionsData.result || [];
+  // useEffect(() => {
+  //   const fetchQuestionsAndAnswers = () => {
+  //     // JSON 파일에서 질문 데이터 로드
+  //     const questionsDataArray = questionsData.result || [];
 
-      // 질문을 기준으로 매핑
-      const formattedQuestions = questionsDataArray.map((q) => ({
-        id: q.id,
-        question: q.question,
-        answers: q.answers.map((a, index) => ({
-          id: index + 1, // JSON에 ID가 없으므로 임시 ID 부여
-          answer: a,
-        })),
-      }));
+  //     // 질문을 기준으로 매핑
+  //     const formattedQuestions = questionsDataArray.map((q) => ({
+  //       id: q.id,
+  //       question: q.question,
+  //       answers: q.answers.map((a, index) => ({
+  //         id: index + 1, // JSON에 ID가 없으므로 임시 ID 부여
+  //         answer: a,
+  //       })),
+  //     }));
 
-      // 최신 질문이 위로 오도록 정렬
-      setQuestions(formattedQuestions.sort((a, b) => b.id - a.id));
-    };
+  //     // 최신 질문이 위로 오도록 정렬
+  //     setQuestions(formattedQuestions.sort((a, b) => b.id - a.id));
+  //   };
 
-    fetchQuestionsAndAnswers();
-  }, []);
+  //   fetchQuestionsAndAnswers();
+  // }, []);
 
   // 서버 연동 코드 (배포 중단으로 프론트 내에서 아카이빙 처리)
   useEffect(() => {
