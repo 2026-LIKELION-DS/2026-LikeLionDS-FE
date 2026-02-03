@@ -142,7 +142,10 @@ function Applicants() {
           return;
         }
 
-        if (data.data.submitted) {
+        const submitted = data?.data?.submitted;
+
+        if (submitted === true) {
+          // 성공 - 제출 시
           navigate("/checksubmit", {
             state: {
               name,
@@ -151,8 +154,12 @@ function Applicants() {
             },
           });
         } else {
+          // 성공 - 미제출 시
           navigate("/noexist", {
-            state: { name, email },
+            state: {
+              name,
+              email,
+            },
           });
         }
         return;
