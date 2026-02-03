@@ -205,6 +205,7 @@ function WriteInformation() {
     !location.state?.isEdit && mailDup.checked && (mailDup.isDuplicate || Boolean(mailDup.error));
 
   const anyDupLoading = dup.loading || mailDup.loading;
+
   const isFormValid =
     name.trim() &&
     phone.trim() &&
@@ -331,9 +332,10 @@ function WriteInformation() {
             </N.PartCon>
           </N.PartGrid>
         </N.FormGrid>
+
         <N.NextButtonGrid>
           <N.NextButton
-            disabled={!isFormValid || dup.loading}
+            disabled={!isFormValid || anyDupLoading}
             onClick={() => {
               if (!isFormValid) return;
 
@@ -346,7 +348,7 @@ function WriteInformation() {
               const formData = {
                 name: name.trim(),
                 phone_number: normalizePhone(phone),
-                email: mail.trim(),
+                email: normalizeEmail(mail),
                 department: lesson.trim(),
                 academic_status: student.trim(),
                 student_id: number.trim(),
@@ -376,7 +378,7 @@ function WriteInformation() {
                 });
               }
             }}>
-            {dup.loading ? "중복 확인 중..." : location.state?.isEdit ? "수정 완료" : "다음으로"}
+            {anyDupLoading ? "중복 확인 중..." : location.state?.isEdit ? "수정 완료" : "다음으로"}
           </N.NextButton>
         </N.NextButtonGrid>
       </N.Space>
