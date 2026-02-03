@@ -162,7 +162,7 @@ function ApplicantsResult() {
               </A.Info>
               <br />
               <A.Info>
-                모쪼록 이번 지원 과정이 여러분의 발전에 큰 <br />
+                이번 지원 과정이 여러분의 발전에 큰 <br />
                 도움이 되었기를 간절히 바랍니다.
               </A.Info>
               <br />
