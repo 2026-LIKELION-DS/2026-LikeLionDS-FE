@@ -6,17 +6,17 @@ import { isAdminLoggedIn } from "@utils/Admin";
 
 import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
-import noticeDetailData from "@/data/noticeDetailData.json";
+// import noticeDetailData from "@/data/noticeDetailData.json";
 
 function NoticeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [notice, setNotice] = useState(null);
 
-  useEffect(() => {
-    const selectedNotice = noticeDetailData.find((item) => item.id === Number(id));
-    setNotice(selectedNotice || null);
-  }, [id]);
+  // useEffect(() => {
+  //   const selectedNotice = noticeDetailData.find((item) => item.id === Number(id));
+  //   setNotice(selectedNotice || null);
+  // }, [id]);
 
   useEffect(() => {
     axios
