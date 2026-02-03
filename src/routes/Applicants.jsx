@@ -5,9 +5,9 @@ import * as A from "@styles/ApplicantsStyle";
 import Header from "@components/Header/HeaderApp";
 import Error from "@routes/Error";
 
-// const REAL_FINAL_RESULT_START = new Date(2026, 2, 7, 12, 0, 0);
-// 최종합격 UI 보고싶으면
-const REAL_FINAL_RESULT_START = new Date(2026, 1, 3, 12, 0, 0);
+const REAL_FINAL_RESULT_START = new Date(2026, 2, 7, 12, 0, 0);
+// // 최종합격 UI 보고싶으면
+// const REAL_FINAL_RESULT_START = new Date(2026, 1, 3, 12, 0, 0);
 
 const getPageMode = () => {
   const now = new Date();

@@ -76,9 +76,9 @@ function SideBar({
   // 최종 합격자 조회 가능 기간 (QA용)
   const isFinalDateRange = () => {
     const today = new Date();
-    // const startDate = new Date(2026, 2, 1, 12, 0, 0);
-    // 최종합격 UI 보고싶을 시
-    const startDate = new Date(2026, 1, 1, 12, 0, 0);
+    const startDate = new Date(2026, 2, 1, 12, 0, 0);
+    // // 최종합격 UI 보고싶을 시
+    // const startDate = new Date(2026, 1, 1, 12, 0, 0);
     const endDate = new Date(2026, 2, 11, 0, 0, 0);
     return today >= startDate && today < endDate;
   };
