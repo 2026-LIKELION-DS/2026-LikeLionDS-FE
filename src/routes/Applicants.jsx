@@ -80,29 +80,69 @@ function Applicants() {
     try {
       const API_URL = import.meta.env.VITE_API_URL;
 
-      const url =
-        pageMode === "FORM_CHECK"
-          ? `${API_URL}/application/check-submission/` // 제출 여부 조회 API
-          : null
+      // 분기가 달라져서 우선 주석 처리
+      // const url =
+      //   pageMode === "FORM_CHECK"
+      //     ? `${API_URL}/application/check-submission/` // 제출 여부 조회 API
+      //     : `${API_URL}/check/babylions/`
 
-      const response = await axios.post(url, {
-        name,
-        phone_number: tel,
-        email,
-      });
+      // const response = await axios.post(url, {
+      //   name,
+      //   phone_number: tel,
+      //   email,
+      // });
 
-      const data = response.data;
+      // const data = response.data;
 
-      if (data.status === "fail") {
-        alert(data.message);
-        return;
-      }
+      // if (data.status === "fail") {
+      //   alert(data.message);
+      //   return;
+      // }
 
+      // if (pageMode === "FORM_CHECK") {
+
+      //   const submitted = data?.data?.submitted;
+
+      //   if (submitted === true) {
+      //     // 성공 - 제출 시
+      //     navigate("/checksubmit", {
+      //       state: {
+      //         name,
+      //         email,
+      //         submittedAt: data.data.submitted_at,
+      //       },
+      //     });
+      //   } else {
+      //     // 성공 - 미제출 시
+      //     navigate("/noexist", {
+      //       state: {
+      //         name,
+      //         email,
+      //       },
+      //     });
+      //   }
+      //   return;
+      // }
+
+      //지원서 제출여부 확인
       if (pageMode === "FORM_CHECK") {
-        const submitted = data?.data?.submitted;
+        const res = await axios.post(
+          `${API_URL}/application/check-submission/`,
+          {
+            name,
+            phone_number: tel,
+            email,
+          }
+        );
 
-        if (submitted === true) {
-          // 성공 - 제출 시
+        const data = res.data;
+
+        if (data.status === "fail") {
+          alert(data.message);
+          return;
+        }
+
+        if (data.data.submitted) {
           navigate("/checksubmit", {
             state: {
               name,
@@ -111,12 +151,8 @@ function Applicants() {
             },
           });
         } else {
-          // 성공 - 미제출 시
           navigate("/noexist", {
-            state: {
-              name,
-              email,
-            },
+            state: { name, email },
           });
         }
         return;
