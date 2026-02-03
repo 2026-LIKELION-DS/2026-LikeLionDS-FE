@@ -66,6 +66,7 @@ export const TimeButton = styled.button`
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.42px;
+  white-space: nowrap;
   cursor: pointer;
   background-color: ${({ $selected }) => ($selected ? palette.realOrange.ex5Primary : palette.style.white)};
   color: ${({ $selected }) => ($selected ? palette.style.white : palette.boldBlack.ex10Primary)};
