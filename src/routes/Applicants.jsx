@@ -5,6 +5,10 @@ import * as A from "@styles/ApplicantsStyle";
 import Header from "@components/Header/HeaderApp";
 import Error from "@routes/Error";
 
+// const REAL_FINAL_RESULT_START = new Date(2026, 2, 7, 12, 0, 0);
+// 최종합격 UI 보고싶으면
+const REAL_FINAL_RESULT_START = new Date(2026, 1, 3, 12, 0, 0);
+
 const getPageMode = () => {
   const now = new Date();
 
@@ -167,6 +171,33 @@ function Applicants() {
       }
 
       if (pageMode === "RESULT") {
+        const now = new Date();
+
+        // 최종 합격 발표 이후면 무조건 result 페이지
+        if (now >= REAL_FINAL_RESULT_START) {
+          const resultRes = await axios.post(`${API_URL}/check/babylions/`, {
+            name,
+            phone_number: tel,
+            email,
+          });
+
+          const resultData = resultRes.data;
+
+          if (resultData.status === "fail") {
+            alert(resultData.message);
+            return;
+          }
+
+          navigate("/result", {
+            state: {
+              name: resultData.data.name,
+              is_passed: resultData.data.is_passed,
+              email,
+            },
+          });
+
+          return;
+        }
 
         //면접 시간 제출 여부 조회
         const submissionRes = await axios.post(
