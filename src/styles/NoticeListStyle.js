@@ -34,7 +34,7 @@ export const Button = styled.div`
   background: var(--Real-Orange-ex5_Primary, #ff7710);
   box-shadow: 0px 0px 20px 0px rgba(255, 119, 16, 0.2);
 
-  width: 93%;
+  width: 90%;
   padding: 16px 0;
   margin-bottom: 10px;
 
