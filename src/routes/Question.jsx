@@ -7,7 +7,7 @@ import QuestionList from "@/components/qna/QuestionList";
 import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
 import Kakao from "@assets/icons/icon_kakaotalk_black.svg";
-import questionsData from "@/data/questionsData.json";
+// import questionsData from "@/data/questionsData.json";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
