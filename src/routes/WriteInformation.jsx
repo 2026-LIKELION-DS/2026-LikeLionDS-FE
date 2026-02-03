@@ -158,9 +158,11 @@ function WriteInformation() {
           <N.Mail>
             <N.MailText>메일</N.MailText>
             <N.InputEx>
-              *입력하신 메일주소로 <N.HlColor>합격자 통보</N.HlColor>가 이루어집니다.
+              * 입력하신 메일주소로 <N.HlColor>합격자 통보</N.HlColor>가 이루어지며,
               <br />
-              <N.HlColor>정확한 주소</N.HlColor>를 입력해주세요.
+              &nbsp;&nbsp;사이트 내 <N.HlColor>합격자 조회</N.HlColor>에도 사용됩니다.
+              <br />
+              &nbsp;&nbsp;<N.HlColor>정확한 주소</N.HlColor>를 입력해주세요.
             </N.InputEx>
             <N.MailInput
               placeholder="dslions@duksung.ac.kr"
