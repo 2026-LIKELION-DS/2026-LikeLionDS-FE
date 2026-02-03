@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "@styles/SideBarStyle";
+import { logoutAdmin, isAdminLoggedIn } from "@/utils/Admin";
 
 import Close from "@assets/icons/icon_close.svg";
 
@@ -85,8 +86,10 @@ function SideBar({
     return today >= finalEndDate;
   };
 
-  const handleOpenApplicationForm = () => {
-    window.open("https://forms.gle/QDrszV6xmGcnxr6g6", "_blank");
+  const handleLogout = () => {
+    logoutAdmin(); 
+    onClose(); 
+    navigate("/admin"); 
   };
 
   return (
@@ -167,6 +170,13 @@ function SideBar({
             </S.ResultGroup>
           )}
         </S.Index>
+        {isAdminLoggedIn() && (
+          <S.Index style={{ marginTop: "24px" }}>
+            <S.Title onClick={handleLogout} style={{ color: "#ff4d4f" }}>
+              로그아웃
+            </S.Title>
+          </S.Index>
+        )}
       </S.SideBar>
     </>
   );

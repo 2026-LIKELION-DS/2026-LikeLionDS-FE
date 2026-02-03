@@ -32,17 +32,22 @@ const FAQActivityAnswer4 = () => {
         <M.ComponentContainer $marginTop={"8px"}>
           <JoinRectangle
             width={"246px"}
-            height={"60px"}
+            height={"100px"}
             $borderRadius={"24px"}
             $bgr={palette.boldBlack.ex2}
             color={palette.boldBlack.ex10Primary}
             fontWeight={400}
             fontSize={"14px"}
             $textAlign={"start"}>
-            <b style={{ fontWeight: "700" }}>
-              중앙 아이디어톤과 중앙 해커톤만 필수 참<br />여
+              이번 14기는&nbsp;
+            <b style={{ fontWeight: "700", width: "206.87px"}}>
+              중앙 아이디어톤과 중앙 
+              <br />해커톤, 그리고 2학기 연합/기업 
+              해커톤 
+              <br />1회 이상이 필수 참여
             </b>
-            이고, 나머지는 자유였어요.
+            이고, 나머지는 
+            <br />자율 참여에요.
           </JoinRectangle>
         </M.ComponentContainer>
 

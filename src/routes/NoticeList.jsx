@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as N from "@styles/NoticeListStyle";
-import * as A from "@styles/AdminLoginStyle";
 import { isAdminLoggedIn } from "@utils/Admin";
 
 import Header from "@components/Header/HeaderSub";
@@ -55,9 +54,9 @@ function NoticeList() {
           <Header title="공지사항" />
           <N.NoticeList>
             {isAdminLoggedIn() && (
-              <A.Button type="submit" onClick={handleNewNotice}>
+              <N.Button type="submit" onClick={handleNewNotice}>
                 작성하기
-              </A.Button>
+              </N.Button>
             )}
             {notices.map((notice) => (
               <NoticeContent

@@ -80,25 +80,68 @@ function Applicants() {
     try {
       const API_URL = import.meta.env.VITE_API_URL;
 
-      const url =
-        pageMode === "FORM_CHECK"
-          ? `${API_URL}/application/check-submission/` // 제출 여부 조회 API
-          : `${API_URL}/check/babylions/`; // 합격자 조회 API
+      // 분기가 달라져서 우선 주석 처리
+      // const url =
+      //   pageMode === "FORM_CHECK"
+      //     ? `${API_URL}/application/check-submission/` // 제출 여부 조회 API
+      //     : `${API_URL}/check/babylions/`
 
-      const response = await axios.post(url, {
-        name,
-        phone_number: tel,
-        email,
-      });
+      // const response = await axios.post(url, {
+      //   name,
+      //   phone_number: tel,
+      //   email,
+      // });
 
-      const data = response.data;
+      // const data = response.data;
 
-      if (data.status === "fail") {
-        alert(data.message);
-        return;
-      }
+      // if (data.status === "fail") {
+      //   alert(data.message);
+      //   return;
+      // }
 
+      // if (pageMode === "FORM_CHECK") {
+
+      //   const submitted = data?.data?.submitted;
+
+      //   if (submitted === true) {
+      //     // 성공 - 제출 시
+      //     navigate("/checksubmit", {
+      //       state: {
+      //         name,
+      //         email,
+      //         submittedAt: data.data.submitted_at,
+      //       },
+      //     });
+      //   } else {
+      //     // 성공 - 미제출 시
+      //     navigate("/noexist", {
+      //       state: {
+      //         name,
+      //         email,
+      //       },
+      //     });
+      //   }
+      //   return;
+      // }
+
+      //지원서 제출여부 확인
       if (pageMode === "FORM_CHECK") {
+        const res = await axios.post(
+          `${API_URL}/application/check-submission/`,
+          {
+            name,
+            phone_number: tel,
+            email,
+          }
+        );
+
+        const data = res.data;
+
+        if (data.status === "fail") {
+          alert(data.message);
+          return;
+        }
+
         const submitted = data?.data?.submitted;
 
         if (submitted === true) {
@@ -123,13 +166,54 @@ function Applicants() {
       }
 
       if (pageMode === "RESULT") {
+
+        //면접 시간 제출 여부 조회
+        const submissionRes = await axios.post(
+          `${API_URL}/check/submission-check/`,
+          { email }
+        );
+
+        const submissionData = submissionRes.data;
+
+        if (submissionData.status === "fail") {
+          alert(submissionData.message);
+          return;
+        }
+
+        //면접 시간 제출한 경우 timeDone으로 이동
+        if (submissionData.data.submitted === true) {
+          navigate("/timedone", {
+            state: { email },
+          });
+          return;
+        }
+
+        //면접 시간 제출 안 했으면 기존 합격자 조회 API 호출
+        const resultRes = await axios.post(
+          `${API_URL}/check/babylions/`,
+          {
+            name,
+            phone_number: tel,
+            email,
+          }
+        );
+
+        const resultData = resultRes.data;
+
+        if (resultData.status === "fail") {
+          alert(resultData.message);
+          return;
+        }
+
         navigate("/result", {
           state: {
-            name: data.data.name,
-            is_passed: data.data.is_passed,
+            name: resultData.data.name,
+            is_passed: resultData.data.is_passed,
             email,
           },
         });
+
+        return;
       }
     } catch (error) {
       alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");

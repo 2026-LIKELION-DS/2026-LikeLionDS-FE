@@ -81,6 +81,11 @@ export const Button = styled.div`
   line-height: 130%;
   letter-spacing: -0.6px;
   cursor: pointer;
+  &:hover {
+    cursor: pointer;
+    background: ${palette.realOrange.ex5Primary};
+    color: white;
+  }
 `;
 
 export const ImageContainer = styled.div`
