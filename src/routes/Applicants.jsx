@@ -83,7 +83,7 @@ function Applicants() {
       const url =
         pageMode === "FORM_CHECK"
           ? `${API_URL}/application/check-submission/` // 제출 여부 조회 API
-          : `${API_URL}/check/babylions/`; // 합격자 조회 API
+          : null
 
       const response = await axios.post(url, {
         name,
@@ -123,13 +123,54 @@ function Applicants() {
       }
 
       if (pageMode === "RESULT") {
+
+        //면접 시간 제출 여부 조회
+        const submissionRes = await axios.post(
+          `${API_URL}/check/submission-check/`,
+          { email }
+        );
+
+        const submissionData = submissionRes.data;
+
+        if (submissionData.status === "fail") {
+          alert(submissionData.message);
+          return;
+        }
+
+        //면접 시간 제출한 경우 timeDone으로 이동
+        if (submissionData.data.submitted === true) {
+          navigate("/timedone", {
+            state: { email },
+          });
+          return;
+        }
+
+        //면접 시간 제출 안 했으면 기존 합격자 조회 API 호출
+        const resultRes = await axios.post(
+          `${API_URL}/check/babylions/`,
+          {
+            name,
+            phone_number: tel,
+            email,
+          }
+        );
+
+        const resultData = resultRes.data;
+
+        if (resultData.status === "fail") {
+          alert(resultData.message);
+          return;
+        }
+
         navigate("/result", {
           state: {
-            name: data.data.name,
-            is_passed: data.data.is_passed,
+            name: resultData.data.name,
+            is_passed: resultData.data.is_passed,
             email,
           },
         });
+
+        return;
       }
     } catch (error) {
       alert("서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
