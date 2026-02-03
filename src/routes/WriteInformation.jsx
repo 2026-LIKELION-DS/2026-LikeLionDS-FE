@@ -22,6 +22,7 @@ function WriteInformation() {
   const [student, setStudent] = useState("");
   const [selectedPart, setSelectedPart] = useState(null);
 
+  // 이름, 전번 중복
   const [dup, setDup] = useState({
     checked: false,
     isDuplicate: false,
@@ -29,9 +30,26 @@ function WriteInformation() {
     error: null,
   });
 
+  // 이메일 중복
+  const [mailDup, setMailDup] = useState({
+    checked: false,
+    isDuplicate: false,
+    loading: false,
+    error: null,
+  });
+
   const normalizePhone = (v) => v.replace(/[^0-9]/g, "");
+  const normalizeEmail = (v) => v.trim();
+
+  const isValidEmail = (v) => {
+    const s = normalizeEmail(v);
+    if (!s) return false;
+    // 공백 없고, @ 앞뒤/도메인 형태만 최소 체크
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  };
 
   const dupReqIdRef = useRef(0);
+  const mailDupReqIdRef = useRef(0);
 
   const handlePartSelect = (part) => {
     setSelectedPart(part);
@@ -57,6 +75,9 @@ function WriteInformation() {
         BE: "back",
       };
       setSelectedPart(partMapFromServer[data?.part] ?? null);
+
+      setDup({ checked: false, isDuplicate: false, loading: false, error: null });
+      setMailDup({ checked: false, isDuplicate: false, loading: false, error: null });
     }
   }, [location.state]);
 
@@ -102,7 +123,11 @@ function WriteInformation() {
       } catch (err) {
         if (dupReqIdRef.current !== currentReqId) return;
 
-        const msg = err?.response?.data?.message || err?.message || "중복 확인 중 오류가 발생했어요.";
+        const msg =
+          err?.response?.data?.message ||
+          err?.response?.data?.error?.message ||
+          err?.message ||
+          "중복 확인 중 오류가 발생했어요.";
 
         setDup({
           checked: true,
@@ -116,8 +141,70 @@ function WriteInformation() {
     return () => clearTimeout(timer);
   }, [name, phone, location.state?.isEdit]);
 
-  const isDuplicateBlocked = !location.state?.isEdit && dup.checked && (dup.isDuplicate || Boolean(dup.error));
+  useEffect(() => {
+    // 수정 모드에서는 중복 체크 안 함
+    if (location.state?.isEdit) return;
 
+    const normalized = normalizeEmail(mail);
+
+    // 이메일이 유효하지 않으면 리셋
+    if (!isValidEmail(normalized)) {
+      setMailDup({
+        checked: false,
+        isDuplicate: false,
+        loading: false,
+        error: null,
+      });
+      return;
+    }
+
+    const currentReqId = ++mailDupReqIdRef.current;
+
+    const timer = setTimeout(async () => {
+      try {
+        setMailDup((prev) => ({ ...prev, loading: true, error: null }));
+
+        const res = await axios.post(`${API_URL}/application/check-email/`, {
+          email: normalized,
+        });
+
+        if (mailDupReqIdRef.current !== currentReqId) return;
+
+        const isDuplicate = Boolean(res.data?.data?.is_duplicate);
+
+        setMailDup({
+          checked: true,
+          isDuplicate,
+          loading: false,
+          error: null,
+        });
+      } catch (err) {
+        if (mailDupReqIdRef.current !== currentReqId) return;
+
+        const msg =
+          err?.response?.data?.message ||
+          err?.response?.data?.error?.message ||
+          err?.message ||
+          "이메일 중복 확인 중 오류가 발생했어요.";
+
+        setMailDup({
+          checked: true,
+          isDuplicate: false,
+          loading: false,
+          error: msg,
+        });
+      }
+    }, 350);
+
+    return () => clearTimeout(timer);
+  }, [mail, location.state?.isEdit]);
+
+  const isNamePhoneDuplicateBlocked = !location.state?.isEdit && dup.checked && (dup.isDuplicate || Boolean(dup.error));
+
+  const isEmailDuplicateBlocked =
+    !location.state?.isEdit && mailDup.checked && (mailDup.isDuplicate || Boolean(mailDup.error));
+
+  const anyDupLoading = dup.loading || mailDup.loading;
   const isFormValid =
     name.trim() &&
     phone.trim() &&
@@ -126,7 +213,8 @@ function WriteInformation() {
     number.trim() &&
     student.trim() &&
     selectedPart &&
-    !isDuplicateBlocked;
+    !isNamePhoneDuplicateBlocked &&
+    !isEmailDuplicateBlocked;
 
   return (
     <>
@@ -140,21 +228,23 @@ function WriteInformation() {
         <N.FormGrid>
           <N.Name>
             <N.NameText>이름</N.NameText>
-            <N.NameInput
-              placeholder="이름을 입력해 주세요"
-              value={name}
-              onChange={(e) => setName(e.target.value)}></N.NameInput>
-            {dup.checked && dup.isDuplicate && <N.NameEx>*중복된 지원자 입니다</N.NameEx>}{" "}
+            <N.NameInput placeholder="이름을 입력해 주세요" value={name} onChange={(e) => setName(e.target.value)} />
+            {dup.checked && dup.isDuplicate && <N.NameEx>*중복된 지원자 입니다</N.NameEx>}
+            {dup.checked && !dup.isDuplicate && dup.error && <N.NameEx>*{dup.error}</N.NameEx>}
           </N.Name>
+
           <N.Phone>
             <N.PhoneText>전화번호</N.PhoneText>
             <N.InputEx>(예: 01012341234)</N.InputEx>
             <N.PhoneInput
               placeholder="‘-’ 없이 전화번호를 입력해 주세요"
               value={phone}
-              onChange={(e) => setPhone(normalizePhone(e.target.value))}></N.PhoneInput>
-            {dup.checked && dup.isDuplicate && <N.NumEx>*중복된 전화번호 입니다</N.NumEx>}{" "}
+              onChange={(e) => setPhone(normalizePhone(e.target.value))}
+            />
+            {dup.checked && dup.isDuplicate && <N.NumEx>*중복된 전화번호 입니다</N.NumEx>}
+            {dup.checked && !dup.isDuplicate && dup.error && <N.NumEx>*{dup.error}</N.NumEx>}
           </N.Phone>
+
           <N.Mail>
             <N.MailText>메일</N.MailText>
             <N.InputEx>
@@ -164,11 +254,20 @@ function WriteInformation() {
               <br />
               &nbsp;&nbsp;<N.HlColor>정확한 주소</N.HlColor>를 입력해주세요.
             </N.InputEx>
-            <N.MailInput
-              placeholder="dslions@duksung.ac.kr"
-              value={mail}
-              onChange={(e) => setMail(e.target.value)}></N.MailInput>
+
+            <N.MailInput placeholder="dslions@duksung.ac.kr" value={mail} onChange={(e) => setMail(e.target.value)} />
+
+            {!location.state?.isEdit && mail && !isValidEmail(mail) && (
+              <N.NameEx>*이메일 형식이 올바르지 않아요.</N.NameEx>
+            )}
+            {!location.state?.isEdit && mailDup.checked && mailDup.isDuplicate && (
+              <N.NameEx>*중복된 이메일 입니다</N.NameEx>
+            )}
+            {!location.state?.isEdit && mailDup.checked && !mailDup.isDuplicate && mailDup.error && (
+              <N.NameEx>*{mailDup.error}</N.NameEx>
+            )}
           </N.Mail>
+
           <N.Lesson>
             <N.LessonText>학과</N.LessonText>
             <N.InputEx>
