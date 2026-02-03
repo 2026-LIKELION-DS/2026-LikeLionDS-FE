@@ -7,15 +7,15 @@ import { isAdminLoggedIn } from "@utils/Admin";
 import Header from "@components/Header/HeaderSub";
 import NoticeContent from "@components/Notice/NoticeContent";
 import Footer from "@components/Footer";
-import noticeListData from "@/data/noticeListData.json";
+// import noticeListData from "@/data/noticeListData.json";
 
 function NoticeList() {
   const [notices, setNotices] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setNotices(noticeListData);
-  }, []);
+  // useEffect(() => {
+  //   setNotices(noticeListData);
+  // }, []);
 
   useEffect(() => {
     axios
