@@ -13,7 +13,9 @@ function AdminLogin() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (loginAdmin(id, password)) {
+    const success = loginAdmin(id, password);
+
+    if (success) {
       navigate("/admin/menu");
     } else {
       alert("로그인 실패");
@@ -28,12 +30,12 @@ function AdminLogin() {
         <A.Form>
           <A.InputBox>
             <A.InputName>로그인</A.InputName>
-            <A.Bar></A.Bar>
+            <A.Bar />
             <A.Input type="text" placeholder="아이디" value={id} onChange={(e) => setId(e.target.value)} />
           </A.InputBox>
           <A.InputBox>
             <A.InputName>비밀번호</A.InputName>
-            <A.Bar></A.Bar>
+            <A.Bar />
             <A.Input
               type="password"
               placeholder="비밀번호"
@@ -42,7 +44,7 @@ function AdminLogin() {
             />
           </A.InputBox>
           <A.Button
-            type="submit"
+            type="button"
             onClick={handleLogin}
             style={{
               backgroundColor: id && password ? "#ff7710" : "#FFB175",

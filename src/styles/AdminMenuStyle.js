@@ -14,13 +14,15 @@ export const Menu = styled.div`
   align-items: center;
   justify-content: center;
   width: 327px;
-  height: 88px;
+  height: 68px;
   border-radius: 363px;
   background-color: white;
-  color: #ff7710;
+  color: ${palette.realOrange.ex5Primary};
   font-size: 20px;
   margin-top: 10px;
   &:hover {
     cursor: pointer;
+    background: ${palette.realOrange.ex5Primary};
+    color: white;
   }
 `;

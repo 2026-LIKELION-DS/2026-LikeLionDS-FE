@@ -47,7 +47,7 @@ const FAQActivityAnswer4 = () => {
               <br />1회 이상이 필수 참여
             </b>
             이고, 나머지는 
-            <br />율 참여에요.
+            <br />자율 참여에요.
           </JoinRectangle>
         </M.ComponentContainer>
 
