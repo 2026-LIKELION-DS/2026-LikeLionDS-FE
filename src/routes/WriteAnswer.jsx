@@ -59,17 +59,38 @@ function WriteAnswer() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsNextVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsNextVisible(true);
+          observer.disconnect();
+        }
       },
       {
         root: null,
-        threshold: 0.1,
+        threshold: 0.3,
       },
     );
 
     observer.observe(nextButtonRef.current);
+
     return () => observer.disconnect();
   }, []);
+
+  // useEffect(() => {
+  //   if (!nextButtonRef.current) return;
+
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       setIsNextVisible(entry.isIntersecting);
+  //     },
+  //     {
+  //       root: null,
+  //       threshold: 0.1,
+  //     },
+  //   );
+
+  //   observer.observe(nextButtonRef.current);
+  //   return () => observer.disconnect();
+  // }, []);
 
   useEffect(() => {
     if (location.state?.isEdit && location.state?.answerData) {
@@ -609,18 +630,16 @@ function WriteAnswer() {
           )}
         </N.FormGrid>
 
-        <N.FixedBox>
-          <N.Fixed
-            $withNext={isNextVisible}
-            onClick={() => {
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              });
-            }}>
-            <N.UpIcon src={Up} alt="위로"></N.UpIcon>
-          </N.Fixed>
-        </N.FixedBox>
+        <N.Fixed
+          $withNext={isNextVisible}
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+          }}>
+          <N.UpIcon src={Up} alt="위로"></N.UpIcon>
+        </N.Fixed>
 
         <N.NextButtonGrid ref={nextButtonRef}>
           <N.NextButton

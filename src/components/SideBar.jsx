@@ -36,6 +36,8 @@ function SideBar({
   const isFormDateRange = () => {
     const today = new Date();
     const startDate = new Date(2026, 1, 19, 18, 0, 0);
+    // // QA용 날짜설정
+    // const startDate = new Date(2026, 1, 1, 18, 0, 0);
     return today >= startDate;
   };
 
@@ -75,6 +77,8 @@ function SideBar({
   // const isFinalDateRange = () => {
   //   const today = new Date();
   //   const startDate = new Date(2026, 2, 1, 12, 0, 0);
+  //   // 최종합격 UI 보고싶을 시
+  //   // const startDate = new Date(2026, 1, 1, 12, 0, 0);
   //   const endDate = new Date(2026, 2, 11, 0, 0, 0);
   //   return today >= startDate && today < endDate;
   // };
