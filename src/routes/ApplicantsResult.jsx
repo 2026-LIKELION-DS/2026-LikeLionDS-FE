@@ -40,9 +40,9 @@ function ApplicantsResult() {
 
   useEffect(() => {
     const today = new Date();
-    // const finalDate = new Date("2026-03-07"); //3월 7일로 설정
-    // 최종합격 UI 보고싶다면
-    const finalDate = new Date("2026-02-02"); 
+    const finalDate = new Date("2026-03-07"); //3월 7일로 설정
+    // // 최종합격 UI 보고싶다면
+    // const finalDate = new Date("2026-02-02"); 
 
     if (today > finalDate) {
       setFinalResult(true);
