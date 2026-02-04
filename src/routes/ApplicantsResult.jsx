@@ -88,7 +88,10 @@ function ApplicantsResult() {
                     <A.LinkBox>
                       <A.Button>
                         <A.Img src={notion} />
-                        <A.StyledLink to="#" target="_blank" rel="noopener noreferrer">
+                        <A.StyledLink
+                          to="https://www.notion.so/likelionds/14-2fd0fd275a15804ba146e23784cee5fe?source=copy_link"
+                          target="_blank"
+                          rel="noopener noreferrer">
                           노션 바로가기
                         </A.StyledLink>
                       </A.Button>
