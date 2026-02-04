@@ -66,7 +66,7 @@ function Splash() {
   useEffect(() => {
     const today = new Date();
     const startDate1 = new Date(2026, 1, 25, 12, 0, 0); // 2월 25일 12시
-    const endDate1 = new Date(2026, 2, 7, 0, 0, 0); // 3월 7일 00시
+    const endDate1 = new Date(2026, 1, 26, 21, 0, 0); // 2월 26일 21시
     const midDate = new Date(2026, 2, 7, 12, 0, 0); // 3월 7일 12시
     const startDate2 = new Date(2026, 2, 7, 12, 0, 0); // 3월 7일 12시 이후
     const finalEndDate = new Date(2026, 2, 9, 0, 0, 0); // 3월 9일 00시
