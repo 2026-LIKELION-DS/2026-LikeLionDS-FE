@@ -45,7 +45,9 @@ function SideBar({
   // const isWithinDateRange = () => {
   //   const today = new Date();
   //   const startDate = new Date(2026, 1, 25, 12, 0, 0);
+
   //   const endDate = new Date(2026, 1, 26, 21, 0, 0); // 2월 26일 21시 이전까지만 활성화
+
   //   return today >= startDate && today < endDate;
   // };
 
@@ -53,7 +55,9 @@ function SideBar({
   const isWithinDateRange = () => {
     const today = new Date();
     const startDate = new Date(2026, 1, 1, 12, 0, 0);
+
     const endDate = new Date(2026, 1, 26, 21, 0, 0); // 2월 26일 21시 이전까지만 활성화
+
     // // 최종합격자 UI 보고싶을시
     // const endDate = new Date(2026, 1, 2, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
     return today >= startDate && today < endDate;
