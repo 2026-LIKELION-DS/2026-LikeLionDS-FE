@@ -22,6 +22,9 @@ function WriteInformation() {
   const [student, setStudent] = useState("");
   const [selectedPart, setSelectedPart] = useState(null);
 
+  const isEdit = Boolean(location.state?.isEdit);
+  const initialEditRef = useRef({ name: "", phone: "", email: "" });
+
   // 이름, 전번 중복
   const [dup, setDup] = useState({
     checked: false,
@@ -62,9 +65,13 @@ function WriteInformation() {
     if (location.state?.isEdit && location.state?.formData) {
       const data = location.state.formData;
 
-      setName(data?.name ?? "");
-      setPhone(data?.phone_number ?? "");
-      setMail(data?.email ?? "");
+      const nextName = data?.name ?? "";
+      const nextPhone = data?.phone_number ?? "";
+      const nextMail = data?.email ?? "";
+
+      setName(nextName);
+      setPhone(nextPhone);
+      setMail(nextMail);
       setLesson(data?.department ?? "");
       setStudent(data?.academic_status ?? "");
       setNumber(data?.student_id ?? "");
@@ -76,20 +83,30 @@ function WriteInformation() {
       };
       setSelectedPart(partMapFromServer[data?.part] ?? null);
 
+      // 수정 화면에서 기존 값 저장 → 변경된 경우에만 중복 체크
+      initialEditRef.current = {
+        name: (nextName || "").trim(),
+        phone: normalizePhone(nextPhone || ""),
+        email: normalizeEmail(nextMail || ""),
+      };
+
       setDup({ checked: false, isDuplicate: false, loading: false, error: null });
       setMailDup({ checked: false, isDuplicate: false, loading: false, error: null });
     }
   }, [location.state]);
 
   useEffect(() => {
-    // 수정 모드에서는 중복 체크 안 함
-    if (location.state?.isEdit) return;
-
     const trimmedName = name.trim();
     const normalizedPhone = normalizePhone(phone);
 
+    const original = initialEditRef.current;
+    const changedInEdit =
+      isEdit && (trimmedName !== (original.name ?? "") || normalizedPhone !== (original.phone ?? ""));
+
+    const shouldCheck = !isEdit ? true : changedInEdit;
+
     // 입력이 덜 된 상태면 리셋
-    if (trimmedName.length < 2 || !(normalizedPhone.length === 10 || normalizedPhone.length === 11)) {
+    if (!shouldCheck || trimmedName.length < 2 || !(normalizedPhone.length === 10 || normalizedPhone.length === 11)) {
       setDup({
         checked: false,
         isDuplicate: false,
@@ -139,16 +156,18 @@ function WriteInformation() {
     }, 350);
 
     return () => clearTimeout(timer);
-  }, [name, phone, location.state?.isEdit]);
+  }, [name, phone, isEdit]);
 
   useEffect(() => {
-    // 수정 모드에서는 중복 체크 안 함
-    if (location.state?.isEdit) return;
-
     const normalized = normalizeEmail(mail);
 
+    const original = initialEditRef.current;
+    const changedInEdit = isEdit && normalized !== (original.email ?? "");
+
+    const shouldCheck = !isEdit ? true : changedInEdit;
+
     // 이메일이 유효하지 않으면 리셋
-    if (!isValidEmail(normalized)) {
+    if (!shouldCheck || !isValidEmail(normalized)) {
       setMailDup({
         checked: false,
         isDuplicate: false,
@@ -197,12 +216,10 @@ function WriteInformation() {
     }, 350);
 
     return () => clearTimeout(timer);
-  }, [mail, location.state?.isEdit]);
+  }, [mail, isEdit]);
 
-  const isNamePhoneDuplicateBlocked = !location.state?.isEdit && dup.checked && (dup.isDuplicate || Boolean(dup.error));
-
-  const isEmailDuplicateBlocked =
-    !location.state?.isEdit && mailDup.checked && (mailDup.isDuplicate || Boolean(mailDup.error));
+  const isNamePhoneDuplicateBlocked = dup.checked && (dup.isDuplicate || Boolean(dup.error));
+  const isEmailDuplicateBlocked = mailDup.checked && (mailDup.isDuplicate || Boolean(mailDup.error));
 
   const anyDupLoading = dup.loading || mailDup.loading;
 
@@ -226,6 +243,7 @@ function WriteInformation() {
           <N.StepText>인적사항 입력</N.StepText>
           <N.StepIcon src={Step2} alt="단계1" />
         </N.StepGrid>
+
         <N.FormGrid>
           <N.Name>
             <N.NameText>이름</N.NameText>
@@ -258,15 +276,9 @@ function WriteInformation() {
 
             <N.MailInput placeholder="dslions@duksung.ac.kr" value={mail} onChange={(e) => setMail(e.target.value)} />
 
-            {!location.state?.isEdit && mail && !isValidEmail(mail) && (
-              <N.NameEx>*이메일 형식이 올바르지 않아요.</N.NameEx>
-            )}
-            {!location.state?.isEdit && mailDup.checked && mailDup.isDuplicate && (
-              <N.NameEx>*중복된 이메일 입니다</N.NameEx>
-            )}
-            {!location.state?.isEdit && mailDup.checked && !mailDup.isDuplicate && mailDup.error && (
-              <N.NameEx>*{mailDup.error}</N.NameEx>
-            )}
+            {mail && !isValidEmail(mail) && <N.NameEx>*이메일 형식이 올바르지 않아요.</N.NameEx>}
+            {mailDup.checked && mailDup.isDuplicate && <N.NameEx>*중복된 이메일 입니다</N.NameEx>}
+            {mailDup.checked && !mailDup.isDuplicate && mailDup.error && <N.NameEx>*{mailDup.error}</N.NameEx>}
           </N.Mail>
 
           <N.Lesson>
@@ -290,6 +302,7 @@ function WriteInformation() {
               value={lesson}
               onChange={(e) => setLesson(e.target.value)}></N.LessonInput>
           </N.Lesson>
+
           <N.Number>
             <N.NumberText>학번</N.NumberText>
             <N.InputEx>(예: 20260101)</N.InputEx>
@@ -299,6 +312,7 @@ function WriteInformation() {
               onChange={(e) => setNumber(e.target.value)}
             />
           </N.Number>
+
           <N.Lesson>
             <N.LessonText>학년/재학 여부</N.LessonText>
             <N.InputEx>
@@ -317,6 +331,7 @@ function WriteInformation() {
               value={student}
               onChange={(e) => setStudent(e.target.value)}></N.LessonInput>
           </N.Lesson>
+
           <N.PartGrid>
             <N.PartText>지원하는 파트</N.PartText>
             <N.PartCon>
