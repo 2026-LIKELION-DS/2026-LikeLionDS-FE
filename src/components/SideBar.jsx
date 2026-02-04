@@ -45,7 +45,7 @@ function SideBar({
   const isWithinDateRange = () => {
     const today = new Date();
     const startDate = new Date(2026, 1, 25, 12, 0, 0);
-    const endDate = new Date(2026, 2, 3, 0, 0, 0); // 3월 3일 00시 이전까지만 활성화
+    const endDate = new Date(2026, 1, 26, 21, 0, 0); // 2월 26일 21시 이전까지만 활성화
     return today >= startDate && today < endDate;
   };
 
@@ -53,9 +53,9 @@ function SideBar({
   // const isWithinDateRange = () => {
   //   const today = new Date();
   //   const startDate = new Date(2026, 1, 1, 12, 0, 0);
-  //   // const endDate = new Date(2026, 2, 8, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
-  //   // 최종합격자 UI 보고싶을시
-  //   const endDate = new Date(2026, 1, 2, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
+  //   const endDate = new Date(2026, 1, 26, 21, 0, 0); // 2월 26일 21시 이전까지만 활성화
+  //   // // 최종합격자 UI 보고싶을시
+  //   // const endDate = new Date(2026, 1, 2, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
   //   return today >= startDate && today < endDate;
   // };
 
@@ -80,9 +80,9 @@ function SideBar({
   // // 최종 합격자 조회 가능 기간 (QA용)
   // const isFinalDateRange = () => {
   //   const today = new Date();
-  //   // const startDate = new Date(2026, 2, 1, 12, 0, 0);
-  //   // 최종합격 UI 보고싶을 시
-  //   const startDate = new Date(2026, 1, 1, 12, 0, 0);
+  //   const startDate = new Date(2026, 2, 1, 12, 0, 0);
+  //   // // 최종합격 UI 보고싶을 시
+  //   // const startDate = new Date(2026, 1, 1, 12, 0, 0);
   //   const endDate = new Date(2026, 2, 11, 0, 0, 0);
   //   return today >= startDate && today < endDate;
   // };
@@ -95,9 +95,9 @@ function SideBar({
   };
 
   const handleLogout = () => {
-    logoutAdmin(); 
-    onClose(); 
-    navigate("/admin"); 
+    logoutAdmin();
+    onClose();
+    navigate("/admin");
   };
 
   return (

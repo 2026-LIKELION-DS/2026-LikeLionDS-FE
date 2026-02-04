@@ -159,7 +159,7 @@ function TimeSelection() {
                 },
               })
             }>
-            다음으로
+            제출하기
           </N.NextButton>
         </N.NextButtonGrid>
       </N.Space>
