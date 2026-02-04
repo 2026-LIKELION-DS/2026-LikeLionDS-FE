@@ -90,13 +90,14 @@ export const ProjectsSlide1 = styled.div`
   width: 100%;
   .slide-track {
     display: flex;
-    width: calc(224px * 16 * 2); /* 원본 + 복제 */
+    width: max-content;
+   /* width: calc(224px * 16 * 2); */
     animation: ${slideAnimationLeft} 20s linear infinite; /* 무한 반복 */
     img {
       width: 224px;
       height: 126px;
       margin-right: 10px;
-      animation: ${slideAnimationLeft} 20s linear infinite;
+     /*animation: ${slideAnimationLeft} 20s linear infinite;*/
     }
   }
 `;
@@ -112,14 +113,15 @@ export const ProjectsSlide2 = styled.div`
   .slide-track {
     display: flex;
     animation: ${slideAnimationRight} 20s linear infinite;
-    width: calc(224px * 16 * 2); /* 원본 + 복제 */
+    /*width: calc(224px * 16 * 2); */
+    width: max-content;
 
     img {
       width: 224px;
       height: 126px;
       margin-right: 10px;
       flex-shrink: 0;
-      animation: ${slideAnimationRight} 20s linear infinite;
+      /*animation: ${slideAnimationRight} 20s linear infinite;*/
     }
   }
 `;

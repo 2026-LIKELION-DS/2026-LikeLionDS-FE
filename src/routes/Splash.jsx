@@ -48,16 +48,16 @@ function Splash() {
     setIsAnimating(true);
 
     setTimeout(() => {
-     // setIsAnimating(false);
+      // setIsAnimating(false);
       navigate("/main");
-    }, 800); // 1000ms 후에 페이지 이동
+    }, 800); // 800ms 후에 페이지 이동
   };
 
   const handleNavLinkClick = (path) => {
     setIsAnimating(true);
 
     setTimeout(() => {
-    //  setIsAnimating(false);
+      // setIsAnimating(false);
       navigate(path);
     }, 1000); // 1000ms 후에 페이지 이동
   };
