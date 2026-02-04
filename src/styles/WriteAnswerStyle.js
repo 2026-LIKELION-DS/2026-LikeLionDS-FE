@@ -56,7 +56,7 @@ export const QInput = styled.textarea`
   cursor: pointer;
   outline: none;
   border: none;
-  height: auto;
+  resize: none;
   resize: none;
   max-height: 280px;
   min-height: 18px;
@@ -65,6 +65,7 @@ export const QInput = styled.textarea`
 `;
 
 export const QInputBox = styled.div`
+  position: relative;
   border: none;
   resize: none;
   outline: none;
@@ -75,15 +76,17 @@ export const QInputBox = styled.div`
   padding: 12px;
   display: flex; // 추가된 부분
   flex-direction: column; // 추가된 부분
-  gap: 16px; // 추가된 부분
   max-height: 300px;
   background: ${palette.style.white};
 `;
 
 export const TextCount = styled.div`
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  margin-top: 20px;
   color: ${palette.boldBlack.ex5};
   display: flex;
-  justify-content: end;
   font-size: 12px;
 `;
 export const WriteText = styled.span`
@@ -154,30 +157,6 @@ export const Fixed = styled.div`
   }
 `;
 
-// export const Fixed = styled.div`
-//   width: 48px;
-//   height: 48px;
-
-//   position: ${({ $withNext }) => ($withNext ? "sticky" : "fixed")};
-//   bottom: ${({ $withNext }) => ($withNext ? "120px" : "24px")};
-//   right: calc(50% - 150px);
-//   margin-left: ${({ $withNext }) => ($withNext ? "auto" : "0")};
-
-//   z-index: 1000;
-//   margin-bottom: 15px;
-
-//   cursor: pointer;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border-radius: 100%;
-//   background-color: ${palette.realOrange.ex5Primary};
-
-//   &:active {
-//     transform: scale(0.97);
-//   }
-// `;
-
 export const UpIcon = styled.img`
   width: 24px;
   height: 24px;
@@ -218,9 +197,3 @@ export const NextButtonGrid = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-// export const FixedBox = styled.div`
-//   display: flex;
-//   justify-content: flex-end;
-//   position: relative;
-// `;
