@@ -108,7 +108,7 @@ function WriteConfirm() {
     };
 
     await axios.post(`${API_URL}/application/`, cleanedPayload);
-    navigate("/applicationformdone");
+    navigate("/applicationformdone", { replace: true });
   };
 
   return (

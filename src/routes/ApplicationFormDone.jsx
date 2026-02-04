@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as SS from "@styles/SubmittedPageStyle";
 import * as S from "@styles/SubmittedApplicationStyle";
@@ -10,6 +11,17 @@ import underline from "@/assets/icons/underline.svg";
 import logo from "@/assets/logo/logo_ds_topbar_orange.svg";
 
 function ApplicationFormDone() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const onPopState = () => {
+      navigate("/main", { replace: true });
+    };
+
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [navigate]);
+
   return (
     <>
       <Header title="서류 지원서 작성" />
