@@ -35,29 +35,29 @@ function SideBar({
   // 지원 마감
   const isFormDateRange = () => {
     const today = new Date();
-    const startDate = new Date(2026, 1, 19, 18, 0, 0);
-    // // QA용 날짜설정
-    // const startDate = new Date(2026, 1, 1, 18, 0, 0);
+    // const startDate = new Date(2026, 1, 19, 18, 0, 0);
+    // QA용 날짜설정
+    const startDate = new Date(2026, 1, 1, 18, 0, 0);
     return today >= startDate;
   };
 
-  // 1차 합격자 조회
-  const isWithinDateRange = () => {
-    const today = new Date();
-    const startDate = new Date(2026, 1, 25, 12, 0, 0);
-    const endDate = new Date(2026, 1, 26, 21, 0, 0); // 2월 26일 21시 이전까지만 활성화
-    return today >= startDate && today < endDate;
-  };
-
-  // // 1차 합격자 조회 (QA용)
+  // // 1차 합격자 조회
   // const isWithinDateRange = () => {
   //   const today = new Date();
-  //   const startDate = new Date(2026, 1, 1, 12, 0, 0);
+  //   const startDate = new Date(2026, 1, 25, 12, 0, 0);
   //   const endDate = new Date(2026, 1, 26, 21, 0, 0); // 2월 26일 21시 이전까지만 활성화
-  //   // // 최종합격자 UI 보고싶을시
-  //   // const endDate = new Date(2026, 1, 2, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
   //   return today >= startDate && today < endDate;
   // };
+
+  // 1차 합격자 조회 (QA용)
+  const isWithinDateRange = () => {
+    const today = new Date();
+    const startDate = new Date(2026, 1, 1, 12, 0, 0);
+    const endDate = new Date(2026, 1, 26, 21, 0, 0); // 2월 26일 21시 이전까지만 활성화
+    // // 최종합격자 UI 보고싶을시
+    // const endDate = new Date(2026, 1, 2, 0, 0, 0); // 3월 8일 00시 이전까지만 활성화
+    return today >= startDate && today < endDate;
+  };
 
   // 3월 7일 00시 ~ 3월 7일 12시 동안 비활성화
   const isInDisabledRange = () => {
@@ -67,25 +67,25 @@ function SideBar({
     return today >= startDate && today < endDate;
   };
 
-  // 최종 합격자 조회 가능 기간 (3월 7일 12시 이후 ~ 3월 9일 00시 이전)
-  const isFinalDateRange = () => {
-    const today = new Date();
-    const startDate = new Date(2026, 2, 7, 12, 0, 0);
-    // // 최종합격 UI 보고싶을 시
-    // const startDate = new Date(2026, 1, 1, 12, 0, 0);
-    const endDate = new Date(2026, 2, 9, 0, 0, 0);
-    return today >= startDate && today < endDate;
-  };
-
-  // // 최종 합격자 조회 가능 기간 (QA용)
+  // // 최종 합격자 조회 가능 기간 (3월 7일 12시 이후 ~ 3월 9일 00시 이전)
   // const isFinalDateRange = () => {
   //   const today = new Date();
-  //   const startDate = new Date(2026, 2, 1, 12, 0, 0);
+  //   const startDate = new Date(2026, 2, 7, 12, 0, 0);
   //   // // 최종합격 UI 보고싶을 시
   //   // const startDate = new Date(2026, 1, 1, 12, 0, 0);
-  //   const endDate = new Date(2026, 2, 11, 0, 0, 0);
+  //   const endDate = new Date(2026, 2, 9, 0, 0, 0);
   //   return today >= startDate && today < endDate;
   // };
+
+  // 최종 합격자 조회 가능 기간 (QA용)
+  const isFinalDateRange = () => {
+    const today = new Date();
+    const startDate = new Date(2026, 2, 1, 12, 0, 0);
+    // // 최종합격 UI 보고싶을 시
+    // const startDate = new Date(2026, 1, 1, 12, 0, 0);
+    const endDate = new Date(2026, 2, 11, 0, 0, 0);
+    return today >= startDate && today < endDate;
+  };
 
   // 3월 9일 00시 이후 비활성화
   const isAfterFinalDate = () => {
