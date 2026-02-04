@@ -40,9 +40,9 @@ function ApplicantsResult() {
 
   useEffect(() => {
     const today = new Date();
-    const finalDate = new Date("2026-03-07"); //3월 7일로 설정
-    // // 최종합격 UI 보고싶다면
-    // const finalDate = new Date("2026-02-02"); 
+    // const finalDate = new Date("2026-03-07"); //3월 7일로 설정
+    // 최종합격 UI 보고싶다면
+    const finalDate = new Date("2026-02-02"); 
 
     if (today > finalDate) {
       setFinalResult(true);
@@ -88,7 +88,10 @@ function ApplicantsResult() {
                     <A.LinkBox>
                       <A.Button>
                         <A.Img src={notion} />
-                        <A.StyledLink to="#" target="_blank" rel="noopener noreferrer">
+                        <A.StyledLink
+                          to="https://www.notion.so/likelionds/14-2fd0fd275a15804ba146e23784cee5fe?source=copy_link"
+                          target="_blank"
+                          rel="noopener noreferrer">
                           노션 바로가기
                         </A.StyledLink>
                       </A.Button>

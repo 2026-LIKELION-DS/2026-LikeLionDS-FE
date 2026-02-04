@@ -5,28 +5,28 @@ import * as A from "@styles/ApplicantsStyle";
 import Header from "@components/Header/HeaderApp";
 import Error from "@routes/Error";
 
-const REAL_FINAL_RESULT_START = new Date(2026, 2, 7, 12, 0, 0);
-// // 최종합격 UI 보고싶으면
-// const REAL_FINAL_RESULT_START = new Date(2026, 1, 3, 12, 0, 0);
+// const REAL_FINAL_RESULT_START = new Date(2026, 2, 7, 12, 0, 0);
+// 최종합격 UI 보고싶으면
+const REAL_FINAL_RESULT_START = new Date(2026, 1, 2, 12, 0, 0);
 
 const getPageMode = () => {
   const now = new Date();
 
-  const formDeadline = new Date(2026, 1, 19, 18, 0, 0); // 2/19 18:00
-  const firstResultStart = new Date(2026, 1, 25, 12, 0, 0); // 2/25 12:00
-  // const firstResultStart = new Date(2026, 2, 7, 12, 0, 0); // 최종 합격, 3/7 12:00
-
-  const disabledStart = new Date(2026, 2, 7, 0, 0, 0); // 3/7 00:00
-  const disabledEnd = new Date(2026, 2, 7, 12, 0, 0); // 3/7 12:00
-  const finalEndDate = new Date(2026, 2, 9, 0, 0, 0); // 3/9 00:00
-
-  // // QA용 날짜설정
-  // const formDeadline = new Date(2026, 1, 1, 12, 0, 0); // 2/1 18:00
-  // const firstResultStart = new Date(2026, 1, 1, 12, 0, 0); // 2/1 12:00
+  // const formDeadline = new Date(2026, 1, 19, 18, 0, 0); // 2/19 18:00
+  // const firstResultStart = new Date(2026, 1, 25, 12, 0, 0); // 2/25 12:00
+  // // const firstResultStart = new Date(2026, 2, 7, 12, 0, 0); // 최종 합격, 3/7 12:00
 
   // const disabledStart = new Date(2026, 2, 7, 0, 0, 0); // 3/7 00:00
   // const disabledEnd = new Date(2026, 2, 7, 12, 0, 0); // 3/7 12:00
-  // const finalEndDate = new Date(2026, 2, 11, 0, 0, 0); // 3/11 00:00
+  // const finalEndDate = new Date(2026, 2, 9, 0, 0, 0); // 3/9 00:00
+
+  // QA용 날짜설정
+  const formDeadline = new Date(2026, 1, 1, 12, 0, 0); // 2/1 18:00
+  const firstResultStart = new Date(2026, 1, 1, 12, 0, 0); // 2/1 12:00
+
+  const disabledStart = new Date(2026, 2, 7, 0, 0, 0); // 3/7 00:00
+  const disabledEnd = new Date(2026, 2, 7, 12, 0, 0); // 3/7 12:00
+  const finalEndDate = new Date(2026, 2, 11, 0, 0, 0); // 3/11 00:00
 
   // 접근 불가 기간
   if ((now >= disabledStart && now < disabledEnd) || now >= finalEndDate) {
