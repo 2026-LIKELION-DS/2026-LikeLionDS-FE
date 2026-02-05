@@ -35,7 +35,7 @@ function MainLastPage() {
       return "지원 마감까지 D-1"; // 2월 19일 00:00 ~ 23:59
     }
 
-    const diffDays = Math.floor((d1Start - now) / (1000 * 60 * 60 * 24));
+    const diffDays = Math.floor((dDayStart - now) / (1000 * 60 * 60 * 24)) + 1;
     return `지원 마감까지 D-${diffDays}`;
   };
 
