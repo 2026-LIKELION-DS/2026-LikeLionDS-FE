@@ -172,7 +172,7 @@ function Question() {
   }, []);
 
   const handleKakaoClick = () => {
-    window.open("https://open.kakao.com/o/sVlPfU7h", "_blank", "noopener,noreferrer");
+    window.open("https://open.kakao.com/o/sruBFWei", "_blank", "noopener,noreferrer");
   };
 
   return (

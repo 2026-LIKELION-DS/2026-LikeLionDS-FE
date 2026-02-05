@@ -54,7 +54,7 @@ const handleClick = () => {
               관련 문의사항은 <br />
               카카오톡 오픈채팅으로 부탁드립니다.
             </S.Text>
-            <S.KakaoLink onClick={() => window.open("https://open.kakao.com/o/sVlPfU7h", "_blank")}>
+            <S.KakaoLink onClick={() => window.open("https://open.kakao.com/o/sruBFWei", "_blank")}>
               <S.KakaoIMG src={kakao} alt="카카오톡 로고" />
               카카오톡 오픈채팅 바로가기
             </S.KakaoLink>

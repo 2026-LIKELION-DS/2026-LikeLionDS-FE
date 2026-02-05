@@ -128,7 +128,7 @@ function ApplicantsResult() {
                     <A.LinkBox>
                       <A.Button>
                         <A.Img src={kakao} />
-                        <A.StyledLink to="https://open.kakao.com/o/sVlPfU7h">카카오 오픈채팅 바로가기</A.StyledLink>
+                        <A.StyledLink to="https://open.kakao.com/o/sruBFWei">카카오 오픈채팅 바로가기</A.StyledLink>
                       </A.Button>
                     </A.LinkBox>
                   </>
