@@ -95,7 +95,7 @@ function TimeSelectionDone() {
             },
           ]}
           showKakaoLink
-          onKakaoClick={() => window.open("https://open.kakao.com/o/sVlPfU7h", "_blank")}
+          onKakaoClick={() => window.open("https://open.kakao.com/o/sruBFWei", "_blank")}
         />
       </S.Space>
 
