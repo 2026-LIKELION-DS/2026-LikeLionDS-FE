@@ -306,6 +306,7 @@ function WriteInformation() {
           <N.Number>
             <N.NumberText>학번</N.NumberText>
             <N.InputEx>(예: 20260101)</N.InputEx>
+            <N.InputEx>* 학번이 발급되지 않은 26학번의 경우 '20260000'으로 통일하여 기재해주세요.</N.InputEx>
             <N.NumberInput
               placeholder="학번을 작성해 주세요"
               value={number}
