@@ -164,7 +164,7 @@ function SideBar({
           ) : (
             <S.ResultGroup>
               <S.SubTitle>1차 합격자 조회하기</S.SubTitle>
-              <S.SubDate>02.25부터</S.SubDate>
+              {/* <S.SubDate>02.25부터</S.SubDate> */}
             </S.ResultGroup>
           )}
           {isFinalDateRange() ? (
