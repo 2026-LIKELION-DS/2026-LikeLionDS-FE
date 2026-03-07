@@ -174,7 +174,7 @@ function SideBar({
           ) : (
             <S.ResultGroup>
               <S.SubTitle>최종 합격자 조회하기</S.SubTitle>
-              <S.SubDate>03.07부터</S.SubDate>
+              {/* <S.SubDate>03.07부터</S.SubDate> */}
             </S.ResultGroup>
           )}
         </S.Index>
