@@ -97,7 +97,7 @@ function ApplicantsResult() {
                       </A.Button>
                       <A.Button>
                         <A.Img src={discord} />
-                        <A.StyledLink to="https://discord.gg/pQhPjBbZ" target="_blank" rel="noopener noreferrer">
+                        <A.StyledLink to="https://discord.gg/JvbRMcSdDh" target="_blank" rel="noopener noreferrer">
                           디스코드 바로가기
                         </A.StyledLink>
                       </A.Button>
