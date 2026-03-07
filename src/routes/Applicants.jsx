@@ -184,7 +184,8 @@ function Applicants() {
           const resultData = resultRes.data;
 
           if (resultData.status === "fail") {
-            alert(resultData.message);
+            // alert(resultData.message);
+            alert("최종 합격자 발표 대상이 아닙니다.");
             return;
           }
 
