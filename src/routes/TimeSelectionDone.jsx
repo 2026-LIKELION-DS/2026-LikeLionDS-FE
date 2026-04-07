@@ -15,63 +15,64 @@ function TimeSelectionDone() {
 
   const { selectedTimes, email } = location.state || {};
 
-  useEffect(() => {
-    // 이메일 없으면 잘못된 접근
-    if (!email) {
-      navigate("/error");
-      return;
-    }
+  //아카이빙 과정에서 연동 부분은 주석처리했습니다.
+  // useEffect(() => {
+  //   // 이메일 없으면 잘못된 접근
+  //   if (!email) {
+  //     navigate("/error");
+  //     return;
+  //   }
 
-    const API_URL = import.meta.env.VITE_API_URL;
+  //   const API_URL = import.meta.env.VITE_API_URL;
 
-    //방금 면접 시간 제출한 경우
-    if (selectedTimes && selectedTimes.length > 0) {
-      const submitTime = async () => {
-        try {
+  //   //방금 면접 시간 제출한 경우
+  //   if (selectedTimes && selectedTimes.length > 0) {
+  //     const submitTime = async () => {
+  //       try {
 
-          const res = await axios.post(`${API_URL}/check/select/`, {
-            email,
-            slot_ids: selectedTimes,
-          });
+  //         const res = await axios.post(`${API_URL}/check/select/`, {
+  //           email,
+  //           slot_ids: selectedTimes,
+  //         });
 
-          console.log(res.data.message);
-        } catch (err) {
-          if (err.response?.status === 409) {
-            alert("이미 면접 시간을 선택하셨습니다. 수정이 불가능합니다.");
-          } else if (err.response?.status === 403) {
-            alert("합격자만 면접 시간을 선택할 수 있습니다.");
-          } else {
-            alert("서버 오류가 발생했습니다.");
-          }
+  //         console.log(res.data.message);
+  //       } catch (err) {
+  //         if (err.response?.status === 409) {
+  //           alert("이미 면접 시간을 선택하셨습니다. 수정이 불가능합니다.");
+  //         } else if (err.response?.status === 403) {
+  //           alert("합격자만 면접 시간을 선택할 수 있습니다.");
+  //         } else {
+  //           alert("서버 오류가 발생했습니다.");
+  //         }
 
-          navigate("/error");
-        }
-      };
+  //         navigate("/error");
+  //       }
+  //     };
 
-      submitTime();
-      return;
-    }
+  //     submitTime();
+  //     return;
+  //   }
 
-    //applicants에서 바로 온 사람(면접시간까지 제출후 재확인)
-    const checkSubmitted = async () => {
-      try {
-        const res = await axios.post(
-          `${API_URL}/check/submission-check/`,
-          { email }
-        );
+  //   //applicants에서 바로 온 사람(면접시간까지 제출후 재확인)
+  //   const checkSubmitted = async () => {
+  //     try {
+  //       const res = await axios.post(
+  //         `${API_URL}/check/submission-check/`,
+  //         { email }
+  //       );
 
-        // 서버 기준으로도 제출 안 한 상태면 잘못된 접근
-        if (!res.data.data?.submitted) {
-          navigate("/error");
-        }
-      } catch {
-        navigate("/error");
-      }
-    };
+  //       // 서버 기준으로도 제출 안 한 상태면 잘못된 접근
+  //       if (!res.data.data?.submitted) {
+  //         navigate("/error");
+  //       }
+  //     } catch {
+  //       navigate("/error");
+  //     }
+  //   };
 
-    checkSubmitted();
+  //   checkSubmitted();
 
-  }, [selectedTimes, email, navigate]);
+  // }, [selectedTimes, email, navigate]);
 
   return (
     <>

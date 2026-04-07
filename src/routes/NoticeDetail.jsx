@@ -6,28 +6,29 @@ import { isAdminLoggedIn } from "@utils/Admin";
 
 import Header from "@components/Header/HeaderSub";
 import Footer from "@components/Footer";
-// import noticeDetailData from "@/data/noticeDetailData.json";
+import noticeDetailData from "@/data/noticeDetailData.json";
 
 function NoticeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [notice, setNotice] = useState(null);
 
-  // useEffect(() => {
-  //   const selectedNotice = noticeDetailData.find((item) => item.id === Number(id));
-  //   setNotice(selectedNotice || null);
-  // }, [id]);
-
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/board/${id}`)
-      .then((response) => {
-        setNotice(response.data);
-      })
-      .catch((error) => {
-        console.error("공지사항을 불러오는 중 오류 발생:", error);
-      });
+    const selectedNotice = noticeDetailData.find((item) => item.id === Number(id));
+    setNotice(selectedNotice || null);
   }, [id]);
+
+  //아카이빙 과정에서 연동 부분은 주석처리했습니다.
+  // useEffect(() => {
+  //   axios
+  //     .get(`${import.meta.env.VITE_API_URL}/board/${id}`)
+  //     .then((response) => {
+  //       setNotice(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("공지사항을 불러오는 중 오류 발생:", error);
+  //     });
+  // }, [id]);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
