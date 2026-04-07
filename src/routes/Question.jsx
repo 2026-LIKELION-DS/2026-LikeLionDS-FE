@@ -44,10 +44,12 @@ function Question() {
       const formattedQuestions = questionsDataArray.map((q) => ({
         id: q.id,
         question: q.question,
-        answers: q.answers.map((a, index) => ({
-          id: index + 1, // JSON에 ID가 없으므로 임시 ID 부여
-          answer: a,
-        })),
+        answers: Array.isArray(q.answers)
+          ? q.answers.map((a, index) => ({
+              id: index + 1,
+              answer: a,
+            }))
+          : [],
       }));
 
       // 최신 질문이 위로 오도록 정렬
